@@ -21,10 +21,8 @@ export const PATH = {
 function Pages() {
     return (
         <div>
-            {/*Routes выбирает первый подходящий роут*/}
-            <Routes>
 
-                {/*в начале мы попадаем на страницу '/' и переходим сразу на страницу PRE_JUNIOR*/}
+            <Routes>
                 <Route path={'/'} element={<Navigate to={PATH.PROFILE}/>}/>
 
                 <Route path={PATH.PROFILE} element={<Profile/>}/>
@@ -33,9 +31,6 @@ function Pages() {
                 <Route path={PATH.RESET_PASSWORD} element={<ResetPassword/>}/>
                 <Route path={PATH.ENTER_NEW_PASSWORD} element={<EnterNewPassword/>}/>
                 <Route path={PATH.TEST} element={<TestPage/>}/>
-                // add routes for jun and jun+
-
-                {/*он отрисуется если пользователь захочет попасть на несуществующую страницу*/}
                 <Route path={'/*'} element={<Error404/>}/>
 
             </Routes>
