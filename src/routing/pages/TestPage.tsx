@@ -97,7 +97,7 @@ function TestPage() {
             <hr/>
 
             {/*ranges*/}
-            {/*<div>
+            <div>
                 <span>{valueRange1}</span>
                 <SuperRange value1={valueRange1}
                             value2={valueRange2}
@@ -111,7 +111,7 @@ function TestPage() {
                                   onChangeRange={handleChange}
                 />
                 <span>{valueRange2}</span>
-            </div>*/}
+            </div>
         </div>
     )
 }

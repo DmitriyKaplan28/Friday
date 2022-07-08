@@ -2,6 +2,7 @@ import React from 'react'
 import  './SuperDoubleRange.css'
 import {Box, Slider} from "@mui/material";
 
+
 type SuperDoubleRangePropsType = {
     value: [number, number]
     onChangeRange: (value: [number, number]) => void

@@ -1,6 +1,7 @@
 import React, { DetailedHTMLProps, InputHTMLAttributes} from 'react'
 import {Box, Slider} from "@mui/material";
 
+
 // тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
