@@ -6,7 +6,7 @@ import {HashRouter} from "react-router-dom";
 function PageRouting() {
     return (
         <div>
-            {/*в gh-pages лучше работает HashRouter*/}
+
             <HashRouter>
 
             <Header/>

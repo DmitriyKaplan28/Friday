@@ -1,8 +1,6 @@
 import React, { DetailedHTMLProps, InputHTMLAttributes} from 'react'
 import {Box, Slider} from "@mui/material";
 
-
-
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
 type SuperRangePropsType = DefaultInputPropsType & {
@@ -26,7 +24,6 @@ const SuperRange: React.FC<SuperRangePropsType> = (
         ...restProps
     }
 ) => {
-
 
     const onChangeCallback = (event: Event, newValue: number | number[]) => {
         onChangeRange && onChangeRange(newValue as number)
