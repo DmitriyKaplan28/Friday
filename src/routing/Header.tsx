@@ -12,7 +12,6 @@ function Header() {
             <NavLink to={'/reset-password'} className={s.links}>reset password</NavLink>
             <NavLink to={'/enter-new-password'} className={s.links}>enter new password</NavLink>
             <NavLink to={'/test'} className={s.links}>test</NavLink>
-
         </div>
     )
 }
