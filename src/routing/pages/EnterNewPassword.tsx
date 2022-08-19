@@ -1,12 +1,7 @@
 import React from 'react'
 
-
 function EnterNewPassword() {
-    return (
-        <div>
-            Enter New Password
-        </div>
-    )
+  return <div>Enter New Password</div>
 }
 
 export default EnterNewPassword

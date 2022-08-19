@@ -1,18 +1,20 @@
 .default {
-    background: white;
-    color: #282c34;
-    outline: none;
+  color: #282c34;
+
+  background: white;
+  outline: none;
 }
 
 .button {
-    position: relative;
-    margin: 15px;
+  position: relative;
+
+  margin: 15px;
 }
 
 .default:disabled {
-    background: black;
+  background: black;
 }
 
 .red {
-    background: red;
+  background: red;
 }

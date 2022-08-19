@@ -1,13 +1,13 @@
-import React from 'react';
-import './App.css';
-import PageRouting from "./routing/PageRouting";
+import React from 'react'
+import './App.css'
+import PageRouting from './routing/PageRouting'
 
 function App() {
   return (
     <div>
-     <PageRouting/>
+      <PageRouting />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,28 +1,30 @@
 .input:focus {
-    outline: none;
-    border: gold solid 2px;
+  border: gold solid 2px;
+  outline: none;
 }
 
 .superInput {
-    border: 1px solid #cccccc;
-border-radius: 3px;
--webkit-border-radius: 3px;
--moz-border-radius: 3px;
--khtml-border-radius: 3px;
-background: #ffffff !important;
-outline: none;
-height: 24px;
-width: 120px;
-color: #cccccc;
-font-size: 11px;
-font-family: Tahoma;
+  width: 120px;
+  height: 24px;
+
+  font-family: Tahoma;
+  font-size: 11px;
+  color: #cccccc;
+
+  background: #ffffff !important;
+  border: 1px solid #cccccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  outline: none;
 }
 
 .errorInput {
-    border: 3px solid lime;
-    background: red;
+  background: red;
+  border: 3px solid lime;
 }
 
 .error {
-    color: red;
+  color: red;
 }
