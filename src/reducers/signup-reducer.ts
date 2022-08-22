@@ -1,15 +1,24 @@
-import { AppActionsType } from '../store/store'
+//state
+const initialState = {
+  isRegistration: false,
+}
 
-const initialState = {}
-
-type InitialStateType = typeof initialState
+export type InitialStateType = typeof initialState
 
 export const signUpReducer = (
   state: InitialStateType = initialState,
-  action: AppActionsType
+  action: SingUpACType
 ): InitialStateType => {
   switch (action.type) {
+    case 'SET-REGISTRATION':
+      return { ...state, isRegistration: action.register }
     default:
       return state
   }
 }
+export const setRegistration = (register: boolean) =>
+  ({ type: 'SET-REGISTRATION', register } as const)
+//thunk
+
+// types
+export type SingUpACType = ReturnType<typeof setRegistration>
