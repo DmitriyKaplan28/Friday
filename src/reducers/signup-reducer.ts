@@ -1,14 +1,19 @@
 //state
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { Dispatch } from 'redux'
 import { AppDispatch, AppRootStateType } from '../store/store'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { changeIsLogin, ChangeIsLoginType } from './login-reducer'
 
 const initialState = {
   isRegistration: false,
+  error: '',
 }
 
-export type InitialStateType = typeof initialState
+export type InitialStateType = {
+  isRegistration: boolean
+  error?: string
+}
 
 export const signUpReducer = (
   state: InitialStateType = initialState,
@@ -17,23 +22,36 @@ export const signUpReducer = (
   switch (action.type) {
     case 'SET-REGISTRATION':
       return { ...state, isRegistration: action.register }
+    case 'SET-ERROR':
+      return { ...state, error: action.error }
     default:
       return state
   }
 }
+// Action
 export const setRegistration = (register: boolean) =>
   ({ type: 'SET-REGISTRATION', register } as const)
+
+export const setError = (error: string | undefined) => ({ type: 'SET-ERROR', error } as const)
 //thunk
 export const setRegistrationTC = (email: string, password: string) => {
-  return (dispatch: Dispatch<SingUpACType>) => {
-    registerAPI.postRegister(email, password).then((res) => {
-      if (res.data.addedUser === {}) {
-        dispatch(setRegistration(true))
-      }
-    })
+  return (dispatch: Dispatch<SingUpACType | ChangeIsLoginType>) => {
+    registerAPI
+      .postRegister(email, password)
+      .then((res) => {
+        if (res.data.addedUser) {
+          dispatch(setRegistration(true))
+          dispatch(changeIsLogin(true))
+        } else if (res.data.error) {
+          dispatch(setError(res.data.error))
+        }
+      })
+      .catch((error: AxiosError<DataResponseType>) => {
+        dispatch(setError(error.response?.data.error))
+      })
   }
 }
-
+//response.data.emailRegExp.error
 //api
 const instance = axios.create({
   baseURL: 'http://localhost:7542/2.0/',
@@ -48,11 +66,18 @@ export const registerAPI = {
 }
 
 // types
-export type SingUpACType = ReturnType<typeof setRegistration>
+export type SingUpACType = ReturnType<typeof setRegistration> | ReturnType<typeof setError>
 
 type ResponseType = {
   addedUser: {}
   error?: string
+}
+
+type DataResponseType = {
+  error: string
+  in: string
+  isEmailValid: boolean
+  isPassValid: boolean
 }
 
 //hooks

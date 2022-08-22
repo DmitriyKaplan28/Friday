@@ -7,10 +7,12 @@ import {
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 import { signUpReducer } from '../reducers/signup-reducer'
 import { profileReducer } from '../reducers/profile-reducer'
+import { loginReducer } from '../reducers/login-reducer'
 
 const rootReducer = combineReducers({
-  signUp: signUpReducer,
+  register: signUpReducer,
   profile: profileReducer,
+  login: loginReducer,
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
