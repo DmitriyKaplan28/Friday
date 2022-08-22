@@ -1,4 +1,4 @@
-import { AppActionsType } from '../store/store'
+import { AnyAction } from 'redux'
 
 const initialState = {}
 
@@ -6,7 +6,7 @@ type InitialStateType = typeof initialState
 
 export const profileReducer = (
   state: InitialStateType = initialState,
-  action: AppActionsType
+  action: AnyAction
 ): InitialStateType => {
   switch (action.type) {
     default:
