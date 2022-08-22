@@ -1,5 +1,8 @@
 //state
 import axios from 'axios'
+import { Dispatch } from 'redux'
+import { AppDispatch, AppRootStateType } from '../store/store'
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
 const initialState = {
   isRegistration: false,
@@ -21,6 +24,15 @@ export const signUpReducer = (
 export const setRegistration = (register: boolean) =>
   ({ type: 'SET-REGISTRATION', register } as const)
 //thunk
+export const setRegistrationTC = (email: string, password: string) => {
+  return (dispatch: Dispatch<SingUpACType>) => {
+    registerAPI.postRegister(email, password).then((res) => {
+      if (res.data.addedUser === {}) {
+        dispatch(setRegistration(true))
+      }
+    })
+  }
+}
 
 //api
 const instance = axios.create({
@@ -29,7 +41,7 @@ const instance = axios.create({
   withCredentials: true,
 })
 
-export const RegisterAPI = {
+export const registerAPI = {
   postRegister(email: string, password: string) {
     return instance.post<ResponseType>('/auth/register', { email, password })
   },
@@ -42,3 +54,7 @@ type ResponseType = {
   addedUser: {}
   error?: string
 }
+
+//hooks
+export const useAppDispatch: () => AppDispatch = useDispatch
+export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector

@@ -2,8 +2,10 @@ import { FormControl, FormGroup, FormLabel, Grid, TextField, Button } from '@mui
 import { useFormik } from 'formik'
 import { NavLink } from 'react-router-dom'
 import { PATH } from '../Pages'
+import { setRegistrationTC, useAppDispatch } from '../../reducers/signup-reducer'
 
 function SignUp() {
+  const dispatch = useAppDispatch()
   const formik = useFormik({
     validate: (values) => {},
     initialValues: {
@@ -11,7 +13,9 @@ function SignUp() {
       password: '',
       confirmPassword: '',
     },
-    onSubmit: (values) => {},
+    onSubmit: (values) => {
+      dispatch(setRegistrationTC(values.email, values.password))
+    },
   })
   return (
     <Grid container justifyContent={'center'}>
@@ -23,8 +27,18 @@ function SignUp() {
             </FormLabel>
             <FormGroup>
               <TextField label="Email" margin="normal" {...formik.getFieldProps('email')} />
-              <TextField type="password" label="Password" margin="normal" />
-              <TextField type="password" label="Confirm password" margin="normal" />
+              <TextField
+                type="password"
+                label="Password"
+                margin="normal"
+                {...formik.getFieldProps('password')}
+              />
+              <TextField
+                type="password"
+                label="Confirm password"
+                margin="normal"
+                {...formik.getFieldProps('confirmPassword')}
+              />
               <Button type={'submit'} variant={'contained'} color={'primary'}>
                 Sing Up
               </Button>
