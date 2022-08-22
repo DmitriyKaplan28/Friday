@@ -9,7 +9,7 @@ import { authReducer } from '../reducers/auth-reducer'
 
 const rootReducer = combineReducers({
   profile: profileReducer,
-  login: authReducer,
+  auth: authReducer,
   signUp: signUpReducer,
   resetPassword: resetPasswordReducer,
   newPassword: enterNewPasswordReducer,
