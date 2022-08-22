@@ -17,6 +17,10 @@ function SignUp() {
       dispatch(setRegistrationTC(values.email, values.password))
     },
   })
+  if (isLogin) {
+    return <Navigate to={'/login'} />
+  }
+
   return (
     <Grid container justifyContent={'center'}>
       <Grid item justifyContent={'center'}>
