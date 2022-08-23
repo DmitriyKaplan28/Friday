@@ -1,0 +1,35 @@
+.button {
+    width: 347px;
+    height: 36px;
+
+    border-radius: 30px;
+}
+
+.link {
+    position: absolute;
+    top: 582px;
+    left: 611px;
+
+    width: 58px;
+    height: 24px;
+
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 24px;
+    color: #366EFF;
+    /* identical to box height, or 150% */
+
+    text-align: center;
+    text-decoration-line: underline;
+
+}
+.card {
+    position: absolute;
+    top: 120px;
+    left: 434px;
+
+    width: 413px;
+    height: 528px;
+}
