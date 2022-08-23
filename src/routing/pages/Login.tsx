@@ -12,9 +12,10 @@ import {
 } from '@mui/material'
 import { useFormik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate } from 'react-router-dom'
+import { Navigate, NavLink } from 'react-router-dom'
 
 import { AppRootStateType } from '../../store/store'
+import s from '../Header.module.css'
 import { PATH } from '../Pages'
 
 function Login() {
@@ -62,15 +63,6 @@ function Login() {
       <Grid item justifyContent={'center'}>
         <form onSubmit={formik.handleSubmit}>
           <FormControl>
-            <FormLabel>
-              <p>
-                To log in get registered
-                <a href={'https://social-network.samuraijs.com/'}> here</a>
-              </p>
-              <p>or use common test account credentials:</p>
-              <p>Email: free@samuraijs.com</p>
-              <p>Password: free</p>
-            </FormLabel>
             <FormGroup>
               <TextField label="Email" margin="normal" {...formik.getFieldProps('email')} />
               {formik.touched.email && formik.errors.email ? (
@@ -92,6 +84,11 @@ function Login() {
               <Button type={'submit'} variant={'contained'} color={'primary'}>
                 Login
               </Button>
+              <FormLabel>
+                <p>
+                  Do not have an account? Sign up <NavLink to={'/sign-up'}>here</NavLink>
+                </p>
+              </FormLabel>
             </FormGroup>
           </FormControl>
         </form>
