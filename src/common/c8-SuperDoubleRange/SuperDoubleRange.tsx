@@ -1,4 +1,5 @@
 import React from 'react'
+
 import './SuperDoubleRange.css'
 import { Box, Slider } from '@mui/material'
 

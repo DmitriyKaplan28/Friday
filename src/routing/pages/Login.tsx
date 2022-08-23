@@ -1,6 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useFormik } from 'formik'
+
 import {
   Button,
   Checkbox,
@@ -11,8 +10,11 @@ import {
   Grid,
   TextField,
 } from '@mui/material'
-import { AppRootStateType } from '../../store/store'
+import { useFormik } from 'formik'
+import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
+
+import { AppRootStateType } from '../../store/store'
 import { PATH } from '../Pages'
 
 function Login() {
@@ -27,8 +29,9 @@ function Login() {
       rememberMe: false,
     },
 
-    validate: (values) => {
+    validate: values => {
       const errors: FormikErrorType = {}
+
       if (!values.email) {
         errors.email = 'Required'
       } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
@@ -39,10 +42,11 @@ function Login() {
       } else if (values.password.length < 3) {
         errors.password = 'Invalid password'
       }
+
       return errors
     },
 
-    onSubmit: (values) => {
+    onSubmit: values => {
       //dispatch(loginTC(values))
       formik.resetForm()
       console.log(values)

@@ -1,11 +1,12 @@
+import { TypedUseSelectorHook, useSelector } from 'react-redux'
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import { TypedUseSelectorHook, useSelector } from 'react-redux'
-import { profileReducer } from '../reducers/profile-reducer'
-import { signUpReducer } from '../reducers/signup-reducer'
-import { resetPasswordReducer } from '../reducers/reset-password-reducer'
-import { enterNewPasswordReducer } from '../reducers/enter-new-password-reducer'
+
 import { authReducer } from '../reducers/auth-reducer'
+import { enterNewPasswordReducer } from '../reducers/enter-new-password-reducer'
+import { profileReducer } from '../reducers/profile-reducer'
+import { resetPasswordReducer } from '../reducers/reset-password-reducer'
+import { signUpReducer } from '../reducers/signup-reducer'
 
 const rootReducer = combineReducers({
   profile: profileReducer,
