@@ -4,15 +4,16 @@ import { Dispatch } from 'redux'
 import { AppDispatch, AppRootStateType } from '../store/store'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { changeIsLogin, ChangeIsLoginType } from './login-reducer'
+import { registerAPI } from '../api/api'
 
 const initialState = {
   isRegistration: false,
-  error: '',
+  error: null,
 }
 
 export type InitialStateType = {
   isRegistration: boolean
-  error?: string
+  error: ErrorType
 }
 
 export const signUpReducer = (
@@ -32,7 +33,7 @@ export const signUpReducer = (
 export const setRegistration = (register: boolean) =>
   ({ type: 'SET-REGISTRATION', register } as const)
 
-export const setError = (error: string | undefined) => ({ type: 'SET-ERROR', error } as const)
+export const setError = (error: ErrorType) => ({ type: 'SET-ERROR', error } as const)
 //thunk
 export const setRegistrationTC = (email: string, password: string) => {
   return (dispatch: Dispatch<SingUpACType | ChangeIsLoginType>) => {
@@ -51,24 +52,10 @@ export const setRegistrationTC = (email: string, password: string) => {
       })
   }
 }
-//response.data.emailRegExp.error
-//api
-const instance = axios.create({
-  baseURL: 'http://localhost:7542/2.0/',
-  //baseURL: 'https://neko-back.herokuapp.com/2.0/',
-  withCredentials: true,
-})
-
-export const registerAPI = {
-  postRegister(email: string, password: string) {
-    return instance.post<ResponseType>('/auth/register', { email, password })
-  },
-}
-
 // types
 export type SingUpACType = ReturnType<typeof setRegistration> | ReturnType<typeof setError>
 
-type ResponseType = {
+export type ResponseRegisterType = {
   addedUser: {}
   error?: string
 }
@@ -79,6 +66,7 @@ type DataResponseType = {
   isEmailValid: boolean
   isPassValid: boolean
 }
+export type ErrorType = string | null | undefined
 
 //hooks
 export const useAppDispatch: () => AppDispatch = useDispatch
