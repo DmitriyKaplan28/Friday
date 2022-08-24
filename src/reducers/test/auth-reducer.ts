@@ -2,6 +2,7 @@ const initialState = {
   isLogin: false,
 }
 type initialStateType = typeof initialState
+
 export const authReducer = (state: initialStateType = initialState, action: AuthReducerType) => {
   switch (action.type) {
     case 'SET-IS-LOGIN':
