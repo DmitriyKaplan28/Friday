@@ -13,12 +13,27 @@ export const registerAPI = {
   },
 }
 
-export const profileApi = {
+export const profileAPI = {
   changeUserName(name: string, avatar?: string) {
-    return instance.put(`auth/me`, { name, avatar })
+    return instance.put<UpdateUserResponseType>(`auth/me`, { name, avatar })
+  },
+}
+export const authMe = {
+  logout() {
+    return instance.delete<logOutResponseType>(`/auth/me`)
+  },
+  me() {
+    return instance.post<GetMeResponseType>('/auth/me')
   },
 }
 
+//TYPE
+export type GetMeResponseType = UserType & { error: string }
+export type logOutResponseType = { error: string }
+export type UpdateUserResponseType = {
+  updatedUser: UserType
+  error: string
+}
 export type UserType = {
   avatar?: null
   created: string
