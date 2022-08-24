@@ -1,6 +1,11 @@
 import { AnyAction } from 'redux'
+import { UserType } from '../api/api'
 
-const initialState = {}
+const initialState = {
+  user: {
+    name: '',
+  } as UserType,
+}
 
 type InitialStateType = typeof initialState
 
@@ -13,3 +18,8 @@ export const profileReducer = (
       return state
   }
 }
+
+//ACTIONS CREATOR
+export const changeNameAC = (updatedUser: UserType) =>
+  ({ type: 'CHANGE-NAME', updatedUser } as const)
+export const setUserAC = (user: UserType) => ({ type: 'SET-USER', user } as const)
