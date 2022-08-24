@@ -14,6 +14,16 @@ export const profileReducer = (
   action: ProfileAT
 ): InitialStateType => {
   switch (action.type) {
+    case 'SET-USER':
+      return {
+        ...state,
+        user: action.user,
+      }
+    case 'CHANGE-NAME':
+      return {
+        ...state,
+        user: action.updatedUser,
+      }
     default:
       return state
   }
@@ -23,6 +33,7 @@ export const profileReducer = (
 export const changeNameAC = (updatedUser: UserType) =>
   ({ type: 'CHANGE-NAME', updatedUser } as const)
 export const setUserAC = (user: UserType) => ({ type: 'SET-USER', user } as const)
+
 //THUNK
 export const setUserTC = () => {
   return (dispatch: any) => {
