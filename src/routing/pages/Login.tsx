@@ -5,9 +5,9 @@ import { PATH } from '../Pages'
 const { isLogin } = useAppSelector((state) => state.app)
 
 function Login() {
-  // if (isLogin) {
-  //   return <Navigate to={PATH.PROFILE} />
-  // }
+  if (isLogin) {
+    return <Navigate to={PATH.PROFILE} />
+  }
   return <div>Login</div>
 }
 
