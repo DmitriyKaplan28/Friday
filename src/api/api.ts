@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
+
 import { ResponseRegisterType } from '../reducers/signup-reducer'
 
 const instance = axios.create({
@@ -18,9 +19,13 @@ export const profileAPI = {
     return instance.put<UpdateUserResponseType>(`auth/me`, { name, avatar })
   },
 }
-export const authMe = {
+
+export const authAPI = {
+  login(payload: LoginParamsType) {
+    return instance.post<LoginParamsType, AxiosResponse<LoginResponseType>>(`auth/login`, payload)
+  },
   logout() {
-    return instance.delete<logOutResponseType>(`/auth/me`)
+    return instance.delete(`auth/me`)
   },
   me() {
     return instance.post<GetMeResponseType>('/auth/me')
@@ -48,4 +53,26 @@ export type UserType = {
   verified: boolean
   __v: number
   _id: string
+}
+
+export type LoginParamsType = {
+  email: string
+  password: string
+  rememberMe: boolean
+}
+type LoginResponseType = {
+  _id: string
+  email: string
+  name: string
+  avatar?: string
+  publicCardPacksCount: number
+  // количество колод
+
+  created: Date
+  updated: Date
+  isAdmin: boolean
+  verified: boolean // подтвердил ли почту
+  rememberMe: boolean
+
+  error?: string
 }

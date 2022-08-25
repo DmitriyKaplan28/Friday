@@ -1,13 +1,16 @@
 import React from 'react'
-import Profile from './pages/Profile'
-import Login from './pages/Login'
-import Error404 from './pages/Error404'
-import { SignUp } from './pages/SignUp'
+
 import { Route, Routes, Navigate } from 'react-router-dom'
-import ResetPassword from './pages/ResetPassword'
-import EnterNewPassword from './pages/EnterNewPassword'
-import TestPage from './pages/TestPage'
+
 import s from './Pages.module.css'
+import EnterNewPassword from './pages/EnterNewPassword'
+import Error404 from './pages/Error404'
+import Login from './pages/Login'
+import Profile from './pages/Profile'
+import ResetPassword from './pages/ResetPassword'
+import { SignUp } from './pages/SignUp'
+import TestPage from './pages/TestPage'
+
 export const PATH = {
   PROFILE: '/profile',
   LOGIN: '/login',

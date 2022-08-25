@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux'
 
-import { authMe, profileAPI, UserType } from '../api/api'
+import { authAPI, profileAPI, UserType } from '../api/api'
 
 import { setIsLoggedInAC } from './auth-reducer'
 
@@ -40,7 +40,7 @@ export const setUserAC = (user: UserType) => ({ type: 'SET-USER', user } as cons
 //THUNK
 export const setUserTC = () => {
   return (dispatch: any) => {
-    authMe
+    authAPI
       .me()
       .then(res => {
         dispatch(setIsLoggedInAC(true))

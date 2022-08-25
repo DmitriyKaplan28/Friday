@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux'
 
-import { authAPI, LoginParamsType } from '../api/auth-api'
+import { authAPI, LoginParamsType } from '../api/api'
 
 const initialState: InitialLoginStateType = {
   isLoggedIn: false,

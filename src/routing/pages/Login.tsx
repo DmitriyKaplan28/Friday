@@ -86,7 +86,7 @@ function Login() {
               </Button>
               <FormLabel>
                 <p>
-                  Do not have an account? Sign up <NavLink to={'/sign-up'}>here</NavLink>
+                  Do not have an account? Sign up <NavLink to={PATH.SIGNUP}>here</NavLink>
                 </p>
               </FormLabel>
             </FormGroup>

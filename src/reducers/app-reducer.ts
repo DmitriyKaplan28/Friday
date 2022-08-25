@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux'
 
-import { authMe } from '../api/api'
+import { authAPI } from '../api/api'
 
 import { setIsLoggedInAC } from './auth-reducer'
 import { setUserAC } from './profile-reducer'
@@ -49,7 +49,7 @@ export const appReducer = (
 }
 //THUNKS
 export const appInitialTC = () => (dispatch: Dispatch) => {
-  authMe
+  authAPI
     .me()
     .then((res: any) => {
       dispatch(setUserAC(res.data))

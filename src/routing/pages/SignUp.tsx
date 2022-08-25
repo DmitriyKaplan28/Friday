@@ -97,6 +97,9 @@ export const SignUp = () => {
                   Sing Up
                 </Button>
                 <h5> Already have an account?</h5>
+                <div className={s.link}>
+                  <NavLink to={PATH.LOGIN}>Sing In</NavLink>
+                </div>
               </FormGroup>
             </FormControl>
           </form>

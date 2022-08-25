@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55cf0420-693c-4393-8718-dbf393c895b9" name="Changes" comment="feat: workplace">
+    <list default="true" id="55cf0420-693c-4393-8718-dbf393c895b9" name="Changes" comment="fix: fix name differences and imports after merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/auth-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/auth-api.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/reducers/app-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/app-reducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/reducers/auth-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/auth-reducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/reducers/profile-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/profile-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/signup-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/signup-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routing/pages/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/pages/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/Pages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/Pages.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/pages/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/pages/Login.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routing/pages/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/pages/SignUp.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661448952663</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fix: fix name differences and imports after merge">
+      <created>1661451371132</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1661451371132</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,6 +121,7 @@
     <MESSAGE value="feat: add login and logout" />
     <MESSAGE value="fix: delete comments" />
     <MESSAGE value="feat: workplace" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: workplace" />
+    <MESSAGE value="fix: fix name differences and imports after merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: fix name differences and imports after merge" />
   </component>
 </project>
