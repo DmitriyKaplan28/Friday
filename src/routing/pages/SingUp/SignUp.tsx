@@ -57,66 +57,37 @@ export const SignUp = () => {
           <h1>Sing Up</h1>
           <Input name="email" />
           <div className={s.input}>
-            {!formik.errors.email ? (
-              <TextField
-                sx={{
-                  '& .MuiTextField-root': { m: 8, width: '450px' },
-                }}
-                label="Email"
-                variant="standard"
-                type="email"
-                {...formik.getFieldProps('email')}
-              />
-            ) : (
-              <TextField
-                error
-                label="Error"
-                variant="standard"
-                defaultValue={formik.errors.email}
-                helperText={formik.errors.email}
-                {...formik.getFieldProps('email')}
-              />
-            )}
+            <TextField
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              label="Email"
+              variant="standard"
+              type="email"
+              defaultValue={formik.errors.email}
+              helperText={formik.errors.email}
+              {...formik.getFieldProps('email')}
+            />
           </div>
           <div className={s.input}>
-            {!formik.errors.password ? (
-              <TextField
-                label="Password"
-                variant="standard"
-                type="password"
-                {...formik.getFieldProps('password')}
-              />
-            ) : (
-              <TextField
-                error
-                label="Error"
-                variant="standard"
-                type="password"
-                defaultValue={formik.errors.password}
-                helperText={formik.errors.password}
-                {...formik.getFieldProps('password')}
-              />
-            )}
+            <TextField
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              label="Password"
+              variant="standard"
+              type="password"
+              defaultValue={formik.errors.password}
+              helperText={formik.errors.password}
+              {...formik.getFieldProps('password')}
+            />
           </div>
           <div className={s.input}>
-            {!formik.errors.confirmPassword ? (
-              <TextField
-                label="Confirm Password"
-                variant="standard"
-                type="password"
-                {...formik.getFieldProps('confirmPassword')}
-              />
-            ) : (
-              <TextField
-                error
-                label="Error"
-                variant="standard"
-                type="password"
-                defaultValue={formik.errors.confirmPassword}
-                helperText={formik.errors.confirmPassword}
-                {...formik.getFieldProps('confirmPassword')}
-              />
-            )}
+            <TextField
+              error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
+              label="Confirm Password"
+              variant="standard"
+              type="password"
+              defaultValue={formik.errors.confirmPassword}
+              helperText={formik.errors.confirmPassword}
+              {...formik.getFieldProps('confirmPassword')}
+            />
           </div>
           <button className={s.button} type={'submit'}>
             Sing Up
