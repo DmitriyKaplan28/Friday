@@ -1,0 +1,12 @@
+.page {
+    width: 100%;
+    min-height: 100vh;
+
+    background: #F9F9FA
+}
+.pages {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+}
