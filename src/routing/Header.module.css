@@ -44,3 +44,14 @@
     text-decoration: none;
     letter-spacing: 0.01em;
 }
+.button:hover {
+    background-color: #366EFF
+}
+
+.button:active {
+    transform: translateY(4px);
+
+    background-color: #366EFF;
+    box-shadow: 0 5px #666;
+
+}
