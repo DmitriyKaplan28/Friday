@@ -14,14 +14,15 @@ import { useFormik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, NavLink } from 'react-router-dom'
 
-import { AppRootStateType } from '../../store/store'
+import { loginTC } from '../../reducers/auth-reducer'
+import { AppRootStateType, useAppDispatch } from '../../store/store'
 import s from '../Header.module.css'
 import { PATH } from '../Pages'
 
 function Login() {
   const isLoggedIn = useSelector((state: AppRootStateType) => state.auth.isLoggedIn)
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const formik = useFormik({
     initialValues: {
@@ -48,9 +49,8 @@ function Login() {
     },
 
     onSubmit: values => {
-      //dispatch(loginTC(values))
+      dispatch(loginTC(values))
       formik.resetForm()
-      console.log(values)
     },
   })
 

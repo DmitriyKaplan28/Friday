@@ -1,16 +1,21 @@
-const initialState = {
+import { Dispatch } from 'redux'
+
+import { authAPI, LoginParamsType } from '../api/auth-api'
+
+const initialState: InitialLoginStateType = {
   isLoggedIn: false,
+  error: null,
 }
 
-type InitialStateType = typeof initialState
-
 export const authReducer = (
-  state: InitialStateType = initialState,
+  state: InitialLoginStateType = initialState,
   action: AuthActionsType
-): InitialStateType => {
+): InitialLoginStateType => {
   switch (action.type) {
     case 'login/SET-IS-LOGGED-IN':
       return { ...state, isLoggedIn: action.value }
+    case 'login/SET-ERROR':
+      return { ...state, error: action.error }
     default:
       return state
   }
@@ -19,51 +24,35 @@ export const authReducer = (
 // actions
 export const setIsLoggedInAC = (value: boolean) =>
   ({ type: 'login/SET-IS-LOGGED-IN', value } as const)
+export const setErrorAC = (error: string | null) => ({ type: 'login/SET-ERROR', error } as const)
 
-/*export const loginTC = (data: LoginParamsType) => (dispatch: ThunkDispatchType) => {
-
-  dispatch(setAppStatusAC('loading'))
-
-  authAPI.login(data)
-      .then(res => {
-        if (res.data.resultCode === 0) {
-          dispatch(setIsLoggedInAC(true))
-          dispatch(setAppStatusAC('succeeded'))
-        } else {
-          handleServerAppError(res.data, dispatch)
-        }
-      })
-      .catch((err: AxiosError) => {
-        handleServerNetworkError(err, dispatch)
-      })
+// thunks
+export const loginTC = (data: LoginParamsType) => (dispatch: ThunkDispatchType) => {
+  authAPI
+    .login(data)
+    .then(() => {
+      dispatch(setIsLoggedInAC(true))
+    })
+    .catch(err => {
+      setErrorAC(err.response.data.error)
+    })
 }
 
 export const logoutTC = () => (dispatch: ThunkDispatchType) => {
-  dispatch(setAppStatusAC('loading'))
-  authAPI.logout()
-      .then(res => {
-        if (res.data.resultCode === 0) {
-          dispatch(setIsLoggedInAC(false))
-          dispatch(setAppStatusAC('succeeded'))
-        } else {
-          handleServerAppError(res.data, dispatch)
-        }
-      })
-      .catch((error) => {
-        handleServerNetworkError(error, dispatch)
-      })
+  authAPI
+    .logout()
+    .then(() => {
+      dispatch(setIsLoggedInAC(false))
+    })
+    .catch(err => {
+      setErrorAC(err.response.data.error)
+    })
 }
 
-export const initializeAppTC = () => (dispatch: ThunkDispatchType) => {
-  authAPI.me().then(res => {
-    if (res.data.resultCode === 0) {
-      dispatch(setIsLoggedInAC(true));
-      dispatch(setIsInitializedAC(true));
-    } else {
-      console.log('How come we end up here?')
-    }
-  })
-}*/
-
 // types
-export type AuthActionsType = ReturnType<typeof setIsLoggedInAC>
+export type AuthActionsType = ReturnType<typeof setIsLoggedInAC> | ReturnType<typeof setErrorAC>
+type InitialLoginStateType = {
+  isLoggedIn: boolean
+  error: string | null
+}
+export type ThunkDispatchType = Dispatch<AuthActionsType>

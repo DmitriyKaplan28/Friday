@@ -12,11 +12,11 @@ export const authAPI = {
     return instance.post<LoginParamsType, AxiosResponse<LoginResponseType>>(`auth/login`, payload)
   },
   logout() {
-    return instance.delete(`auth/login`)
+    return instance.delete(`auth/me`)
   },
-  /*me() {
-    return instance.get<ResponseType<MeResponseType>>('auth/me')
-  },*/
+  me() {
+    return instance.get<LoginResponseType>('auth/me')
+  },
 }
 
 //types
@@ -24,8 +24,7 @@ export const authAPI = {
 export type LoginParamsType = {
   email: string
   password: string
-  rememberMe?: boolean
-  captcha?: boolean
+  rememberMe: boolean
 }
 type LoginResponseType = {
   _id: string
@@ -42,10 +41,4 @@ type LoginResponseType = {
   rememberMe: boolean
 
   error?: string
-}
-
-type MeResponseType = {
-  id: number
-  email: string
-  login: string
 }
