@@ -1,16 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useAppDispatch, useAppSelector } from '../../reducers/signup-reducer'
-import { changeNameTC, setUserTC } from '../../reducers/profile-reducer'
+import { changeNameTC } from '../../reducers/profile-reducer'
 import { Navigate } from 'react-router-dom'
 import { Card } from '../../components/card/Card'
 
 function Profile() {
   const user = useAppSelector((state) => state.profile.user)
-  const isLogin = useAppSelector((state) => state.app.isLogin)
+  const isLogin = useAppSelector((state) => state.auth.isLogin)
   const dispatch = useAppDispatch()
-  useEffect(() => {
-    dispatch(setUserTC())
-  }, [dispatch])
   if (!isLogin) {
     return <Navigate to="/login" />
   }

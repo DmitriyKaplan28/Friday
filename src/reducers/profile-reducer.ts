@@ -1,5 +1,6 @@
 import { authMe, profileAPI, UserType } from '../api/api'
 import { setIsLoginAC } from './auth-reducer'
+import { Dispatch } from 'redux'
 
 const initialState = {
   user: {
@@ -37,14 +38,16 @@ export const setUserAC = (user: UserType) => ({ type: 'SET-USER', user } as cons
 //THUNK
 export const setUserTC = () => {
   return (dispatch: any) => {
-    authMe.me().then((res) => {
-      dispatch(setIsLoginAC(true))
-      dispatch(setUserAC(res.data))
-    })
+    authMe
+      .me()
+      .then((res) => {
+        dispatch(setIsLoginAC(true))
+        dispatch(setUserAC(res.data))
+      })
+      .catch((err) => console.log(err.response.data.error))
   }
 }
-export const changeNameTC = (name: string) => (dispatch: any) => {
-  // dispatch(changeNameAC(name))
+export const changeNameTC = (name: string) => (dispatch: Dispatch) => {
   profileAPI
     .changeUserName(name)
     .then((res) => {

@@ -4,7 +4,7 @@ import { useAppSelector } from '../../reducers/signup-reducer'
 import { PATH } from '../Pages'
 
 const Login = () => {
-  const { isLogin } = useAppSelector((state) => state.app)
+  const { isLogin } = useAppSelector((state) => state.auth)
   if (isLogin) {
     return <Navigate to={PATH.PROFILE} />
   }
