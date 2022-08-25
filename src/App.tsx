@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react'
+
 import './App.css'
-import PageRouting from './routing/PageRouting'
-import { ErrorSnackbar } from './common/c9-ErrorSnackbar/ErrorSnackbar'
-import { useAppDispatch, useAppSelector } from './reducers/signup-reducer'
-import { appInitialTC } from './reducers/app-reducer'
 import { CircularProgress } from '@mui/material'
+
+import { ErrorSnackbar } from './common/c9-ErrorSnackbar/ErrorSnackbar'
+import { appInitialTC } from './reducers/app-reducer'
+import { useAppDispatch, useAppSelector } from './reducers/signup-reducer'
+import PageRouting from './routing/PageRouting'
 
 function App() {
   const isInitialized = useAppSelector((state) => state.app.initialized)
   const dispatch = useAppDispatch()
+
   useEffect(() => {
     dispatch(appInitialTC())
   }, [dispatch])
@@ -19,6 +22,7 @@ function App() {
       </div>
     )
   }
+
   return (
     <div>
       <ErrorSnackbar />

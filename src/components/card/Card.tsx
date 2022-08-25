@@ -1,11 +1,8 @@
 import React from 'react'
 import s from './Card.module.css'
 import { Avatar } from '../avatar/Avatar'
-
 import { UserType } from '../../api/api'
-
 import { Button } from '@mui/material'
-
 import { useAppDispatch } from '../../reducers/signup-reducer'
 import { AiOutlineLogout } from '@react-icons/all-files/ai/AiOutlineLogout'
 import { logoutTC } from '../../reducers/auth-reducer'
