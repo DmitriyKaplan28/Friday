@@ -1,33 +1,58 @@
-import { authMe } from '../api/api'
+import { Dispatch } from 'redux'
 
-const initialState = {
-  isLogin: false,
+import { authAPI, LoginParamsType } from '../api/auth-api'
+
+const initialState: InitialLoginStateType = {
+  isLoggedIn: false,
+  error: null,
 }
-type initialStateType = typeof initialState
-export const authReducer = (state: initialStateType = initialState, action: AuthReducerType) => {
+
+export const authReducer = (
+  state: InitialLoginStateType = initialState,
+  action: AuthActionsType
+): InitialLoginStateType => {
   switch (action.type) {
-    case 'SET-IS-LOGIN':
-      return {
-        ...state,
-        isLogin: action.isLogin,
-      }
+    case 'login/SET-IS-LOGGED-IN':
+      return { ...state, isLoggedIn: action.value }
+    case 'login/SET-ERROR':
+      return { ...state, error: action.error }
+    default:
+      return state
   }
-  return state
 }
-//ACTIONS
 
-export const setIsLoginAC = (isLogin: boolean) => ({ type: 'SET-IS-LOGIN', isLogin } as const)
+// actions
+export const setIsLoggedInAC = (value: boolean) =>
+  ({ type: 'login/SET-IS-LOGGED-IN', value } as const)
+export const setErrorAC = (error: string | null) => ({ type: 'login/SET-ERROR', error } as const)
 
-// THUNK
-export const logoutTC = () => (dispatch: any) => {
-  authMe
+// thunks
+export const loginTC = (data: LoginParamsType) => (dispatch: ThunkDispatchType) => {
+  authAPI
+    .login(data)
+    .then(() => {
+      dispatch(setIsLoggedInAC(true))
+    })
+    .catch(err => {
+      setErrorAC(err.response.data.error)
+    })
+}
+
+export const logoutTC = () => (dispatch: ThunkDispatchType) => {
+  authAPI
     .logout()
     .then(() => {
-      dispatch(setIsLoginAC(false))
+      dispatch(setIsLoggedInAC(false))
     })
-    .catch((err) => console.log(err))
+    .catch(err => {
+      setErrorAC(err.response.data.error)
+    })
 }
 
-//TYPE
-export type SetIsLoginAT = ReturnType<typeof setIsLoginAC>
-export type AuthReducerType = SetIsLoginAT
+// types
+export type AuthActionsType = ReturnType<typeof setIsLoggedInAC> | ReturnType<typeof setErrorAC>
+type InitialLoginStateType = {
+  isLoggedIn: boolean
+  error: string | null
+}
+export type ThunkDispatchType = Dispatch<AuthActionsType>

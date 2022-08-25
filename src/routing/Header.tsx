@@ -1,5 +1,7 @@
 import React from 'react'
+
 import { NavLink } from 'react-router-dom'
+
 import s from './Header.module.css'
 import logo from '../assets/logo.svg'
 import { Button } from '@mui/material'
@@ -19,4 +21,5 @@ function Header() {
     </header>
   )
 }
+
 export default Header
