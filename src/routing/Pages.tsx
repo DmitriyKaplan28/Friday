@@ -7,7 +7,7 @@ import { Route, Routes, Navigate } from 'react-router-dom'
 import ResetPassword from './pages/ResetPassword'
 import EnterNewPassword from './pages/EnterNewPassword'
 import TestPage from './pages/TestPage'
-
+import s from './Pages.module.css'
 export const PATH = {
   PROFILE: '/profile',
   LOGIN: '/login',
@@ -20,7 +20,7 @@ export const PATH = {
 
 function Pages() {
   return (
-    <div>
+    <div className={s.wrapper}>
       <Routes>
         <Route path={'/'} element={<Navigate to={PATH.PROFILE} />} />
 
