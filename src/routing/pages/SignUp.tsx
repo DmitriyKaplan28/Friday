@@ -10,17 +10,18 @@ import {
 } from '@mui/material'
 import CardActions from '@mui/material/CardActions'
 import { useFormik } from 'formik'
-import { NavLink } from 'react-router-dom'
-import { PATH } from '../Pages'
+import { NavLink, Navigate } from 'react-router-dom'
+
 import { setRegistrationTC, useAppDispatch, useAppSelector } from '../../reducers/signup-reducer'
-import { Navigate } from 'react-router-dom'
+import { PATH } from '../Pages'
+
 import s from './singUp.module.css'
 
 export const SignUp = () => {
   const dispatch = useAppDispatch()
-  const isLogin = useAppSelector<boolean>((state) => state.login.isLogin)
+  const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
   const formik = useFormik({
-    validate: (values) => {
+    validate: values => {
       if (!values.email) {
         return {
           email: 'Email is required',
@@ -47,11 +48,12 @@ export const SignUp = () => {
       password: '',
       confirmPassword: '',
     },
-    onSubmit: (values) => {
+    onSubmit: values => {
       dispatch(setRegistrationTC(values.email, values.password))
     },
   })
-  if (isLogin) {
+
+  if (isLoggedIn) {
     return <Navigate to={'/login'} />
   }
 

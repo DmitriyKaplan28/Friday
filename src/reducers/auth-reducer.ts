@@ -50,7 +50,9 @@ export const logoutTC = () => (dispatch: ThunkDispatchType) => {
 }
 
 // types
-export type AuthActionsType = ReturnType<typeof setIsLoggedInAC> | ReturnType<typeof setErrorAC>
+export type AuthActionsType = SetIsLoggedInType | ReturnType<typeof setErrorAC>
+export type SetIsLoggedInType = ReturnType<typeof setIsLoggedInAC>
+
 type InitialLoginStateType = {
   isLoggedIn: boolean
   error: string | null

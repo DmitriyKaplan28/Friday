@@ -1,10 +1,12 @@
 //state
-import axios, { AxiosError } from 'axios'
-import { Dispatch } from 'redux'
-import { AppDispatch, AppRootStateType } from '../store/store'
+import { AxiosError } from 'axios'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
-import { changeIsLogin, ChangeIsLoginType } from './login-reducer'
+import { Dispatch } from 'redux'
+
 import { registerAPI } from '../api/api'
+import { AppDispatch, AppRootStateType } from '../store/store'
+
+import { setIsLoggedInAC, SetIsLoggedInType } from './auth-reducer'
 
 const initialState = {
   isRegistration: false,
@@ -36,13 +38,13 @@ export const setRegistration = (register: boolean) =>
 export const setError = (error: ErrorType) => ({ type: 'SET-ERROR', error } as const)
 //thunk
 export const setRegistrationTC = (email: string, password: string) => {
-  return (dispatch: Dispatch<SingUpACType | ChangeIsLoginType>) => {
+  return (dispatch: Dispatch<SingUpACType | SetIsLoggedInType>) => {
     registerAPI
       .postRegister(email, password)
-      .then((res) => {
+      .then(res => {
         if (res.data.addedUser) {
           dispatch(setRegistration(true))
-          dispatch(changeIsLogin(true))
+          dispatch(setIsLoggedInAC(true))
         } else if (res.data.error) {
           dispatch(setError(res.data.error))
         }

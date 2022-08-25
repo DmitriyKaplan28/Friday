@@ -1,20 +1,25 @@
 import { Dispatch } from 'redux'
-import { setUserAC } from './profile-reducer'
+
 import { authMe } from '../api/api'
-import { setIsLoginAC } from './auth-reducer'
+
+import { setIsLoggedInAC } from './auth-reducer'
+import { setUserAC } from './profile-reducer'
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
+
 export enum resultCodeStatus {
   success = 0,
   error = 1,
   captcha = 10,
 }
+
 const initialState = {
   status: 'loading' as RequestStatusType,
   error: null as null | string,
   initialized: false,
   isLoad: false,
 }
+
 type InitialStateType = typeof initialState
 export const appReducer = (
   state: InitialStateType = initialState,
@@ -48,7 +53,7 @@ export const appInitialTC = () => (dispatch: Dispatch) => {
     .me()
     .then((res: any) => {
       dispatch(setUserAC(res.data))
-      dispatch(setIsLoginAC(true))
+      dispatch(setIsLoggedInAC(true))
     })
     .finally(() => dispatch(setAppInitialAC(true)))
 }

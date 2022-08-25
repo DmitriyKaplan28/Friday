@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55cf0420-693c-4393-8718-dbf393c895b9" name="Changes" comment="delete: me api" />
+    <list default="true" id="55cf0420-693c-4393-8718-dbf393c895b9" name="Changes" comment="feat: workplace">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/app-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/app-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/auth-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/auth-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/profile-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/profile-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/signup-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/signup-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/pages/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/pages/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/pages/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/pages/SignUp.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,7 +84,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661445616571</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: workplace">
+      <created>1661448952663</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1661448952663</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -96,6 +113,7 @@
     <MESSAGE value="init: add api and thunks" />
     <MESSAGE value="feat: add login and logout" />
     <MESSAGE value="fix: delete comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: delete comments" />
+    <MESSAGE value="feat: workplace" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: workplace" />
   </component>
 </project>
