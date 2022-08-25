@@ -5,12 +5,17 @@ import { PATH } from '../../Pages'
 import { setRegistrationTC, useAppDispatch, useAppSelector } from '../../../reducers/signup-reducer'
 import { Navigate } from 'react-router-dom'
 import s from './singUp.module.css'
-import { Input } from './Input/Input'
 
 export const SignUp = () => {
   const dispatch = useAppDispatch()
   const isLogin = useAppSelector<boolean>((state) => state.login.isLogin)
+
   const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      confirmPassword: '',
+    },
     validate: (values) => {
       if (!values.email) {
         return {
@@ -33,11 +38,6 @@ export const SignUp = () => {
         }
       }
     },
-    initialValues: {
-      email: '',
-      password: '',
-      confirmPassword: '',
-    },
     onSubmit: (values) => {
       dispatch(setRegistrationTC(values.email, values.password))
     },
@@ -56,7 +56,6 @@ export const SignUp = () => {
       >
         <form method="post" onSubmit={formik.handleSubmit}>
           <h1>Sing Up</h1>
-          <Input name="email" />
           <div className={s.input}>
             <TextField
               error={formik.touched.email && Boolean(formik.errors.email)}
