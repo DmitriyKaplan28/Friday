@@ -2,18 +2,19 @@ import { useState } from 'react'
 
 import { TextField, Box } from '@mui/material'
 import { useFormik } from 'formik'
+import { useSelector } from 'react-redux'
 import { NavLink, Navigate } from 'react-router-dom'
 
 import { ShowPassword } from '../../../common/c10-ShowPassword/ShowPassword'
 import { setRegistrationTC, useAppDispatch, useAppSelector } from '../../../reducers/signup-reducer'
+import { AppRootStateType } from '../../../store/store'
 import { PATH } from '../../Pages'
 
 import s from './singUp.module.css'
 
 export const SignUp = () => {
   const dispatch = useAppDispatch()
-  const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
-
+  const isLoggedIn = useSelector((state: AppRootStateType) => state.auth.isLoggedIn)
   const [type, setType] = useState<string>('password')
 
   const formik = useFormik({
