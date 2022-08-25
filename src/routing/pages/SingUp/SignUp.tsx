@@ -42,6 +42,7 @@ export const SignUp = () => {
       dispatch(setRegistrationTC(values.email, values.password))
     },
   })
+
   if (isLogin) {
     return <Navigate to={'/login'} />
   }
