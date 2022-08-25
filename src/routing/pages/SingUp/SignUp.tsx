@@ -5,10 +5,13 @@ import { PATH } from '../../Pages'
 import { setRegistrationTC, useAppDispatch, useAppSelector } from '../../../reducers/signup-reducer'
 import { Navigate } from 'react-router-dom'
 import s from './singUp.module.css'
+import { useState } from 'react'
+import { ShowPassword } from '../../../common/c10-ShowPassword/ShowPassword'
 
 export const SignUp = () => {
   const dispatch = useAppDispatch()
   const isLogin = useAppSelector<boolean>((state) => state.login.isLogin)
+  const [type, setType] = useState<string>('password')
 
   const formik = useFormik({
     initialValues: {
@@ -46,7 +49,6 @@ export const SignUp = () => {
   if (isLogin) {
     return <Navigate to={'/login'} />
   }
-
   return (
     <div className={s.card}>
       <Box
@@ -72,22 +74,24 @@ export const SignUp = () => {
               error={formik.touched.password && Boolean(formik.errors.password)}
               label="Password"
               variant="standard"
-              type="password"
+              type={`${type}`}
               defaultValue={formik.errors.password}
               helperText={formik.errors.password}
               {...formik.getFieldProps('password')}
             />
+            <ShowPassword value={type} callback={setType} />
           </div>
           <div className={s.input}>
             <TextField
               error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
               label="Confirm Password"
               variant="standard"
-              type="password"
+              type={`${type}`}
               defaultValue={formik.errors.confirmPassword}
               helperText={formik.errors.confirmPassword}
               {...formik.getFieldProps('confirmPassword')}
             />
+            <ShowPassword value={type} callback={setType} />
           </div>
           <button className={s.button} type={'submit'}>
             Sing Up
