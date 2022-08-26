@@ -1,12 +1,15 @@
 import React from 'react'
-import s from './Card.module.css'
-import { Avatar } from '../avatar/Avatar'
-import { UserType } from '../../api/api'
+
 import { Button } from '@mui/material'
-import { useAppDispatch } from '../../reducers/signup-reducer'
 import { AiOutlineLogout } from '@react-icons/all-files/ai/AiOutlineLogout'
+
+import { UserType } from '../../api/api'
 import { logoutTC } from '../../reducers/auth-reducer'
+import { useAppDispatch } from '../../reducers/signup-reducer'
+import { Avatar } from '../avatar/Avatar'
 import { EditableSpan } from '../editableSpan/EditableSpan'
+
+import s from './Card.module.css'
 
 type CardPropsTYpe = {
   title?: string
@@ -15,10 +18,12 @@ type CardPropsTYpe = {
 }
 export const Card = (props: CardPropsTYpe) => {
   const dispatch = useAppDispatch()
+
   console.log('Card render')
   const onClickHandler = () => {
     dispatch(logoutTC())
   }
+
   return (
     <div className={s.wrapper}>
       <h2 className={s.title}>{props.title ? props.title : 'Personal Information'}</h2>

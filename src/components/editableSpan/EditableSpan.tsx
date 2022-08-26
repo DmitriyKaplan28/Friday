@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { ChangeEvent, useCallback, useEffect, useState } from 'react'
+
 import { Button, InputAdornment } from '@mui/material'
-import s from './EditableSpan.module.css'
-import { CssTextField } from './CssCustomField'
 import { BiEditAlt } from '@react-icons/all-files/bi/BiEditAlt'
+
+import { CssTextField } from './CssCustomField'
+import s from './EditableSpan.module.css'
 
 type EditableSpanType = {
   callBack: (name: string, avatar?: string) => void
@@ -29,9 +31,11 @@ export const EditableSpan = React.memo((props: EditableSpanType) => {
     },
     [props]
   )
+
   useEffect(() => {
     setInputValue(props.title)
   }, [props.title])
+
   return (
     <>
       {!editMode ? (

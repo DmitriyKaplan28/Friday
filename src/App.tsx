@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from './reducers/signup-reducer'
 import PageRouting from './routing/PageRouting'
 
 function App() {
-  const isInitialized = useAppSelector((state) => state.app.initialized)
+  const isInitialized = useAppSelector(state => state.app.initialized)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
