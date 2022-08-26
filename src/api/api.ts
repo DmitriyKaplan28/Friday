@@ -22,7 +22,7 @@ export const profileAPI = {
 
 export const authAPI = {
   login(payload: LoginParamsType) {
-    return instance.post<LoginParamsType, AxiosResponse<LoginResponseType>>(`auth/login`, payload)
+    return instance.post<LoginParamsType, AxiosResponse<UserType>>(`auth/login`, payload)
   },
   logout() {
     return instance.delete(`auth/me`)
