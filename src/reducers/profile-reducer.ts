@@ -2,7 +2,7 @@ import { Dispatch } from 'redux'
 
 import { authAPI, profileAPI, UserType } from '../api/api'
 
-import { AppReducerType, setAppStatusAC } from './app-reducer'
+import { AppReducerType, setAppErrorAC, setAppStatusAC } from './app-reducer'
 import { AuthActionsType, setIsLoggedInAC } from './auth-reducer'
 
 const initialState = {
@@ -47,7 +47,7 @@ export const setUserTC = () => {
         dispatch(setIsLoggedInAC(true))
         dispatch(setUserAC(res.data))
       })
-      .catch(err => console.log(err.response.data.error))
+      .catch(err => dispatch(setAppErrorAC(err.response.data.error)))
   }
 }
 export const changeNameTC = (name: string) => (dispatch: ThunkDispatchInProfileType) => {
