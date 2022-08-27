@@ -22,7 +22,14 @@ export const Header = () => {
               <img src={logo} alt="logo" />
             </NavLink>
           </div>
-          {isLoggedIn ? <Avatar /> : <Button variant="contained">Sing in</Button>}
+          {isLoggedIn ? (
+            <div className={s.block}>
+              <span>{user.name}</span>
+              <Avatar width={'36px'} />
+            </div>
+          ) : (
+            <Button variant="contained">Sing in</Button>
+          )}
         </div>
       </div>
     </header>
