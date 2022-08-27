@@ -19,7 +19,6 @@ type CardPropsTYpe = {
 export const Card = (props: CardPropsTYpe) => {
   const dispatch = useAppDispatch()
 
-  console.log('Card render')
   const onClickHandler = () => {
     dispatch(logoutTC())
   }

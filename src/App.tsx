@@ -6,7 +6,7 @@ import { CircularProgress } from '@mui/material'
 import { ErrorSnackbar } from './common/c9-ErrorSnackbar/ErrorSnackbar'
 import { appInitialTC } from './reducers/app-reducer'
 import { useAppDispatch, useAppSelector } from './reducers/signup-reducer'
-import PageRouting from './routing/PageRouting'
+import { PageRouting } from './routing/PageRouting'
 
 function App() {
   const isInitialized = useAppSelector(state => state.app.initialized)
@@ -24,10 +24,10 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <ErrorSnackbar />
       <PageRouting />
-    </div>
+    </>
   )
 }
 

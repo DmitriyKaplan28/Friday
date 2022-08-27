@@ -16,8 +16,9 @@ import { Navigate, NavLink } from 'react-router-dom'
 
 import { loginTC } from '../../reducers/auth-reducer'
 import { AppRootStateType, useAppDispatch } from '../../store/store'
-import s from '../Header.module.css'
 import { PATH } from '../Pages'
+
+import s from './Header/Header.module.css'
 
 function Login() {
   const isLoggedIn = useSelector((state: AppRootStateType) => state.auth.isLoggedIn)

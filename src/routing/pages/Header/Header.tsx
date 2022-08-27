@@ -3,25 +3,16 @@ import React from 'react'
 import { Button } from '@mui/material'
 import { NavLink } from 'react-router-dom'
 
-import logo from '../assets/logo.svg'
+import logo from '../../../assets/logo.svg'
+import { Avatar } from '../../../components/avatar/Avatar'
+import { useAppSelector } from '../../../reducers/signup-reducer'
 
 import s from './Header.module.css'
 
-function Header() {
-  return (
-    <div className={s.header}>
-      <div className={s.incubator}></div>
-      <div className={s.button}>
-        <NavLink to={'/login'} className={s.links}>
-          Sing in
-        </NavLink>
-      </div>
-    </div>
-  )
-}
-export default Header
+export const Header = () => {
+  const user = useAppSelector(state => state.profile.user)
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
 
-/*function Header() {
   return (
     <header className={s.header}>
       <div className={s.container}>
@@ -31,11 +22,9 @@ export default Header
               <img src={logo} alt="logo" />
             </NavLink>
           </div>
-          <Button variant="contained">Sing in</Button>
+          {isLoggedIn ? <Avatar /> : <Button variant="contained">Sing in</Button>}
         </div>
       </div>
     </header>
   )
 }
-
-export default Header*/

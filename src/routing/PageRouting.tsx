@@ -2,20 +2,16 @@ import React from 'react'
 
 import { HashRouter } from 'react-router-dom'
 
-import Header from './Header'
 import s from './Page.module.css'
 import Pages from './Pages'
+import { Header } from './pages/Header/Header'
 
-function PageRouting() {
-  return (
-    <div className={s.page}>
-      <HashRouter>
-        <Header />
+export const PageRouting = () => (
+  <div className={s.page}>
+    <HashRouter>
+      <Header />
 
-        <Pages />
-      </HashRouter>
-    </div>
-  )
-}
-
-export default PageRouting
+      <Pages />
+    </HashRouter>
+  </div>
+)

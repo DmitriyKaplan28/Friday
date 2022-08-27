@@ -14,7 +14,6 @@ type EditableSpanType = {
 }
 
 export const EditableSpan = React.memo((props: EditableSpanType) => {
-  console.log('EditableSpan render', props.title)
   let [editMode, setEditMode] = useState(false)
   let [inputValue, setInputValue] = useState('')
   const onClickDoubleHandler = () => {
@@ -27,7 +26,6 @@ export const EditableSpan = React.memo((props: EditableSpanType) => {
   const changeUserNameValue = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       setInputValue(e.currentTarget.value)
-      // props.callBack(e.currentTarget.value)
     },
     [props]
   )
