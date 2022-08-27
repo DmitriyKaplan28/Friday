@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 import { TextField, Box } from '@mui/material'
-import { useFormik } from 'formik'
+import { FormikProvider, useFormik } from 'formik'
 import { useSelector } from 'react-redux'
 import { NavLink, Navigate } from 'react-router-dom'
 
@@ -10,7 +10,14 @@ import { setRegistrationTC, useAppDispatch } from '../../../reducers/signup-redu
 import { AppRootStateType } from '../../../store/store'
 import { PATH } from '../../Pages'
 
+import { Input } from './Input/Input'
 import s from './singUp.module.css'
+
+export type initialValuesType = {
+  email: string
+  password: string
+  confirmPassword: string
+}
 
 export const SignUp = () => {
   const dispatch = useAppDispatch()
@@ -67,9 +74,9 @@ export const SignUp = () => {
           <div className={s.input}>
             <TextField
               error={formik.touched.email && Boolean(formik.errors.email)}
-              label="Email"
+              label={'Email'}
               variant="standard"
-              type="email"
+              type={'email'}
               defaultValue={formik.errors.email}
               helperText={formik.errors.email}
               {...formik.getFieldProps('email')}
@@ -78,9 +85,9 @@ export const SignUp = () => {
           <div className={s.input}>
             <TextField
               error={formik.touched.password && Boolean(formik.errors.password)}
-              label="Password"
+              label={'Password'}
               variant="standard"
-              type={`${typeInputPassword}`}
+              type={typeInputPassword}
               defaultValue={formik.errors.password}
               helperText={formik.errors.password}
               {...formik.getFieldProps('password')}
@@ -90,9 +97,9 @@ export const SignUp = () => {
           <div className={s.input}>
             <TextField
               error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
-              label="Confirm Password"
+              label={'ConfirmPassword'}
               variant="standard"
-              type={`${typeInputConfirmPassword}`}
+              type={typeInputConfirmPassword}
               defaultValue={formik.errors.confirmPassword}
               helperText={formik.errors.confirmPassword}
               {...formik.getFieldProps('confirmPassword')}
@@ -111,3 +118,19 @@ export const SignUp = () => {
     </div>
   )
 }
+
+// Подумать
+/*
+<Input field="Email" type="email" callback={setTypeP} />
+<Input
+    field="Password"
+    type={typeInputPassword}
+    callback={setTypeP}
+    showPassword={true}
+/>
+<Input
+    field="CdonfirmPassword"
+    type={typeInputConfirmPassword}
+    callback={setTypeCP}
+    showPassword={true}
+/>*/

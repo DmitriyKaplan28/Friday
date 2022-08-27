@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import {
+  Box,
   Button,
   Checkbox,
   FormControl,
@@ -14,38 +15,41 @@ import { useFormik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, NavLink } from 'react-router-dom'
 
+import { ShowPassword } from '../../common/c10-ShowPassword/ShowPassword'
 import { loginTC } from '../../reducers/auth-reducer'
 import { AppRootStateType, useAppDispatch } from '../../store/store'
-import s from '../Header.module.css'
 import { PATH } from '../Pages'
+import s from '../pages/SingUp/singUp.module.css'
+
+import { Input } from './SingUp/Input/Input'
 
 function Login() {
   const isLoggedIn = useSelector((state: AppRootStateType) => state.auth.isLoggedIn)
+  const [typeInputPassword, setTypeP] = useState<string>('password')
 
   const dispatch = useAppDispatch()
-
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
       rememberMe: false,
     },
-
     validate: values => {
-      const errors: FormikErrorType = {}
-
       if (!values.email) {
-        errors.email = 'Required'
-      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address'
+        return {
+          email: 'Email is required',
+        }
       }
-      if (!values.password) {
-        errors.password = 'Required'
-      } else if (values.password.length < 3) {
-        errors.password = 'Invalid password'
+      if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        return {
+          email: 'Invalid email address',
+        }
       }
-
-      return errors
+      if (values.password.length < 8) {
+        return {
+          password: 'Password must be more than 7 characters',
+        }
+      }
     },
 
     onSubmit: values => {
@@ -54,46 +58,56 @@ function Login() {
     },
   })
 
+  console.log(formik.values.rememberMe)
   if (isLoggedIn) {
     return <Navigate to={PATH.PROFILE} />
   }
 
   return (
-    <Grid container justifyContent={'center'}>
-      <Grid item justifyContent={'center'}>
-        <form onSubmit={formik.handleSubmit}>
-          <FormControl>
-            <FormGroup>
-              <TextField label="Email" margin="normal" {...formik.getFieldProps('email')} />
-              {formik.touched.email && formik.errors.email ? (
-                <div style={{ color: 'red' }}>{formik.errors.email}</div>
-              ) : null}
-              <TextField
-                type="password"
-                label="Password"
-                margin="normal"
-                {...formik.getFieldProps('password')}
-              />
-              {formik.touched.password && formik.errors.password ? (
-                <div style={{ color: 'red' }}>{formik.errors.password}</div>
-              ) : null}
-              <FormControlLabel
-                label={'Remember me'}
-                control={<Checkbox {...formik.getFieldProps('rememberMe')} />}
-              />
-              <Button type={'submit'} variant={'contained'} color={'primary'}>
-                Login
-              </Button>
-              <FormLabel>
-                <p>
-                  Do not have an account? Sign up <NavLink to={PATH.SIGNUP}>here</NavLink>
-                </p>
-              </FormLabel>
-            </FormGroup>
-          </FormControl>
+    <div className={s.card}>
+      <Box
+        sx={{
+          '& .MuiTextField-root': { m: 1, width: '347px' },
+        }}
+      >
+        <form method="post" onSubmit={formik.handleSubmit}>
+          <h1>Sing Up</h1>
+          <div className={s.input}>
+            <TextField
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              label={'Email'}
+              variant="standard"
+              type={'email'}
+              defaultValue={formik.errors.email}
+              helperText={formik.errors.email}
+              {...formik.getFieldProps('email')}
+            />
+          </div>
+          <div className={s.input}>
+            <TextField
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              label={'Password'}
+              variant="standard"
+              type={typeInputPassword}
+              defaultValue={formik.errors.password}
+              helperText={formik.errors.password}
+              {...formik.getFieldProps('password')}
+            />
+            <ShowPassword value={typeInputPassword} callback={setTypeP} />
+          </div>
+          <div className={s.input}>
+            <Checkbox {...formik.getFieldProps('rememberMe')} /> Remember me
+          </div>
+          <button className={s.button} type={'submit'}>
+            Sing In
+          </button>
+          <h5> Already have an account?</h5>
+          <div className={s.link}>
+            <NavLink to={PATH.SIGNUP}>Sing Ip</NavLink>
+          </div>
         </form>
-      </Grid>
-    </Grid>
+      </Box>
+    </div>
   )
 }
 
