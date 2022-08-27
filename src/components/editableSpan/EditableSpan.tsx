@@ -39,7 +39,7 @@ export const EditableSpan = React.memo((props: EditableSpanType) => {
       {!editMode ? (
         <div className={s.wrapper} onDoubleClick={onClickDoubleHandler}>
           <span className={s.userName}>{props.title}</span>
-          <BiEditAlt />
+          <BiEditAlt style={{ width: '20px', height: '20px' }} />
         </div>
       ) : (
         <CssTextField
