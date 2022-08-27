@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { Button } from '@mui/material'
 import { NavLink } from 'react-router-dom'
 
 import logo from '../../../assets/logo.svg'
@@ -22,13 +21,11 @@ export const Header = () => {
               <img src={logo} alt="logo" />
             </NavLink>
           </div>
-          {isLoggedIn ? (
+          {isLoggedIn && (
             <div className={s.block}>
               <span>{user.name}</span>
               <Avatar width={'36px'} />
             </div>
-          ) : (
-            <Button variant="contained">Sing in</Button>
           )}
         </div>
       </div>
