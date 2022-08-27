@@ -1,6 +1,9 @@
 import React from 'react'
 
+import { LinearProgress } from '@mui/material'
 import { Route, Routes, Navigate } from 'react-router-dom'
+
+import { useAppSelector } from '../store/store'
 
 import s from './Page.module.css'
 import EnterNewPassword from './pages/EnterNewPassword'
@@ -22,20 +25,26 @@ export const PATH = {
 }
 
 function Pages() {
-  return (
-    <div className={s.pages}>
-      <Routes>
-        <Route path={'/'} element={<Navigate to={PATH.PROFILE} />} />
+  const status = useAppSelector(state => state.app.status)
 
-        <Route path={PATH.PROFILE} element={<Profile />} />
-        <Route path={PATH.LOGIN} element={<Login />} />
-        <Route path={PATH.SIGNUP} element={<SignUp />} />
-        <Route path={PATH.RESET_PASSWORD} element={<ResetPassword />} />
-        <Route path={PATH.ENTER_NEW_PASSWORD} element={<EnterNewPassword />} />
-        <Route path={PATH.TEST} element={<TestPage />} />
-        <Route path={'/*'} element={<Error404 />} />
-      </Routes>
-    </div>
+  return (
+    <>
+      {status === 'loading' && (
+        <LinearProgress sx={{ position: 'absolute', width: '100%', top: '70px' }} />
+      )}
+      <div className={s.pages}>
+        <Routes>
+          <Route path={'/'} element={<Navigate to={PATH.PROFILE} />} />
+          <Route path={PATH.PROFILE} element={<Profile />} />
+          <Route path={PATH.LOGIN} element={<Login />} />
+          <Route path={PATH.SIGNUP} element={<SignUp />} />
+          <Route path={PATH.RESET_PASSWORD} element={<ResetPassword />} />
+          <Route path={PATH.ENTER_NEW_PASSWORD} element={<EnterNewPassword />} />
+          <Route path={PATH.TEST} element={<TestPage />} />
+          <Route path={'/*'} element={<Error404 />} />
+        </Routes>
+      </div>
+    </>
   )
 }
 

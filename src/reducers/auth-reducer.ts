@@ -2,6 +2,7 @@ import { Dispatch } from 'redux'
 
 import { authAPI, LoginParamsType } from '../api/api'
 
+import { AppReducerType, setAppStatusAC } from './app-reducer'
 import { setUserAC } from './profile-reducer'
 
 const initialState: InitialLoginStateType = {
@@ -30,6 +31,7 @@ export const setErrorAC = (error: string | null) => ({ type: 'login/SET-ERROR', 
 
 // thunks
 export const loginTC = (data: LoginParamsType) => (dispatch: ThunkDispatchType) => {
+  dispatch(setAppStatusAC('loading'))
   authAPI
     .login(data)
     .then(res => {
@@ -39,6 +41,7 @@ export const loginTC = (data: LoginParamsType) => (dispatch: ThunkDispatchType) 
     .catch(err => {
       setErrorAC(err.response.data.error)
     })
+    .finally(() => dispatch(setAppStatusAC('succeeded')))
 }
 
 export const logoutTC = () => (dispatch: ThunkDispatchType) => {
@@ -63,4 +66,4 @@ type InitialLoginStateType = {
   isLoggedIn: boolean
   error: string | null
 }
-export type ThunkDispatchType = Dispatch<AuthActionsType>
+export type ThunkDispatchType = Dispatch<AuthActionsType | AppReducerType>

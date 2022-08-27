@@ -14,7 +14,7 @@ export enum resultCodeStatus {
 }
 
 const initialState = {
-  status: 'loading' as RequestStatusType,
+  status: 'idle' as RequestStatusType,
   error: null as null | string,
   initialized: false,
   isLoad: false,
@@ -52,6 +52,7 @@ export const appInitialTC = () => (dispatch: Dispatch) => {
   authAPI
     .me()
     .then((res: any) => {
+      console.log(res)
       dispatch(setUserAC(res.data))
       dispatch(setIsLoggedInAC(true))
     })
@@ -68,4 +69,4 @@ type SetAppStatusAT = ReturnType<typeof setAppStatusAC>
 type SetAppErrorAT = ReturnType<typeof setAppErrorAC>
 type SetAppInitialAT = ReturnType<typeof setAppInitialAC>
 type SetAppLoadAT = ReturnType<typeof setAppLoadAC>
-type AppReducerType = SetAppStatusAT | SetAppErrorAT | SetAppInitialAT | SetAppLoadAT
+export type AppReducerType = SetAppStatusAT | SetAppErrorAT | SetAppInitialAT | SetAppLoadAT
