@@ -4,7 +4,7 @@
     align-items: center;
 
     width: 413px;
-    height: 528px;
+    max-height: 528px;
     margin: 0 auto;
 
     background: #FFFFFF;
@@ -25,10 +25,9 @@ h1 {
 
     display: inline-block;
 
-    width: 347px;
+    width: 363px;
     height: 36px;
-    margin: 47px 0 31px 0;
-    margin-bottom: 7px;
+    margin: 47px auto 31px auto;
 
     font-size: 15px;
     color: #fff;
@@ -54,7 +53,7 @@ h1 {
 
 }
 h5{
-    margin: 0;
+    margin: 0 0 15px 0;
 
     font-family: Montserrat;
     font-size: 14px;
@@ -81,4 +80,26 @@ h5{
 }
 .input{
     position: relative;
+}
+
+.forgot {
+    margin-top: 20px;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 17px;
+
+    text-align: right;
+}
+.text{
+    margin: 20px 10px 0 10px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    color: #000000;
+
+    opacity: 0.5;
 }

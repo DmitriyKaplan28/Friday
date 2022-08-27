@@ -19,11 +19,9 @@ import { ShowPassword } from '../../common/c10-ShowPassword/ShowPassword'
 import { loginTC } from '../../reducers/auth-reducer'
 import { AppRootStateType, useAppDispatch } from '../../store/store'
 import { PATH } from '../Pages'
-import s from '../pages/SingUp/singUp.module.css'
+import s from '../pages/ComonnStylePage.module.css'
 
-import { Input } from './SingUp/Input/Input'
-
-function Login() {
+export const Login = () => {
   const isLoggedIn = useSelector((state: AppRootStateType) => state.auth.isLoggedIn)
   const [typeInputPassword, setTypeP] = useState<string>('password')
 
@@ -58,7 +56,6 @@ function Login() {
     },
   })
 
-  console.log(formik.values.rememberMe)
   if (isLoggedIn) {
     return <Navigate to={PATH.PROFILE} />
   }
@@ -98,25 +95,18 @@ function Login() {
           <div className={s.input}>
             <Checkbox {...formik.getFieldProps('rememberMe')} /> Remember me
           </div>
+          <div className={s.forgot}>
+            <NavLink to={PATH.RESET_PASSWORD}>Forgot Password?</NavLink>
+          </div>
           <button className={s.button} type={'submit'}>
             Sing In
           </button>
           <h5> Already have an account?</h5>
           <div className={s.link}>
-            <NavLink to={PATH.SIGNUP}>Sing Ip</NavLink>
+            <NavLink to={PATH.SIGNUP}>Sing Up</NavLink>
           </div>
         </form>
       </Box>
     </div>
   )
 }
-
-//types
-
-type FormikErrorType = {
-  email?: string
-  password?: string
-  rememberMe?: boolean
-}
-
-export default Login

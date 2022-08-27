@@ -9,9 +9,7 @@ import { ShowPassword } from '../../../common/c10-ShowPassword/ShowPassword'
 import { setRegistrationTC, useAppDispatch } from '../../../reducers/signup-reducer'
 import { AppRootStateType } from '../../../store/store'
 import { PATH } from '../../Pages'
-
-import { Input } from './Input/Input'
-import s from './singUp.module.css'
+import s from '../ComonnStylePage.module.css'
 
 export type initialValuesType = {
   email: string
