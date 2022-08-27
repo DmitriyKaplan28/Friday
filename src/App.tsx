@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import './App.css'
 import { CircularProgress } from '@mui/material'
 
+import { ErrorSnackbar } from './common/c9-ErrorSnackbar/ErrorSnackbar'
 import { appInitialTC } from './reducers/app-reducer'
 import { useAppDispatch, useAppSelector } from './reducers/signup-reducer'
 import { PageRouting } from './routing/PageRouting'
@@ -24,7 +25,7 @@ function App() {
 
   return (
     <>
-      {/*<ErrorSnackbar />*/}
+      <ErrorSnackbar />
       <PageRouting />
     </>
   )
