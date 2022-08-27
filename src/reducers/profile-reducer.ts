@@ -2,7 +2,7 @@ import { Dispatch } from 'redux'
 
 import { authAPI, profileAPI, UserType } from '../api/api'
 
-import { setIsLoggedInAC } from './auth-reducer'
+import { AuthActionsType, setIsLoggedInAC } from './auth-reducer'
 
 const initialState = {
   user: {
@@ -39,7 +39,7 @@ export const setUserAC = (user: UserType) => ({ type: 'SET-USER', user } as cons
 
 //THUNK
 export const setUserTC = () => {
-  return (dispatch: any) => {
+  return (dispatch: ThunkDispatchInProfileType) => {
     authAPI
       .me()
       .then(res => {
@@ -49,7 +49,7 @@ export const setUserTC = () => {
       .catch(err => console.log(err.response.data.error))
   }
 }
-export const changeNameTC = (name: string) => (dispatch: Dispatch) => {
+export const changeNameTC = (name: string) => (dispatch: ThunkDispatchInProfileType) => {
   profileAPI
     .changeUserName(name)
     .then(res => {
@@ -62,3 +62,5 @@ export const changeNameTC = (name: string) => (dispatch: Dispatch) => {
 export type ProfileAT = ChangeNameAT | SetUserAT
 export type ChangeNameAT = ReturnType<typeof changeNameAC>
 export type SetUserAT = ReturnType<typeof setUserAC>
+
+export type ThunkDispatchInProfileType = Dispatch<AuthActionsType | ProfileAT>
