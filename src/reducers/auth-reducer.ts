@@ -45,6 +45,7 @@ export const loginTC = (data: LoginParamsType) => (dispatch: ThunkDispatchType) 
 }
 
 export const logoutTC = () => (dispatch: ThunkDispatchType) => {
+  dispatch(setAppStatusAC('loading'))
   authAPI
     .logout()
     .then(() => {
@@ -53,6 +54,7 @@ export const logoutTC = () => (dispatch: ThunkDispatchType) => {
     .catch(err => {
       setErrorAC(err.response.data.error)
     })
+    .finally(() => dispatch(setAppStatusAC('succeeded')))
 }
 
 // types

@@ -2,6 +2,7 @@ import { Dispatch } from 'redux'
 
 import { authAPI, profileAPI, UserType } from '../api/api'
 
+import { AppReducerType, setAppStatusAC } from './app-reducer'
 import { AuthActionsType, setIsLoggedInAC } from './auth-reducer'
 
 const initialState = {
@@ -50,12 +51,14 @@ export const setUserTC = () => {
   }
 }
 export const changeNameTC = (name: string) => (dispatch: ThunkDispatchInProfileType) => {
+  dispatch(setAppStatusAC('loading'))
   profileAPI
     .changeUserName(name)
     .then(res => {
       dispatch(changeNameAC(res.data.updatedUser))
     })
     .catch(err => console.log(err))
+    .finally(() => dispatch(setAppStatusAC('succeeded')))
 }
 
 //TYPE
@@ -63,4 +66,4 @@ export type ProfileAT = ChangeNameAT | SetUserAT
 export type ChangeNameAT = ReturnType<typeof changeNameAC>
 export type SetUserAT = ReturnType<typeof setUserAC>
 
-export type ThunkDispatchInProfileType = Dispatch<AuthActionsType | ProfileAT>
+export type ThunkDispatchInProfileType = Dispatch<AuthActionsType | ProfileAT | AppReducerType>
