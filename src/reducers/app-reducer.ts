@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios'
 import { Dispatch } from 'redux'
 
 import { authAPI } from '../api/api'
@@ -51,8 +52,7 @@ export const appReducer = (
 export const appInitialTC = () => (dispatch: Dispatch) => {
   authAPI
     .me()
-    .then((res: any) => {
-      console.log(res)
+    .then((res: AxiosResponse) => {
       dispatch(setUserAC(res.data))
       dispatch(setIsLoggedInAC(true))
     })
