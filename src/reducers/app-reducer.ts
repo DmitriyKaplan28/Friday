@@ -7,7 +7,7 @@ import { setIsLoggedInAC } from './auth-reducer'
 import { setUserAC } from './profile-reducer'
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
-
+export type errorType = string | null | undefined
 export enum resultCodeStatus {
   success = 0,
   error = 1,
@@ -16,9 +16,10 @@ export enum resultCodeStatus {
 
 const initialState = {
   status: 'idle' as RequestStatusType,
-  error: null as null | string,
+  error: null as errorType,
   initialized: false,
   isLoad: false,
+  registerError: null,
 }
 
 type InitialStateType = typeof initialState
@@ -62,7 +63,8 @@ export const appInitialTC = () => (dispatch: Dispatch) => {
 //ACTIONS CREATOR
 export const setAppStatusAC = (status: RequestStatusType) =>
   ({ type: 'APP/SET-STATUS', status } as const)
-export const setAppErrorAC = (error: string | null) => ({ type: 'APP/SET-ERROR', error } as const)
+export const setAppErrorAC = (error: string | null | undefined) =>
+  ({ type: 'APP/SET-ERROR', error } as const)
 export const setAppInitialAC = (value: boolean) => ({ type: 'APP/SET-APP-INITIAL', value } as const)
 export const setAppLoadAC = (value: boolean) => ({ type: 'APP/SET-APP-LOAD', value } as const)
 //TYPES
