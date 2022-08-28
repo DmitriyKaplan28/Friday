@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { LinearProgress } from '@mui/material'
 import { Route, Routes, Navigate } from 'react-router-dom'
 
 import Error404 from '../../../components/Error404/Error404'
@@ -8,6 +9,7 @@ import EnterNewPassword from '../../../components/Login/ResetPassword/EnterNewPa
 import ResetPassword from '../../../components/Login/ResetPassword/ResetPassword'
 import Profile from '../../../components/Profile/Profile'
 import { SignUp } from '../../../components/SingUp/SignUp'
+import { useAppSelector } from '../../../store/store'
 
 import s from './Pages.module.css'
 
@@ -37,7 +39,6 @@ function Pages() {
           <Route path={PATH.SIGNUP} element={<SignUp />} />
           <Route path={PATH.RESET_PASSWORD} element={<ResetPassword />} />
           <Route path={PATH.ENTER_NEW_PASSWORD} element={<EnterNewPassword />} />
-          <Route path={PATH.TEST} element={<TestPage />} />
           <Route path={'/*'} element={<Error404 />} />
         </Routes>
       </div>
