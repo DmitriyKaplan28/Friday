@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux'
 
-import { authAPI } from '../api/api'
+import { authAPI } from '../../api/api'
 
 import { setIsLoggedInAC } from './auth-reducer'
 import { setUserAC } from './profile-reducer'

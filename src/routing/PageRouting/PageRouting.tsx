@@ -1,10 +1,13 @@
 import React from 'react'
-import Header from './Header'
-import Pages from './Pages'
-import { HashRouter } from 'react-router-dom'
-import s from './Page.module.css'
 
-function PageRouting() {
+import { HashRouter } from 'react-router-dom'
+
+import Header from '../../components/Header/Header'
+
+import s from './PageRouting.module.css'
+import { Pages } from './Pages/Pages'
+
+export function PageRouting() {
   return (
     <div className={s.page}>
       <HashRouter>
@@ -15,5 +18,3 @@ function PageRouting() {
     </div>
   )
 }
-
-export default PageRouting

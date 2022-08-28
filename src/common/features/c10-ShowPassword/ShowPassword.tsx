@@ -7,5 +7,6 @@ export const ShowPassword = (props: ShowPasswordType) => {
   const onChangeHandler = () => {
     props.value === 'password' ? props.callback('text') : props.callback('password')
   }
+
   return <img src={eye} alt="" onClick={onChangeHandler} />
 }

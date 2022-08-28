@@ -1,7 +1,9 @@
 import React from 'react'
+
+import avatar from '../../../common/assets/profile/avatar.png'
+import icon from '../../../common/assets/profile/iconPhoto.svg'
+
 import s from './Avatar.module.css'
-import avatar from '../../assets/profile/avatar.png'
-import icon from '../../assets/profile/iconPhoto.svg'
 
 export const Avatar = () => {
   return (

@@ -3,8 +3,8 @@ import { AxiosError } from 'axios'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { Dispatch } from 'redux'
 
-import { registerAPI } from '../api/api'
-import { AppDispatch, AppRootStateType } from '../store/store'
+import { registerAPI } from '../../api/api'
+import { AppDispatch, AppRootStateType } from '../store'
 
 import { setIsLoggedInAC, SetIsLoggedInType } from './auth-reducer'
 

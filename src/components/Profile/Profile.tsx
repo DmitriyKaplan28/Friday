@@ -2,10 +2,10 @@ import React from 'react'
 
 import { Navigate } from 'react-router-dom'
 
-import { Card } from '../../components/card/Card'
-import { changeNameTC } from '../../reducers/profile-reducer'
-import { useAppDispatch, useAppSelector } from '../../reducers/signup-reducer'
-import { PATH } from '../Pages'
+import { PATH } from '../../routing/PageRouting/Pages/Pages'
+import { changeNameTC } from '../../store/reducers/profile-reducer'
+import { useAppDispatch, useAppSelector } from '../../store/reducers/signup-reducer'
+import { Card } from '../Card/Card'
 
 function Profile() {
   const user = useAppSelector(state => state.profile.user)

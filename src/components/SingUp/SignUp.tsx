@@ -5,10 +5,14 @@ import { useFormik } from 'formik'
 import { useSelector } from 'react-redux'
 import { NavLink, Navigate } from 'react-router-dom'
 
-import { ShowPassword } from '../../../common/c10-ShowPassword/ShowPassword'
-import { setRegistrationTC, useAppDispatch, useAppSelector } from '../../../reducers/signup-reducer'
-import { AppRootStateType } from '../../../store/store'
-import { PATH } from '../../Pages'
+import { ShowPassword } from '../../common/features/c10-ShowPassword/ShowPassword'
+import { PATH } from '../../routing/PageRouting/Pages/Pages'
+import {
+  setRegistrationTC,
+  useAppDispatch,
+  useAppSelector,
+} from '../../store/reducers/signup-reducer'
+import { AppRootStateType } from '../../store/store'
 
 import s from './singUp.module.css'
 

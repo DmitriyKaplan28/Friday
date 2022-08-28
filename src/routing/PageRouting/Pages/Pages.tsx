@@ -1,13 +1,15 @@
 import React from 'react'
-import Profile from './pages/Profile'
-import Login from './pages/Login'
-import Error404 from './pages/Error404'
-import { SignUp } from './pages/SingUp/SignUp'
+
 import { Route, Routes, Navigate } from 'react-router-dom'
-import ResetPassword from './pages/ResetPassword'
-import EnterNewPassword from './pages/EnterNewPassword'
-import TestPage from './pages/TestPage'
-import s from './Page.module.css'
+
+import Error404 from '../../../components/Error404/Error404'
+import Login from '../../../components/Login/Login'
+import EnterNewPassword from '../../../components/Login/ResetPassword/EnterNewPassword/EnterNewPassword'
+import ResetPassword from '../../../components/Login/ResetPassword/ResetPassword'
+import Profile from '../../../components/Profile/Profile'
+import { SignUp } from '../../../components/SingUp/SignUp'
+
+import s from './Pages.module.css'
 
 export const PATH = {
   PROFILE: '/profile',
@@ -15,11 +17,9 @@ export const PATH = {
   SIGNUP: '/sign-up',
   RESET_PASSWORD: '/reset-password',
   ENTER_NEW_PASSWORD: '/enter-new-password',
-  TEST: '/test',
-  // add paths
 }
 
-function Pages() {
+export function Pages() {
   return (
     <div className={s.pages}>
       <Routes>
@@ -30,11 +30,8 @@ function Pages() {
         <Route path={PATH.SIGNUP} element={<SignUp />} />
         <Route path={PATH.RESET_PASSWORD} element={<ResetPassword />} />
         <Route path={PATH.ENTER_NEW_PASSWORD} element={<EnterNewPassword />} />
-        <Route path={PATH.TEST} element={<TestPage />} />
         <Route path={'/*'} element={<Error404 />} />
       </Routes>
     </div>
   )
 }
-
-export default Pages

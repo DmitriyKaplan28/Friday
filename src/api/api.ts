@@ -1,10 +1,10 @@
 import axios, { AxiosResponse } from 'axios'
 
-import { ResponseRegisterType } from '../reducers/signup-reducer'
+import { ResponseRegisterType } from '../store/reducers/signup-reducer'
 
 const instance = axios.create({
-  baseURL: 'http://localhost:7542/2.0/',
-  //baseURL: 'https://neko-back.herokuapp.com/2.0/',
+  //baseURL: 'http://localhost:7542/2.0/',
+  baseURL: 'https://neko-back.herokuapp.com/2.0/',
   withCredentials: true,
 })
 
@@ -34,7 +34,6 @@ export const authAPI = {
 
 //TYPE
 export type GetMeResponseType = UserType & { error: string }
-export type logOutResponseType = { error: string }
 export type UpdateUserResponseType = {
   updatedUser: UserType
   error: string
@@ -66,13 +65,10 @@ type LoginResponseType = {
   name: string
   avatar?: string
   publicCardPacksCount: number
-  // количество колод
-
   created: Date
   updated: Date
   isAdmin: boolean
-  verified: boolean // подтвердил ли почту
+  verified: boolean
   rememberMe: boolean
-
   error?: string
 }

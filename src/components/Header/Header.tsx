@@ -1,9 +1,6 @@
 import React from 'react'
 
-import { Button } from '@mui/material'
 import { NavLink } from 'react-router-dom'
-
-import logo from '../assets/logo.svg'
 
 import s from './Header.module.css'
 

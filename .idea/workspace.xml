@@ -4,9 +4,63 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55cf0420-693c-4393-8718-dbf393c895b9" name="Changes" comment="fix: latest fixes">
+    <list default="true" id="a53635f7-0cba-4710-8ada-cb11211034dd" name="Changes" comment="fix: files structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routing/pages/SingUp/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/pages/SingUp/SignUp.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/logo.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/profile/avatar.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/profile/avatar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/profile/iconPhoto.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/profile/iconPhoto.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/register/eye.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/register/eye.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/register/incubator.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/register/incubator.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/c1-SuperInputText/SuperInputText.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/c1-SuperInputText/SuperInputText.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/c1-SuperInputText/SuperInputText.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/c1-SuperInputText/SuperInputText.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/c10-ShowPassword/ShowPassword.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/c10-ShowPassword/ShowPassword.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/c10-ShowPassword/ShowPassword.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/c10-ShowPassword/ShowPassword.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/c2-SuperButton/SuperButton.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/c2-SuperButton/SuperButton.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/c2-SuperButton/SuperButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/c2-SuperButton/SuperButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/c3-SuperCheckbox/SuperCheckbox.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/c3-SuperCheckbox/SuperCheckbox.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/c3-SuperCheckbox/SuperCheckbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/c3-SuperCheckbox/SuperCheckbox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/c4-SuperEditableSpan/SuperEditableSpan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/c4-SuperEditableSpan/SuperEditableSpan.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/c5-SuperSelect/SuperSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/c5-SuperSelect/SuperSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/c6-SuperRadio/SuperRadio.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/c6-SuperRadio/SuperRadio.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/c7-SuperRange/SuperRange.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/c7-SuperRange/SuperRange.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/c7-SuperRange/SuperRange.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/c7-SuperRange/SuperRange.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/c8-SuperDoubleRange/SuperDoubleRange.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/c8-SuperDoubleRange/SuperDoubleRange.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/c8-SuperDoubleRange/SuperDoubleRange.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/c8-SuperDoubleRange/SuperDoubleRange.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/c9-ErrorSnackbar/ErrorSnackbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/c9-ErrorSnackbar/ErrorSnackbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/avatar/Avatar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card/Avatar/Avatar.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/avatar/Avatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card/Avatar/Avatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/card/Card.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card/Card.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/card/Card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card/Card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/editableSpan/CssCustomField.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/editableSpan/CssCustomField.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/editableSpan/EditableSpan.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/editableSpan/EditableSpan.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/editableSpan/EditableSpan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/features/editableSpan/EditableSpan.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/app-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/app-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/auth-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/auth-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/enter-new-password-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/enter-new-password-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/profile-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/profile-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/reset-password-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/reset-password-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/signup-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/signup-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/test/signup-reducer.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/test/signup-reducer.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/Page.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/PageRouting/PageRouting.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/PageRouting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/PageRouting/PageRouting.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/Pages.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/PageRouting/Pages/Pages.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/Pages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/PageRouting/Pages/Pages.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/pages/EnterNewPassword.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login/ResetPassword/EnterNewPassword/EnterNewPassword.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/pages/Error404.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Error404/Error404.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/pages/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/pages/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/pages/ResetPassword.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login/ResetPassword/ResetPassword.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/pages/SingUp/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SingUp/SignUp.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/pages/SingUp/singUp.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SingUp/singUp.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/pages/TestPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +68,18 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/common/features/c1-SuperInputText/SuperInputText.module.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/common/features/c1-SuperInputText/SuperInputText.tsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/common/features/c6-SuperRadio/SuperRadio.tsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/routing/PageRouting/PageRouting.tsx" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -44,6 +109,15 @@
         &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
       }
     }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\IT_kamasutra\friday-project\friday\src\components\Card" />
+      <recent name="C:\IT_kamasutra\friday-project\friday\src\routing\PageRouting" />
+      <recent name="C:\IT_kamasutra\friday-project\friday\src\routing\PageRouting\Pages" />
+      <recent name="C:\IT_kamasutra\friday-project\friday\src\common" />
+      <recent name="C:\IT_kamasutra\friday-project\friday\src\store" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -123,6 +197,7 @@
     <MESSAGE value="feat: workplace" />
     <MESSAGE value="fix: fix name differences and imports after merge" />
     <MESSAGE value="fix: latest fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: latest fixes" />
+    <MESSAGE value="fix: files structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: files structure" />
   </component>
 </project>

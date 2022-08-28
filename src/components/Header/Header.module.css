@@ -18,7 +18,7 @@
     width: 209px;
     height: 48px;
 
-    background-image: url(../assets/register/incubator.png);
+    background-image: url(../../common/assets/register/incubator.png);
     background-repeat: no-repeat;
 }
 .button{

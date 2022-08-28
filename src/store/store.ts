@@ -7,12 +7,12 @@ import {
 } from 'redux'
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 
-import { appReducer } from '../reducers/app-reducer'
-import { authReducer } from '../reducers/auth-reducer'
-import { enterNewPasswordReducer } from '../reducers/enter-new-password-reducer'
-import { profileReducer } from '../reducers/profile-reducer'
-import { resetPasswordReducer } from '../reducers/reset-password-reducer'
-import { signUpReducer } from '../reducers/signup-reducer'
+import { appReducer } from './reducers/app-reducer'
+import { authReducer } from './reducers/auth-reducer'
+import { enterNewPasswordReducer } from './reducers/enter-new-password-reducer'
+import { profileReducer } from './reducers/profile-reducer'
+import { resetPasswordReducer } from './reducers/reset-password-reducer'
+import { signUpReducer } from './reducers/signup-reducer'
 
 const rootReducer = combineReducers({
   profile: profileReducer,
