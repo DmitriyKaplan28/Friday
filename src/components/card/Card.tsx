@@ -19,7 +19,6 @@ type CardPropsTYpe = {
 export const Card = (props: CardPropsTYpe) => {
   const dispatch = useAppDispatch()
 
-  console.log('Card render')
   const onClickHandler = () => {
     dispatch(logoutTC())
   }
@@ -27,7 +26,7 @@ export const Card = (props: CardPropsTYpe) => {
   return (
     <div className={s.wrapper}>
       <h2 className={s.title}>{props.title ? props.title : 'Personal Information'}</h2>
-      <Avatar />
+      <Avatar mode={'profile'} width="96px" />
       <EditableSpan callBack={props.changeUserNameValue} title={props.user.name} />
       <span className={s.email}>{props.user.email}</span>
       <Button className={s.btn} onClick={onClickHandler}>

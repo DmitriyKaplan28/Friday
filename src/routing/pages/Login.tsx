@@ -21,7 +21,9 @@ import { AppRootStateType, useAppDispatch } from '../../store/store'
 import { PATH } from '../Pages'
 import s from '../pages/ComonnStylePage.module.css'
 
-export const Login = () => {
+import s from './Header/Header.module.css'
+
+function Login() {
   const isLoggedIn = useSelector((state: AppRootStateType) => state.auth.isLoggedIn)
   const [typeInputPassword, setTypeP] = useState<string>('password')
 
