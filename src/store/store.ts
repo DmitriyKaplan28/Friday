@@ -7,18 +7,18 @@ import {
 } from 'redux'
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 
-import { appReducer } from '../reducers/app-reducer'
-import { authReducer } from '../reducers/auth-reducer'
-import { enterNewPasswordReducer } from '../reducers/enter-new-password-reducer'
-import { forgotPasswordReducer } from '../reducers/ForgotPasswordReducer'
-import { profileReducer } from '../reducers/profile-reducer'
-import { signUpReducer } from '../reducers/signup-reducer'
+import { appReducer } from './reducers/AppReducer'
+import { authReducer } from './reducers/AuthReducer'
+import { enterNewPasswordReducer } from './reducers/EnterNewPasswordReducer'
+import { profileReducer } from './reducers/ProfileReducer'
+import { resetPasswordReducer } from './reducers/ResetPasswordReducer'
+import { signUpReducer } from './reducers/SignUpReducer'
 
 const rootReducer = combineReducers({
   profile: profileReducer,
   auth: authReducer,
   register: signUpReducer,
-  resetPassword: forgotPasswordReducer,
+  resetPassword: resetPasswordReducer,
   newPassword: enterNewPasswordReducer,
   app: appReducer,
 })

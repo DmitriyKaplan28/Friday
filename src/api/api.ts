@@ -30,9 +30,12 @@ export const authAPI = {
   },
 }
 
-export const forgotPasswordAPI = {
+export const resetPasswordAPI = {
   forgotPassword(email: string) {
-    return instance.post<ForgotPasswordResponseType>('/auth/forgot', { email })
+    return instance.post<ResetPasswordResponseType>('/auth/forgot', { email })
+  },
+  enterNewPassword(payload: NewPasswordParamsType) {
+    return instance.post<ResetPasswordResponseType>('/auth/set-new-password', payload)
   },
 }
 
@@ -47,7 +50,7 @@ export type ResponseRegisterType = {
   addedUser: {}
   error?: string
 }
-export type ForgotPasswordResponseType = {
+export type ResetPasswordResponseType = {
   info: string
   error: string
 }
@@ -83,7 +86,7 @@ type LoginResponseType = {
   created: Date
   updated: Date
   isAdmin: boolean
-  verified: boolean // подтвердил ли почту
+  verified: boolean
   rememberMe: boolean
 
   error?: string
@@ -92,4 +95,16 @@ type LoginResponseType = {
 export type RegisterParamsType = {
   email: string
   password: string
+}
+
+export type ErrorDataResponseType = {
+  error: string
+  in: string
+  isEmailValid: boolean
+  isPassValid: boolean
+}
+
+export type NewPasswordParamsType = {
+  password: string
+  resetPasswordToken: string
 }
