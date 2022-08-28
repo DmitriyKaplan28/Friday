@@ -6,13 +6,10 @@ import { Route, Routes, Navigate } from 'react-router-dom'
 import { useAppSelector } from '../store/store'
 
 import s from './Page.module.css'
-import EnterNewPassword from './pages/EnterNewPassword'
+import { CreateNewPassword } from './pages/CreateNewPassword'
 import Error404 from './pages/Error404'
-import Login from './pages/Login'
-import Profile from './pages/Profile/Profile'
-import ResetPassword from './pages/ResetPassword'
 import { Login } from './pages/Login'
-import Profile from './pages/Profile'
+import Profile from './pages/Profile/Profile'
 import { ResetPassword } from './pages/ResetPassword'
 import { SignUp } from './pages/SingUp/SignUp'
 import TestPage from './pages/TestPage'
@@ -22,7 +19,7 @@ export const PATH = {
   LOGIN: '/login',
   SIGNUP: '/sign-up',
   RESET_PASSWORD: '/reset-password',
-  ENTER_NEW_PASSWORD: '/enter-new-password',
+  CREATE_NEW_PASSWORD: '/create-new-password',
   TEST: '/test',
   // add paths
 }
@@ -42,7 +39,7 @@ function Pages() {
           <Route path={PATH.LOGIN} element={<Login />} />
           <Route path={PATH.SIGNUP} element={<SignUp />} />
           <Route path={PATH.RESET_PASSWORD} element={<ResetPassword />} />
-          <Route path={PATH.ENTER_NEW_PASSWORD} element={<EnterNewPassword />} />
+          <Route path={PATH.CREATE_NEW_PASSWORD} element={<CreateNewPassword />} />
           <Route path={PATH.TEST} element={<TestPage />} />
           <Route path={'/*'} element={<Error404 />} />
         </Routes>

@@ -10,10 +10,6 @@ import { PATH } from '../Pages'
 import s from '../pages/ComonnStylePage.module.css'
 
 export const ResetPassword = () => {
-  const isLoggedIn = useSelector((state: AppRootStateType) => state.auth.isLoggedIn)
-  const [typeInputPassword, setTypeP] = useState<string>('password')
-
-  const dispatch = useAppDispatch()
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -66,7 +62,7 @@ export const ResetPassword = () => {
           </button>
           <h5>Did you remember your password?</h5>
           <div className={s.link}>
-            <NavLink to={PATH.SIGNUP}>Sing Up</NavLink>
+            <NavLink to={PATH.LOGIN}>Try logging in</NavLink>
           </div>
         </form>
       </Box>

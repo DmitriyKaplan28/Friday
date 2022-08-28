@@ -1,16 +1,6 @@
 import React, { useState } from 'react'
 
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormLabel,
-  Grid,
-  TextField,
-} from '@mui/material'
+import { Box, Checkbox, TextField } from '@mui/material'
 import { useFormik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, NavLink } from 'react-router-dom'
@@ -21,9 +11,7 @@ import { AppRootStateType, useAppDispatch } from '../../store/store'
 import { PATH } from '../Pages'
 import s from '../pages/ComonnStylePage.module.css'
 
-import s from './Header/Header.module.css'
-
-function Login() {
+export const Login = () => {
   const isLoggedIn = useSelector((state: AppRootStateType) => state.auth.isLoggedIn)
   const [typeInputPassword, setTypeP] = useState<string>('password')
 
@@ -70,7 +58,7 @@ function Login() {
         }}
       >
         <form method="post" onSubmit={formik.handleSubmit}>
-          <h1>Sing Up</h1>
+          <h1>Sing In</h1>
           <div className={s.input}>
             <TextField
               error={formik.touched.email && Boolean(formik.errors.email)}

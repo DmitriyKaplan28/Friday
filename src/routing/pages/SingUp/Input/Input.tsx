@@ -4,8 +4,8 @@ import { TextField } from '@mui/material'
 import { useFormikContext } from 'formik'
 
 import { ShowPassword } from '../../../../common/c10-ShowPassword/ShowPassword'
+import s from '../../ComonnStylePage.module.css'
 import { initialValuesType } from '../SignUp'
-import s from '../singUp.module.css'
 
 type Props = {
   field: string

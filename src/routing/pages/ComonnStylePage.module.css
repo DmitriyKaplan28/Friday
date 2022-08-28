@@ -4,6 +4,7 @@
     align-items: center;
 
     width: 413px;
+    min-height: 372px;
     max-height: 528px;
     margin: 0 auto;
 
@@ -65,11 +66,11 @@ h5{
 }
 
 .link {
-    width: 100px;
-    margin: 11px auto;
+    width: 130px;
+    margin: 11px auto 42px auto;
 
     font-family: 'Montserrat';
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 600;
     text-align: center;
     text-decoration-line: underline;
@@ -84,22 +85,27 @@ h5{
 
 .forgot {
     margin-top: 20px;
+
     font-family: 'Montserrat';
     font-size: 14px;
     font-weight: 500;
     font-style: normal;
     line-height: 17px;
-
     text-align: right;
 }
 .text{
     margin: 20px 10px 0 10px;
+
     font-family: 'Montserrat';
-    font-style: normal;
     font-size: 18px;
-    line-height: 24px;
-    text-align: center;
+    font-style: normal;
+    line-height: 17px;
     color: #000000;
+    text-align: left;
 
     opacity: 0.5;
+}
+
+form {
+    width: 363px;
 }
