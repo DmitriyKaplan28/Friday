@@ -5,6 +5,7 @@ import { AiOutlineLogout } from '@react-icons/all-files/ai/AiOutlineLogout'
 
 import { UserType } from '../../api/api'
 import { logoutTC } from '../../reducers/auth-reducer'
+import { sendEmailAC } from '../../reducers/ForgotPasswordReducer'
 import { useAppDispatch } from '../../store/store'
 import { Avatar } from '../avatar/Avatar'
 import { EditableSpan } from '../editableSpan/EditableSpan'
@@ -21,6 +22,7 @@ export const Card = (props: CardPropsTYpe) => {
 
   const onClickHandler = () => {
     dispatch(logoutTC())
+    dispatch(sendEmailAC(false))
   }
 
   return (

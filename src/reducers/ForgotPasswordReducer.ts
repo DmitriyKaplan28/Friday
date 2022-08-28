@@ -8,6 +8,7 @@ import { ErrorDataResponseType } from './signup-reducer'
 
 const initialState = {
   isSend: false,
+  email: '',
 }
 
 export const forgotPasswordReducer = (
@@ -17,12 +18,15 @@ export const forgotPasswordReducer = (
   switch (action.type) {
     case 'SEND-EMAIL':
       return { ...state, isSend: action.isSend }
+    case 'SET-EMAIL':
+      return { ...state, email: action.email }
     default:
       return state
   }
 }
 //Action
-const sendEmailAC = (isSend: boolean) => ({ type: 'SEND-EMAIL', isSend } as const)
+export const sendEmailAC = (isSend: boolean) => ({ type: 'SEND-EMAIL', isSend } as const)
+const setEmailAC = (email: string) => ({ type: 'SET-EMAIL', email } as const)
 
 //Thunk
 export const forgotPasswordTC =
@@ -31,6 +35,7 @@ export const forgotPasswordTC =
     forgotPasswordAPI
       .forgotPassword(email)
       .then(res => {
+        dispatch(setEmailAC(email))
         dispatch(sendEmailAC(true))
       })
       .catch((error: AxiosError<ErrorDataResponseType>) => {
@@ -43,4 +48,4 @@ export const forgotPasswordTC =
 
 //Types
 type InitialStateType = typeof initialState
-type ForgotPasswordAT = ReturnType<typeof sendEmailAC>
+type ForgotPasswordAT = ReturnType<typeof setEmailAC> | ReturnType<typeof sendEmailAC>

@@ -109,3 +109,15 @@ h5{
 form {
     width: 363px;
 }
+
+.formCheckEmail {
+    width: 363px;
+}
+.formCheckEmail img {
+    display: block;
+
+   margin: 0 auto;
+}
+.formCheckEmail span {
+    color: chocolate;
+}
