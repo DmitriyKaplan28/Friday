@@ -2,17 +2,16 @@ import React, { useState } from 'react'
 
 import { Box, Checkbox, TextField } from '@mui/material'
 import { useFormik } from 'formik'
-import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, NavLink } from 'react-router-dom'
 
 import { ShowPassword } from '../../common/c10-ShowPassword/ShowPassword'
 import { loginTC } from '../../reducers/auth-reducer'
-import { AppRootStateType, useAppDispatch } from '../../store/store'
+import { AppRootStateType, useAppDispatch, useAppSelector } from '../../store/store'
 import { PATH } from '../Pages'
 import s from '../pages/ComonnStylePage.module.css'
 
 export const Login = () => {
-  const isLoggedIn = useSelector((state: AppRootStateType) => state.auth.isLoggedIn)
+  const isLoggedIn = useAppSelector((state: AppRootStateType) => state.auth.isLoggedIn)
   const [typeInputPassword, setTypeP] = useState<string>('password')
 
   const dispatch = useAppDispatch()
@@ -42,7 +41,6 @@ export const Login = () => {
 
     onSubmit: values => {
       dispatch(loginTC(values))
-      formik.resetForm()
     },
   })
 

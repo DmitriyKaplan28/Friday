@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom'
 
 import { Card } from '../../../components/card/Card'
 import { changeNameTC } from '../../../reducers/profile-reducer'
-import { useAppDispatch, useAppSelector } from '../../../reducers/signup-reducer'
+import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { PATH } from '../../Pages'
 
 import s from './Profile.module.css'

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 import logo from '../../../assets/logo.svg'
 import { Avatar } from '../../../components/avatar/Avatar'
-import { useAppSelector } from '../../../reducers/signup-reducer'
+import { useAppSelector } from '../../../store/store'
 
 import s from './Header.module.css'
 

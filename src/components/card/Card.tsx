@@ -5,7 +5,7 @@ import { AiOutlineLogout } from '@react-icons/all-files/ai/AiOutlineLogout'
 
 import { UserType } from '../../api/api'
 import { logoutTC } from '../../reducers/auth-reducer'
-import { useAppDispatch } from '../../reducers/signup-reducer'
+import { useAppDispatch } from '../../store/store'
 import { Avatar } from '../avatar/Avatar'
 import { EditableSpan } from '../editableSpan/EditableSpan'
 

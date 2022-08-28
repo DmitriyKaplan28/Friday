@@ -8,9 +8,9 @@ import { useAppSelector } from '../store/store'
 import s from './Page.module.css'
 import { CreateNewPassword } from './pages/CreateNewPassword'
 import Error404 from './pages/Error404'
+import { ForgotPassword } from './pages/ForgotPassword'
 import { Login } from './pages/Login'
 import Profile from './pages/Profile/Profile'
-import { ResetPassword } from './pages/ResetPassword'
 import { SignUp } from './pages/SingUp/SignUp'
 import TestPage from './pages/TestPage'
 
@@ -38,7 +38,7 @@ function Pages() {
           <Route path={PATH.PROFILE} element={<Profile />} />
           <Route path={PATH.LOGIN} element={<Login />} />
           <Route path={PATH.SIGNUP} element={<SignUp />} />
-          <Route path={PATH.RESET_PASSWORD} element={<ResetPassword />} />
+          <Route path={PATH.RESET_PASSWORD} element={<ForgotPassword />} />
           <Route path={PATH.CREATE_NEW_PASSWORD} element={<CreateNewPassword />} />
           <Route path={PATH.TEST} element={<TestPage />} />
           <Route path={'/*'} element={<Error404 />} />

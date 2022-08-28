@@ -10,15 +10,15 @@ import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 import { appReducer } from '../reducers/app-reducer'
 import { authReducer } from '../reducers/auth-reducer'
 import { enterNewPasswordReducer } from '../reducers/enter-new-password-reducer'
+import { forgotPasswordReducer } from '../reducers/ForgotPasswordReducer'
 import { profileReducer } from '../reducers/profile-reducer'
-import { resetPasswordReducer } from '../reducers/reset-password-reducer'
 import { signUpReducer } from '../reducers/signup-reducer'
 
 const rootReducer = combineReducers({
   profile: profileReducer,
   auth: authReducer,
   register: signUpReducer,
-  resetPassword: resetPasswordReducer,
+  resetPassword: forgotPasswordReducer,
   newPassword: enterNewPasswordReducer,
   app: appReducer,
 })

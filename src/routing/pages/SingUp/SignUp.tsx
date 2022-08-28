@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 
 import { TextField, Box } from '@mui/material'
 import { useFormik } from 'formik'
-import { useSelector } from 'react-redux'
 import { NavLink, Navigate } from 'react-router-dom'
 
 import { ShowPassword } from '../../../common/c10-ShowPassword/ShowPassword'
-import { setRegistrationTC, useAppDispatch } from '../../../reducers/signup-reducer'
-import { AppRootStateType } from '../../../store/store'
+import { setRegistrationTC } from '../../../reducers/signup-reducer'
+import { AppRootStateType, useAppDispatch, useAppSelector } from '../../../store/store'
 import { PATH } from '../../Pages'
 import s from '../ComonnStylePage.module.css'
 
@@ -19,7 +18,7 @@ export type initialValuesType = {
 
 export const SignUp = () => {
   const dispatch = useAppDispatch()
-  const isLoggedIn = useSelector((state: AppRootStateType) => state.auth.isLoggedIn)
+  const isLoggedIn = useAppSelector((state: AppRootStateType) => state.auth.isLoggedIn)
   const [typeInputPassword, setTypeP] = useState<string>('password')
   const [typeInputConfirmPassword, setTypeCP] = useState<string>('password')
 
@@ -52,7 +51,12 @@ export const SignUp = () => {
       }
     },
     onSubmit: values => {
-      dispatch(setRegistrationTC(values.email, values.password))
+      const data = {
+        email: values.email,
+        password: values.password,
+      }
+
+      dispatch(setRegistrationTC(data))
     },
   })
 

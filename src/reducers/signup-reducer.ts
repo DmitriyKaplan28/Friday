@@ -1,10 +1,8 @@
 //state
 import { AxiosError } from 'axios'
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { Dispatch } from 'redux'
 
-import { registerAPI } from '../api/api'
-import { AppDispatch, AppRootStateType } from '../store/store'
+import { registerAPI, RegisterParamsType } from '../api/api'
 
 import { setIsLoggedInAC, SetIsLoggedInType } from './auth-reducer'
 
@@ -37,10 +35,10 @@ export const setRegistration = (register: boolean) =>
 
 export const setError = (error: ErrorType) => ({ type: 'SET-ERROR', error } as const)
 //thunk
-export const setRegistrationTC = (email: string, password: string) => {
+export const setRegistrationTC = (data: RegisterParamsType) => {
   return (dispatch: Dispatch<SingUpACType | SetIsLoggedInType>) => {
     registerAPI
-      .postRegister(email, password)
+      .postRegister(data)
       .then(res => {
         if (res.data.addedUser) {
           dispatch(setRegistration(true))
@@ -57,11 +55,6 @@ export const setRegistrationTC = (email: string, password: string) => {
 // types
 export type SingUpACType = ReturnType<typeof setRegistration> | ReturnType<typeof setError>
 
-export type ResponseRegisterType = {
-  addedUser: {}
-  error?: string
-}
-
 type DataResponseType = {
   error: string
   in: string
@@ -69,7 +62,3 @@ type DataResponseType = {
   isPassValid: boolean
 }
 export type ErrorType = string | null | undefined
-
-//hooks
-export const useAppDispatch: () => AppDispatch = useDispatch
-export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
