@@ -1,7 +1,5 @@
 import axios, { AxiosResponse } from 'axios'
 
-import { ResponseRegisterType } from '../reducers/signup-reducer'
-
 const instance = axios.create({
   //baseURL: 'http://localhost:7542/2.0/',
   baseURL: 'https://neko-back.herokuapp.com/2.0/',
@@ -32,6 +30,12 @@ export const authAPI = {
   },
 }
 
+export const forgotPasswordAPI = {
+  forgotPassword(email: string) {
+    return instance.post<ForgotPasswordResponseType>('/auth/forgot', { email })
+  },
+}
+
 //TYPE
 export type GetMeResponseType = UserType & { error: string }
 export type logOutResponseType = { error: string }
@@ -42,6 +46,10 @@ export type UpdateUserResponseType = {
 export type ResponseRegisterType = {
   addedUser: {}
   error?: string
+}
+export type ForgotPasswordResponseType = {
+  info: string
+  error: string
 }
 export type UserType = {
   avatar?: null

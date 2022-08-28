@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { Box, TextField } from '@mui/material'
 import { useFormik } from 'formik'
-import { useSelector } from 'react-redux'
-import { Navigate, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
-import { AppRootStateType, useAppDispatch } from '../../store/store'
+import { forgotPasswordTC } from '../../reducers/ForgotPasswordReducer'
+import { useAppDispatch } from '../../store/store'
 import { PATH } from '../Pages'
 import s from '../pages/ComonnStylePage.module.css'
 
-export const ResetPassword = () => {
+export const ForgotPassword = () => {
+  const dispatch = useAppDispatch()
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -28,9 +29,7 @@ export const ResetPassword = () => {
     },
 
     onSubmit: values => {
-      alert(() => {
-        'onSubmit'
-      })
+      dispatch(forgotPasswordTC(values.email))
     },
   })
 

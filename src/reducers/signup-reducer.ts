@@ -55,7 +55,7 @@ export const setRegistrationTC = (data: RegisterParamsType) => {
 // types
 export type SingUpACType = ReturnType<typeof setRegistration> | AppReducerType
 
-type ErrorDataResponseType = {
+export type ErrorDataResponseType = {
   error: string
   in: string
   isEmailValid: boolean
