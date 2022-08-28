@@ -4,9 +4,12 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+
+    margin-top: 18px;
 }
 .userName {
     margin-right: 10px;
+
 
     font-size: 20px;
     font-weight: 500;

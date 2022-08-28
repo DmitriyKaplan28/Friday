@@ -5,16 +5,24 @@ import icon from '../../../common/assets/profile/iconPhoto.svg'
 
 import s from './Avatar.module.css'
 
-export const Avatar = () => {
+import s from './Avatar.module.css'
+
+type AvatarPropsType = {
+  width?: string
+  mode?: string
+}
+export const Avatar = (props: AvatarPropsType) => {
   return (
     <>
       <div className={s.block}>
-        <img src={avatar} alt="avatar" />
-        <div className={s.circle}>
-          <button className={s.btn}>
-            <img className={s.icon} src={icon} alt="photo-icon" />
-          </button>
-        </div>
+        <img style={{ width: props.width }} src={avatar} alt="avatar" />
+        {props.mode === 'profile' && (
+          <div className={s.circle}>
+            <button className={s.btn}>
+              <img className={s.icon} src={icon} alt="photo-icon" />
+            </button>
+          </div>
+        )}
       </div>
     </>
   )

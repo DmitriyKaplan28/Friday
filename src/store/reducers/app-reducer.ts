@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios'
 import { Dispatch } from 'redux'
 
 import { authAPI } from '../../api/api'
@@ -14,7 +15,7 @@ export enum resultCodeStatus {
 }
 
 const initialState = {
-  status: 'loading' as RequestStatusType,
+  status: 'idle' as RequestStatusType,
   error: null as null | string,
   initialized: false,
   isLoad: false,
@@ -51,10 +52,11 @@ export const appReducer = (
 export const appInitialTC = () => (dispatch: Dispatch) => {
   authAPI
     .me()
-    .then((res: any) => {
+    .then((res: AxiosResponse) => {
       dispatch(setUserAC(res.data))
       dispatch(setIsLoggedInAC(true))
     })
+    .catch(err => dispatch(setAppErrorAC(err.response.data.error)))
     .finally(() => dispatch(setAppInitialAC(true)))
 }
 //ACTIONS CREATOR
@@ -68,4 +70,4 @@ type SetAppStatusAT = ReturnType<typeof setAppStatusAC>
 type SetAppErrorAT = ReturnType<typeof setAppErrorAC>
 type SetAppInitialAT = ReturnType<typeof setAppInitialAC>
 type SetAppLoadAT = ReturnType<typeof setAppLoadAC>
-type AppReducerType = SetAppStatusAT | SetAppErrorAT | SetAppInitialAT | SetAppLoadAT
+export type AppReducerType = SetAppStatusAT | SetAppErrorAT | SetAppInitialAT | SetAppLoadAT

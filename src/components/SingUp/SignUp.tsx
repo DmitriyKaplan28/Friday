@@ -19,7 +19,8 @@ import s from './singUp.module.css'
 export const SignUp = () => {
   const dispatch = useAppDispatch()
   const isLoggedIn = useSelector((state: AppRootStateType) => state.auth.isLoggedIn)
-  const [type, setType] = useState<string>('password')
+  const [typeInputPassword, setTypeP] = useState<string>('password')
+  const [typeInputConfirmPassword, setTypeCP] = useState<string>('password')
 
   const formik = useFormik({
     initialValues: {
@@ -83,24 +84,24 @@ export const SignUp = () => {
               error={formik.touched.password && Boolean(formik.errors.password)}
               label="Password"
               variant="standard"
-              type={`${type}`}
+              type={`${typeInputPassword}`}
               defaultValue={formik.errors.password}
               helperText={formik.errors.password}
               {...formik.getFieldProps('password')}
             />
-            <ShowPassword value={type} callback={setType} />
+            <ShowPassword value={typeInputPassword} callback={setTypeP} />
           </div>
           <div className={s.input}>
             <TextField
               error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
               label="Confirm Password"
               variant="standard"
-              type={`${type}`}
+              type={`${typeInputConfirmPassword}`}
               defaultValue={formik.errors.confirmPassword}
               helperText={formik.errors.confirmPassword}
               {...formik.getFieldProps('confirmPassword')}
             />
-            <ShowPassword value={type} callback={setType} />
+            <ShowPassword value={typeInputConfirmPassword} callback={setTypeCP} />
           </div>
           <button className={s.button} type={'submit'}>
             Sing Up
