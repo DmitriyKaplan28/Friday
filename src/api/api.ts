@@ -47,13 +47,13 @@ export const packsAPI = {
 
 //TYPE
 type ParamsType = {
-  packName: string
+  packName?: string
   pageCount: number
   page: number
   min?: number
   max?: number
-  sortPacks: string
-  user_id: string
+  sortPacks?: string
+  user_id?: string
 }
 export type GetMeResponseType = UserType & { error: string }
 export type logOutResponseType = { error: string }

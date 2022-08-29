@@ -38,16 +38,14 @@ export const setCurrentPageAC = (page: number) =>
   ({ type: 'packsReducer/SET-CURRENT-PAGE', page } as const)
 
 //THUNK
-export const setCardPacksTC =
-  (page?: number) => (dispatch: any, getState: () => AppRootStateType) => {
-    const packs = getState().packs
+export const setCardPacksTC = () => (dispatch: any, getState: () => AppRootStateType) => {
+  const packs = getState().packs
+  const { page, pageCount } = packs
 
-    console.log(packs)
-    packsAPI.getCardPacks(page).then(res => {
-      dispatch(setCurrentPageAC(res.data.page))
-      dispatch(setCardPacksAC(res.data.cardPacks))
-    })
-  }
+  packsAPI.getCardPacks({ page, pageCount: 8 }).then(res => {
+    dispatch(setCardPacksAC(res.data.cardPacks))
+  })
+}
 
 //TYPE
 export type PacksAT = SetCardPacksAT | SetCurrentPageAT
