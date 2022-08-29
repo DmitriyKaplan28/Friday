@@ -18,7 +18,7 @@ export const PATH = {
   LOGIN: '/login',
   SIGNUP: '/sign-up',
   RESET_PASSWORD: '/reset-password',
-  CREATE_NEW_PASSWORD: '/create-new-password/:token',
+  SET_NEW_PASSWORD: '/set-new-password/:token',
   TEST: '/test',
   // add paths
 }
@@ -38,7 +38,7 @@ export const Pages = () => {
           <Route path={PATH.LOGIN} element={<Login />} />
           <Route path={PATH.SIGNUP} element={<SignUp />} />
           <Route path={PATH.RESET_PASSWORD} element={<ResetPassword />} />
-          <Route path={PATH.CREATE_NEW_PASSWORD} element={<EnterNewPassword />} />
+          <Route path={PATH.SET_NEW_PASSWORD} element={<EnterNewPassword />} />
           <Route path={'/*'} element={<Error404 />} />
         </Routes>
       </div>
