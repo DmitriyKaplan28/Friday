@@ -3,6 +3,11 @@ import { AppRootStateType } from '../store'
 
 const initialState = {
   cardPacks: [] as Array<PackType>,
+  page: 1,
+  pageCount: 4,
+  cardPacksTotalCount: 6303,
+  minCardsCount: 0,
+  maxCardsCount: 110,
 }
 
 type InitialStateType = typeof initialState
@@ -34,12 +39,12 @@ export const setCurrentPageAC = (page: number) =>
 
 //THUNK
 export const setCardPacksTC =
-  (page = 1) =>
-  (dispatch: any, getState: () => AppRootStateType) => {
+  (page?: number) => (dispatch: any, getState: () => AppRootStateType) => {
     const packs = getState().packs
 
     console.log(packs)
     packsAPI.getCardPacks(page).then(res => {
+      dispatch(setCurrentPageAC(res.data.page))
       dispatch(setCardPacksAC(res.data.cardPacks))
     })
   }

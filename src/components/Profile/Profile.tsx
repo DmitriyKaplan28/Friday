@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { AiOutlineArrowLeft } from '@react-icons/all-files/ai/AiOutlineArrowLeft'
-import { Navigate } from 'react-router-dom'
+import { Navigate, NavLink } from 'react-router-dom'
 
 import { PATH } from '../../routing/PageRouting/Pages/Pages'
 import { changeNameTC } from '../../store/reducers/ProfileReducer'
@@ -26,7 +26,9 @@ function Profile() {
     <>
       <div className={s.wrapper}>
         <AiOutlineArrowLeft />
-        <span className={s.title}>Back to Packs List</span>
+        <span className={s.title}>
+          <NavLink to={PATH.PACKS}>Back to Packs List</NavLink>
+        </span>
       </div>
       <Card user={user} changeUserNameValue={changeUserNameValue} />
     </>

@@ -9,7 +9,7 @@ import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 
-import { useAppSelector } from '../../../../store/store'
+import { useAppSelector } from '../../../store/store'
 
 type Column = {
   id: 'name' | 'cards' | 'updated' | 'created' | 'actions'
@@ -80,7 +80,7 @@ export const StickyHeadTable = () => {
   }
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+    <Paper sx={{ width: '100%', overflow: 'hidden', marginTop: '130px' }}>
       <TableContainer sx={{ maxHeight: 640 }}>
         <Table aria-label="customized table">
           <TableHead sx={{ backgroundColor: '#EFEFEF' }}>

@@ -40,7 +40,7 @@ export const resetPasswordAPI = {
 }
 
 export const packsAPI = {
-  getCardPacks(page: number) {
+  getCardPacks(page: number | undefined) {
     return instance.get<GetResponseCardPacksType>(
       `/cards/pack?` + `pageCount=8` + `&page=${page}` + `&min=3` + `&max=9` + `&sortPacks=0updated`
     )

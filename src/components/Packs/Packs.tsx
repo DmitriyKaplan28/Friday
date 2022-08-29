@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
-import { setCardPacksTC } from '../../../reducers/packs-reducer'
-import { useAppDispatch } from '../../../store/store'
+import { setCardPacksTC } from '../../store/reducers/PacksReducer'
+import { useAppDispatch } from '../../store/store'
 
 import { StickyHeadTable } from './Table/Table'
 
