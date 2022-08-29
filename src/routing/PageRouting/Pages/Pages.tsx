@@ -7,6 +7,7 @@ import Error404 from '../../../components/Error404/Error404'
 import { Login } from '../../../components/Login/Login'
 import { EnterNewPassword } from '../../../components/Login/ResetPassword/EnterNewPassword/EnterNewPassword'
 import { ResetPassword } from '../../../components/Login/ResetPassword/ResetPassword'
+import { Packs } from '../../../components/Packs/Packs'
 import Profile from '../../../components/Profile/Profile'
 import { SignUp } from '../../../components/SingUp/SignUp'
 import { useAppSelector } from '../../../store/store'
@@ -19,7 +20,7 @@ export const PATH = {
   SIGNUP: '/sign-up',
   RESET_PASSWORD: '/reset-password',
   SET_NEW_PASSWORD: '/set-new-password/:token',
-  TEST: '/test',
+  PACKS: '/packs',
   // add paths
 }
 
@@ -39,6 +40,7 @@ export const Pages = () => {
           <Route path={PATH.SIGNUP} element={<SignUp />} />
           <Route path={PATH.RESET_PASSWORD} element={<ResetPassword />} />
           <Route path={PATH.SET_NEW_PASSWORD} element={<EnterNewPassword />} />
+          <Route path={PATH.PACKS} element={<Packs />} />
           <Route path={'/*'} element={<Error404 />} />
         </Routes>
       </div>

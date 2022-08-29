@@ -10,6 +10,7 @@ import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 import { appReducer } from './reducers/AppReducer'
 import { authReducer } from './reducers/AuthReducer'
 import { enterNewPasswordReducer } from './reducers/EnterNewPasswordReducer'
+import { packsReducer } from './reducers/PacksReducer'
 import { profileReducer } from './reducers/ProfileReducer'
 import { resetPasswordReducer } from './reducers/ResetPasswordReducer'
 import { signUpReducer } from './reducers/SignUpReducer'
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   resetPassword: resetPasswordReducer,
   newPassword: enterNewPasswordReducer,
   app: appReducer,
+  packs: packsReducer,
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
