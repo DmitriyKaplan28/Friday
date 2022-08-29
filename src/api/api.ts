@@ -40,15 +40,21 @@ export const resetPasswordAPI = {
 }
 
 export const packsAPI = {
-  getCardPacks(page: number | undefined) {
-    return instance.get<GetResponseCardPacksType>(
-      `/cards/pack?` + `pageCount=8` + `&page=${page}` + `&min=3` + `&max=9` + `&sortPacks=0updated`
-    )
+  getCardPacks(data: ParamsType) {
+    return instance.get<GetResponseCardPacksType>(`/cards/pack?`, { params: data })
   },
 }
 
 //TYPE
-
+type ParamsType = {
+  packName: string
+  pageCount: number
+  page: number
+  min?: number
+  max?: number
+  sortPacks: string
+  user_id: string
+}
 export type GetMeResponseType = UserType & { error: string }
 export type logOutResponseType = { error: string }
 export type UpdateUserResponseType = {
