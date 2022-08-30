@@ -66,7 +66,7 @@ export const StickyHeadTable = () => {
                     align={column.align}
                     style={{ minWidth: column.minWidth }}
                   >
-                    <div>
+                    <div className={s.labelBlock}>
                       {column.label}
                       {column.sortBy && (
                         <SortArrow mode={true} onClickSortHandler={onClickSortHandler} />
@@ -80,11 +80,11 @@ export const StickyHeadTable = () => {
               {cardPacks.map(p => {
                 return (
                   <TableRow key={p._id}>
-                    <TableCell align="left">{p.name}</TableCell>
-                    <TableCell align="left">{p.cardsCount}</TableCell>
-                    <TableCell align="right">{new Date(p.updated).toLocaleDateString()}</TableCell>
-                    <TableCell align="right">{p.user_name}</TableCell>
-                    <TableCell align="right">{'Actions'}</TableCell>
+                    <TableCell align="center">{p.name}</TableCell>
+                    <TableCell align="center">{p.cardsCount}</TableCell>
+                    <TableCell align="center">{new Date(p.updated).toLocaleDateString()}</TableCell>
+                    <TableCell align="center">{p.user_name}</TableCell>
+                    <TableCell align="center">{'Actions'}</TableCell>
                   </TableRow>
                 )
               })}

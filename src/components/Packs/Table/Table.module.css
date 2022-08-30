@@ -3,3 +3,8 @@
     max-width: 1200px;
     margin: 0 auto;
 }
+.labelBlock{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,9 @@
+
+.btnBlock button{
+    cursor: pointer;
+
+    margin-left: 5px;
+
+    border: 1px solid grey;
+    outline: none;
+}
