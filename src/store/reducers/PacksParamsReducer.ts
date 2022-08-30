@@ -32,6 +32,16 @@ export const packsParamsReducer = (
         ...state,
         max: action.max,
       }
+    case 'packsParamsReducer/SET-SORT-UP-CARD':
+      return {
+        ...state,
+        sortPacks: action.value + `updated`,
+      }
+    case 'packsParamsReducer/SET-SORT-DOWN-CARD':
+      return {
+        ...state,
+        sortPacks: action.value + `updated`,
+      }
   }
 
   return state
@@ -46,14 +56,22 @@ export const setMinCountCardAC = (min: number) =>
   ({ type: 'packsParamsReducer/SET-MIN-COUNT-CARD', min } as const)
 export const setMaxCountCardAC = (max: number) =>
   ({ type: 'packsParamsReducer/SET-MAX-COUNT-CARD', max } as const)
+export const setSortUpCardAC = (value: 0 | 1) =>
+  ({ type: 'packsParamsReducer/SET-SORT-UP-CARD', value } as const)
+export const setSortDownCardAC = (value: 0 | 1) =>
+  ({ type: 'packsParamsReducer/SET-SORT-DOWN-CARD', value } as const)
 //TYPE
 type InitialStateType = typeof initialState
 export type packsParamsAT =
   | SetCurrentPageAT
   | SetPageCountAC
   | SetMinCountCardAT
-  | setMaxCountCardAT
+  | SetMaxCountCardAT
+  | SetSortUpCardAT
+  | SetSortDownCardAT
 export type SetCurrentPageAT = ReturnType<typeof setCurrentPageAC>
 export type SetPageCountAC = ReturnType<typeof setPageCountAC>
 export type SetMinCountCardAT = ReturnType<typeof setMinCountCardAC>
-export type setMaxCountCardAT = ReturnType<typeof setMaxCountCardAC>
+export type SetMaxCountCardAT = ReturnType<typeof setMaxCountCardAC>
+export type SetSortUpCardAT = ReturnType<typeof setSortUpCardAC>
+export type SetSortDownCardAT = ReturnType<typeof setSortDownCardAC>

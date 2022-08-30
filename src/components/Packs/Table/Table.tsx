@@ -7,6 +7,7 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
+import { AiOutlineArrowDown } from '@react-icons/all-files/ai/AiOutlineArrowDown'
 
 import SuperSelect from '../../../common/features/c5-SuperSelect/SuperSelect'
 import SuperDoubleRange from '../../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
@@ -18,7 +19,7 @@ type Column = {
   label: string
   minWidth?: number
   align?: 'right'
-  format?: (value: number) => string
+  icon?: any
 }
 
 const columns: Array<Column> = [
@@ -29,21 +30,19 @@ const columns: Array<Column> = [
     label: 'Last Updated',
     minWidth: 170,
     align: 'right',
-    format: (value: number) => value.toLocaleString('en-US'),
+    icon: <AiOutlineArrowDown />,
   },
   {
     id: 'created',
     label: 'Created by',
     minWidth: 170,
     align: 'right',
-    format: (value: number) => value.toLocaleString('en-US'),
   },
   {
     id: 'actions',
     label: 'Actions',
     minWidth: 170,
     align: 'right',
-    format: (value: number) => value.toFixed(2),
   },
 ]
 
@@ -51,7 +50,7 @@ const optionsArr = [4, 8, 16, 32, 64]
 
 export const StickyHeadTable = () => {
   const packs = useAppSelector(state => state.packs.cardPacks)
-  let { page, pageCount } = useAppSelector(state => state.paramsPacks)
+  let { page } = useAppSelector(state => state.paramsPacks)
 
   const dispatch = useAppDispatch()
   const handleChangePage = () => {
@@ -79,7 +78,10 @@ export const StickyHeadTable = () => {
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
                 >
-                  <>{column.label}</>
+                  <>
+                    {column.label}
+                    {column.icon && <button>{column.icon}</button>}
+                  </>
                 </TableCell>
               ))}
             </TableRow>
