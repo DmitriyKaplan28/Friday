@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { SyntheticEvent } from 'react'
 
 import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
@@ -12,11 +11,8 @@ const minDistance = 1
 export default function SuperDoubleRange() {
   const dispatch = useAppDispatch()
 
-  const [value, setValue] = React.useState<number[]>([0, 9])
-  const handleChangeCommitted = (
-    event: Event | SyntheticEvent<Element, Event>,
-    newValue: number | number[]
-  ) => {
+  const [value, setValue] = React.useState<number[]>([0, 60])
+  const handleChangeCommitted = () => {
     dispatch(setMinCountCardAC(value[0]))
     dispatch(setMaxCountCardAC(value[1]))
   }

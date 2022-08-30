@@ -8,16 +8,15 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
-import SuperInputText from '../../../common/features/c1-SuperInputText/SuperInputText'
 import SuperSelect from '../../../common/features/c5-SuperSelect/SuperSelect'
 import SuperDoubleRange from '../../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
-import { useDebounce } from '../../../common/hooks/useDebounce'
 import {
   setCurrentPageAC,
   setPageCountAC,
   setSortUpCardAC,
 } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { InputDebounce } from '../../InputDebounce/InputDebounce'
 import { SortArrow } from '../SortArrow/SortArrow'
 
 type Column = {
@@ -74,13 +73,10 @@ export const StickyHeadTable = () => {
   const onClickSortHandler = (value: 0 | 1) => {
     dispatch(setSortUpCardAC(value))
   }
-  const onChangeInputText = (value: string) => {
-    console.log(value)
-  }
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden', marginTop: '130px' }}>
-      <SuperInputText onChangeText={onChangeInputText} />
+      <InputDebounce />
       <button onClick={handleChangeRowsPerPage}>prev</button>
       <button onClick={handleChangePage}>next</button>
       <SuperSelect options={optionsArr} onChangeOption={onChangePageCount} />
