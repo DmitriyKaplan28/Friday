@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import SuperSelect from '../../common/features/c5-SuperSelect/SuperSelect'
 import SuperDoubleRange from '../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
-import { setPageCountAC } from '../../store/reducers/PacksParamsReducer'
+import { setPacksParamsAC } from '../../store/reducers/PacksParamsReducer'
 import { setCardPacksTC } from '../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { InputDebounce } from '../InputDebounce/InputDebounce'
@@ -19,7 +19,8 @@ export const Packs = () => {
   const { cardPacksTotalCount } = useAppSelector(state => state.packs)
   const pagesCount = Math.ceil(cardPacksTotalCount / pageCount)
   const onChangePageCount = (value: number) => {
-    dispatch(setPageCountAC(value))
+    //dispatch(setPageCountAC(value))
+    dispatch(setPacksParamsAC({ pageCount: value }))
   }
   const optionsArr = [4, 8, 16, 32, 64]
 

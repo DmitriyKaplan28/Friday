@@ -40,16 +40,16 @@ export const resetPasswordAPI = {
 }
 
 export const packsAPI = {
-  getCardPacks(data: ParamsType) {
+  getCardPacks(data: PacksParamsType) {
     return instance.get<GetResponseCardPacksType>(`/cards/pack?`, { params: data })
   },
 }
 
 //TYPE
-type ParamsType = {
+export type PacksParamsType = {
   packName?: string
-  pageCount: number
-  page: number
+  pageCount?: number
+  page?: number
   min?: number
   max?: number
   sortPacks?: string

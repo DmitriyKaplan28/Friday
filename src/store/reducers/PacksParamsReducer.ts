@@ -1,8 +1,4 @@
-import { packsAPI } from '../../api/api'
-import { AppRootStateType } from '../store'
-
-import { setCardPacksAC } from './PacksReducer'
-import { InitialStateType } from './SignUpReducer'
+import { PacksParamsType } from '../../api/api'
 
 const initialState = {
   packName: '',
@@ -15,43 +11,18 @@ const initialState = {
 
 export const packsParamsReducer = (
   state: InitialStateType = initialState,
-  action: packsParamsAT
-) => {
+  action: PacksParamsAT
+): InitialStateType => {
   switch (action.type) {
-    case 'packsParamsReducer/SET-CURRENT-PAGE':
-      return {
-        ...state,
-        page: action.page,
-      }
-    case 'packsParamsReducer/SET-PAGE-COUNT':
-      return {
-        ...state,
-        pageCount: action.pageCount,
-      }
-    case 'packsParamsReducer/SET-MIN-COUNT-CARD':
-      return {
-        ...state,
-        min: action.min,
-      }
-    case 'packsParamsReducer/SET-MAX-COUNT-CARD':
-      return {
-        ...state,
-        max: action.max,
-      }
-    case 'packsParamsReducer/SET-SORT-UP-CARD':
-      return {
-        ...state,
-        sortPacks: action.value + `updated`,
-      }
-    case 'packsParamsReducer/SET-SORT-DOWN-CARD':
-      return {
-        ...state,
-        sortPacks: action.value + `updated`,
-      }
     case 'packsParamsReducer/SEARCH-PACK-NAME':
       return {
         ...state,
         packName: action.name,
+      }
+    case 'packsFilterReducer/SET-PACKS-FILTER':
+      return {
+        ...state,
+        ...action.filterData,
       }
   }
 
@@ -60,64 +31,13 @@ export const packsParamsReducer = (
 
 //ACTIONS
 
-export const packsFilterAC = (filterData: PacksFilterType) =>
-  ({ type: 'packsFilterReducer/SET-PACKS-FILTER', filterData } as const)
-
-//THUNK
-export const setCardPacksFilterTC =
-  (filterData: PacksFilterType) => (dispatch: any, getState: () => AppRootStateType) => {
-    const packs = getState().packs
-
-    packsAPI.getCardPacks(filterData).then(res => {
-      dispatch(setCurrentPageAC(res.data.page))
-      dispatch(setCardPacksAC(res.data.cardPacks))
-    })
-  }
-
-//TYPE
-export type PacksFilterType = {
-  packName?: string
-  min?: number
-  max?: number
-  sortPacks?: number
-  page?: number
-  pageCount?: number
-  user_id?: string
-}
-
-export type PacksFilterAT = ReturnType<typeof packsFilterAC>
-
-/*
-//ACTIONS
-export const setCurrentPageAC = (page: number) =>
-  ({ type: 'packsParamsReducer/SET-CURRENT-PAGE', page } as const)
-export const setPageCountAC = (pageCount: number) =>
-  ({ type: 'packsParamsReducer/SET-PAGE-COUNT', pageCount } as const)
-export const setMinCountCardAC = (min: number) =>
-  ({ type: 'packsParamsReducer/SET-MIN-COUNT-CARD', min } as const)
-export const setMaxCountCardAC = (max: number) =>
-  ({ type: 'packsParamsReducer/SET-MAX-COUNT-CARD', max } as const)
-export const setSortUpCardAC = (value: 0 | 1) =>
-  ({ type: 'packsParamsReducer/SET-SORT-UP-CARD', value } as const)
-export const setSortDownCardAC = (value: 0 | 1) =>
-  ({ type: 'packsParamsReducer/SET-SORT-DOWN-CARD', value } as const)
 export const searchPackNameAC = (name: string) =>
   ({ type: 'packsParamsReducer/SEARCH-PACK-NAME', name } as const)
+export const setPacksParamsAC = (filterData: PacksParamsType) =>
+  ({ type: 'packsFilterReducer/SET-PACKS-FILTER', filterData } as const)
 //TYPE
 type InitialStateType = typeof initialState
-export type packsParamsAT =
-  | SetCurrentPageAT
-  | SetPageCountAC
-  | SetMinCountCardAT
-  | SetMaxCountCardAT
-  | SetSortUpCardAT
-  | SetSortDownCardAT
-  | SearchPackNameAC
-export type SetCurrentPageAT = ReturnType<typeof setCurrentPageAC>
-export type SetPageCountAC = ReturnType<typeof setPageCountAC>
-export type SetMinCountCardAT = ReturnType<typeof setMinCountCardAC>
-export type SetMaxCountCardAT = ReturnType<typeof setMaxCountCardAC>
-export type SetSortUpCardAT = ReturnType<typeof setSortUpCardAC>
-export type SetSortDownCardAT = ReturnType<typeof setSortDownCardAC>
+export type PacksParamsAT = SearchPackNameAC | PacksFilterAT
+
 export type SearchPackNameAC = ReturnType<typeof searchPackNameAC>
-*/
+export type PacksFilterAT = ReturnType<typeof setPacksParamsAC>

@@ -8,7 +8,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
-import { setSortUpCardAC } from '../../../store/reducers/PacksParamsReducer'
+import { setPacksParamsAC } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { SortArrow } from '../SortArrow/SortArrow'
 
@@ -50,7 +50,8 @@ export const StickyHeadTable = () => {
   const { cardPacks } = useAppSelector(state => state.packs)
   const dispatch = useAppDispatch()
   const onClickSortHandler = (value: 0 | 1) => {
-    dispatch(setSortUpCardAC(value))
+    //dispatch(sortPackAC(value))
+    dispatch(setPacksParamsAC({ sortPacks: value + `updated` }))
   }
 
   return (
