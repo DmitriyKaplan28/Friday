@@ -23,15 +23,15 @@ function Profile() {
   }
 
   return (
-    <>
-      <div className={s.wrapper}>
+    <div className={s.wrapper}>
+      <div className={s.blockTitle}>
         <AiOutlineArrowLeft />
         <span className={s.title}>
           <NavLink to={PATH.PACKS}>Back to Packs List</NavLink>
         </span>
       </div>
       <Card user={user} changeUserNameValue={changeUserNameValue} />
-    </>
+    </div>
   )
 }
 

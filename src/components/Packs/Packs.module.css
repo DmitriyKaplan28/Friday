@@ -1,0 +1,27 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 130px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    margin-top: 40px;
+}
+
+.pagination span {
+    margin-right: 5px;
+    margin-left: 5px;
+
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    color: #000000;
+}

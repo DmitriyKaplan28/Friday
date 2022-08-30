@@ -11,7 +11,7 @@ const minDistance = 1
 export default function SuperDoubleRange() {
   const dispatch = useAppDispatch()
 
-  const [value, setValue] = React.useState<number[]>([0, 60])
+  const [value, setValue] = React.useState<number[]>([3, 60])
   const handleChangeCommitted = () => {
     dispatch(setMinCountCardAC(value[0]))
     dispatch(setMaxCountCardAC(value[1]))
@@ -36,7 +36,7 @@ export default function SuperDoubleRange() {
         onChangeCommitted={handleChangeCommitted}
         valueLabelDisplay="auto"
         disableSwap
-        min={0}
+        min={3}
         max={100}
       />
     </Box>

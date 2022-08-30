@@ -21,7 +21,6 @@ export const PATH = {
   RESET_PASSWORD: '/reset-password',
   SET_NEW_PASSWORD: '/set-new-password/:token',
   PACKS: '/packs',
-  // add paths
 }
 
 export const Pages = () => {

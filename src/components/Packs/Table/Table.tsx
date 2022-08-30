@@ -8,16 +8,11 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
-import SuperSelect from '../../../common/features/c5-SuperSelect/SuperSelect'
-import SuperDoubleRange from '../../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
-import {
-  setCurrentPageAC,
-  setPageCountAC,
-  setSortUpCardAC,
-} from '../../../store/reducers/PacksParamsReducer'
+import { setSortUpCardAC } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
-import { InputDebounce } from '../../InputDebounce/InputDebounce'
 import { SortArrow } from '../SortArrow/SortArrow'
+
+import s from './Table.module.css'
 
 type Column = {
   id: 'name' | 'cards' | 'updated' | 'created' | 'actions'
@@ -51,71 +46,52 @@ const columns: Array<Column> = [
   },
 ]
 
-const optionsArr = [4, 8, 16, 32, 64]
-
 export const StickyHeadTable = () => {
-  const packs = useAppSelector(state => state.packs.cardPacks)
-  let { page } = useAppSelector(state => state.paramsPacks)
-
+  const { cardPacks } = useAppSelector(state => state.packs)
   const dispatch = useAppDispatch()
-  const handleChangePage = () => {
-    dispatch(setCurrentPageAC(++page))
-  }
-
-  const handleChangeRowsPerPage = () => {
-    if (page > 1) {
-      dispatch(setCurrentPageAC(--page))
-    }
-  }
-  const onChangePageCount = (value: number) => {
-    dispatch(setPageCountAC(value))
-  }
   const onClickSortHandler = (value: 0 | 1) => {
     dispatch(setSortUpCardAC(value))
   }
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden', marginTop: '130px' }}>
-      <InputDebounce />
-      <button onClick={handleChangeRowsPerPage}>prev</button>
-      <button onClick={handleChangePage}>next</button>
-      <SuperSelect options={optionsArr} onChangeOption={onChangePageCount} />
-      <SuperDoubleRange />
-      <TableContainer sx={{ maxHeight: 640 }}>
-        <Table aria-label="customized table">
-          <TableHead sx={{ backgroundColor: '#EFEFEF' }}>
-            <TableRow>
-              {columns.map(column => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  <div>
-                    {column.label}
-                    {column.sortBy && (
-                      <SortArrow mode={true} onClickSortHandler={onClickSortHandler} />
-                    )}
-                  </div>
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {packs.map(p => {
-              return (
-                <TableRow key={p._id}>
-                  <TableCell align="left">{p.name}</TableCell>
-                  <TableCell align="left">{p.cardsCount}</TableCell>
-                  <TableCell align="right">{new Date(p.updated).toLocaleDateString()}</TableCell>
-                  <TableCell align="right">{p.user_name}</TableCell>
-                  <TableCell align="right">{'Actions'}</TableCell>
-                </TableRow>
-              )
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Paper>
+    <div className={s.wrapper}>
+      <Paper sx={{ width: '100%' }}>
+        <TableContainer sx={{ maxHeight: 640 }}>
+          <Table aria-label="customized table">
+            <TableHead sx={{ backgroundColor: '#EFEFEF' }}>
+              <TableRow>
+                {columns.map(column => (
+                  <TableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth }}
+                  >
+                    <div>
+                      {column.label}
+                      {column.sortBy && (
+                        <SortArrow mode={true} onClickSortHandler={onClickSortHandler} />
+                      )}
+                    </div>
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {cardPacks.map(p => {
+                return (
+                  <TableRow key={p._id}>
+                    <TableCell align="left">{p.name}</TableCell>
+                    <TableCell align="left">{p.cardsCount}</TableCell>
+                    <TableCell align="right">{new Date(p.updated).toLocaleDateString()}</TableCell>
+                    <TableCell align="right">{p.user_name}</TableCell>
+                    <TableCell align="right">{'Actions'}</TableCell>
+                  </TableRow>
+                )
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper>
+    </div>
   )
 }

@@ -3,6 +3,7 @@ import { AppRootStateType } from '../store'
 
 const initialState = {
   cardPacks: [] as Array<PackType>,
+  cardPacksTotalCount: 500,
 }
 
 type InitialStateType = typeof initialState
@@ -16,6 +17,11 @@ export const packsReducer = (
         ...state,
         cardPacks: action.packs,
       }
+    case 'packsReducer/SET-CARD-PACKS-TOTAL-COUNT':
+      return {
+        ...state,
+        cardPacksTotalCount: action.cardPacksTotalCount,
+      }
   }
 
   return state
@@ -24,6 +30,8 @@ export const packsReducer = (
 //ACTIONS
 export const setCardPacksAC = (packs: Array<PackType>) =>
   ({ type: 'packsReducer/SET-CARD-PACKS', packs } as const)
+export const setCardPacksTotalCountAC = (cardPacksTotalCount: number) =>
+  ({ type: 'packsReducer/SET-CARD-PACKS-TOTAL-COUNT', cardPacksTotalCount } as const)
 
 //THUNK
 export const setCardPacksTC = () => (dispatch: any, getState: () => AppRootStateType) => {
@@ -32,9 +40,12 @@ export const setCardPacksTC = () => (dispatch: any, getState: () => AppRootState
 
   packsAPI.getCardPacks({ page, pageCount, min, max, sortPacks, packName }).then(res => {
     dispatch(setCardPacksAC(res.data.cardPacks))
+    console.log(res.data)
+    dispatch(setCardPacksTotalCountAC(res.data.cardPacksTotalCount))
   })
 }
 
 //TYPE
-export type PacksAT = SetCardPacksAT
+export type PacksAT = SetCardPacksAT | SetCardPacksTotalCountAT
 export type SetCardPacksAT = ReturnType<typeof setCardPacksAC>
+export type SetCardPacksTotalCountAT = ReturnType<typeof setCardPacksTotalCountAC>

@@ -3,7 +3,7 @@ const initialState = {
   page: 1,
   pageCount: 4,
   sortPacks: '',
-  min: 0,
+  min: 3,
   max: 110,
 }
 
