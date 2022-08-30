@@ -8,7 +8,9 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
+import { NavLink } from 'react-router-dom'
 
+import { PATH } from '../../../routing/PageRouting/Pages/Pages'
 import { useAppSelector } from '../../../store/store'
 
 type Column = {
@@ -100,7 +102,9 @@ export const StickyHeadTable = () => {
             {packs.map(p => {
               return (
                 <TableRow key={p._id}>
-                  <TableCell align="left">{p.name}</TableCell>
+                  <TableCell align="left">
+                    <NavLink to={`${PATH.CARD}?cardsPack_id=${p._id}`}>{p.name}</NavLink>
+                  </TableCell>
                   <TableCell align="left">{p.cardsCount}</TableCell>
                   <TableCell align="left">{p.updated}</TableCell>
                   <TableCell align="center">{p.user_name}</TableCell>

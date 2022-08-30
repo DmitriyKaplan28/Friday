@@ -3,6 +3,7 @@ import { AxiosError } from 'axios'
 import { Dispatch } from 'redux'
 
 import { ErrorDataResponseType, registerAPI, RegisterParamsType } from '../../api/api'
+import { cardsAPI, CardsParamsType } from '../../api/cardsApi'
 
 import { AppReducerType, setAppErrorAC, setAppStatusAC } from './AppReducer'
 import { setIsLoggedInAC, SetIsLoggedInType } from './AuthReducer'
@@ -50,6 +51,18 @@ export const setRegistrationTC = (data: RegisterParamsType) => {
       .finally(() => {
         dispatch(setAppStatusAC('succeeded'))
       })
+  }
+}
+
+export const getCardsTC = (data: CardsParamsType) => {
+  return (dispatch: Dispatch<SingUpACType | SetIsLoggedInType>) => {
+    cardsAPI
+      .getCards(data)
+      .then(res => {
+        debugger
+      })
+      .catch((error: AxiosError<ErrorDataResponseType>) => {})
+      .finally(() => {})
   }
 }
 // types
