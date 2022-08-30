@@ -1,40 +1,38 @@
-import React from 'react'
+import * as React from 'react'
 
-import './SuperDoubleRange.css'
-import { Box, Slider } from '@mui/material'
+import Box from '@mui/material/Box'
+import Slider from '@mui/material/Slider'
 
-type SuperDoubleRangePropsType = {
-  value: [number, number]
-  onChangeRange: (value: [number, number]) => void
-  minValue?: number
-  maxValue?: number
-  disabled?: boolean
-}
+const minDistance = 1
 
-const SuperDoubleRange: React.FC<SuperDoubleRangePropsType> = ({
-  onChangeRange,
-  value,
-  minValue,
-  maxValue,
-  disabled,
-}) => {
-  const onChangeCallback = (event: Event, newValue: number | number[]) => {
-    onChangeRange && onChangeRange(newValue as [number, number])
+export default function SuperDoubleRange() {
+  const [value, setValue] = React.useState<number[]>([0, 9])
+
+  console.log(value[0])
+  console.log(value[1])
+  const handleChange1 = (event: Event, newValue: number | number[], activeThumb: number) => {
+    if (!Array.isArray(newValue)) {
+      return
+    }
+
+    if (activeThumb === 0) {
+      setValue([Math.min(newValue[0], value[1] - minDistance), value[1]])
+    } else {
+      setValue([value[0], Math.max(newValue[1], value[0] + minDistance)])
+    }
   }
 
   return (
     <Box sx={{ width: 300 }}>
       <Slider
-        getAriaLabel={() => 'Temperature range'}
+        getAriaLabel={() => 'Minimum distance'}
         value={value}
-        onChange={onChangeCallback}
+        onChange={handleChange1}
+        valueLabelDisplay="auto"
         disableSwap
-        min={minValue ? minValue : 0}
-        max={maxValue ? maxValue : 100}
-        disabled={disabled}
+        min={0}
+        max={10}
       />
     </Box>
   )
 }
-
-export default SuperDoubleRange

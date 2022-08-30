@@ -9,6 +9,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
 import SuperSelect from '../../../common/features/c5-SuperSelect/SuperSelect'
+import SuperDoubleRange from '../../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
 import { setCurrentPageAC, setPageCountAC } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 
@@ -78,7 +79,7 @@ export const StickyHeadTable = () => {
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
                 >
-                  {column.label}
+                  <>{column.label}</>
                 </TableCell>
               ))}
             </TableRow>
@@ -89,8 +90,8 @@ export const StickyHeadTable = () => {
                 <TableRow key={p._id}>
                   <TableCell align="left">{p.name}</TableCell>
                   <TableCell align="left">{p.cardsCount}</TableCell>
-                  <TableCell align="left">{p.updated}</TableCell>
-                  <TableCell align="center">{p.user_name}</TableCell>
+                  <TableCell align="right">{new Date(p.updated).toLocaleDateString()}</TableCell>
+                  <TableCell align="right">{p.user_name}</TableCell>
                   <TableCell align="right">{'Actions'}</TableCell>
                 </TableRow>
               )
@@ -101,6 +102,7 @@ export const StickyHeadTable = () => {
       <button onClick={handleChangeRowsPerPage}>prev</button>
       <button onClick={handleChangePage}>next</button>
       <SuperSelect options={optionsArr} onChangeOption={onChangePageCount} />
+      <SuperDoubleRange />
     </Paper>
   )
 }
