@@ -1,17 +1,19 @@
 import * as React from 'react'
+import { ChangeEvent, useState } from 'react'
 
-import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
 
 import { setMaxCountCardAC, setMinCountCardAC } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch } from '../../../store/store'
 
+import s from './SuperDoubleRange.module.css'
+
 const minDistance = 1
 
 export default function SuperDoubleRange() {
   const dispatch = useAppDispatch()
+  const [value, setValue] = useState<number[]>([3, 60])
 
-  const [value, setValue] = React.useState<number[]>([3, 60])
   const handleChangeCommitted = () => {
     dispatch(setMinCountCardAC(value[0]))
     dispatch(setMaxCountCardAC(value[1]))
@@ -28,7 +30,8 @@ export default function SuperDoubleRange() {
   }
 
   return (
-    <Box sx={{ width: 300 }}>
+    <div className={s.wrapper}>
+      <input onChange={() => {}} value={value[0]} className={s.input} />
       <Slider
         getAriaLabel={() => 'Minimum distance'}
         value={value}
@@ -39,6 +42,7 @@ export default function SuperDoubleRange() {
         min={3}
         max={100}
       />
-    </Box>
+      <input onChange={() => {}} value={value[1]} className={s.input} />
+    </div>
   )
 }
