@@ -42,7 +42,6 @@ export const setCardPacksTC =
   (page?: number) => (dispatch: any, getState: () => AppRootStateType) => {
     const packs = getState().packs
 
-    console.log(packs)
     packsAPI.getCardPacks(page).then(res => {
       dispatch(setCurrentPageAC(res.data.page))
       dispatch(setCardPacksAC(res.data.cardPacks))
