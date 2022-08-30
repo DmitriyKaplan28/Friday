@@ -3,11 +3,6 @@ import { AppRootStateType } from '../store'
 
 const initialState = {
   cardPacks: [] as Array<PackType>,
-  // page: 1,
-  // pageCount: 4,
-  // cardPacksTotalCount: 6303,
-  // minCardsCount: 0,
-  // maxCardsCount: 110,
 }
 
 type InitialStateType = typeof initialState
@@ -35,8 +30,8 @@ export const setCardPacksTC = () => (dispatch: any, getState: () => AppRootState
   const paramsPacks = getState().paramsPacks
   const { page, pageCount, min, max, sortPacks, packName } = paramsPacks
 
-  console.log(min, max)
-  packsAPI.getCardPacks({ page, pageCount, min, max }).then(res => {
+  console.log(sortPacks)
+  packsAPI.getCardPacks({ page, pageCount, min, max, sortPacks }).then(res => {
     dispatch(setCardPacksAC(res.data.cardPacks))
   })
 }

@@ -11,7 +11,11 @@ import { AiOutlineArrowDown } from '@react-icons/all-files/ai/AiOutlineArrowDown
 
 import SuperSelect from '../../../common/features/c5-SuperSelect/SuperSelect'
 import SuperDoubleRange from '../../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
-import { setCurrentPageAC, setPageCountAC } from '../../../store/reducers/PacksParamsReducer'
+import {
+  setCurrentPageAC,
+  setPageCountAC,
+  setSortUpCardAC,
+} from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 
 type Column = {
@@ -65,6 +69,9 @@ export const StickyHeadTable = () => {
   const onChangePageCount = (value: number) => {
     dispatch(setPageCountAC(value))
   }
+  const onClickSortHandler = (value: 0 | 1) => {
+    dispatch(setSortUpCardAC(value))
+  }
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden', marginTop: '130px' }}>
@@ -80,7 +87,9 @@ export const StickyHeadTable = () => {
                 >
                   <>
                     {column.label}
-                    {column.icon && <button>{column.icon}</button>}
+                    {column.icon && (
+                      <button onClick={() => onClickSortHandler(1)}>{column.icon}</button>
+                    )}
                   </>
                 </TableCell>
               ))}
