@@ -1,20 +1,29 @@
 import * as React from 'react'
+import { SyntheticEvent } from 'react'
 
 import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
 
+import { setMaxCountCardAC, setMinCountCardAC } from '../../../store/reducers/PacksParamsReducer'
+import { useAppDispatch } from '../../../store/store'
+
 const minDistance = 1
 
 export default function SuperDoubleRange() {
-  const [value, setValue] = React.useState<number[]>([0, 9])
+  const dispatch = useAppDispatch()
 
-  console.log(value[0])
-  console.log(value[1])
-  const handleChange1 = (event: Event, newValue: number | number[], activeThumb: number) => {
+  const [value, setValue] = React.useState<number[]>([0, 9])
+  const handleChangeCommitted = (
+    event: Event | SyntheticEvent<Element, Event>,
+    newValue: number | number[]
+  ) => {
+    dispatch(setMinCountCardAC(value[0]))
+    dispatch(setMaxCountCardAC(value[1]))
+  }
+  const handleChange = (event: Event, newValue: number | number[], activeThumb: number) => {
     if (!Array.isArray(newValue)) {
       return
     }
-
     if (activeThumb === 0) {
       setValue([Math.min(newValue[0], value[1] - minDistance), value[1]])
     } else {
@@ -27,11 +36,12 @@ export default function SuperDoubleRange() {
       <Slider
         getAriaLabel={() => 'Minimum distance'}
         value={value}
-        onChange={handleChange1}
+        onChange={handleChange}
+        onChangeCommitted={handleChangeCommitted}
         valueLabelDisplay="auto"
         disableSwap
         min={0}
-        max={10}
+        max={100}
       />
     </Box>
   )

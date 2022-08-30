@@ -22,6 +22,16 @@ export const packsParamsReducer = (
         ...state,
         pageCount: action.pageCount,
       }
+    case 'packsParamsReducer/SET-MIN-COUNT-CARD':
+      return {
+        ...state,
+        min: action.min,
+      }
+    case 'packsParamsReducer/SET-MAX-COUNT-CARD':
+      return {
+        ...state,
+        max: action.max,
+      }
   }
 
   return state
@@ -32,9 +42,18 @@ export const setCurrentPageAC = (page: number) =>
   ({ type: 'packsParamsReducer/SET-CURRENT-PAGE', page } as const)
 export const setPageCountAC = (pageCount: number) =>
   ({ type: 'packsParamsReducer/SET-PAGE-COUNT', pageCount } as const)
-
+export const setMinCountCardAC = (min: number) =>
+  ({ type: 'packsParamsReducer/SET-MIN-COUNT-CARD', min } as const)
+export const setMaxCountCardAC = (max: number) =>
+  ({ type: 'packsParamsReducer/SET-MAX-COUNT-CARD', max } as const)
 //TYPE
 type InitialStateType = typeof initialState
-export type packsParamsAT = SetCurrentPageAT | SetPageCountAC
+export type packsParamsAT =
+  | SetCurrentPageAT
+  | SetPageCountAC
+  | SetMinCountCardAT
+  | setMaxCountCardAT
 export type SetCurrentPageAT = ReturnType<typeof setCurrentPageAC>
 export type SetPageCountAC = ReturnType<typeof setPageCountAC>
+export type SetMinCountCardAT = ReturnType<typeof setMinCountCardAC>
+export type setMaxCountCardAT = ReturnType<typeof setMaxCountCardAC>

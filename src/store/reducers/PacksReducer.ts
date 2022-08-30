@@ -33,10 +33,10 @@ export const setCardPacksAC = (packs: Array<PackType>) =>
 //THUNK
 export const setCardPacksTC = () => (dispatch: any, getState: () => AppRootStateType) => {
   const paramsPacks = getState().paramsPacks
-
   const { page, pageCount, min, max, sortPacks, packName } = paramsPacks
 
-  packsAPI.getCardPacks({ page, pageCount }).then(res => {
+  console.log(min, max)
+  packsAPI.getCardPacks({ page, pageCount, min, max }).then(res => {
     dispatch(setCardPacksAC(res.data.cardPacks))
   })
 }
