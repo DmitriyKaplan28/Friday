@@ -15,7 +15,7 @@ export const InputDebounce = () => {
 
   return (
     <div>
-      <input placeholder="Search Marvel Comics" onChange={e => setSearchTerm(e.target.value)} />
+      <input placeholder="Search packs" onChange={e => setSearchTerm(e.target.value)} />
     </div>
   )
 }
