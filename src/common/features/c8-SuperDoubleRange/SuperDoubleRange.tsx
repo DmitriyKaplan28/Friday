@@ -28,10 +28,20 @@ export default function SuperDoubleRange() {
       setValue([value[0], Math.max(newValue[1], value[0] + minDistance)])
     }
   }
+  const onChangeMinHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    if (+e.currentTarget.value < value[1]) {
+      setValue([+e.currentTarget.value, value[1]])
+    }
+  }
+  const onChangeMaxHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    if (+e.currentTarget.value > value[0]) {
+      setValue([value[0], +e.currentTarget.value])
+    }
+  }
 
   return (
     <div className={s.wrapper}>
-      <input onChange={() => {}} value={value[0]} className={s.input} />
+      <input onChange={onChangeMinHandler} value={value[0]} className={s.input} />
       <Slider
         getAriaLabel={() => 'Minimum distance'}
         value={value}
@@ -42,7 +52,7 @@ export default function SuperDoubleRange() {
         min={3}
         max={100}
       />
-      <input onChange={() => {}} value={value[1]} className={s.input} />
+      <input onChange={onChangeMaxHandler} value={value[1]} className={s.input} />
     </div>
   )
 }
