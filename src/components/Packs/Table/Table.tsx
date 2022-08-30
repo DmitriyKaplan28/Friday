@@ -69,7 +69,7 @@ export const StickyHeadTable = () => {
                     <div className={s.labelBlock}>
                       {column.label}
                       {column.sortBy && (
-                        <SortArrow mode={true} onClickSortHandler={onClickSortHandler} />
+                        <SortArrow mode={column.sortBy} onClickSortHandler={onClickSortHandler} />
                       )}
                     </div>
                   </TableCell>
