@@ -1,5 +1,5 @@
 const initialState = {
-  packName: 'english',
+  packName: '',
   page: 1,
   pageCount: 4,
   sortPacks: '',
@@ -42,6 +42,11 @@ export const packsParamsReducer = (
         ...state,
         sortPacks: action.value + `updated`,
       }
+    case 'packsParamsReducer/SEARCH-PACK-NAME':
+      return {
+        ...state,
+        packName: action.name,
+      }
   }
 
   return state
@@ -60,6 +65,8 @@ export const setSortUpCardAC = (value: 0 | 1) =>
   ({ type: 'packsParamsReducer/SET-SORT-UP-CARD', value } as const)
 export const setSortDownCardAC = (value: 0 | 1) =>
   ({ type: 'packsParamsReducer/SET-SORT-DOWN-CARD', value } as const)
+export const searchPackNameAC = (name: string) =>
+  ({ type: 'packsParamsReducer/SEARCH-PACK-NAME', name } as const)
 //TYPE
 type InitialStateType = typeof initialState
 export type packsParamsAT =
@@ -69,9 +76,11 @@ export type packsParamsAT =
   | SetMaxCountCardAT
   | SetSortUpCardAT
   | SetSortDownCardAT
+  | SearchPackNameAC
 export type SetCurrentPageAT = ReturnType<typeof setCurrentPageAC>
 export type SetPageCountAC = ReturnType<typeof setPageCountAC>
 export type SetMinCountCardAT = ReturnType<typeof setMinCountCardAC>
 export type SetMaxCountCardAT = ReturnType<typeof setMaxCountCardAC>
 export type SetSortUpCardAT = ReturnType<typeof setSortUpCardAC>
 export type SetSortDownCardAT = ReturnType<typeof setSortDownCardAC>
+export type SearchPackNameAC = ReturnType<typeof searchPackNameAC>

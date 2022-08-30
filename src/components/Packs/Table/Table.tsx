@@ -7,10 +7,11 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import { AiOutlineArrowDown } from '@react-icons/all-files/ai/AiOutlineArrowDown'
 
+import SuperInputText from '../../../common/features/c1-SuperInputText/SuperInputText'
 import SuperSelect from '../../../common/features/c5-SuperSelect/SuperSelect'
 import SuperDoubleRange from '../../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
+import { useDebounce } from '../../../common/hooks/useDebounce'
 import {
   setCurrentPageAC,
   setPageCountAC,
@@ -73,9 +74,17 @@ export const StickyHeadTable = () => {
   const onClickSortHandler = (value: 0 | 1) => {
     dispatch(setSortUpCardAC(value))
   }
+  const onChangeInputText = (value: string) => {
+    console.log(value)
+  }
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden', marginTop: '130px' }}>
+      <SuperInputText onChangeText={onChangeInputText} />
+      <button onClick={handleChangeRowsPerPage}>prev</button>
+      <button onClick={handleChangePage}>next</button>
+      <SuperSelect options={optionsArr} onChangeOption={onChangePageCount} />
+      <SuperDoubleRange />
       <TableContainer sx={{ maxHeight: 640 }}>
         <Table aria-label="customized table">
           <TableHead sx={{ backgroundColor: '#EFEFEF' }}>
@@ -111,10 +120,6 @@ export const StickyHeadTable = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <button onClick={handleChangeRowsPerPage}>prev</button>
-      <button onClick={handleChangePage}>next</button>
-      <SuperSelect options={optionsArr} onChangeOption={onChangePageCount} />
-      <SuperDoubleRange />
     </Paper>
   )
 }
