@@ -29,8 +29,10 @@ export const Packs = () => {
 
   return (
     <div className={s.wrapper}>
-      <InputDebounce />
-      <SuperDoubleRange />
+      <div className={s.filter}>
+        <InputDebounce />
+        <SuperDoubleRange />
+      </div>
       <StickyHeadTable />
       <div className={s.pagination}>
         <PaginationControlled count={pagesCount} />

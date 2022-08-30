@@ -1,0 +1,21 @@
+.wrapper{
+    position: relative;
+
+    margin-bottom: 30px;
+}
+.icon{
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-30%);
+}
+.inputDebounce{
+    width: 100%;
+    max-width: 413px;
+    padding: 6px 40px;
+
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 2px;
+    outline: none;
+}
