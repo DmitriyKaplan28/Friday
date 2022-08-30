@@ -6,10 +6,9 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
-import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 
-import { setCurrentPageAC } from '../../../store/reducers/PacksReducer'
+import { setCurrentPageAC } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 
 type Column = {
@@ -68,14 +67,17 @@ function createData(
 
 export const StickyHeadTable = () => {
   const packs = useAppSelector(state => state.packs.cardPacks)
-  let page = useAppSelector(state => state.packs.page)
+  let page = useAppSelector(state => state.paramsPacks.page)
+
   const dispatch = useAppDispatch()
   const handleChangePage = () => {
     dispatch(setCurrentPageAC(++page))
   }
 
   const handleChangeRowsPerPage = () => {
-    console.log('prev')
+    if (page > 1) {
+      dispatch(setCurrentPageAC(--page))
+    }
   }
 
   return (

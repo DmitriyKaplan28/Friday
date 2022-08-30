@@ -7,7 +7,10 @@ const initialState = {
   max: 110,
 }
 
-export const packsParamsReducer = (state: InitialStateType, action: packsParamsAT) => {
+export const packsParamsReducer = (
+  state: InitialStateType = initialState,
+  action: packsParamsAT
+) => {
   switch (action.type) {
     case 'packsParamsReducer/SET-CURRENT-PAGE':
       return {

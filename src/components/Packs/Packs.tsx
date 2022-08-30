@@ -6,8 +6,8 @@ import { useAppDispatch, useAppSelector } from '../../store/store'
 import { StickyHeadTable } from './Table/Table'
 
 export const Packs = () => {
-  const page = useAppSelector(state => state.packs.page)
   const dispatch = useAppDispatch()
+  const page = useAppSelector(state => state.paramsPacks.page)
 
   useEffect(() => {
     dispatch(setCardPacksTC())
