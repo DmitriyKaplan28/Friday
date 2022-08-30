@@ -1,3 +1,9 @@
+import { packsAPI } from '../../api/api'
+import { AppRootStateType } from '../store'
+
+import { setCardPacksAC } from './PacksReducer'
+import { InitialStateType } from './SignUpReducer'
+
 const initialState = {
   packName: '',
   page: 1,
@@ -53,6 +59,36 @@ export const packsParamsReducer = (
 }
 
 //ACTIONS
+
+export const packsFilterAC = (filterData: PacksFilterType) =>
+  ({ type: 'packsFilterReducer/SET-PACKS-FILTER', filterData } as const)
+
+//THUNK
+export const setCardPacksFilterTC =
+  (filterData: PacksFilterType) => (dispatch: any, getState: () => AppRootStateType) => {
+    const packs = getState().packs
+
+    packsAPI.getCardPacks(filterData).then(res => {
+      dispatch(setCurrentPageAC(res.data.page))
+      dispatch(setCardPacksAC(res.data.cardPacks))
+    })
+  }
+
+//TYPE
+export type PacksFilterType = {
+  packName?: string
+  min?: number
+  max?: number
+  sortPacks?: number
+  page?: number
+  pageCount?: number
+  user_id?: string
+}
+
+export type PacksFilterAT = ReturnType<typeof packsFilterAC>
+
+/*
+//ACTIONS
 export const setCurrentPageAC = (page: number) =>
   ({ type: 'packsParamsReducer/SET-CURRENT-PAGE', page } as const)
 export const setPageCountAC = (pageCount: number) =>
@@ -84,3 +120,4 @@ export type SetMaxCountCardAT = ReturnType<typeof setMaxCountCardAC>
 export type SetSortUpCardAT = ReturnType<typeof setSortUpCardAC>
 export type SetSortDownCardAT = ReturnType<typeof setSortDownCardAC>
 export type SearchPackNameAC = ReturnType<typeof searchPackNameAC>
+*/
