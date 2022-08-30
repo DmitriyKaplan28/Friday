@@ -7,11 +7,11 @@ import { StickyHeadTable } from './Table/Table'
 
 export const Packs = () => {
   const dispatch = useAppDispatch()
-  const page = useAppSelector(state => state.paramsPacks.page)
+  const { page, pageCount } = useAppSelector(state => state.paramsPacks)
 
   useEffect(() => {
     dispatch(setCardPacksTC())
-  }, [page])
+  }, [page, pageCount])
 
   return (
     <div>

@@ -36,7 +36,7 @@ export const setCardPacksTC = () => (dispatch: any, getState: () => AppRootState
 
   const { page, pageCount, min, max, sortPacks, packName } = paramsPacks
 
-  packsAPI.getCardPacks({ page, pageCount: 8 }).then(res => {
+  packsAPI.getCardPacks({ page, pageCount }).then(res => {
     dispatch(setCardPacksAC(res.data.cardPacks))
   })
 }

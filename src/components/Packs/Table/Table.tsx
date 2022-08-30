@@ -8,7 +8,8 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
-import { setCurrentPageAC } from '../../../store/reducers/PacksParamsReducer'
+import SuperSelect from '../../../common/features/c5-SuperSelect/SuperSelect'
+import { setCurrentPageAC, setPageCountAC } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 
 type Column = {
@@ -45,29 +46,11 @@ const columns: Array<Column> = [
   },
 ]
 
-interface Data {
-  name: string
-  cards: string
-  updated: number
-  created: number
-  actions: number
-}
-
-function createData(
-  name: string,
-  cards: string,
-  updated: number,
-  created: number,
-  actions: number
-): Data {
-  // const density = population / size
-
-  return { name, cards, updated, created, actions }
-}
+const optionsArr = [4, 8, 16, 32, 64]
 
 export const StickyHeadTable = () => {
   const packs = useAppSelector(state => state.packs.cardPacks)
-  let page = useAppSelector(state => state.paramsPacks.page)
+  let { page, pageCount } = useAppSelector(state => state.paramsPacks)
 
   const dispatch = useAppDispatch()
   const handleChangePage = () => {
@@ -78,6 +61,9 @@ export const StickyHeadTable = () => {
     if (page > 1) {
       dispatch(setCurrentPageAC(--page))
     }
+  }
+  const onChangePageCount = (value: number) => {
+    dispatch(setPageCountAC(value))
   }
 
   return (
@@ -114,6 +100,7 @@ export const StickyHeadTable = () => {
       </TableContainer>
       <button onClick={handleChangeRowsPerPage}>prev</button>
       <button onClick={handleChangePage}>next</button>
+      <SuperSelect options={optionsArr} onChangeOption={onChangePageCount} />
     </Paper>
   )
 }
