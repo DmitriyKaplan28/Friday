@@ -17,13 +17,14 @@ import {
   setSortUpCardAC,
 } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { SortArrow } from '../SortArrow/SortArrow'
 
 type Column = {
   id: 'name' | 'cards' | 'updated' | 'created' | 'actions'
   label: string
   minWidth?: number
   align?: 'right'
-  icon?: any
+  sortBy?: boolean
 }
 
 const columns: Array<Column> = [
@@ -34,7 +35,7 @@ const columns: Array<Column> = [
     label: 'Last Updated',
     minWidth: 170,
     align: 'right',
-    icon: <AiOutlineArrowDown />,
+    sortBy: true,
   },
   {
     id: 'created',
@@ -85,12 +86,12 @@ export const StickyHeadTable = () => {
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
                 >
-                  <>
+                  <div>
                     {column.label}
-                    {column.icon && (
-                      <button onClick={() => onClickSortHandler(1)}>{column.icon}</button>
+                    {column.sortBy && (
+                      <SortArrow mode={true} onClickSortHandler={onClickSortHandler} />
                     )}
-                  </>
+                  </div>
                 </TableCell>
               ))}
             </TableRow>
