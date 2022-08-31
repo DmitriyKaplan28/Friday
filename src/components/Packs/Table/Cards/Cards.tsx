@@ -31,7 +31,6 @@ export const Cards = () => {
   }
 
   useEffect(() => {
-    debugger
     dispatch(getCardsTC(params))
   }, [page, pageCount, cardsTotalCount])
 
