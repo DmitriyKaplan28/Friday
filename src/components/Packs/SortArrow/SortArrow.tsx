@@ -16,7 +16,11 @@ type SortArrowType = {
 export const SortArrow = (props: SortArrowType) => {
   const [mode, setMode] = useState(true)
   const status = useAppSelector(state => state.app.status)
+  const sortPacks = useAppSelector(state => state.paramsPacks.sortPacks)
+  let numEl = parseInt(sortPacks)
 
+  console.log(sortPacks)
+  console.log(typeof numEl, numEl)
   const onClickHandler = (value: 0 | 1) => {
     props.onClickSortHandler(value)
     setMode(!mode)
