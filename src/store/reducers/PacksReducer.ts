@@ -3,6 +3,8 @@ import { Dispatch } from 'redux'
 import { packsAPI, PackType } from '../../api/api'
 import { AppRootStateType } from '../store'
 
+import { setAppErrorAC } from './AppReducer'
+import { setIsLoggedInAC } from './AuthReducer'
 import { setResetSettingsPacksAC } from './PacksParamsReducer'
 
 const initialState = {
@@ -42,23 +44,17 @@ export const setCardPacksTC = () => (dispatch: Dispatch, getState: () => AppRoot
   const paramsPacks = getState().paramsPacks
   const { page, pageCount, min, max, sortPacks, packName } = paramsPacks
 
-  packsAPI.getCardPacks({ page, pageCount, min, max, sortPacks, packName }).then(res => {
-    dispatch(setCardPacksAC(res.data.cardPacks))
-    dispatch(setCardPacksTotalCountAC(res.data.cardPacksTotalCount))
-  })
+  packsAPI
+    .getCardPacks({ page, pageCount, min, max, sortPacks, packName })
+    .then(res => {
+      dispatch(setCardPacksAC(res.data.cardPacks))
+      dispatch(setCardPacksTotalCountAC(res.data.cardPacksTotalCount))
+    })
+    .catch(err => {
+      dispatch(setAppErrorAC(err.response.data.error))
+      dispatch(setIsLoggedInAC(false))
+    })
 }
-// export const resetSettingsInPacksTC =
-//   () => (dispatch: Dispatch, getState: () => AppRootStateType) => {
-//     const paramsPacks = getState().paramsPacks
-//
-//     console.log(paramsPacks)
-//     packsAPI
-//       .getCardPacks({ page: 1, pageCount: 4, min: 3, max: 110, sortPacks: '', packName: '' })
-//       .then(res => {
-//         dispatch(setCardPacksAC(res.data.cardPacks))
-//         dispatch(setResetSettingsPacksAC())
-//       })
-//   }
 
 //TYPE
 export type PacksAT = SetCardPacksAT | SetCardPacksTotalCountAT

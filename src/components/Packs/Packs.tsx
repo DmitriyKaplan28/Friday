@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
 import { RiFilterOffFill } from '@react-icons/all-files/ri/RiFilterOffFill'
+import { Navigate } from 'react-router-dom'
 
 import SuperSelect from '../../common/features/c5-SuperSelect/SuperSelect'
 import SuperDoubleRange from '../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
+import { PATH } from '../../routing/PageRouting/Pages/Pages'
 import { setPageCountAC, setResetSettingsPacksAC } from '../../store/reducers/PacksParamsReducer'
 import { setCardPacksTC } from '../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
@@ -21,7 +23,7 @@ export const Packs = () => {
   const { page, pageCount, min, max, sortPacks, packName } = useAppSelector(
     state => state.paramsPacks
   )
-
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
   const { cardPacksTotalCount } = useAppSelector(state => state.packs)
   const pagesCount = Math.ceil(cardPacksTotalCount / pageCount)
 
@@ -36,6 +38,9 @@ export const Packs = () => {
   useEffect(() => {
     dispatch(setCardPacksTC())
   }, [page, pageCount, min, max, sortPacks, packName])
+  if (!isLoggedIn) {
+    return <Navigate to={PATH.PROFILE} />
+  }
 
   return (
     <div className={s.wrapper}>
