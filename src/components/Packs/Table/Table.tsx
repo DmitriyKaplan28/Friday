@@ -12,6 +12,7 @@ import { setPacksParamsAC } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { SortArrow } from '../SortArrow/SortArrow'
 
+import { Actions } from './Actions/Actions'
 import s from './Table.module.css'
 
 type Column = {
@@ -85,7 +86,9 @@ export const StickyHeadTable = () => {
                     <TableCell align="left">{p.cardsCount}</TableCell>
                     <TableCell align="right">{new Date(p.updated).toLocaleDateString()}</TableCell>
                     <TableCell align="right">{p.user_name}</TableCell>
-                    <TableCell align="right">{'Actions'}</TableCell>
+                    <TableCell align="right">
+                      <Actions userId={p.user_id} />
+                    </TableCell>
                   </TableRow>
                 )
               })}
