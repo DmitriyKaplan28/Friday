@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 import { RiFilterOffFill } from '@react-icons/all-files/ri/RiFilterOffFill'
 
@@ -16,7 +16,6 @@ import { StickyHeadTable } from './Table/Table'
 const initialOptions = [4, 8, 16, 32, 64]
 
 export const Packs = () => {
-  const [currentValue, setCurrentValue] = useState(initialOptions[0])
   const dispatch = useAppDispatch()
   const { page, pageCount, min, max, sortPacks, packName } = useAppSelector(
     state => state.paramsPacks
@@ -25,13 +24,12 @@ export const Packs = () => {
   const { cardPacksTotalCount } = useAppSelector(state => state.packs)
   const pagesCount = Math.ceil(cardPacksTotalCount / pageCount)
 
-  console.log(pagesCount, cardPacksTotalCount, pageCount)
   const onChangePageCount = (value: number) => {
     dispatch(setPageCountAC(value))
   }
   const onClickReset = () => {
     dispatch(setResetSettingsPacksAC())
-    setCurrentValue(initialOptions[0])
+    // setCurrentValue(initialOptions[0])
   }
 
   useEffect(() => {
@@ -54,10 +52,9 @@ export const Packs = () => {
         <PaginationControlled page={page} count={pagesCount} />
         <span className={s.title}>Show</span>
         <SuperSelect
-          value={currentValue}
+          value={pageCount}
           options={initialOptions}
           onChangeOption={onChangePageCount}
-          onChange={(e: ChangeEvent<HTMLSelectElement>) => setCurrentValue(+e.currentTarget.value)}
         />
         <span className={s.title}>Cards per Page</span>
       </div>
