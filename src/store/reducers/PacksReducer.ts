@@ -3,7 +3,7 @@ import { Dispatch } from 'redux'
 import { packsAPI, PackType } from '../../api/api'
 import { AppRootStateType } from '../store'
 
-import { setAppErrorAC } from './AppReducer'
+import { setAppErrorAC, setAppStatusAC } from './AppReducer'
 import { setIsLoggedInAC } from './AuthReducer'
 import { setResetSettingsPacksAC } from './PacksParamsReducer'
 
@@ -44,6 +44,7 @@ export const setCardPacksTC = () => (dispatch: Dispatch, getState: () => AppRoot
   const paramsPacks = getState().paramsPacks
   const { page, pageCount, min, max, sortPacks, packName } = paramsPacks
 
+  dispatch(setAppStatusAC('loading'))
   packsAPI
     .getCardPacks({ page, pageCount, min, max, sortPacks, packName })
     .then(res => {
@@ -54,6 +55,7 @@ export const setCardPacksTC = () => (dispatch: Dispatch, getState: () => AppRoot
       dispatch(setAppErrorAC(err.response.data.error))
       dispatch(setIsLoggedInAC(false))
     })
+    .finally(() => dispatch(setAppStatusAC('succeeded')))
 }
 
 //TYPE
