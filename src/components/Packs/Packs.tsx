@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { RiFilterOffFill } from '@react-icons/all-files/ri/RiFilterOffFill'
 
@@ -16,6 +16,7 @@ import { StickyHeadTable } from './Table/Table'
 const initialOptions = [4, 8, 16, 32, 64]
 
 export const Packs = () => {
+  const [searchTerm, setSearchTerm] = useState('')
   const dispatch = useAppDispatch()
   const { page, pageCount, min, max, sortPacks, packName } = useAppSelector(
     state => state.paramsPacks
@@ -29,7 +30,7 @@ export const Packs = () => {
   }
   const onClickReset = () => {
     dispatch(setResetSettingsPacksAC())
-    // setCurrentValue(initialOptions[0])
+    setSearchTerm('')
   }
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export const Packs = () => {
   return (
     <div className={s.wrapper}>
       <div className={s.filter}>
-        <InputDebounce />
+        <InputDebounce value={searchTerm} onChangeValue={setSearchTerm} />
         <SuperDoubleRange />
         <div className={s.reset} onClick={onClickReset}>
           <button>

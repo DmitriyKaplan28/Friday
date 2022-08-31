@@ -7,11 +7,14 @@ import { searchPackNameAC } from '../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 
 import s from './InputDebounce.module.css'
+type InputDebounceType = {
+  value: string
+  onChangeValue: (value: string) => void
+}
 
-export const InputDebounce = () => {
+export const InputDebounce = (props: InputDebounceType) => {
   const dispatch = useAppDispatch()
-  const [searchTerm, setSearchTerm] = useState('')
-  const debouncedSearchTerm = useDebounce(searchTerm, 500)
+  const debouncedSearchTerm = useDebounce(props.value, 500)
 
   useEffect(() => {
     dispatch(searchPackNameAC(debouncedSearchTerm))
@@ -23,10 +26,10 @@ export const InputDebounce = () => {
         <AiOutlineSearch />
       </div>
       <input
-        value={searchTerm}
+        value={props.value}
         className={s.inputDebounce}
         placeholder="Search packs"
-        onChange={e => setSearchTerm(e.target.value)}
+        onChange={e => props.onChangeValue(e.target.value)}
       />
     </div>
   )
