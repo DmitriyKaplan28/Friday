@@ -9,9 +9,9 @@ import { AppReducerType, setAppErrorAC, setAppStatusAC } from './AppReducer'
 
 const initialState: CardsResponseType = {
   cards: [],
-  packUserId: '',
   page: 1,
-  pageCount: 0,
+  pageCount: 4,
+  packUpdated: '',
   cardsTotalCount: 0,
   minGrade: 0,
   maxGrade: 0,
@@ -19,11 +19,15 @@ const initialState: CardsResponseType = {
 
 export const cardsReducer = (
   state: CardsResponseType = initialState,
-  action: SingUpACType
+  action: CardsACType
 ): CardsResponseType => {
   switch (action.type) {
     case 'SET-CARDS-PARAMS':
       return { ...state, ...action.params }
+    case 'SET-PAGE-COUNT':
+      return { ...state, pageCount: action.pageCount }
+    case 'SET-CURRENT-PAGE':
+      return { ...state, page: action.page }
     default:
       return state
   }
@@ -32,9 +36,14 @@ export const cardsReducer = (
 export const setCardsParamsAC = (params: CardsResponseType) =>
   ({ type: 'SET-CARDS-PARAMS', params } as const)
 
+export const setPageCountCardsAC = (pageCount: number) =>
+  ({ type: 'SET-PAGE-COUNT', pageCount } as const)
+
+export const setPageCurrentCardsAC = (page: number) => ({ type: 'SET-CURRENT-PAGE', page } as const)
+
 //thunk
 export const getCardsTC = (data: CardsParamsType) => {
-  return (dispatch: Dispatch<SingUpACType | AppReducerType>) => {
+  return (dispatch: Dispatch<CardsACType | AppReducerType>) => {
     dispatch(setAppStatusAC('loading'))
     cardsAPI
       .getCards(data)
@@ -50,4 +59,6 @@ export const getCardsTC = (data: CardsParamsType) => {
   }
 }
 // types
-export type SingUpACType = ReturnType<typeof setCardsParamsAC>
+export type CardsACType = ReturnType<
+  typeof setCardsParamsAC | typeof setPageCountCardsAC | typeof setPageCurrentCardsAC
+>

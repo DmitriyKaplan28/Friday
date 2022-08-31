@@ -25,7 +25,7 @@ export type CardsParamsType = {
   // max?: number - подумать нужны ли
   sortCards?: string
   page?: number
-  pageCount?: number
+  pageCount: number
 }
 
 export type CardsType = {
@@ -50,12 +50,12 @@ export type CardsResponseType = {
   packName?: string
   packPrivate?: boolean
   packCreated?: string
-  packUpdated?: string
-  page?: number
-  pageCount?: number
-  cardsTotalCount?: number
-  minGrade?: number
-  maxGrade?: number
+  packUpdated: string
+  page: number
+  pageCount: number
+  cardsTotalCount: number
+  minGrade: number
+  maxGrade: number
 } & TokenType
 
 type TokenType = {
