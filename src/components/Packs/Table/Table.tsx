@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow'
 import { NavLink } from 'react-router-dom'
 
 import { packsAPI } from '../../../api/api'
+import { PATH } from '../../../routing/PageRouting/Pages/Pages'
 import { setSortUpCardAC } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { SortArrow } from '../SortArrow/SortArrow'
