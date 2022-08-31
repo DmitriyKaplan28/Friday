@@ -7,6 +7,7 @@
     width: 100%;
     max-width: 413px;
     min-height: 360px;
+    margin: 0 auto;
 
     background: #ffffff;
     border-radius: 2px;

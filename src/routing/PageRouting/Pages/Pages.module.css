@@ -3,6 +3,8 @@
   align-items: center;
   justify-content: center;
 
+  width: 100%;
+  max-width: 1200px;
   min-height: 80vh;
   padding: 70px 20px;
 }

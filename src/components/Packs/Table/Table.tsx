@@ -9,15 +9,19 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import { NavLink } from 'react-router-dom'
 
-import { PATH } from '../../../routing/PageRouting/Pages/Pages'
-import { useAppSelector } from '../../../store/store'
+import { packsAPI } from '../../../api/api'
+import { setSortUpCardAC } from '../../../store/reducers/PacksParamsReducer'
+import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { SortArrow } from '../SortArrow/SortArrow'
+
+import s from './Table.module.css'
 
 type Column = {
   id: 'name' | 'cards' | 'updated' | 'created' | 'actions'
   label: string
   minWidth?: number
   align?: 'right'
-  format?: (value: number) => string
+  isSort?: boolean
 }
 
 const columns: Array<Column> = [
@@ -28,92 +32,78 @@ const columns: Array<Column> = [
     label: 'Last Updated',
     minWidth: 170,
     align: 'right',
-    format: (value: number) => value.toLocaleString('en-US'),
+    isSort: true,
   },
   {
     id: 'created',
     label: 'Created by',
     minWidth: 170,
     align: 'right',
-    format: (value: number) => value.toLocaleString('en-US'),
   },
   {
     id: 'actions',
     label: 'Actions',
     minWidth: 170,
     align: 'right',
-    format: (value: number) => value.toFixed(2),
   },
 ]
 
-interface Data {
-  name: string
-  cards: string
-  updated: number
-  created: number
-  actions: number
-}
-
-function createData(
-  name: string,
-  cards: string,
-  updated: number,
-  created: number,
-  actions: number
-): Data {
-  return { name, cards, updated, created, actions }
-}
-
 export const StickyHeadTable = () => {
-  const packs = useAppSelector(state => state.packs.cardPacks)
-
-  const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(10)
-
-  const handleChangePage = () => {
-    console.log('next')
+  const { cardPacks } = useAppSelector(state => state.packs)
+  const dispatch = useAppDispatch()
+  const onClickSortHandler = (value: 0 | 1) => {
+    dispatch(setSortUpCardAC(value))
   }
-
-  const handleChangeRowsPerPage = () => {
-    console.log('prev')
+  const onClickHandler = (id: string) => {
+    packsAPI.getCards(id).then(res => console.log(res))
   }
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden', marginTop: '130px' }}>
-      <TableContainer sx={{ maxHeight: 640 }}>
-        <Table aria-label="customized table">
-          <TableHead sx={{ backgroundColor: '#EFEFEF' }}>
-            <TableRow>
-              {columns.map(column => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {packs.map(p => {
-              return (
-                <TableRow key={p._id}>
-                  <TableCell align="left">
-                    <NavLink to={`${PATH.CARDS}?cardsPack_id=${p._id}`}>{p.name}</NavLink>
+    <div className={s.wrapper}>
+      <Paper sx={{ width: '100%' }}>
+        <TableContainer sx={{ maxHeight: 640 }}>
+          <Table aria-label="customized table">
+            <TableHead sx={{ backgroundColor: '#EFEFEF' }}>
+              <TableRow>
+                {columns.map(column => (
+                  <TableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth }}
+                  >
+                    <div className={s.labelBlock}>
+                      {column.isSort ? (
+                        <SortArrow
+                          label={column.label}
+                          mode={column.isSort}
+                          onClickSortHandler={onClickSortHandler}
+                        />
+                      ) : (
+                        <div>{column.label}</div>
+                      )}
+                    </div>
                   </TableCell>
-                  <TableCell align="left">{p.cardsCount}</TableCell>
-                  <TableCell align="left">{p.updated}</TableCell>
-                  <TableCell align="center">{p.user_name}</TableCell>
-                  <TableCell align="right">{'Actions'}</TableCell>
-                </TableRow>
-              )
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <button onClick={handleChangeRowsPerPage}>prev</button>
-      <button onClick={handleChangePage}>next</button>
-    </Paper>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {cardPacks.map(p => {
+                return (
+                  <TableRow key={p._id}>
+                    <TableCell align="center">
+                      <NavLink to={`${PATH.CARDS}?cardsPack_id=${p._id}`}>{p.name}</NavLink>
+                    </TableCell>
+                    <TableCell align="center">{p.cardsCount}</TableCell>
+                    <TableCell align="center">{new Date(p.updated).toLocaleDateString()}</TableCell>
+                    <TableCell align="center">{p.user_name}</TableCell>
+                    <TableCell align="center">{'Actions'}</TableCell>
+                  </TableRow>
+                )
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper>
+    </div>
   )
 }

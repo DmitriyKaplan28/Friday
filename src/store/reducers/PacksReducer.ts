@@ -1,13 +1,13 @@
+import { Dispatch } from 'redux'
+
 import { packsAPI, PackType } from '../../api/api'
 import { AppRootStateType } from '../store'
 
+import { setResetSettingsPacksAC } from './PacksParamsReducer'
+
 const initialState = {
   cardPacks: [] as Array<PackType>,
-  page: 1,
-  pageCount: 4,
-  cardPacksTotalCount: 6303,
-  minCardsCount: 0,
-  maxCardsCount: 110,
+  cardPacksTotalCount: 500,
 }
 
 type InitialStateType = typeof initialState
@@ -21,10 +21,10 @@ export const packsReducer = (
         ...state,
         cardPacks: action.packs,
       }
-    case 'packsReducer/SET-CURRENT-PAGE':
+    case 'packsReducer/SET-CARD-PACKS-TOTAL-COUNT':
       return {
         ...state,
-        page: action.page,
+        cardPacksTotalCount: action.cardPacksTotalCount,
       }
   }
 
@@ -34,21 +34,33 @@ export const packsReducer = (
 //ACTIONS
 export const setCardPacksAC = (packs: Array<PackType>) =>
   ({ type: 'packsReducer/SET-CARD-PACKS', packs } as const)
-export const setCurrentPageAC = (page: number) =>
-  ({ type: 'packsReducer/SET-CURRENT-PAGE', page } as const)
+export const setCardPacksTotalCountAC = (cardPacksTotalCount: number) =>
+  ({ type: 'packsReducer/SET-CARD-PACKS-TOTAL-COUNT', cardPacksTotalCount } as const)
 
 //THUNK
-export const setCardPacksTC =
-  (page?: number) => (dispatch: any, getState: () => AppRootStateType) => {
-    const packs = getState().packs
+export const setCardPacksTC = () => (dispatch: Dispatch, getState: () => AppRootStateType) => {
+  const paramsPacks = getState().paramsPacks
+  const { page, pageCount, min, max, sortPacks, packName } = paramsPacks
 
-    packsAPI.getCardPacks(page).then(res => {
-      dispatch(setCurrentPageAC(res.data.page))
-      dispatch(setCardPacksAC(res.data.cardPacks))
-    })
-  }
+  packsAPI.getCardPacks({ page, pageCount, min, max, sortPacks, packName }).then(res => {
+    dispatch(setCardPacksAC(res.data.cardPacks))
+    dispatch(setCardPacksTotalCountAC(res.data.cardPacksTotalCount))
+  })
+}
+// export const resetSettingsInPacksTC =
+//   () => (dispatch: Dispatch, getState: () => AppRootStateType) => {
+//     const paramsPacks = getState().paramsPacks
+//
+//     console.log(paramsPacks)
+//     packsAPI
+//       .getCardPacks({ page: 1, pageCount: 4, min: 3, max: 110, sortPacks: '', packName: '' })
+//       .then(res => {
+//         dispatch(setCardPacksAC(res.data.cardPacks))
+//         dispatch(setResetSettingsPacksAC())
+//       })
+//   }
 
 //TYPE
-export type PacksAT = SetCardPacksAT | SetCurrentPageAT
+export type PacksAT = SetCardPacksAT | SetCardPacksTotalCountAT
 export type SetCardPacksAT = ReturnType<typeof setCardPacksAC>
-export type SetCurrentPageAT = ReturnType<typeof setCurrentPageAC>
+export type SetCardPacksTotalCountAT = ReturnType<typeof setCardPacksTotalCountAC>
