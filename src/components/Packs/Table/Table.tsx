@@ -87,7 +87,7 @@ export const StickyHeadTable = () => {
                     <TableCell align="right">{new Date(p.updated).toLocaleDateString()}</TableCell>
                     <TableCell align="right">{p.user_name}</TableCell>
                     <TableCell align="right">
-                      <Actions userId={p.user_id} />
+                      <Actions userId={p.user_id} packId={p._id} />
                     </TableCell>
                   </TableRow>
                 )

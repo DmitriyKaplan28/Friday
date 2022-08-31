@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
 
+import { Button } from '@mui/material'
+
 import SuperSelect from '../../common/features/c5-SuperSelect/SuperSelect'
 import SuperDoubleRange from '../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
 import { setPacksParamsAC } from '../../store/reducers/PacksParamsReducer'
-import { setCardPacksTC } from '../../store/reducers/PacksReducer'
+import { addPackTC, setCardPacksTC } from '../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { InputDebounce } from '../InputDebounce/InputDebounce'
 import { PaginationControlled } from '../Pagination/Pagination'
@@ -23,6 +25,9 @@ export const Packs = () => {
     dispatch(setPacksParamsAC({ pageCount: value }))
   }
   const optionsArr = [4, 8, 16, 32, 64]
+  const handleAddPack = () => {
+    dispatch(addPackTC('The most unique name'))
+  }
 
   useEffect(() => {
     dispatch(setCardPacksTC())
@@ -32,6 +37,9 @@ export const Packs = () => {
     <div className={s.wrapper}>
       <div className={s.filter}>
         <InputDebounce />
+        <Button variant="outlined" onClick={handleAddPack}>
+          Add Pack
+        </Button>
         <SuperDoubleRange />
       </div>
       <StickyHeadTable />

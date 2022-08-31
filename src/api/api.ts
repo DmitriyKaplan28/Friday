@@ -43,9 +43,38 @@ export const packsAPI = {
   getCardPacks(data: PacksParamsType) {
     return instance.get<GetResponseCardPacksType>(`/cards/pack?`, { params: data })
   },
+  addPack(name: string, deckCover?: string, isPrivate?: boolean) {
+    return instance.post<AddPackType, AxiosResponse<GetResponseCardPacksType>>('/cards/pack', {
+      cardsPack: {
+        name,
+        deckCover,
+        private: isPrivate,
+      },
+    })
+  },
+  deletePack(id: string) {
+    return instance.delete<'', AxiosResponse<GetResponseCardPacksType>>('/cards/pack', {
+      params: { id },
+    })
+  },
+  updatePack(_id: string) {
+    return instance.put<AxiosResponse<GetResponseCardPacksType>>('cards/pack', {
+      cardsPack: {
+        _id,
+        name: 'New name',
+      },
+    })
+  },
 }
 
 //TYPE
+
+type AddPackType = {
+  name?: string
+  deckCover?: string
+  private?: boolean
+}
+
 export type PacksParamsType = {
   packName?: string
   pageCount?: number

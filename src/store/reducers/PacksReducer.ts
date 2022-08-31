@@ -1,5 +1,10 @@
+import { Dispatch } from 'redux'
+
 import { packsAPI, PackType } from '../../api/api'
-import { AppRootStateType } from '../store'
+import { AppDispatch, AppThunk } from '../store'
+
+import { AppReducerType, setAppStatusAC } from './AppReducer'
+import { setErrorAC } from './AuthReducer'
 
 const initialState = {
   cardPacks: [] as Array<PackType>,
@@ -34,7 +39,7 @@ export const setCardPacksTotalCountAC = (cardPacksTotalCount: number) =>
   ({ type: 'packsReducer/SET-CARD-PACKS-TOTAL-COUNT', cardPacksTotalCount } as const)
 
 //THUNK
-export const setCardPacksTC = () => (dispatch: any, getState: () => AppRootStateType) => {
+export const setCardPacksTC = (): AppThunk => (dispatch, getState) => {
   const paramsPacks = getState().paramsPacks
   const { page, pageCount, min, max, sortPacks, packName } = paramsPacks
 
@@ -45,7 +50,48 @@ export const setCardPacksTC = () => (dispatch: any, getState: () => AppRootState
   })
 }
 
+export const addPackTC =
+  (name: string, deckCover?: string, isPrivate?: boolean) => (dispatch: AppDispatch) => {
+    dispatch(setAppStatusAC('loading'))
+    packsAPI
+      .addPack(name, deckCover, isPrivate)
+      .then(() => {
+        dispatch(setCardPacksTC())
+      })
+      .catch(err => {
+        setErrorAC(err.response.data.error)
+      })
+      .finally(() => dispatch(setAppStatusAC('succeeded')))
+  }
+export const deletePackTC = (id: string) => (dispatch: AppDispatch) => {
+  dispatch(setAppStatusAC('loading'))
+  packsAPI
+    .deletePack(id)
+    .then(() => {
+      dispatch(setCardPacksTC())
+    })
+    .catch(err => {
+      setErrorAC(err.response.data.error)
+    })
+    .finally(() => dispatch(setAppStatusAC('succeeded')))
+}
+
+export const updatePackTC = (id: string) => (dispatch: AppDispatch) => {
+  dispatch(setAppStatusAC('loading'))
+  packsAPI
+    .updatePack(id)
+    .then(() => {
+      dispatch(setCardPacksTC())
+    })
+    .catch(err => {
+      setErrorAC(err.response.data.error)
+    })
+    .finally(() => dispatch(setAppStatusAC('succeeded')))
+}
+
 //TYPE
 export type PacksAT = SetCardPacksAT | SetCardPacksTotalCountAT
 export type SetCardPacksAT = ReturnType<typeof setCardPacksAC>
 export type SetCardPacksTotalCountAT = ReturnType<typeof setCardPacksTotalCountAC>
+
+type ThunkDispatchPacksType = Dispatch<PacksAT | AppReducerType>

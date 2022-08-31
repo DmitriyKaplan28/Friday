@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ChangeEvent, useState } from 'react'
+import { useState } from 'react'
 
 import Slider from '@mui/material/Slider'
 
@@ -41,7 +41,7 @@ export default function SuperDoubleRange() {
         onChangeCommitted={handleChangeCommitted}
         valueLabelDisplay="auto"
         disableSwap
-        min={3}
+        min={0}
         max={100}
       />
       <input onChange={() => {}} value={value[1]} className={s.input} />
