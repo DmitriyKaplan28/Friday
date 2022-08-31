@@ -3,7 +3,10 @@ import React, { useState } from 'react'
 import { AiOutlineArrowDown } from '@react-icons/all-files/ai/AiOutlineArrowDown'
 import { AiOutlineArrowUp } from '@react-icons/all-files/ai/AiOutlineArrowUp'
 
+import { useAppSelector } from '../../../store/store'
+
 import s from './SortArrow.module.css'
+
 type SortArrowType = {
   label?: string
   mode: boolean
@@ -12,6 +15,8 @@ type SortArrowType = {
 
 export const SortArrow = (props: SortArrowType) => {
   const [mode, setMode] = useState(true)
+  const status = useAppSelector(state => state.app.status)
+
   const onClickHandler = (value: 0 | 1) => {
     props.onClickSortHandler(value)
     setMode(!mode)
@@ -20,12 +25,12 @@ export const SortArrow = (props: SortArrowType) => {
   return (
     <div className={s.btnBlock}>
       {mode ? (
-        <button className={s.btn} onClick={() => onClickHandler(1)}>
+        <button disabled={status === 'loading'} className={s.btn} onClick={() => onClickHandler(1)}>
           {props.label}
           <AiOutlineArrowDown />
         </button>
       ) : (
-        <button className={s.btn} onClick={() => onClickHandler(0)}>
+        <button disabled={status === 'loading'} className={s.btn} onClick={() => onClickHandler(0)}>
           {props.label}
           <AiOutlineArrowUp />
         </button>
