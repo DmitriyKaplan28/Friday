@@ -6,6 +6,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding-top: 130px;
+    padding-bottom: 120px;
 }
 
 .pagination {
@@ -32,4 +33,18 @@
     justify-content: space-between;
 
     margin-bottom: 30px;
+}
+.reset button{
+    cursor: pointer;
+
+    width: 40px;
+    height: 40px;
+
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 2px
+}
+.reset svg{
+    width: 18px;
+    height: 18px;
 }

@@ -8,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
+import { packsAPI } from '../../../api/api'
 import { setSortUpCardAC } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { SortArrow } from '../SortArrow/SortArrow'
@@ -37,7 +38,6 @@ const columns: Array<Column> = [
     label: 'Created by',
     minWidth: 170,
     align: 'right',
-    isSort: true,
   },
   {
     id: 'actions',
@@ -52,6 +52,9 @@ export const StickyHeadTable = () => {
   const dispatch = useAppDispatch()
   const onClickSortHandler = (value: 0 | 1) => {
     dispatch(setSortUpCardAC(value))
+  }
+  const onClickHandler = (id: string) => {
+    packsAPI.getCards(id).then(res => console.log(res))
   }
 
   return (
@@ -86,7 +89,9 @@ export const StickyHeadTable = () => {
               {cardPacks.map(p => {
                 return (
                   <TableRow key={p._id}>
-                    <TableCell align="center">{p.name}</TableCell>
+                    <TableCell align="center">
+                      <div onClick={() => onClickHandler(p._id)}>{p.name}</div>
+                    </TableCell>
                     <TableCell align="center">{p.cardsCount}</TableCell>
                     <TableCell align="center">{new Date(p.updated).toLocaleDateString()}</TableCell>
                     <TableCell align="center">{p.user_name}</TableCell>

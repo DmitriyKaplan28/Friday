@@ -8,6 +8,7 @@ import { useAppDispatch } from '../../store/store'
 
 type PaginationControlledType = {
   count: number
+  page?: number
 }
 export function PaginationControlled(props: PaginationControlledType) {
   const dispatch = useAppDispatch()
@@ -17,7 +18,7 @@ export function PaginationControlled(props: PaginationControlledType) {
 
   return (
     <Stack spacing={2}>
-      <Pagination count={props.count} onChange={handleChange} />
+      <Pagination page={props.page} count={props.count} onChange={handleChange} />
     </Stack>
   )
 }

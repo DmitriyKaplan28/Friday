@@ -1,5 +1,9 @@
+import { Dispatch } from 'redux'
+
 import { packsAPI, PackType } from '../../api/api'
 import { AppRootStateType } from '../store'
+
+import { setResetSettingsPacksAC } from './PacksParamsReducer'
 
 const initialState = {
   cardPacks: [] as Array<PackType>,
@@ -34,16 +38,27 @@ export const setCardPacksTotalCountAC = (cardPacksTotalCount: number) =>
   ({ type: 'packsReducer/SET-CARD-PACKS-TOTAL-COUNT', cardPacksTotalCount } as const)
 
 //THUNK
-export const setCardPacksTC = () => (dispatch: any, getState: () => AppRootStateType) => {
+export const setCardPacksTC = () => (dispatch: Dispatch, getState: () => AppRootStateType) => {
   const paramsPacks = getState().paramsPacks
   const { page, pageCount, min, max, sortPacks, packName } = paramsPacks
 
   packsAPI.getCardPacks({ page, pageCount, min, max, sortPacks, packName }).then(res => {
     dispatch(setCardPacksAC(res.data.cardPacks))
-    console.log(res.data)
     dispatch(setCardPacksTotalCountAC(res.data.cardPacksTotalCount))
   })
 }
+// export const resetSettingsInPacksTC =
+//   () => (dispatch: Dispatch, getState: () => AppRootStateType) => {
+//     const paramsPacks = getState().paramsPacks
+//
+//     console.log(paramsPacks)
+//     packsAPI
+//       .getCardPacks({ page: 1, pageCount: 4, min: 3, max: 110, sortPacks: '', packName: '' })
+//       .then(res => {
+//         dispatch(setCardPacksAC(res.data.cardPacks))
+//         dispatch(setResetSettingsPacksAC())
+//       })
+//   }
 
 //TYPE
 export type PacksAT = SetCardPacksAT | SetCardPacksTotalCountAT

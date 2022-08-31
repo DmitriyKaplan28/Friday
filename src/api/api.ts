@@ -43,6 +43,9 @@ export const packsAPI = {
   getCardPacks(data: ParamsType) {
     return instance.get<GetResponseCardPacksType>(`/cards/pack?`, { params: data })
   },
+  getCards(id: string) {
+    return instance.get(`cards/card?cardsPack_id=${id}`)
+  },
 }
 
 //TYPE

@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 import Slider from '@mui/material/Slider'
 
 import { setMaxCountCardAC, setMinCountCardAC } from '../../../store/reducers/PacksParamsReducer'
-import { useAppDispatch } from '../../../store/store'
+import { useAppDispatch, useAppSelector } from '../../../store/store'
 
 import s from './SuperDoubleRange.module.css'
 
@@ -12,8 +12,12 @@ const minDistance = 1
 
 export default function SuperDoubleRange() {
   const dispatch = useAppDispatch()
-  const [value, setValue] = useState<number[]>([3, 60])
+  const { min, max } = useAppSelector(state => state.paramsPacks)
+  const [value, setValue] = useState<number[]>([min, max])
 
+  useEffect(() => {
+    setValue([min, max])
+  }, [min, max])
   const handleChangeCommitted = () => {
     dispatch(setMinCountCardAC(value[0]))
     dispatch(setMaxCountCardAC(value[1]))
@@ -50,7 +54,7 @@ export default function SuperDoubleRange() {
         valueLabelDisplay="auto"
         disableSwap
         min={3}
-        max={100}
+        max={110}
       />
       <input onChange={onChangeMaxHandler} value={value[1]} className={s.input} />
     </div>
