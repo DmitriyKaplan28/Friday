@@ -5,6 +5,7 @@ import { AiOutlineArrowUp } from '@react-icons/all-files/ai/AiOutlineArrowUp'
 
 import s from './SortArrow.module.css'
 type SortArrowType = {
+  label?: string
   mode: boolean
   onClickSortHandler: (value: 0 | 1) => void
 }
@@ -19,11 +20,13 @@ export const SortArrow = (props: SortArrowType) => {
   return (
     <div className={s.btnBlock}>
       {mode ? (
-        <button onClick={() => onClickHandler(1)}>
+        <button className={s.btn} onClick={() => onClickHandler(1)}>
+          {props.label}
           <AiOutlineArrowDown />
         </button>
       ) : (
-        <button onClick={() => onClickHandler(0)}>
+        <button className={s.btn} onClick={() => onClickHandler(0)}>
+          {props.label}
           <AiOutlineArrowUp />
         </button>
       )}

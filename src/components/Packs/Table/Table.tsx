@@ -19,7 +19,7 @@ type Column = {
   label: string
   minWidth?: number
   align?: 'right'
-  sortBy?: boolean
+  isSort?: boolean
 }
 
 const columns: Array<Column> = [
@@ -30,13 +30,14 @@ const columns: Array<Column> = [
     label: 'Last Updated',
     minWidth: 170,
     align: 'right',
-    sortBy: true,
+    isSort: true,
   },
   {
     id: 'created',
     label: 'Created by',
     minWidth: 170,
     align: 'right',
+    isSort: true,
   },
   {
     id: 'actions',
@@ -67,9 +68,14 @@ export const StickyHeadTable = () => {
                     style={{ minWidth: column.minWidth }}
                   >
                     <div className={s.labelBlock}>
-                      {column.label}
-                      {column.sortBy && (
-                        <SortArrow mode={column.sortBy} onClickSortHandler={onClickSortHandler} />
+                      {column.isSort ? (
+                        <SortArrow
+                          label={column.label}
+                          mode={column.isSort}
+                          onClickSortHandler={onClickSortHandler}
+                        />
+                      ) : (
+                        <div>{column.label}</div>
                       )}
                     </div>
                   </TableCell>
