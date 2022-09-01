@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { RiFilterOffFill } from '@react-icons/all-files/ri/RiFilterOffFill'
+import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
 import { Navigate } from 'react-router-dom'
 
 import SuperSelect from '../../common/features/c5-SuperSelect/SuperSelect'
@@ -53,7 +53,7 @@ export const Packs = () => {
         <SuperDoubleRange />
         <div className={s.reset} onClick={onClickReset}>
           <button>
-            <RiFilterOffFill />
+            <FilterAltOffIcon />
           </button>
         </div>
       </div>

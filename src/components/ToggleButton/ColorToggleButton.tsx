@@ -6,6 +6,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import { setMyPacksAC } from '../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 
+import s from './ToggleButton.module.css'
 type ColorToggleButtonType = {
   setAlignment: (value: string) => void
   alignment: string
@@ -26,15 +27,23 @@ export const ColorToggleButton = (props: ColorToggleButtonType) => {
   }
 
   return (
-    <ToggleButtonGroup
-      color="primary"
-      value={props.alignment}
-      exclusive
-      disabled={status === 'loading'}
-      onChange={handleChange}
-    >
-      <ToggleButton value="my">My</ToggleButton>
-      <ToggleButton value="all">All</ToggleButton>
-    </ToggleButtonGroup>
+    <div className={s.wrapper}>
+      <span className={s.about}>Show packs cards</span>
+      <ToggleButtonGroup
+        sx={{ width: 200, height: 30 }}
+        color="primary"
+        value={props.alignment}
+        exclusive
+        disabled={status === 'loading'}
+        onChange={handleChange}
+      >
+        <ToggleButton sx={{ width: 100 }} value="my">
+          My
+        </ToggleButton>
+        <ToggleButton sx={{ width: 100 }} value="all">
+          All
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </div>
   )
 }

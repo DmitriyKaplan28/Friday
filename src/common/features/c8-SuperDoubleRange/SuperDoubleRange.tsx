@@ -45,18 +45,21 @@ export default function SuperDoubleRange() {
 
   return (
     <div className={s.wrapper}>
-      <input onChange={onChangeMinHandler} value={value[0]} className={s.input} />
-      <Slider
-        getAriaLabel={() => 'Minimum distance'}
-        value={value}
-        onChange={handleChange}
-        onChangeCommitted={handleChangeCommitted}
-        valueLabelDisplay="auto"
-        disableSwap
-        min={3}
-        max={110}
-      />
-      <input onChange={onChangeMaxHandler} value={value[1]} className={s.input} />
+      <span className={s.about}>Number of cards</span>
+      <div className={s.inputGroup}>
+        <input onChange={onChangeMinHandler} value={value[0]} className={s.input} />
+        <Slider
+          getAriaLabel={() => 'Minimum distance'}
+          value={value}
+          onChange={handleChange}
+          onChangeCommitted={handleChangeCommitted}
+          valueLabelDisplay="auto"
+          disableSwap
+          min={3}
+          max={110}
+        />
+        <input onChange={onChangeMaxHandler} value={value[1]} className={s.input} />
+      </div>
     </div>
   )
 }
