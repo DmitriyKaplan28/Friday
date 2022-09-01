@@ -53,7 +53,7 @@ export const packsParamsReducer = (
         packName: '',
         page: 1,
         pageCount: 4,
-        sortPacks: '',
+        sortPacks: '0',
         min: 3,
         max: 110,
       }

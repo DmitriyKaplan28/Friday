@@ -72,11 +72,7 @@ export const StickyHeadTable = () => {
                   >
                     <div className={s.labelBlock}>
                       {column.isSort ? (
-                        <SortArrow
-                          label={column.label}
-                          mode={column.isSort}
-                          onClickSortHandler={onClickSortHandler}
-                        />
+                        <SortArrow label={column.label} onClickSortHandler={onClickSortHandler} />
                       ) : (
                         <div>{column.label}</div>
                       )}
