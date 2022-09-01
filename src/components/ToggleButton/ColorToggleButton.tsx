@@ -14,6 +14,7 @@ type ColorToggleButtonType = {
 export const ColorToggleButton = (props: ColorToggleButtonType) => {
   const dispatch = useAppDispatch()
   const user = useAppSelector(state => state.profile.user)
+  const status = useAppSelector(state => state.app.status)
   const handleChange = (event: React.MouseEvent<HTMLElement>, newAlignment: string) => {
     if (newAlignment === 'my') {
       dispatch(setMyPacksAC(user._id))
@@ -29,6 +30,7 @@ export const ColorToggleButton = (props: ColorToggleButtonType) => {
       color="primary"
       value={props.alignment}
       exclusive
+      disabled={status === 'loading'}
       onChange={handleChange}
       aria-label="Platform"
     >
