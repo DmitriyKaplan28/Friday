@@ -4,7 +4,6 @@ import { packsAPI, PackType } from '../../api/api'
 import { AppDispatch, AppThunk } from '../store'
 
 import { AppReducerType, setAppErrorAC, setAppStatusAC } from './AppReducer'
-import { setErrorAC } from './AuthReducer'
 
 const initialState = {
   cardPacks: [] as Array<PackType>,
