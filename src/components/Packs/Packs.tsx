@@ -11,6 +11,7 @@ import { setCardPacksTC } from '../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { InputDebounce } from '../InputDebounce/InputDebounce'
 import { PaginationControlled } from '../Pagination/Pagination'
+import { ColorToggleButton } from '../ToggleButton/ColorToggleButton'
 
 import s from './Packs.module.css'
 import { StickyHeadTable } from './Table/Table'
@@ -46,6 +47,7 @@ export const Packs = () => {
     <div className={s.wrapper}>
       <div className={s.filter}>
         <InputDebounce value={searchTerm} onChangeValue={setSearchTerm} />
+        <ColorToggleButton />
         <SuperDoubleRange />
         <div className={s.reset} onClick={onClickReset}>
           <button>
