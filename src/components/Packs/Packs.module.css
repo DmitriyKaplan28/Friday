@@ -5,8 +5,8 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding-top: 130px;
-    padding-bottom: 120px;
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 
 .pagination {
@@ -27,14 +27,23 @@
     color: #000000;
 }
 
-.filter{
+.mainTitle {
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.filter {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
 
     margin-bottom: 30px;
 }
-.reset button{
+
+.reset button {
     cursor: pointer;
 
     width: 40px;
@@ -44,7 +53,8 @@
     border: 1px solid #E8E8E8;
     border-radius: 2px
 }
-.reset svg{
+
+.reset svg {
     width: 18px;
     height: 18px;
 }

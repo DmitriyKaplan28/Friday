@@ -46,27 +46,30 @@ export const Packs = () => {
   }
 
   return (
-    <div className={s.wrapper}>
-      <div className={s.filter}>
-        <InputDebounce value={searchTerm} onChangeValue={setSearchTerm} />
-        <ColorToggleButton setAlignment={setAlignment} alignment={alignment} />
-        <SuperDoubleRange />
-        <div className={s.reset} onClick={onClickReset}>
-          <button>
-            <FilterAltOffIcon />
-          </button>
+    <div>
+      <div className={s.wrapper}>
+        <h3 className={s.mainTitle}>Packs list</h3>
+        <div className={s.filter}>
+          <InputDebounce value={searchTerm} onChangeValue={setSearchTerm} />
+          <ColorToggleButton setAlignment={setAlignment} alignment={alignment} />
+          <SuperDoubleRange />
+          <div className={s.reset} onClick={onClickReset}>
+            <button>
+              <FilterAltOffIcon />
+            </button>
+          </div>
         </div>
-      </div>
-      <StickyHeadTable />
-      <div className={s.pagination}>
-        <PaginationControlled page={page} count={pagesCount} />
-        <span className={s.title}>Show</span>
-        <SuperSelect
-          value={pageCount}
-          options={initialOptions}
-          onChangeOption={onChangePageCount}
-        />
-        <span className={s.title}>Cards per Page</span>
+        <StickyHeadTable />
+        <div className={s.pagination}>
+          <PaginationControlled page={page} count={pagesCount} />
+          <span className={s.title}>Show</span>
+          <SuperSelect
+            value={pageCount}
+            options={initialOptions}
+            onChangeOption={onChangePageCount}
+          />
+          <span className={s.title}>Cards per Page</span>
+        </div>
       </div>
     </div>
   )

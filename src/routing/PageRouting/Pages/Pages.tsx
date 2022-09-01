@@ -30,7 +30,6 @@ export const Pages = () => {
       {status === 'loading' && (
         <LinearProgress sx={{ position: 'absolute', width: '100%', top: '70px' }} />
       )}
-
       <Routes>
         <Route path={'/'} element={<Navigate to={PATH.PROFILE} />} />
         <Route path={PATH.PROFILE} element={<Profile />} />

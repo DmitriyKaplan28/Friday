@@ -9,12 +9,9 @@ import { Pages } from './Pages/Pages'
 
 export function PageRouting() {
   return (
-    <div className={s.page}>
-      <HashRouter>
-        <Header />
-
-        <Pages />
-      </HashRouter>
-    </div>
+    <HashRouter>
+      <Header />
+      <Pages />
+    </HashRouter>
   )
 }
