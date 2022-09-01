@@ -6,9 +6,13 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import { setMyPacksAC } from '../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 
-export const ColorToggleButton = () => {
+type ColorToggleButtonType = {
+  setAlignment: (value: string) => void
+  alignment: string
+}
+
+export const ColorToggleButton = (props: ColorToggleButtonType) => {
   const dispatch = useAppDispatch()
-  const [alignment, setAlignment] = React.useState('all')
   const user = useAppSelector(state => state.profile.user)
   const handleChange = (event: React.MouseEvent<HTMLElement>, newAlignment: string) => {
     if (newAlignment === 'my') {
@@ -17,13 +21,13 @@ export const ColorToggleButton = () => {
     if (newAlignment === 'all') {
       dispatch(setMyPacksAC(''))
     }
-    setAlignment(newAlignment)
+    props.setAlignment(newAlignment)
   }
 
   return (
     <ToggleButtonGroup
       color="primary"
-      value={alignment}
+      value={props.alignment}
       exclusive
       onChange={handleChange}
       aria-label="Platform"

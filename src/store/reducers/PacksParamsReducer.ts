@@ -62,6 +62,7 @@ export const packsParamsReducer = (
         sortPacks: '0',
         min: 3,
         max: 110,
+        user_id: '',
       }
   }
 

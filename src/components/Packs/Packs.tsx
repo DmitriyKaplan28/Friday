@@ -20,6 +20,7 @@ const initialOptions = [4, 8, 16, 32, 64]
 
 export const Packs = () => {
   const [searchTerm, setSearchTerm] = useState('')
+  const [alignment, setAlignment] = useState('all')
   const dispatch = useAppDispatch()
   const { page, pageCount, min, max, sortPacks, packName, user_id } = useAppSelector(
     state => state.paramsPacks
@@ -34,6 +35,7 @@ export const Packs = () => {
   const onClickReset = () => {
     dispatch(setResetSettingsPacksAC())
     setSearchTerm('')
+    setAlignment('all')
   }
 
   useEffect(() => {
@@ -47,7 +49,7 @@ export const Packs = () => {
     <div className={s.wrapper}>
       <div className={s.filter}>
         <InputDebounce value={searchTerm} onChangeValue={setSearchTerm} />
-        <ColorToggleButton />
+        <ColorToggleButton setAlignment={setAlignment} alignment={alignment} />
         <SuperDoubleRange />
         <div className={s.reset} onClick={onClickReset}>
           <button>
