@@ -1,6 +1,8 @@
 .block{
     position: relative;
 
+    display: flex;
+    align-items: center;
 }
 .circle{
     position: absolute;
@@ -31,4 +33,10 @@
     background: transparent;
     border: none;
     outline: none;
+}
+.block span{
+    border-bottom: 1px dashed #000000;
+}
+.block img{
+    margin-left: 5px;
 }

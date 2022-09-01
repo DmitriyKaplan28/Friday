@@ -21,12 +21,7 @@ export const Header = () => {
               <img src={logo} alt="logo" />
             </NavLink>
           </div>
-          {isLoggedIn && (
-            <div className={s.block}>
-              <span>{user.name}</span>
-              <Avatar width={'36px'} />
-            </div>
-          )}
+          {isLoggedIn && <Avatar name={user.name} width={'36px'} />}
         </div>
       </div>
     </header>

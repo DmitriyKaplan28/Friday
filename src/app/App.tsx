@@ -24,10 +24,10 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <ErrorSnackbar />
       <PageRouting />
-    </div>
+    </>
   )
 }
 

@@ -55,8 +55,8 @@ export const Login = () => {
           '& .MuiTextField-root': { m: 1, width: '347px' },
         }}
       >
-        <form method="post" onSubmit={formik.handleSubmit}>
-          <h1>Sing In</h1>
+        <form className={s.formWrapper} onSubmit={formik.handleSubmit}>
+          <p>Sing In</p>
           <div className={s.input}>
             <TextField
               error={formik.touched.email && Boolean(formik.errors.email)}

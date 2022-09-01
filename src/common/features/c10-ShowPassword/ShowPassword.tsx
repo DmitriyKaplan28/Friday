@@ -1,7 +1,7 @@
-import React, { useCallback, useState } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 
-import eye from '../../assets/register/eye.png'
-import eyeClose from '../../assets/register/eyeClose.png'
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 
 import s from './ShowPassword.module.css'
 
@@ -9,7 +9,7 @@ type ShowPasswordType = {
   value: string
   callback: (value: string) => void
 }
-export const ShowPassword = React.memo((props: ShowPasswordType) => {
+export const ShowPassword = memo((props: ShowPasswordType) => {
   console.log('render ShowPassword')
   const [link, setLink] = useState<boolean>(false)
 
@@ -20,7 +20,7 @@ export const ShowPassword = React.memo((props: ShowPasswordType) => {
 
   return (
     <div className={s.showPassword} onClick={onChangeHandler}>
-      {link ? <img src={eye} alt="" /> : <img src={eyeClose} alt="" />}
+      {link ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
     </div>
   )
 })
