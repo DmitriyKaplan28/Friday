@@ -7,7 +7,11 @@ import Button from '@mui/material/Button'
 import Fade from '@mui/material/Fade'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-export const FadeMenu = () => {
+
+type FadeMenuPropsType = {
+  title?: string
+}
+export const FadeMenu = (props: FadeMenuPropsType) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -26,7 +30,7 @@ export const FadeMenu = () => {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        Dashboard
+        {props.title}
       </Button>
       <Menu
         id="fade-menu"
