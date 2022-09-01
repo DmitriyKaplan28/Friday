@@ -9,6 +9,7 @@ import { AppReducerType, setAppErrorAC, setAppStatusAC } from './AppReducer'
 
 const initialState: CardsResponseType = {
   cards: [],
+  packUserId: '',
   page: 1,
   pageCount: 4,
   packUpdated: '',
@@ -33,6 +34,8 @@ export const cardsReducer = (
         ...state,
         // cards: state.cards.map(t => (t.question = action.value)),
       }
+    case 'DELETE-CARD':
+      return { ...state, cards: state.cards.filter(c => c.cardsPack_id !== action.cardId) }
     default:
       return state
   }
@@ -44,6 +47,8 @@ export const setCardsParamsAC = (params: CardsResponseType) =>
 export const setPageCountCardsAC = (pageCount: number) =>
   ({ type: 'SET-PAGE-COUNT', pageCount } as const)
 
+export const deleteCardAC = (cardId: string) => ({ type: 'DELETE-CARD', cardId } as const)
+
 export const setNameCardsAC = (value: string) => ({ type: 'SET-NAME-CADS', value } as const)
 
 export const setPageCurrentCardsAC = (page: number) => ({ type: 'SET-CURRENT-PAGE', page } as const)
@@ -53,7 +58,7 @@ export const getCardsTC = (data: CardsParamsType) => {
   return (dispatch: Dispatch<CardsACType | AppReducerType>) => {
     dispatch(setAppStatusAC('loading'))
     cardsAPI
-      .getCards(data)
+      .getCard(data)
       .then(res => {
         dispatch(setCardsParamsAC(res.data))
       })
@@ -65,10 +70,55 @@ export const getCardsTC = (data: CardsParamsType) => {
       })
   }
 }
+
+export const deleteCardTC = (cardId: string, data: CardsParamsType) => {
+  return (dispatch: Dispatch<CardsACType | AppReducerType>) => {
+    dispatch(setAppStatusAC('loading'))
+    cardsAPI
+      .deleteCard(cardId)
+      .then(res => {
+        //Разобраться с типизацией
+        // @ts-ignore
+        dispatch(getCardsTC(data))
+      })
+      .catch((error: AxiosError<ErrorDataResponseType>) => {
+        dispatch(setAppErrorAC(error.response?.data.error))
+      })
+      .finally(() => {
+        dispatch(setAppStatusAC('succeeded'))
+      })
+  }
+}
+export const updateCardTC = (cardId: string, params: CardsParamsType) => {
+  return (dispatch: Dispatch<CardsACType | AppReducerType>) => {
+    const data = {
+      _id: cardId,
+      question: 'new question',
+      answer: 'new answer',
+    }
+
+    dispatch(setAppStatusAC('loading'))
+    cardsAPI
+      .updateCard(data)
+      .then(res => {
+        //Разобраться с типизацией
+        // @ts-ignore
+        dispatch(getCardsTC(params))
+      })
+      .catch((error: AxiosError<ErrorDataResponseType>) => {
+        dispatch(setAppErrorAC(error.response?.data.error))
+      })
+      .finally(() => {
+        dispatch(setAppStatusAC('succeeded'))
+      })
+  }
+}
+
 // types
 export type CardsACType = ReturnType<
   | typeof setCardsParamsAC
   | typeof setPageCountCardsAC
   | typeof setPageCurrentCardsAC
   | typeof setNameCardsAC
+  | typeof deleteCardAC
 >
