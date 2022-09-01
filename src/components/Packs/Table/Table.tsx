@@ -7,7 +7,10 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
+import { NavLink } from 'react-router-dom'
 
+import { packsAPI } from '../../../api/api'
+import { PATH } from '../../../routing/PageRouting/Pages/Pages'
 import { setPacksParamsAC } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { SortArrow } from '../SortArrow/SortArrow'
@@ -83,7 +86,9 @@ export const StickyHeadTable = () => {
               {cardPacks.map(p => {
                 return (
                   <TableRow key={p._id}>
-                    <TableCell align="center">{p.name}</TableCell>
+                    <TableCell align="center">
+                      <NavLink to={`${PATH.CARDS}?cardsPack_id=${p._id}`}>{p.name}</NavLink>
+                    </TableCell>
                     <TableCell align="center">{p.cardsCount}</TableCell>
                     <TableCell align="center">{new Date(p.updated).toLocaleDateString()}</TableCell>
                     <TableCell align="center">{p.user_name}</TableCell>

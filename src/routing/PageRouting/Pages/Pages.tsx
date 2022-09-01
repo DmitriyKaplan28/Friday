@@ -8,6 +8,7 @@ import { Login } from '../../../components/Login/Login'
 import { EnterNewPassword } from '../../../components/Login/ResetPassword/EnterNewPassword/EnterNewPassword'
 import { ResetPassword } from '../../../components/Login/ResetPassword/ResetPassword'
 import { Packs } from '../../../components/Packs/Packs'
+import { Cards } from '../../../components/Packs/Table/Pack/Cards/Cards'
 import Profile from '../../../components/Profile/Profile'
 import { SignUp } from '../../../components/SingUp/SignUp'
 import { useAppSelector } from '../../../store/store'
@@ -19,7 +20,7 @@ export const PATH = {
   RESET_PASSWORD: '/reset-password',
   SET_NEW_PASSWORD: '/set-new-password/:token',
   PACKS: '/packs',
-  CARD: '/cards/card',
+  CARDS: '/cards/card',
 }
 
 export const Pages = () => {
@@ -38,6 +39,7 @@ export const Pages = () => {
         <Route path={PATH.RESET_PASSWORD} element={<ResetPassword />} />
         <Route path={PATH.SET_NEW_PASSWORD} element={<EnterNewPassword />} />
         <Route path={PATH.PACKS} element={<Packs />} />
+        <Route path={PATH.CARDS} element={<Cards />} />
         <Route path={'/*'} element={<Error404 />} />
       </Routes>
     </>

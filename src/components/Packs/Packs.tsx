@@ -17,7 +17,7 @@ import { ColorToggleButton } from '../ToggleButton/ColorToggleButton'
 import s from './Packs.module.css'
 import { StickyHeadTable } from './Table/Table'
 
-const initialOptions = [4, 8, 16, 32, 64]
+export const initialOptions = [4, 8, 16, 32, 64]
 
 export const Packs = () => {
   const [searchTerm, setSearchTerm] = useState('')

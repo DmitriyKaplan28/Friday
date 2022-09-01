@@ -1,6 +1,7 @@
+import { AxiosError } from 'axios'
 import { Dispatch } from 'redux'
 
-import { authAPI, LoginParamsType } from '../../api/api'
+import { authAPI, ErrorDataResponseType, LoginParamsType } from '../../api/api'
 
 import { AppReducerType, setAppErrorAC, setAppStatusAC } from './AppReducer'
 import { setUserAC } from './ProfileReducer'
@@ -35,8 +36,8 @@ export const loginTC = (data: LoginParamsType) => (dispatch: ThunkDispatchType) 
       dispatch(setIsLoggedInAC(true))
       dispatch(setUserAC(res.data))
     })
-    .catch(err => {
-      dispatch(setAppErrorAC(err.response.data.error))
+    .catch((err: AxiosError<ErrorDataResponseType>) => {
+      dispatch(setAppErrorAC(err.response?.data.error))
     })
     .finally(() => dispatch(setAppStatusAC('succeeded')))
 }
@@ -48,8 +49,8 @@ export const logoutTC = () => (dispatch: ThunkDispatchType) => {
     .then(() => {
       dispatch(setIsLoggedInAC(false))
     })
-    .catch(err => {
-      dispatch(setAppErrorAC(err.response.data.error))
+    .catch((err: AxiosError<ErrorDataResponseType>) => {
+      dispatch(setAppErrorAC(err.response?.data.error))
     })
     .finally(() => dispatch(setAppStatusAC('succeeded')))
 }

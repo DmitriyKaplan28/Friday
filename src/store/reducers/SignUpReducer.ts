@@ -52,5 +52,6 @@ export const setRegistrationTC = (data: RegisterParamsType) => {
       })
   }
 }
+
 // types
 export type SingUpACType = ReturnType<typeof setRegistration> | AppReducerType
