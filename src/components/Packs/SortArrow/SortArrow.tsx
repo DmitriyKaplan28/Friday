@@ -17,35 +17,22 @@ export const SortArrow = (props: SortArrowType) => {
   const [mode, setMode] = useState(true)
   const status = useAppSelector(state => state.app.status)
   const sortPacks = useAppSelector(state => state.paramsPacks.sortPacks)
-  let numEl = parseInt(sortPacks)
-
-  console.log(numEl, sortPacks)
-  const onClickHandler = (value: number) => {
-    props.onClickSortHandler(value)
+  let sortPacksNumber = parseInt(sortPacks)
+  const onClickHandler = () => {
+    sortPacksNumber = sortPacksNumber + 1
+    if (sortPacksNumber > 1) {
+      sortPacksNumber = 0
+    }
+    props.onClickSortHandler(sortPacksNumber)
     setMode(!mode)
   }
 
   return (
     <div className={s.btnBlock}>
-      {mode ? (
-        <button
-          disabled={status === 'loading'}
-          className={s.btn}
-          onClick={() => onClickHandler(numEl - 1)}
-        >
-          {props.label}
-          <AiOutlineArrowDown />
-        </button>
-      ) : (
-        <button
-          disabled={status === 'loading'}
-          className={s.btn}
-          onClick={() => onClickHandler(numEl + 1)}
-        >
-          {props.label}
-          <AiOutlineArrowUp />
-        </button>
-      )}
+      <button disabled={status === 'loading'} className={s.btn} onClick={onClickHandler}>
+        {props.label}
+        {mode ? <AiOutlineArrowDown /> : <AiOutlineArrowUp />}
+      </button>
     </div>
   )
 }
