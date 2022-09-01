@@ -16,13 +16,13 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
   const user = useAppSelector(state => state.profile.user)
   const dispatch = useAppDispatch()
 
-  const handleCardClick = () => {}
+  const handleCardClick = () => {
+    console.log('card')
+  }
   const handleEditClick = () => {
-    console.log('edit')
     dispatch(updatePackTC(packId))
   }
   const handleDeleteClick = () => {
-    console.log('delete')
     dispatch(deletePackTC(packId))
   }
 

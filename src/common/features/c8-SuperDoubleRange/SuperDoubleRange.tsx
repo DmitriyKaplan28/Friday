@@ -3,8 +3,8 @@ import { ChangeEvent, useEffect, useState } from 'react'
 
 import Slider from '@mui/material/Slider'
 
-import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { setPacksParamsAC } from '../../../store/reducers/PacksParamsReducer'
+import { useAppDispatch, useAppSelector } from '../../../store/store'
 
 import s from './SuperDoubleRange.module.css'
 

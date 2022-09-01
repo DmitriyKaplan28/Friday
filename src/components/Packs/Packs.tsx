@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react'
 
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
-import { Navigate } from 'react-router-dom'
-
 import { Button } from '@mui/material'
+import { Navigate } from 'react-router-dom'
 
 import SuperSelect from '../../common/features/c5-SuperSelect/SuperSelect'
 import SuperDoubleRange from '../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
-import { setPacksParamsAC } from '../../store/reducers/PacksParamsReducer'
-import { addPackTC, setCardPacksTC } from '../../store/reducers/PacksReducer'
 import { PATH } from '../../routing/PageRouting/Pages/Pages'
-import { setPageCountAC, setResetSettingsPacksAC } from '../../store/reducers/PacksParamsReducer'
-import { setCardPacksTC } from '../../store/reducers/PacksReducer'
+import { setPacksParamsAC, setResetSettingsPacksAC } from '../../store/reducers/PacksParamsReducer'
+import { addPackTC, setCardPacksTC } from '../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { InputDebounce } from '../InputDebounce/InputDebounce'
 import { PaginationControlled } from '../Pagination/Pagination'

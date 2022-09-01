@@ -33,13 +33,7 @@ export const packsParamsReducer = (
     case 'packsParamsReducer/RESET-SETTINGS-PACKS':
       return {
         ...state,
-        packName: '',
-        page: 1,
-        pageCount: 4,
-        sortPacks: '0',
-        min: 0,
-        max: 110,
-        user_id: '',
+        ...initialState,
       }
   }
 
@@ -59,10 +53,11 @@ export const setResetSettingsPacksAC = () =>
   ({ type: 'packsParamsReducer/RESET-SETTINGS-PACKS' } as const)
 //TYPE
 type InitialStateType = typeof initialState
-export type PacksParamsAT = SearchPackNameAT
-    | PacksFilterAT
-    | SetResetSettingsPacksAT
-    | SetMyPacksAT
+export type PacksParamsAT =
+  | SearchPackNameAT
+  | PacksFilterAT
+  | SetResetSettingsPacksAT
+  | SetMyPacksAT
 export type SearchPackNameAT = ReturnType<typeof searchPackNameAC>
 export type PacksFilterAT = ReturnType<typeof setPacksParamsAC>
 export type SetResetSettingsPacksAT = ReturnType<typeof setResetSettingsPacksAC>
