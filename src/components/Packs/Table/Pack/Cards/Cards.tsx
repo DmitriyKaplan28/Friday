@@ -10,13 +10,13 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import { useSearchParams } from 'react-router-dom'
 
-import SuperSelect from '../../../../common/features/c5-SuperSelect/SuperSelect'
-import { getCardsParams } from '../../../../common/utils/GetParams'
-import { getCardsTC, setPageCountCardsAC } from '../../../../store/reducers/CardsReducer'
-import { useAppDispatch, useAppSelector } from '../../../../store/store'
-import { PaginationControlled } from '../../../Pagination/Pagination'
-import { initialOptions } from '../../Packs'
-import s from '../../Packs.module.css'
+import SuperSelect from '../../../../../common/features/c5-SuperSelect/SuperSelect'
+import { getCardsParams } from '../../../../../common/utils/GetParams'
+import { getCardsTC, setPageCountCardsAC } from '../../../../../store/reducers/CardsReducer'
+import { useAppDispatch, useAppSelector } from '../../../../../store/store'
+import { PaginationControlled } from '../../../../Pagination/Pagination'
+import { initialOptions } from '../../../Packs'
+import s from '../../../Packs.module.css'
 
 export const Cards = () => {
   const dispatch = useAppDispatch()
