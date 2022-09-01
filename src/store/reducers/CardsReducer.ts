@@ -28,6 +28,11 @@ export const cardsReducer = (
       return { ...state, pageCount: action.pageCount }
     case 'SET-CURRENT-PAGE':
       return { ...state, page: action.page }
+    case 'SET-NAME-CADS':
+      return {
+        ...state,
+        cards: state.cards.map(t => (t.question = action.value)),
+      }
     default:
       return state
   }
@@ -38,6 +43,8 @@ export const setCardsParamsAC = (params: CardsResponseType) =>
 
 export const setPageCountCardsAC = (pageCount: number) =>
   ({ type: 'SET-PAGE-COUNT', pageCount } as const)
+
+export const setNameCardsAC = (value: string) => ({ type: 'SET-NAME-CADS', value } as const)
 
 export const setPageCurrentCardsAC = (page: number) => ({ type: 'SET-CURRENT-PAGE', page } as const)
 
@@ -60,5 +67,8 @@ export const getCardsTC = (data: CardsParamsType) => {
 }
 // types
 export type CardsACType = ReturnType<
-  typeof setCardsParamsAC | typeof setPageCountCardsAC | typeof setPageCurrentCardsAC
+  | typeof setCardsParamsAC
+  | typeof setPageCountCardsAC
+  | typeof setPageCurrentCardsAC
+  | typeof setNameCardsAC
 >

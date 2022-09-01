@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
@@ -8,17 +8,21 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
+import { RiFilterOffFill } from '@react-icons/all-files/ri/RiFilterOffFill'
 import { useSearchParams } from 'react-router-dom'
 
 import SuperSelect from '../../../../../common/features/c5-SuperSelect/SuperSelect'
+import SuperDoubleRange from '../../../../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
 import { getCardsParams } from '../../../../../common/utils/GetParams'
 import { getCardsTC, setPageCountCardsAC } from '../../../../../store/reducers/CardsReducer'
 import { useAppDispatch, useAppSelector } from '../../../../../store/store'
+import { InputDebounce } from '../../../../InputDebounce/InputDebounce'
 import { PaginationControlled } from '../../../../Pagination/Pagination'
 import { initialOptions } from '../../../Packs'
 import s from '../../../Packs.module.css'
 
 export const Cards = () => {
+  const [searchTerm, setSearchTerm] = useState('')
   const dispatch = useAppDispatch()
   const cards = useAppSelector(state => state.cards.cards)
   const [searchParams] = useSearchParams()
@@ -36,6 +40,15 @@ export const Cards = () => {
 
   return (
     <div className={s.wrapper}>
+      <div className={s.filter}>
+        <InputDebounce value={searchTerm} onChangeValue={setSearchTerm} />
+        <SuperDoubleRange />
+        {/*<div className={s.reset} onClick={onClickReset}>
+          <button>
+            <RiFilterOffFill />
+          </button>
+        </div>*/}
+      </div>
       <TableContainer component={Paper}>
         <Table sx={{ maxWidth: 900, margin: '100px' }} aria-label="customized table">
           <TableHead sx={{ backgroundColor: '#EFEFEF' }}>
