@@ -85,7 +85,7 @@ export type PacksParamsType = {
   user_id?: string
 }
 export type GetMeResponseType = UserType & { error: string }
-export type logOutResponseType = { error: string }
+
 export type UpdateUserResponseType = {
   updatedUser: UserType
   error: string

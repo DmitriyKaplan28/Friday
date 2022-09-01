@@ -2,7 +2,7 @@ import { Dispatch } from 'redux'
 
 import { authAPI, LoginParamsType } from '../../api/api'
 
-import { AppReducerType, setAppStatusAC } from './AppReducer'
+import { AppReducerType, setAppErrorAC, setAppStatusAC } from './AppReducer'
 import { setUserAC } from './ProfileReducer'
 
 const initialState: InitialLoginStateType = {
@@ -39,7 +39,7 @@ export const loginTC = (data: LoginParamsType) => (dispatch: ThunkDispatchType) 
       dispatch(setUserAC(res.data))
     })
     .catch(err => {
-      setErrorAC(err.response.data.error)
+      dispatch(setAppErrorAC(err.response.data.error))
     })
     .finally(() => dispatch(setAppStatusAC('succeeded')))
 }
@@ -52,7 +52,7 @@ export const logoutTC = () => (dispatch: ThunkDispatchType) => {
       dispatch(setIsLoggedInAC(false))
     })
     .catch(err => {
-      setErrorAC(err.response.data.error)
+      dispatch(setAppErrorAC(err.response.data.error))
     })
     .finally(() => dispatch(setAppStatusAC('succeeded')))
 }

@@ -3,7 +3,7 @@ import { Dispatch } from 'redux'
 import { packsAPI, PackType } from '../../api/api'
 import { AppDispatch, AppThunk } from '../store'
 
-import { AppReducerType, setAppStatusAC } from './AppReducer'
+import { AppReducerType, setAppErrorAC, setAppStatusAC } from './AppReducer'
 import { setErrorAC } from './AuthReducer'
 
 const initialState = {
@@ -59,7 +59,7 @@ export const addPackTC =
         dispatch(setCardPacksTC())
       })
       .catch(err => {
-        setErrorAC(err.response.data.error)
+        dispatch(setAppErrorAC(err.response.data.error))
       })
       .finally(() => dispatch(setAppStatusAC('succeeded')))
   }
@@ -71,7 +71,7 @@ export const deletePackTC = (id: string) => (dispatch: AppDispatch) => {
       dispatch(setCardPacksTC())
     })
     .catch(err => {
-      setErrorAC(err.response.data.error)
+      dispatch(setAppErrorAC(err.response.data.error))
     })
     .finally(() => dispatch(setAppStatusAC('succeeded')))
 }
@@ -84,7 +84,7 @@ export const updatePackTC = (id: string) => (dispatch: AppDispatch) => {
       dispatch(setCardPacksTC())
     })
     .catch(err => {
-      setErrorAC(err.response.data.error)
+      dispatch(setAppErrorAC(err.response.data.error))
     })
     .finally(() => dispatch(setAppStatusAC('succeeded')))
 }
