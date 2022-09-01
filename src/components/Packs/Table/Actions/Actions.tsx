@@ -7,6 +7,7 @@ import { FaChalkboardTeacher } from '@react-icons/all-files/fa/FaChalkboardTeach
 import { deletePackTC, updatePackTC } from '../../../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../../../store/store'
 
+import s from './Actions.module.css'
 type ActionsPropsType = {
   userId: string
   packId: string
@@ -28,13 +29,23 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
 
   if (userId === user._id) {
     return (
-      <>
-        <FaChalkboardTeacher onClick={handleCardClick} />
-        <AiFillEdit onClick={handleEditClick} />
-        <AiOutlineDelete onClick={handleDeleteClick} />
-      </>
+      <div className={s.blockIcon}>
+        <div className={s.icon}>
+          <FaChalkboardTeacher onClick={handleCardClick} />
+        </div>
+        <div className={s.icon}>
+          <AiFillEdit onClick={handleEditClick} />
+        </div>
+        <div className={s.icon}>
+          <AiOutlineDelete onClick={handleDeleteClick} />
+        </div>
+      </div>
     )
   } else {
-    return <FaChalkboardTeacher />
+    return (
+      <div className={s.icon}>
+        <FaChalkboardTeacher />
+      </div>
+    )
   }
 }
