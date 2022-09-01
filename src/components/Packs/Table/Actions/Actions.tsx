@@ -3,7 +3,9 @@ import React from 'react'
 import { AiFillEdit } from '@react-icons/all-files/ai/AiFillEdit'
 import { AiOutlineDelete } from '@react-icons/all-files/ai/AiOutlineDelete'
 import { FaChalkboardTeacher } from '@react-icons/all-files/fa/FaChalkboardTeacher'
+import { NavLink } from 'react-router-dom'
 
+import { PATH } from '../../../../routing/PageRouting/Pages/Pages'
 import { deletePackTC, updatePackTC } from '../../../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../../../store/store'
 
@@ -30,8 +32,10 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
   if (userId === user._id) {
     return (
       <div className={s.blockIcon}>
-        <div className={s.icon}>
-          <FaChalkboardTeacher onClick={handleCardClick} />
+        <div className={s.icon} onClick={handleCardClick}>
+          <NavLink to={`${PATH.CARDS}?cardsPack_id=${packId}`}>
+            <FaChalkboardTeacher />
+          </NavLink>
         </div>
         <div className={s.icon}>
           <AiFillEdit onClick={handleEditClick} />
@@ -44,7 +48,9 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
   } else {
     return (
       <div className={s.icon}>
-        <FaChalkboardTeacher />
+        <NavLink to={`${PATH.CARDS}?cardsPack_id=${packId}`}>
+          <FaChalkboardTeacher />
+        </NavLink>
       </div>
     )
   }

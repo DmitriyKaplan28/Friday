@@ -31,7 +31,7 @@ export const cardsReducer = (
     case 'SET-NAME-CADS':
       return {
         ...state,
-        cards: state.cards.map(t => (t.question = action.value)),
+        // cards: state.cards.map(t => (t.question = action.value)),
       }
     default:
       return state

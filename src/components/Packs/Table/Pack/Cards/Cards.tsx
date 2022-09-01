@@ -8,13 +8,16 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import { RiFilterOffFill } from '@react-icons/all-files/ri/RiFilterOffFill'
 import { useSearchParams } from 'react-router-dom'
 
 import SuperSelect from '../../../../../common/features/c5-SuperSelect/SuperSelect'
 import SuperDoubleRange from '../../../../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
 import { getCardsParams } from '../../../../../common/utils/GetParams'
-import { getCardsTC, setPageCountCardsAC } from '../../../../../store/reducers/CardsReducer'
+import {
+  getCardsTC,
+  setPageCountCardsAC,
+  setPageCurrentCardsAC,
+} from '../../../../../store/reducers/CardsReducer'
 import { useAppDispatch, useAppSelector } from '../../../../../store/store'
 import { InputDebounce } from '../../../../InputDebounce/InputDebounce'
 import { PaginationControlled } from '../../../../Pagination/Pagination'
@@ -29,6 +32,7 @@ export const Cards = () => {
   const { page, pageCount, cardsTotalCount } = useAppSelector(state => state.cards)
   const params = getCardsParams(searchParams) //может обернуть в useMemo
   const pagesCount = Math.ceil(cardsTotalCount / params.pageCount)
+  // const myId = useAppSelector(state => state.profile.)
 
   const onChangePageCount = (value: number) => {
     dispatch(setPageCountCardsAC(value))
@@ -38,11 +42,14 @@ export const Cards = () => {
     dispatch(getCardsTC(params))
   }, [page, pageCount, cardsTotalCount])
 
+  /*const changePageHandel = (value: number) => {
+    dispatch(setPageCurrentCardsAC(value))
+  }*/
+
   return (
     <div className={s.wrapper}>
       <div className={s.filter}>
         <InputDebounce value={searchTerm} onChangeValue={setSearchTerm} />
-        <SuperDoubleRange />
         {/*<div className={s.reset} onClick={onClickReset}>
           <button>
             <RiFilterOffFill />

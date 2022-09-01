@@ -3,13 +3,12 @@ import * as React from 'react'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 
+import { setPageCurrentCardsAC } from '../../store/reducers/CardsReducer'
 import { setPacksParamsAC } from '../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
-import { setPageCurrentCardsAC } from '../../store/reducers/CardsReducer'
 
 type PaginationControlledType = {
   count: number
-  callback: (value: number | { page: number }) => void
   page?: number
 }
 export function PaginationControlled(props: PaginationControlledType) {
@@ -17,7 +16,7 @@ export function PaginationControlled(props: PaginationControlledType) {
   const status = useAppSelector(state => state.app.status)
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     dispatch(setPageCurrentCardsAC(value))
-    //dispatch(setCurrentPageAC(value))
+    //props.callback(value)
     dispatch(setPacksParamsAC({ page: value }))
   }
 
