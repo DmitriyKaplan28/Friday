@@ -47,8 +47,8 @@ export const ResetPassword = () => {
         }}
       >
         {!sentEmail ? (
-          <form method="post" onSubmit={formik.handleSubmit}>
-            <h1>Forgot your password?</h1>
+          <form className={s.formWrapper} onSubmit={formik.handleSubmit}>
+            <p>Forgot your password?</p>
             <div className={s.input}>
               <TextField
                 error={formik.touched.email && Boolean(formik.errors.email)}
