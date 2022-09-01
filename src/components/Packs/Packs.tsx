@@ -21,7 +21,7 @@ const initialOptions = [4, 8, 16, 32, 64]
 export const Packs = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const dispatch = useAppDispatch()
-  const { page, pageCount, min, max, sortPacks, packName } = useAppSelector(
+  const { page, pageCount, min, max, sortPacks, packName, user_id } = useAppSelector(
     state => state.paramsPacks
   )
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
@@ -38,7 +38,7 @@ export const Packs = () => {
 
   useEffect(() => {
     dispatch(setCardPacksTC())
-  }, [page, pageCount, min, max, sortPacks, packName])
+  }, [page, pageCount, min, max, sortPacks, packName, user_id])
   if (!isLoggedIn) {
     return <Navigate to={PATH.PROFILE} />
   }

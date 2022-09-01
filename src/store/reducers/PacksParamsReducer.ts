@@ -5,6 +5,7 @@ const initialState = {
   sortPacks: '0',
   min: 3,
   max: 110,
+  user_id: '',
 }
 
 export const packsParamsReducer = (
@@ -47,6 +48,11 @@ export const packsParamsReducer = (
         ...state,
         packName: action.name,
       }
+    case 'packsParamsReducer/SET-MY-PACKS':
+      return {
+        ...state,
+        user_id: action.id,
+      }
     case 'packsParamsReducer/RESET-SETTINGS-PACKS':
       return {
         ...state,
@@ -77,6 +83,8 @@ export const setSortDownCardAC = (value: number) =>
   ({ type: 'packsParamsReducer/SET-SORT-DOWN-CARD', value } as const)
 export const searchPackNameAC = (name: string) =>
   ({ type: 'packsParamsReducer/SEARCH-PACK-NAME', name } as const)
+export const setMyPacksAC = (id: string) =>
+  ({ type: 'packsParamsReducer/SET-MY-PACKS', id } as const)
 
 export const setResetSettingsPacksAC = () =>
   ({ type: 'packsParamsReducer/RESET-SETTINGS-PACKS' } as const)
@@ -91,6 +99,7 @@ export type packsParamsAT =
   | SetSortDownCardAT
   | SearchPackNameAT
   | SetResetSettingsPacksAT
+  | SetMyPacksAT
 export type SetCurrentPageAT = ReturnType<typeof setCurrentPageAC>
 export type SetPageCountAC = ReturnType<typeof setPageCountAC>
 export type SetMinCountCardAT = ReturnType<typeof setMinCountCardAC>
@@ -99,3 +108,4 @@ export type SetSortUpCardAT = ReturnType<typeof setSortUpCardAC>
 export type SetSortDownCardAT = ReturnType<typeof setSortDownCardAC>
 export type SearchPackNameAT = ReturnType<typeof searchPackNameAC>
 export type SetResetSettingsPacksAT = ReturnType<typeof setResetSettingsPacksAC>
+export type SetMyPacksAT = ReturnType<typeof setMyPacksAC>

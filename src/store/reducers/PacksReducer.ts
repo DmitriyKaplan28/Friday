@@ -41,11 +41,11 @@ export const setCardPacksTotalCountAC = (cardPacksTotalCount: number) =>
 //THUNK
 export const setCardPacksTC = () => (dispatch: Dispatch, getState: () => AppRootStateType) => {
   const paramsPacks = getState().paramsPacks
-  const { page, pageCount, min, max, sortPacks, packName } = paramsPacks
+  const { page, pageCount, min, max, sortPacks, packName, user_id } = paramsPacks
 
   dispatch(setAppStatusAC('loading'))
   packsAPI
-    .getCardPacks({ page, pageCount, min, max, sortPacks, packName })
+    .getCardPacks({ page, pageCount, min, max, sortPacks, packName, user_id })
     .then(res => {
       dispatch(setCardPacksAC(res.data.cardPacks))
       dispatch(setCardPacksTotalCountAC(res.data.cardPacksTotalCount))
