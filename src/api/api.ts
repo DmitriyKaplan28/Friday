@@ -40,26 +40,52 @@ export const resetPasswordAPI = {
 }
 
 export const packsAPI = {
-  getCardPacks(data: ParamsType) {
+  getCardPacks(data: PacksParamsType) {
     return instance.get<GetResponseCardPacksType>(`/cards/pack?`, { params: data })
   },
-  getCards(id: string) {
-    return instance.get(`cards/card?cardsPack_id=${id}`)
+  addPack(name: string, deckCover?: string, isPrivate?: boolean) {
+    return instance.post<AddPackType, AxiosResponse<GetResponseCardPacksType>>('/cards/pack', {
+      cardsPack: {
+        name,
+        deckCover,
+        private: isPrivate,
+      },
+    })
+  },
+  deletePack(id: string) {
+    return instance.delete<'', AxiosResponse<GetResponseCardPacksType>>('/cards/pack', {
+      params: { id },
+    })
+  },
+  updatePack(_id: string) {
+    return instance.put<AxiosResponse<GetResponseCardPacksType>>('cards/pack', {
+      cardsPack: {
+        _id,
+        name: 'New name',
+      },
+    })
   },
 }
 
 //TYPE
-type ParamsType = {
+
+type AddPackType = {
+  name?: string
+  deckCover?: string
+  private?: boolean
+}
+
+export type PacksParamsType = {
   packName?: string
-  pageCount: number
-  page: number
+  pageCount?: number
+  page?: number
   min?: number
   max?: number
   sortPacks?: string
   user_id?: string
 }
 export type GetMeResponseType = UserType & { error: string }
-export type logOutResponseType = { error: string }
+
 export type UpdateUserResponseType = {
   updatedUser: UserType
   error: string

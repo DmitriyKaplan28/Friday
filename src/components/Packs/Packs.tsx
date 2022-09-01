@@ -3,8 +3,12 @@ import React, { useEffect, useState } from 'react'
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
 import { Navigate } from 'react-router-dom'
 
+import { Button } from '@mui/material'
+
 import SuperSelect from '../../common/features/c5-SuperSelect/SuperSelect'
 import SuperDoubleRange from '../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
+import { setPacksParamsAC } from '../../store/reducers/PacksParamsReducer'
+import { addPackTC, setCardPacksTC } from '../../store/reducers/PacksReducer'
 import { PATH } from '../../routing/PageRouting/Pages/Pages'
 import { setPageCountAC, setResetSettingsPacksAC } from '../../store/reducers/PacksParamsReducer'
 import { setCardPacksTC } from '../../store/reducers/PacksReducer'
@@ -30,12 +34,17 @@ export const Packs = () => {
   const pagesCount = Math.ceil(cardPacksTotalCount / pageCount)
 
   const onChangePageCount = (value: number) => {
-    dispatch(setPageCountAC(value))
+    //dispatch(setPageCountAC(value))
+    dispatch(setPacksParamsAC({ pageCount: value }))
   }
   const onClickReset = () => {
     dispatch(setResetSettingsPacksAC())
     setSearchTerm('')
     setAlignment('all')
+  }
+
+  const handleAddPack = () => {
+    dispatch(addPackTC('The most unique name'))
   }
 
   useEffect(() => {
@@ -49,6 +58,9 @@ export const Packs = () => {
     <div>
       <div className={s.wrapper}>
         <h3 className={s.mainTitle}>Packs list</h3>
+        <Button variant="outlined" onClick={handleAddPack}>
+          Add Pack
+        </Button>
         <div className={s.filter}>
           <InputDebounce value={searchTerm} onChangeValue={setSearchTerm} />
           <ColorToggleButton setAlignment={setAlignment} alignment={alignment} />

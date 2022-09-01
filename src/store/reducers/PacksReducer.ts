@@ -1,7 +1,9 @@
 import { Dispatch } from 'redux'
 
 import { packsAPI, PackType } from '../../api/api'
-import { AppRootStateType } from '../store'
+import { AppDispatch, AppThunk, AppRootStateType } from '../store'
+
+import { AppReducerType, setAppErrorAC, setAppStatusAC } from './AppReducer'
 
 import { setAppErrorAC, setAppStatusAC } from './AppReducer'
 import { setIsLoggedInAC } from './AuthReducer'
@@ -39,7 +41,7 @@ export const setCardPacksTotalCountAC = (cardPacksTotalCount: number) =>
   ({ type: 'packsReducer/SET-CARD-PACKS-TOTAL-COUNT', cardPacksTotalCount } as const)
 
 //THUNK
-export const setCardPacksTC = () => (dispatch: Dispatch, getState: () => AppRootStateType) => {
+export const setCardPacksTC = (): AppThunk => (dispatch: Dispatch, getState: () => AppRootStateType) => {
   const paramsPacks = getState().paramsPacks
   const { page, pageCount, min, max, sortPacks, packName, user_id } = paramsPacks
 
@@ -57,7 +59,48 @@ export const setCardPacksTC = () => (dispatch: Dispatch, getState: () => AppRoot
     .finally(() => dispatch(setAppStatusAC('succeeded')))
 }
 
+export const addPackTC =
+  (name: string, deckCover?: string, isPrivate?: boolean) => (dispatch: AppDispatch) => {
+    dispatch(setAppStatusAC('loading'))
+    packsAPI
+      .addPack(name, deckCover, isPrivate)
+      .then(() => {
+        dispatch(setCardPacksTC())
+      })
+      .catch(err => {
+        dispatch(setAppErrorAC(err.response.data.error))
+      })
+      .finally(() => dispatch(setAppStatusAC('succeeded')))
+  }
+export const deletePackTC = (id: string) => (dispatch: AppDispatch) => {
+  dispatch(setAppStatusAC('loading'))
+  packsAPI
+    .deletePack(id)
+    .then(() => {
+      dispatch(setCardPacksTC())
+    })
+    .catch(err => {
+      dispatch(setAppErrorAC(err.response.data.error))
+    })
+    .finally(() => dispatch(setAppStatusAC('succeeded')))
+}
+
+export const updatePackTC = (id: string) => (dispatch: AppDispatch) => {
+  dispatch(setAppStatusAC('loading'))
+  packsAPI
+    .updatePack(id)
+    .then(() => {
+      dispatch(setCardPacksTC())
+    })
+    .catch(err => {
+      dispatch(setAppErrorAC(err.response.data.error))
+    })
+    .finally(() => dispatch(setAppStatusAC('succeeded')))
+}
+
 //TYPE
 export type PacksAT = SetCardPacksAT | SetCardPacksTotalCountAT
 export type SetCardPacksAT = ReturnType<typeof setCardPacksAC>
 export type SetCardPacksTotalCountAT = ReturnType<typeof setCardPacksTotalCountAC>
+
+type ThunkDispatchPacksType = Dispatch<PacksAT | AppReducerType>

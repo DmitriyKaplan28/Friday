@@ -2,7 +2,7 @@ import { Dispatch } from 'redux'
 
 import { authAPI, LoginParamsType } from '../../api/api'
 
-import { AppReducerType, setAppStatusAC } from './AppReducer'
+import { AppReducerType, setAppErrorAC, setAppStatusAC } from './AppReducer'
 import { setUserAC } from './ProfileReducer'
 
 const initialState: InitialLoginStateType = {
@@ -17,8 +17,6 @@ export const authReducer = (
   switch (action.type) {
     case 'login/SET-IS-LOGGED-IN':
       return { ...state, isLoggedIn: action.value }
-    case 'login/SET-ERROR':
-      return { ...state, error: action.error }
     default:
       return state
   }
@@ -27,7 +25,6 @@ export const authReducer = (
 // actions
 export const setIsLoggedInAC = (value: boolean) =>
   ({ type: 'login/SET-IS-LOGGED-IN', value } as const)
-export const setErrorAC = (error: string | null) => ({ type: 'login/SET-ERROR', error } as const)
 
 // thunks
 export const loginTC = (data: LoginParamsType) => (dispatch: ThunkDispatchType) => {
@@ -39,7 +36,7 @@ export const loginTC = (data: LoginParamsType) => (dispatch: ThunkDispatchType) 
       dispatch(setUserAC(res.data))
     })
     .catch(err => {
-      setErrorAC(err.response.data.error)
+      dispatch(setAppErrorAC(err.response.data.error))
     })
     .finally(() => dispatch(setAppStatusAC('succeeded')))
 }
@@ -52,16 +49,13 @@ export const logoutTC = () => (dispatch: ThunkDispatchType) => {
       dispatch(setIsLoggedInAC(false))
     })
     .catch(err => {
-      setErrorAC(err.response.data.error)
+      dispatch(setAppErrorAC(err.response.data.error))
     })
     .finally(() => dispatch(setAppStatusAC('succeeded')))
 }
 
 // types
-export type AuthActionsType =
-  | SetIsLoggedInType
-  | ReturnType<typeof setErrorAC>
-  | ReturnType<typeof setUserAC>
+export type AuthActionsType = SetIsLoggedInType | ReturnType<typeof setUserAC>
 export type SetIsLoggedInType = ReturnType<typeof setIsLoggedInAC>
 
 type InitialLoginStateType = {

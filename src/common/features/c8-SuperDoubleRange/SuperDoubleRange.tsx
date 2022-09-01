@@ -3,8 +3,8 @@ import { ChangeEvent, useEffect, useState } from 'react'
 
 import Slider from '@mui/material/Slider'
 
-import { setMaxCountCardAC, setMinCountCardAC } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { setPacksParamsAC } from '../../../store/reducers/PacksParamsReducer'
 
 import s from './SuperDoubleRange.module.css'
 
@@ -19,8 +19,10 @@ export default function SuperDoubleRange() {
     setValue([min, max])
   }, [min, max])
   const handleChangeCommitted = () => {
-    dispatch(setMinCountCardAC(value[0]))
-    dispatch(setMaxCountCardAC(value[1]))
+    //dispatch(setMinCountCardAC(value[0]))
+    dispatch(setPacksParamsAC({ min: value[0] }))
+    //dispatch(setMaxCountCardAC(value[1]))
+    dispatch(setPacksParamsAC({ max: value[1] }))
   }
   const handleChange = (event: Event, newValue: number | number[], activeThumb: number) => {
     if (!Array.isArray(newValue)) {
@@ -55,7 +57,7 @@ export default function SuperDoubleRange() {
           onChangeCommitted={handleChangeCommitted}
           valueLabelDisplay="auto"
           disableSwap
-          min={3}
+          min={0}
           max={110}
         />
         <input onChange={onChangeMaxHandler} value={value[1]} className={s.input} />
