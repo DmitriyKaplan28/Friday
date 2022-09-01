@@ -32,7 +32,6 @@ export const ColorToggleButton = (props: ColorToggleButtonType) => {
       exclusive
       disabled={status === 'loading'}
       onChange={handleChange}
-      aria-label="Platform"
     >
       <ToggleButton value="my">My</ToggleButton>
       <ToggleButton value="all">All</ToggleButton>
