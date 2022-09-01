@@ -1,10 +1,8 @@
-import { GetResponseCardPacksType } from '../../api/api'
-
 const initialState = {
   packName: '',
   page: 1,
   pageCount: 4,
-  sortPacks: '',
+  sortPacks: '0',
   min: 3,
   max: 110,
 }
@@ -73,9 +71,9 @@ export const setMinCountCardAC = (min: number) =>
   ({ type: 'packsParamsReducer/SET-MIN-COUNT-CARD', min } as const)
 export const setMaxCountCardAC = (max: number) =>
   ({ type: 'packsParamsReducer/SET-MAX-COUNT-CARD', max } as const)
-export const setSortUpCardAC = (value: 0 | 1) =>
+export const setSortUpCardAC = (value: number) =>
   ({ type: 'packsParamsReducer/SET-SORT-UP-CARD', value } as const)
-export const setSortDownCardAC = (value: 0 | 1) =>
+export const setSortDownCardAC = (value: number) =>
   ({ type: 'packsParamsReducer/SET-SORT-DOWN-CARD', value } as const)
 export const searchPackNameAC = (name: string) =>
   ({ type: 'packsParamsReducer/SEARCH-PACK-NAME', name } as const)

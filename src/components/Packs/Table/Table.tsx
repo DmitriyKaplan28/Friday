@@ -50,7 +50,7 @@ const columns: Array<Column> = [
 export const StickyHeadTable = () => {
   const { cardPacks } = useAppSelector(state => state.packs)
   const dispatch = useAppDispatch()
-  const onClickSortHandler = (value: 0 | 1) => {
+  const onClickSortHandler = (value: number) => {
     dispatch(setSortUpCardAC(value))
   }
   const onClickHandler = (id: string) => {

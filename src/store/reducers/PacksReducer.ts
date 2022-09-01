@@ -5,7 +5,6 @@ import { AppRootStateType } from '../store'
 
 import { setAppErrorAC, setAppStatusAC } from './AppReducer'
 import { setIsLoggedInAC } from './AuthReducer'
-import { setResetSettingsPacksAC } from './PacksParamsReducer'
 
 const initialState = {
   cardPacks: [] as Array<PackType>,

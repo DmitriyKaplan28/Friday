@@ -10,7 +10,7 @@ import s from './SortArrow.module.css'
 type SortArrowType = {
   label?: string
   mode: boolean
-  onClickSortHandler: (value: 0 | 1) => void
+  onClickSortHandler: (value: number) => void
 }
 
 export const SortArrow = (props: SortArrowType) => {
@@ -19,9 +19,8 @@ export const SortArrow = (props: SortArrowType) => {
   const sortPacks = useAppSelector(state => state.paramsPacks.sortPacks)
   let numEl = parseInt(sortPacks)
 
-  console.log(sortPacks)
-  console.log(typeof numEl, numEl)
-  const onClickHandler = (value: 0 | 1) => {
+  console.log(numEl, sortPacks)
+  const onClickHandler = (value: number) => {
     props.onClickSortHandler(value)
     setMode(!mode)
   }
@@ -29,12 +28,20 @@ export const SortArrow = (props: SortArrowType) => {
   return (
     <div className={s.btnBlock}>
       {mode ? (
-        <button disabled={status === 'loading'} className={s.btn} onClick={() => onClickHandler(1)}>
+        <button
+          disabled={status === 'loading'}
+          className={s.btn}
+          onClick={() => onClickHandler(numEl - 1)}
+        >
           {props.label}
           <AiOutlineArrowDown />
         </button>
       ) : (
-        <button disabled={status === 'loading'} className={s.btn} onClick={() => onClickHandler(0)}>
+        <button
+          disabled={status === 'loading'}
+          className={s.btn}
+          onClick={() => onClickHandler(numEl + 1)}
+        >
           {props.label}
           <AiOutlineArrowUp />
         </button>
