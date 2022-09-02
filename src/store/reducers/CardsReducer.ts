@@ -3,7 +3,7 @@ import { AxiosError } from 'axios'
 import { Dispatch } from 'redux'
 
 import { ErrorDataResponseType } from '../../api/api'
-import { cardsAPI, CardsParamsType, CardsResponseType } from '../../api/cardsApi'
+import { cardsAPI, CardsParamsType, CardsResponseType, CardsType } from '../../api/cardsApi'
 
 import { AppReducerType, setAppErrorAC, setAppStatusAC } from './AppReducer'
 
@@ -35,6 +35,8 @@ export const cardsReducer = (
         ...state,
         // cards: state.cards.map(t => (t.question = action.value)),
       }
+    case 'ADD-CARD':
+      return { ...state, cards: [action.data, ...state.cards] }
     case 'DELETE-CARD':
       return { ...state, cards: state.cards.filter(c => c.cardsPack_id !== action.cardId) }
     default:
@@ -49,6 +51,8 @@ export const setPageCountCardsAC = (pageCount: number) =>
   ({ type: 'SET-PAGE-COUNT', pageCount } as const)
 
 export const deleteCardAC = (cardId: string) => ({ type: 'DELETE-CARD', cardId } as const)
+
+export const addCardAC = (data: CardsType) => ({ type: 'ADD-CARD', data } as const)
 
 export const setNameCardsAC = (value: string) => ({ type: 'SET-NAME-CADS', value } as const)
 
@@ -114,6 +118,30 @@ export const updateCardTC = (cardId: string, params: CardsParamsType) => {
       })
   }
 }
+export const addCardTC = (cardsPack_id: string, params: CardsParamsType) => {
+  return (dispatch: Dispatch<CardsACType | AppReducerType>) => {
+    const data = {
+      cardsPack_id: cardsPack_id,
+      question: 'New Question',
+      answer: 'New Answer',
+    }
+
+    dispatch(setAppStatusAC('loading'))
+    cardsAPI
+      .addCard(data)
+      .then(res => {
+        //Разобраться с типизацией
+        // @ts-ignore
+        dispatch(getCardsTC(params))
+      })
+      .catch((error: AxiosError<ErrorDataResponseType>) => {
+        dispatch(setAppErrorAC(error.response?.data.error))
+      })
+      .finally(() => {
+        dispatch(setAppStatusAC('succeeded'))
+      })
+  }
+}
 
 // types
 export type CardsACType = ReturnType<
@@ -122,4 +150,5 @@ export type CardsACType = ReturnType<
   | typeof setPageCurrentCardsAC
   | typeof setNameCardsAC
   | typeof deleteCardAC
+  | typeof addCardAC
 >

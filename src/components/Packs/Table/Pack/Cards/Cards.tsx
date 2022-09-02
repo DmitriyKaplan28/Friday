@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 
+import { Button } from '@mui/material'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -15,6 +16,7 @@ import SuperSelect from '../../../../../common/features/c5-SuperSelect/SuperSele
 import { getCardsParams } from '../../../../../common/utils/GetParams'
 import { PATH } from '../../../../../routing/PageRouting/Pages/Pages'
 import {
+  addCardTC,
   deleteCardTC,
   getCardsTC,
   setPageCountCardsAC,
@@ -53,11 +55,17 @@ export const Cards = () => {
   if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN} />
   }
+  const handleAddCard = () => {
+    dispatch(addCardTC(params.cardsPack_id, params))
+  }
 
   return (
     <div className={s.wrapper}>
       <BackPage title={'Packs List'} route={PATH.PACKS} />
-      <h1>{packName}</h1>
+      <h3 className={s.mainTitle}>{packName}</h3>
+      <Button variant="outlined" onClick={handleAddCard}>
+        Add Pack
+      </Button>
       <div className={s.filter}>
         <InputDebounce value={searchTerm} onChangeValue={setSearchTerm} />
       </div>
