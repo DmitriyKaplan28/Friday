@@ -10,7 +10,6 @@ type ShowPasswordType = {
   callback: (value: string) => void
 }
 export const ShowPassword = memo((props: ShowPasswordType) => {
-  console.log('render ShowPassword')
   const [link, setLink] = useState<boolean>(false)
 
   const onChangeHandler = useCallback(() => {
