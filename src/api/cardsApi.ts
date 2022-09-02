@@ -7,12 +7,16 @@ const instance = axios.create({
 })
 
 export const cardsAPI = {
-  getCards(params: CardsParamsType) {
-    console.log(params)
-
+  getCard(params: CardsParamsType) {
     return instance.get<CardsResponseType>('/cards/card', {
       params,
     })
+  },
+  deleteCard(cardId: string) {
+    return instance.delete<CardsResponseType>(`cards/card?id=${cardId}`)
+  },
+  updateCard(data: UpdateCardDataType) {
+    return instance.put<CardsResponseType>(`cards/card`, { card: data })
   },
 }
 
@@ -44,9 +48,15 @@ export type CardsType = {
   __v: 0
   _id: string
 }
+export type UpdateCardDataType = {
+  _id: string
+  question?: string
+  answer?: string
+}
+
 export type CardsResponseType = {
   cards: CardsType[]
-  packUserId?: string
+  packUserId: string
   packName?: string
   packPrivate?: boolean
   packCreated?: string

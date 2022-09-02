@@ -11,12 +11,12 @@ import TableRow from '@mui/material/TableRow'
 import { useSearchParams } from 'react-router-dom'
 
 import SuperSelect from '../../../../../common/features/c5-SuperSelect/SuperSelect'
-import SuperDoubleRange from '../../../../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
 import { getCardsParams } from '../../../../../common/utils/GetParams'
 import {
+  deleteCardTC,
   getCardsTC,
   setPageCountCardsAC,
-  setPageCurrentCardsAC,
+  updateCardTC,
 } from '../../../../../store/reducers/CardsReducer'
 import { useAppDispatch, useAppSelector } from '../../../../../store/store'
 import { InputDebounce } from '../../../../InputDebounce/InputDebounce'
@@ -32,8 +32,9 @@ export const Cards = () => {
   const { page, pageCount, cardsTotalCount } = useAppSelector(state => state.cards)
   const params = getCardsParams(searchParams) //может обернуть в useMemo
   const pagesCount = Math.ceil(cardsTotalCount / params.pageCount)
-  // const myId = useAppSelector(state => state.profile.)
-
+  const myId = useAppSelector(state => state.profile.user._id)
+  const packUserId = useAppSelector(state => state.cards.packUserId)
+  const myCards = myId === packUserId
   const onChangePageCount = (value: number) => {
     dispatch(setPageCountCardsAC(value))
   }
@@ -42,19 +43,11 @@ export const Cards = () => {
     dispatch(getCardsTC(params))
   }, [page, pageCount, cardsTotalCount])
 
-  /*const changePageHandel = (value: number) => {
-    dispatch(setPageCurrentCardsAC(value))
-  }*/
-
   return (
     <div className={s.wrapper}>
+      {myCards ? <h1>My Cards</h1> : <h1>Friends Cards</h1>}
       <div className={s.filter}>
         <InputDebounce value={searchTerm} onChangeValue={setSearchTerm} />
-        {/*<div className={s.reset} onClick={onClickReset}>
-          <button>
-            <RiFilterOffFill />
-          </button>
-        </div>*/}
       </div>
       <TableContainer component={Paper}>
         <Table sx={{ maxWidth: 900, margin: '100px' }} aria-label="customized table">
@@ -64,6 +57,7 @@ export const Cards = () => {
               <TableCell align="right">Answer</TableCell>
               <TableCell align="right">Last Updated</TableCell>
               <TableCell align="right">Grade</TableCell>
+              {myCards && <TableCell align="right">Actions</TableCell>}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -75,6 +69,24 @@ export const Cards = () => {
                 <TableCell align="right">{c.answer}</TableCell>
                 <TableCell align="right">{new Date(c.updated).toLocaleDateString()}</TableCell>
                 <TableCell align="right">{c.rating}</TableCell>
+                {myCards && (
+                  <TableCell align="right">
+                    <p
+                      onClick={() => {
+                        dispatch(deleteCardTC(c._id, params))
+                      }}
+                    >
+                      delete
+                    </p>
+                    <p
+                      onClick={() => {
+                        dispatch(updateCardTC(c._id, params))
+                      }}
+                    >
+                      update
+                    </p>
+                  </TableCell>
+                )}
               </TableRow>
             ))}
           </TableBody>
