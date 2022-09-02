@@ -5,7 +5,7 @@ import { useFormik } from 'formik'
 import { NavLink, Navigate } from 'react-router-dom'
 
 import { ShowPassword } from '../../common/features/c10-ShowPassword/ShowPassword'
-import { PATH } from '../../routing/PageRouting/Pages/Pages'
+import { PATH } from '../../routing/Pages/Pages'
 import { setRegistrationTC } from '../../store/reducers/SignUpReducer'
 import { AppRootStateType, useAppDispatch, useAppSelector } from '../../store/store'
 import s from '../ComonnStylePage.module.css'

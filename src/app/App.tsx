@@ -4,7 +4,7 @@ import './App.css'
 import { CircularProgress } from '@mui/material'
 
 import { ErrorSnackbar } from '../common/features/c9-ErrorSnackbar/ErrorSnackbar'
-import { PageRouting } from '../routing/PageRouting/PageRouting'
+import { PageRouting } from '../routing/PageRouting'
 import { appInitialTC } from '../store/reducers/AppReducer'
 import { useAppDispatch, useAppSelector } from '../store/store'
 

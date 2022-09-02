@@ -9,7 +9,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import { NavLink } from 'react-router-dom'
 
-import { PATH } from '../../../routing/PageRouting/Pages/Pages'
+import { PATH } from '../../../routing/Pages/Pages'
 import { setPacksParamsAC } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { SortArrow } from '../SortArrow/SortArrow'

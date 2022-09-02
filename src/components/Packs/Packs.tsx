@@ -6,7 +6,7 @@ import { Navigate } from 'react-router-dom'
 
 import SuperSelect from '../../common/features/c5-SuperSelect/SuperSelect'
 import SuperDoubleRange from '../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
-import { PATH } from '../../routing/PageRouting/Pages/Pages'
+import { PATH } from '../../routing/Pages/Pages'
 import { setPacksParamsAC, setResetSettingsPacksAC } from '../../store/reducers/PacksParamsReducer'
 import { addPackTC, setCardPacksTC } from '../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'

@@ -8,7 +8,13 @@
     margin: 0 auto;
 }
 
-.icon svg {
+.iconBtn{
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.iconBtn svg {
     cursor: pointer;
 
     width: 20px;
@@ -17,6 +23,6 @@
     color: #000000;
 }
 
-.icon svg:hover{
+.iconBtn svg:hover{
     color: #808080;
 }
