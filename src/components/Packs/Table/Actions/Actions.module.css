@@ -1,4 +1,4 @@
-.blockIcon{
+.blockIcon {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -7,12 +7,16 @@
     max-width: 150px;
     margin: 0 auto;
 }
-.icon svg{
+
+.icon svg {
     cursor: pointer;
 
     width: 20px;
     height: 20px;
+
+    color: #000000;
 }
-.icon:active {
-    color: black;
+
+.icon svg:hover{
+    color: #808080;
 }

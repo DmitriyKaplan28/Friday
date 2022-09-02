@@ -9,7 +9,6 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import { NavLink } from 'react-router-dom'
 
-import { packsAPI } from '../../../api/api'
 import { PATH } from '../../../routing/PageRouting/Pages/Pages'
 import { setPacksParamsAC } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
@@ -54,7 +53,6 @@ export const StickyHeadTable = () => {
   const { cardPacks } = useAppSelector(state => state.packs)
   const dispatch = useAppDispatch()
   const onClickSortHandler = (value: number) => {
-    //dispatch(sortPackAC(value))
     dispatch(setPacksParamsAC({ sortPacks: value + `updated` }))
   }
 
@@ -87,7 +85,9 @@ export const StickyHeadTable = () => {
                 return (
                   <TableRow key={p._id}>
                     <TableCell align="center">
-                      <NavLink to={`${PATH.CARDS}?cardsPack_id=${p._id}`}>{p.name}</NavLink>
+                      <NavLink className={s.userName} to={`${PATH.CARDS}?cardsPack_id=${p._id}`}>
+                        {p.name}
+                      </NavLink>
                     </TableCell>
                     <TableCell align="center">{p.cardsCount}</TableCell>
                     <TableCell align="center">{new Date(p.updated).toLocaleDateString()}</TableCell>
