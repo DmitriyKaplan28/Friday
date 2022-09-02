@@ -57,7 +57,7 @@ export type UpdateCardDataType = {
 export type CardsResponseType = {
   cards: CardsType[]
   packUserId: string
-  packName?: string
+  packName: string
   packPrivate?: boolean
   packCreated?: string
   packUpdated: string

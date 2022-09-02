@@ -10,6 +10,7 @@ import { AppReducerType, setAppErrorAC, setAppStatusAC } from './AppReducer'
 const initialState: CardsResponseType = {
   cards: [],
   packUserId: '',
+  packName: '',
   page: 1,
   pageCount: 4,
   packUpdated: '',

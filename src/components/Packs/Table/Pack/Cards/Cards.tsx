@@ -8,10 +8,12 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import { useSearchParams } from 'react-router-dom'
+import { Navigate, useSearchParams } from 'react-router-dom'
 
+import { BackPage } from '../../../../../common/features/c11-BackPage/BackPage'
 import SuperSelect from '../../../../../common/features/c5-SuperSelect/SuperSelect'
 import { getCardsParams } from '../../../../../common/utils/GetParams'
+import { PATH } from '../../../../../routing/PageRouting/Pages/Pages'
 import {
   deleteCardTC,
   getCardsTC,
@@ -22,14 +24,19 @@ import { useAppDispatch, useAppSelector } from '../../../../../store/store'
 import { InputDebounce } from '../../../../InputDebounce/InputDebounce'
 import { PaginationControlled } from '../../../../Pagination/Pagination'
 import { initialOptions } from '../../../Packs'
-import s from '../../../Packs.module.css'
+
+import s from './Cards.module.css'
 
 export const Cards = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const dispatch = useAppDispatch()
   const cards = useAppSelector(state => state.cards.cards)
   const [searchParams] = useSearchParams()
-  const { page, pageCount, cardsTotalCount } = useAppSelector(state => state.cards)
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  const page = useAppSelector(state => state.cards.page)
+  const pageCount = useAppSelector(state => state.cards.pageCount)
+  const packName = useAppSelector(state => state.cards.packName)
+  const cardsTotalCount = useAppSelector(state => state.cards.cardsTotalCount)
   const params = getCardsParams(searchParams) //может обернуть в useMemo
   const pagesCount = Math.ceil(cardsTotalCount / params.pageCount)
   const myId = useAppSelector(state => state.profile.user._id)
@@ -42,6 +49,10 @@ export const Cards = () => {
   useEffect(() => {
     dispatch(getCardsTC(params))
   }, [page, pageCount, cardsTotalCount])
+
+  if (!isLoggedIn) {
+    return <Navigate to={PATH.LOGIN} />
+  }
 
   return (
     <div className={s.wrapper}>

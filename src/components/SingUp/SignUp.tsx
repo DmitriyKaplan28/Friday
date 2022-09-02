@@ -7,7 +7,7 @@ import { NavLink, Navigate } from 'react-router-dom'
 import { ShowPassword } from '../../common/features/c10-ShowPassword/ShowPassword'
 import { PATH } from '../../routing/PageRouting/Pages/Pages'
 import { setRegistrationTC } from '../../store/reducers/SignUpReducer'
-import { AppRootStateType, useAppDispatch, useAppSelector } from '../../store/store'
+import { useAppDispatch, useAppSelector } from '../../store/store'
 import s from '../ComonnStylePage.module.css'
 
 export type initialValuesType = {
@@ -18,7 +18,7 @@ export type initialValuesType = {
 
 export const SignUp = () => {
   const dispatch = useAppDispatch()
-  const isLoggedIn = useAppSelector((state: AppRootStateType) => state.auth.isLoggedIn)
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
   const [typeInputPassword, setTypeP] = useState<string>('password')
   const [typeInputConfirmPassword, setTypeCP] = useState<string>('password')
 
