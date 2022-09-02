@@ -1,8 +1,6 @@
-import React from 'react'
+import { Navigate } from 'react-router-dom'
 
-import { AiOutlineArrowLeft } from '@react-icons/all-files/ai/AiOutlineArrowLeft'
-import { Navigate, NavLink } from 'react-router-dom'
-
+import { BackPage } from '../../common/features/c11-BackPage/BackPage'
 import { PATH } from '../../routing/PageRouting/Pages/Pages'
 import { changeNameTC } from '../../store/reducers/ProfileReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
@@ -24,12 +22,7 @@ function Profile() {
 
   return (
     <div className={s.wrapper}>
-      <div className={s.blockTitle}>
-        <AiOutlineArrowLeft />
-        <span className={s.title}>
-          <NavLink to={PATH.PACKS}>Back to Packs List</NavLink>
-        </span>
-      </div>
+      <BackPage title={'Packs List'} route={PATH.PACKS} />
       <Card user={user} changeUserNameValue={changeUserNameValue} />
     </div>
   )

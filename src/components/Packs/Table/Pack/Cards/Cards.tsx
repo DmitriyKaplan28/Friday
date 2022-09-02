@@ -45,7 +45,8 @@ export const Cards = () => {
 
   return (
     <div className={s.wrapper}>
-      {myCards ? <h1>My Cards</h1> : <h1>Friends Cards</h1>}
+      <BackPage title={'Packs List'} route={PATH.PACKS} />
+      <h1>{packName}</h1>
       <div className={s.filter}>
         <InputDebounce value={searchTerm} onChangeValue={setSearchTerm} />
       </div>
