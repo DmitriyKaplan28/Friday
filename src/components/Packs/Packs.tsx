@@ -37,7 +37,7 @@ export const Packs = () => {
 
   const onChangePageCount = (value: number) => {
     //dispatch(setPageCountAC(value))
-    dispatch(setPacksParamsAC({ pageCount: value }))
+    dispatch(setPacksParamsAC({ pageCount: value, page: 1 }))
   }
   const onClickReset = () => {
     dispatch(setResetSettingsPacksAC())
