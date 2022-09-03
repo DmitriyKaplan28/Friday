@@ -42,8 +42,8 @@ export const setCardPacksTotalCountAC = (cardPacksTotalCount: number) =>
 export const setCardPacksTC =
   (): AppThunk => (dispatch: Dispatch, getState: () => AppRootStateType) => {
     const paramsPacks = getState().paramsPacks
-    // const { page, pageCount, min, max, sortPacks, packName, user_id } = paramsPacks
 
+    // const { page, pageCount, min, max, sortPacks, packName, user_id } = paramsPacks
     dispatch(setAppStatusAC('loading'))
     packsAPI
       .getCardPacks(paramsPacks)
@@ -59,7 +59,7 @@ export const setCardPacksTC =
   }
 
 export const addPackTC =
-  (name: string, deckCover?: string, isPrivate?: boolean) => (dispatch: AppDispatch) => {
+  (name: string, isPrivate?: boolean, deckCover?: string) => (dispatch: AppDispatch) => {
     dispatch(setAppStatusAC('loading'))
     packsAPI
       .addPack(name, deckCover, isPrivate)

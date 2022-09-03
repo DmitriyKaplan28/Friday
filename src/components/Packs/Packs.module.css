@@ -57,3 +57,10 @@
     width: 18px;
     height: 18px;
 }
+
+
+.btnGroup{
+    display: flex;
+    align-items: center;
+    justify-content: space-between ;
+}
