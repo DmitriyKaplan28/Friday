@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
-import { Button } from '@mui/material'
 import { Navigate } from 'react-router-dom'
 
 import SuperSelect from '../../common/features/c5-SuperSelect/SuperSelect'
@@ -10,6 +9,7 @@ import { PATH } from '../../routing/Pages/Pages'
 import { setPacksParamsAC, setResetSettingsPacksAC } from '../../store/reducers/PacksParamsReducer'
 import { addPackTC, setCardPacksTC } from '../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
+import { CustomModal } from '../CustomModal/CustomModal'
 import { InputDebounce } from '../InputDebounce/InputDebounce'
 import { PaginationControlled } from '../Pagination/Pagination'
 import { ColorToggleButton } from '../ToggleButton/ColorToggleButton'
@@ -62,9 +62,13 @@ export const Packs = () => {
     <div>
       <div className={s.wrapper}>
         <h3 className={s.mainTitle}>Packs list</h3>
-        <Button variant="outlined" onClick={handleAddPack}>
-          Add Pack
-        </Button>
+        <CustomModal title={'Add Pack'}>
+          <div className={s.modalWrapper}>
+            <p>Add new pack</p>
+            <p>Name Pack</p>
+            <p>Private pack</p>
+          </div>
+        </CustomModal>
         <div className={s.filter}>
           <InputDebounce width={350} value={searchTerm} onChangeValue={setSearchTerm} />
           <ColorToggleButton
