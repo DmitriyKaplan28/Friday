@@ -57,11 +57,11 @@ export const packsAPI = {
       params: { id },
     })
   },
-  updatePack(_id: string) {
+  updatePack(_id: string, name: string) {
     return instance.put<AxiosResponse<GetResponseCardPacksType>>('cards/pack', {
       cardsPack: {
         _id,
-        name: 'New name',
+        name,
       },
     })
   },

@@ -84,10 +84,10 @@ export const deletePackTC = (id: string) => (dispatch: AppDispatch) => {
     .finally(() => dispatch(setAppStatusAC('succeeded')))
 }
 
-export const updatePackTC = (id: string) => (dispatch: AppDispatch) => {
+export const updatePackTC = (id: string, name: string) => (dispatch: AppDispatch) => {
   dispatch(setAppStatusAC('loading'))
   packsAPI
-    .updatePack(id)
+    .updatePack(id, name)
     .then(() => {
       dispatch(setCardPacksTC())
     })

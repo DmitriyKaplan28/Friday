@@ -1,21 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-import { AiFillEdit } from '@react-icons/all-files/ai/AiFillEdit'
-import { AiOutlineDelete } from '@react-icons/all-files/ai/AiOutlineDelete'
+import DeleteIcon from '@mui/icons-material/Delete'
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline'
+import SchoolIcon from '@mui/icons-material/School'
+import { IconButton } from '@mui/material'
 import { FaChalkboardTeacher } from '@react-icons/all-files/fa/FaChalkboardTeacher'
 import { NavLink } from 'react-router-dom'
 
 import { PATH } from '../../../../routing/Pages/Pages'
 import { deletePackTC, updatePackTC } from '../../../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../../../store/store'
+import { DeleteModal } from '../../DeleteModal'
+import { EditPackModal } from '../../EditPackModal'
 
 import s from './Actions.module.css'
+
 type ActionsPropsType = {
   userId: string
   packId: string
 }
 
 export const Actions = ({ userId, packId }: ActionsPropsType) => {
+  const [open, setOpen] = useState(false)
+  const [openDelModal, setOpenDelModal] = useState(false)
   const user = useAppSelector(state => state.profile.user)
   const status = useAppSelector(state => state.app.status)
   const dispatch = useAppDispatch()
@@ -23,27 +30,55 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
   const handleCardClick = () => {
     console.log('card')
   }
-  const handleEditClick = () => {
-    dispatch(updatePackTC(packId))
+  const handleEditClick = (name: string) => {
+    dispatch(updatePackTC(packId, name))
   }
   const handleDeleteClick = () => {
     dispatch(deletePackTC(packId))
+  }
+  const handleOpen = () => {
+    setOpen(!open)
+  }
+  const handleOpenDelModal = () => {
+    setOpenDelModal(!openDelModal)
   }
 
   if (userId === user._id) {
     return (
       <div className={s.blockIcon}>
-        <button disabled={status === 'loading'} className={s.iconBtn} onClick={handleCardClick}>
+        <IconButton disabled={status === 'loading'} className={s.iconBtn} onClick={handleCardClick}>
           <NavLink to={`${PATH.CARDS}?cardsPack_id=${packId}`}>
-            <FaChalkboardTeacher />
+            <SchoolIcon />
           </NavLink>
-        </button>
-        <button disabled={status === 'loading'} onClick={handleEditClick} className={s.iconBtn}>
-          <AiFillEdit />
-        </button>
-        <button disabled={status === 'loading'} onClick={handleDeleteClick} className={s.iconBtn}>
-          <AiOutlineDelete />
-        </button>
+        </IconButton>
+        <IconButton disabled={status === 'loading'} className={s.iconBtn} onClick={handleOpen}>
+          <ModeEditOutlineIcon />
+        </IconButton>
+        <EditPackModal open={open} setOpen={setOpen} handleEditClick={handleEditClick} />
+        <DeleteModal
+          packId={packId}
+          open={openDelModal}
+          setOpen={setOpenDelModal}
+          handleDeleteClick={handleDeleteClick}
+        />
+        <IconButton
+          disabled={status === 'loading'}
+          className={s.iconBtn}
+          onClick={handleOpenDelModal}
+        >
+          <DeleteIcon />
+        </IconButton>
+        {/*<button disabled={status === 'loading'} className={s.iconBtn} onClick={handleCardClick}>*/}
+        {/*  <NavLink to={`${PATH.CARDS}?cardsPack_id=${packId}`}>*/}
+        {/*    <FaChalkboardTeacher />*/}
+        {/*  </NavLink>*/}
+        {/*</button>*/}
+        {/*<button disabled={status === 'loading'} onClick={handleEditClick} className={s.iconBtn}>*/}
+        {/*  <AiFillEdit />*/}
+        {/*</button>*/}
+        {/*<button disabled={status === 'loading'} onClick={handleDeleteClick} className={s.iconBtn}>*/}
+        {/*  <AiOutlineDelete />*/}
+        {/*</button>*/}
       </div>
     )
   } else {

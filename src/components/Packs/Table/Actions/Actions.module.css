@@ -21,8 +21,6 @@
     height: 20px;
 
     color: #000000;
-}
 
-.iconBtn svg:hover{
-    color: #808080;
+    opacity: 0.8;
 }

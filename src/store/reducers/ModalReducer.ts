@@ -19,6 +19,6 @@ export const setShowModalAC = (value: boolean) => ({ type: 'SET-SHOW-MODAL', val
 
 //TYPE
 type InitialStateType = typeof initialState
-export type SetShowModalAT = ReturnType<typeof setShowModalAC>
+export type SetAPShowModalAT = ReturnType<typeof setShowModalAC>
 
-export type ModalReducerAT = SetShowModalAT
+export type ModalReducerAT = SetAPShowModalAT
