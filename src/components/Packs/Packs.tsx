@@ -34,8 +34,6 @@ export const Packs = () => {
   const packName = useAppSelector(state => state.paramsPacks.packName)
   const user_id = useAppSelector(state => state.paramsPacks.user_id)
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
-  const cardPacksTotalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
-  const pagesCount = Math.ceil(cardPacksTotalCount / pageCount)
 
   const onChangePageCount = (value: number) => {
     //dispatch(setPageCountAC(value))
@@ -66,7 +64,7 @@ export const Packs = () => {
           Add Pack
         </Button>
         <div className={s.filter}>
-          <InputDebounce value={searchTerm} onChangeValue={setSearchTerm} />
+          <InputDebounce width={350} value={searchTerm} onChangeValue={setSearchTerm} />
           <ColorToggleButton setAlignment={setAlignment} alignment={alignment} />
           <SuperDoubleRange />
           <div className={s.reset} onClick={onClickReset}>
@@ -77,7 +75,7 @@ export const Packs = () => {
         </div>
         <StickyHeadTable />
         <div className={s.pagination}>
-          <PaginationControlled page={page} count={pagesCount} />
+          <PaginationControlled page={page} count={pageCount} />
           <span className={s.title}>Show</span>
           <SuperSelect
             value={pageCount}

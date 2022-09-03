@@ -8,11 +8,6 @@ import { setUserAC } from './ProfileReducer'
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export type errorType = string | null | undefined
-export enum resultCodeStatus {
-  success = 0,
-  error = 1,
-  captcha = 10,
-}
 
 const initialState = {
   status: 'idle' as RequestStatusType,

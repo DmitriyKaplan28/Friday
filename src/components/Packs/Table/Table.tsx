@@ -84,14 +84,16 @@ export const StickyHeadTable = () => {
               {cardPacks.map(p => {
                 return (
                   <TableRow key={p._id}>
-                    <TableCell align="center">
+                    <TableCell align="center" style={{ maxWidth: 170, overflow: 'hidden' }}>
                       <NavLink className={s.userName} to={`${PATH.CARDS}?cardsPack_id=${p._id}`}>
                         {p.name}
                       </NavLink>
                     </TableCell>
                     <TableCell align="center">{p.cardsCount}</TableCell>
                     <TableCell align="center">{new Date(p.updated).toLocaleDateString()}</TableCell>
-                    <TableCell align="center">{p.user_name}</TableCell>
+                    <TableCell align="center" style={{ maxWidth: 260, overflow: 'hidden' }}>
+                      {p.user_name}
+                    </TableCell>
                     <TableCell align="center">
                       <Actions userId={p.user_id} packId={p._id} />
                     </TableCell>

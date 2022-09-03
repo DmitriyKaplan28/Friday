@@ -47,7 +47,7 @@ export const Cards = () => {
     <div className={s.wrapper}>
       {myCards ? <h1>My Cards</h1> : <h1>Friends Cards</h1>}
       <div className={s.filter}>
-        <InputDebounce value={searchTerm} onChangeValue={setSearchTerm} />
+        <InputDebounce width={1200} value={searchTerm} onChangeValue={setSearchTerm} />
       </div>
       <TableContainer component={Paper}>
         <Table sx={{ maxWidth: 900, margin: '100px' }} aria-label="customized table">

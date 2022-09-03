@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux'
 
 import { packsAPI, PackType } from '../../api/api'
-import { AppDispatch, AppThunk, AppRootStateType } from '../store'
+import { AppDispatch, AppRootStateType, AppThunk } from '../store'
 
 import { setAppErrorAC, setAppStatusAC } from './AppReducer'
 import { setIsLoggedInAC } from './AuthReducer'
@@ -42,11 +42,11 @@ export const setCardPacksTotalCountAC = (cardPacksTotalCount: number) =>
 export const setCardPacksTC =
   (): AppThunk => (dispatch: Dispatch, getState: () => AppRootStateType) => {
     const paramsPacks = getState().paramsPacks
-    const { page, pageCount, min, max, sortPacks, packName, user_id } = paramsPacks
+    // const { page, pageCount, min, max, sortPacks, packName, user_id } = paramsPacks
 
     dispatch(setAppStatusAC('loading'))
     packsAPI
-      .getCardPacks({ page, pageCount, min, max, sortPacks, packName, user_id })
+      .getCardPacks(paramsPacks)
       .then(res => {
         dispatch(setCardPacksAC(res.data.cardPacks))
         dispatch(setCardPacksTotalCountAC(res.data.cardPacksTotalCount))

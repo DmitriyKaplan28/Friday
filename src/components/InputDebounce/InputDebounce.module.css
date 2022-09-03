@@ -1,7 +1,13 @@
-.wrapper{
+.wrapper {
     position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
 }
-.about{
+
+.about {
     display: inline-block;
 
     margin-bottom: 8px;
@@ -10,16 +16,18 @@
     font-weight: 500;
     color: #000000;
 }
-.icon{
+
+.icon {
     position: absolute;
     top: 70%;
-    left: 5%;
+    left: 15px;
     transform: translateY(-30%);
 }
-.inputDebounce{
+
+.inputDebounce {
+    box-sizing: border-box;
     width: 100%;
-    max-width: 413px;
-    padding: 6px 40px;
+    padding: 6px 30px;
 
     background: #FFFFFF;
     border: 1px solid #D9D9D9;
