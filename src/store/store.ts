@@ -11,7 +11,6 @@ import { appReducer } from './reducers/AppReducer'
 import { authReducer } from './reducers/AuthReducer'
 import { cardsReducer } from './reducers/CardsReducer'
 import { enterNewPasswordReducer } from './reducers/EnterNewPasswordReducer'
-import { ModalReducer } from './reducers/ModalReducer'
 import { packsParamsReducer } from './reducers/PacksParamsReducer'
 import { packsReducer } from './reducers/PacksReducer'
 import { profileReducer } from './reducers/ProfileReducer'
@@ -28,7 +27,6 @@ const rootReducer = combineReducers({
   packs: packsReducer,
   cards: cardsReducer,
   paramsPacks: packsParamsReducer,
-  modal: ModalReducer,
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
