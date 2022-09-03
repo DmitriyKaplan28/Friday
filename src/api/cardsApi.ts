@@ -28,8 +28,6 @@ export type CardsParamsType = {
   cardsPack_id: string
   cardAnswer?: string
   cardQuestion?: string
-  // min?: number - подумать нужны ли
-  // max?: number - подумать нужны ли
   sortCards?: string
   page?: number
   pageCount: number
