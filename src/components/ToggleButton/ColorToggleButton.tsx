@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { useState } from 'react'
 
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
@@ -12,10 +11,11 @@ import s from './ToggleButton.module.css'
 type ColorToggleButtonType = {
   setAlignment: (value: string) => void
   alignment: string
+  on: boolean
+  setOn: (value: boolean) => void
 }
 
 export const ColorToggleButton = (props: ColorToggleButtonType) => {
-  let [on, setOn] = useState(false)
   const dispatch = useAppDispatch()
   const user = useAppSelector(state => state.profile.user)
   const handleChange = (event: React.MouseEvent<HTMLElement>, newAlignment: string) => {
@@ -25,8 +25,8 @@ export const ColorToggleButton = (props: ColorToggleButtonType) => {
     if (newAlignment === 'all') {
       dispatch(setMyPacksAC(''))
     }
-    on = !on
-    setOn(on)
+
+    props.setOn(!props.on)
     props.setAlignment(newAlignment)
   }
 
@@ -40,10 +40,10 @@ export const ColorToggleButton = (props: ColorToggleButtonType) => {
         exclusive
         onChange={handleChange}
       >
-        <ToggleButton sx={{ width: 100 }} value="my" selected={on} disabled={on}>
+        <ToggleButton sx={{ width: 100 }} value="my" selected={props.on} disabled={props.on}>
           My
         </ToggleButton>
-        <ToggleButton sx={{ width: 100 }} value="all" selected={!on} disabled={!on}>
+        <ToggleButton sx={{ width: 100 }} value="all" selected={!props.on} disabled={!props.on}>
           All
         </ToggleButton>
       </ToggleButtonGroup>
