@@ -23,11 +23,18 @@ export const Packs = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [alignment, setAlignment] = useState('all')
   const dispatch = useAppDispatch()
-  const { page, pageCount, min, max, sortPacks, packName, user_id } = useAppSelector(
-    state => state.paramsPacks
-  )
+  // const { page, pageCount, min, max, sortPacks, packName, user_id } = useAppSelector(
+  //   state => state.paramsPacks
+  // )
+  const page = useAppSelector(state => state.paramsPacks.page)
+  const pageCount = useAppSelector(state => state.paramsPacks.pageCount)
+  const min = useAppSelector(state => state.paramsPacks.min)
+  const max = useAppSelector(state => state.paramsPacks.max)
+  const sortPacks = useAppSelector(state => state.paramsPacks.sortPacks)
+  const packName = useAppSelector(state => state.paramsPacks.packName)
+  const user_id = useAppSelector(state => state.paramsPacks.user_id)
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
-  const { cardPacksTotalCount } = useAppSelector(state => state.packs)
+  const cardPacksTotalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
   const pagesCount = Math.ceil(cardPacksTotalCount / pageCount)
 
   const onChangePageCount = (value: number) => {
