@@ -120,19 +120,3 @@ export const SignUp = () => {
     </div>
   )
 }
-
-// Подумать
-/*
-<Input field="Email" type="email" callback={setTypeP} />
-<Input
-    field="Password"
-    type={typeInputPassword}
-    callback={setTypeP}
-    showPassword={true}
-/>
-<Input
-    field="CdonfirmPassword"
-    type={typeInputConfirmPassword}
-    callback={setTypeCP}
-    showPassword={true}
-/>*/
