@@ -20,9 +20,9 @@ import { StickyHeadTable } from './Table/Table'
 export const initialOptions = [4, 8, 16, 32, 64]
 
 export const Packs = () => {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [alignment, setAlignment] = useState('all')
-  let [on, setOn] = useState(false)
+  const [searchTerm, setSearchTerm] = useState<string>('')
+  const [alignment, setAlignment] = useState<string>('all')
+  let [on, setOn] = useState<boolean>(false)
   const dispatch = useAppDispatch()
   // const { page, pageCount, min, max, sortPacks, packName, user_id } = useAppSelector(
   //   state => state.paramsPacks

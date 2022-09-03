@@ -7,7 +7,7 @@ import { setAppErrorAC, setAppStatusAC } from './AppReducer'
 import { setIsLoggedInAC } from './AuthReducer'
 
 const initialState = {
-  cardPacks: [] as Array<PackType>,
+  cardPacks: [] as PackType[],
   cardPacksTotalCount: 500,
 }
 
@@ -33,7 +33,7 @@ export const packsReducer = (
 }
 
 //ACTIONS
-export const setCardPacksAC = (packs: Array<PackType>) =>
+export const setCardPacksAC = (packs: PackType[]) =>
   ({ type: 'packsReducer/SET-CARD-PACKS', packs } as const)
 export const setCardPacksTotalCountAC = (cardPacksTotalCount: number) =>
   ({ type: 'packsReducer/SET-CARD-PACKS-TOTAL-COUNT', cardPacksTotalCount } as const)
