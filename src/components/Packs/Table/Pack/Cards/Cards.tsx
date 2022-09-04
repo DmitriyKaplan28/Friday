@@ -9,7 +9,7 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import { Navigate, useSearchParams } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 import { BackPage } from '../../../../../common/features/c11-BackPage/BackPage'
 import { PATH } from '../../../../../routing/Pages/Pages'
