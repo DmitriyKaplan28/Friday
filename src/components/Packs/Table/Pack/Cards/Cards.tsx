@@ -18,11 +18,13 @@ import {
   setPageCountCardsAC,
   updateCardTC,
 } from '../../../../../store/reducers/CardsReducer'
+import { deletePackTC, updatePackTC } from '../../../../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../../../../store/store'
 import { InputDebounce } from '../../../../InputDebounce/InputDebounce'
 import { PaginationControlled } from '../../../../Pagination/Pagination'
 import { initialOptions } from '../../../Packs'
 import s from '../../../Packs.module.css'
+import { MyIdActions } from '../../Actions/MyIdActions/MyIdActions'
 
 export const Cards = () => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -71,20 +73,14 @@ export const Cards = () => {
                 <TableCell align="right">{c.rating}</TableCell>
                 {myCards && (
                   <TableCell align="right">
-                    <p
-                      onClick={() => {
+                    <MyIdActions
+                      handleDeleteClick={() => {
                         dispatch(deleteCardTC(c._id, params))
                       }}
-                    >
-                      delete
-                    </p>
-                    <p
-                      onClick={() => {
+                      handleEditClick={() => {
                         dispatch(updateCardTC(c._id, params))
                       }}
-                    >
-                      update
-                    </p>
+                    />
                   </TableCell>
                 )}
               </TableRow>

@@ -10,6 +10,7 @@ import { deletePackTC, updatePackTC } from '../../../../store/reducers/PacksRedu
 import { useAppDispatch, useAppSelector } from '../../../../store/store'
 
 import s from './Actions.module.css'
+import { MyIdActions } from './MyIdActions/MyIdActions'
 
 type ActionsPropsType = {
   userId: string
@@ -24,10 +25,10 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
   const handleCardClick = () => {
     console.log('card')
   }
-  const handleEditClick = () => {
+  const handleEditPackClick = () => {
     dispatch(updatePackTC(packId))
   }
-  const handleDeleteClick = () => {
+  const handleDeletePackClick = () => {
     dispatch(deletePackTC(packId))
   }
 
@@ -39,14 +40,10 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
         </NavLink>
       </button>
       {userId === user._id ? (
-        <>
-          <button disabled={status === 'loading'} onClick={handleEditClick} className={s.iconBtn}>
-            <AiFillEdit />
-          </button>
-          <button disabled={status === 'loading'} onClick={handleDeleteClick} className={s.iconBtn}>
-            <AiOutlineDelete />
-          </button>
-        </>
+        <MyIdActions
+          handleDeleteClick={handleDeletePackClick}
+          handleEditClick={handleEditPackClick}
+        />
       ) : (
         ''
       )}
