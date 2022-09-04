@@ -14,7 +14,7 @@ import { Navigate, useSearchParams } from 'react-router-dom'
 import { BackPage } from '../../../../../common/features/c11-BackPage/BackPage'
 import SuperSelect from '../../../../../common/features/c5-SuperSelect/SuperSelect'
 import { getCardsParams } from '../../../../../common/utils/GetParams'
-import { PATH } from '../../../../../routing/PageRouting/Pages/Pages'
+import { PATH } from '../../../../../routing/Pages/Pages'
 import {
   addCardTC,
   deleteCardTC,
@@ -50,7 +50,7 @@ export const Cards = () => {
 
   useEffect(() => {
     dispatch(getCardsTC(params))
-  }, [page, pageCount, cardsTotalCount])
+  }, [])
 
   if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN} />
@@ -63,9 +63,11 @@ export const Cards = () => {
     <div className={s.wrapper}>
       <BackPage title={'Packs List'} route={PATH.PACKS} />
       <h3 className={s.mainTitle}>{packName}</h3>
-      <Button variant="outlined" onClick={handleAddCard}>
-        Add Pack
-      </Button>
+      {myCards && (
+        <Button variant="outlined" onClick={handleAddCard}>
+          Add Pack
+        </Button>
+      )}
       <div className={s.filter}>
         <InputDebounce width={1200} value={searchTerm} onChangeValue={setSearchTerm} />
       </div>

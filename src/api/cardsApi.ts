@@ -13,7 +13,7 @@ export const cardsAPI = {
     })
   },
   addCard(data: AddCardDataType) {
-    return instance.put<CardsResponseType>(`cards/card`, { card: data })
+    return instance.post<CardsResponseType>(`cards/card`, { card: data })
   },
   deleteCard(cardId: string) {
     return instance.delete<CardsResponseType>(`cards/card?id=${cardId}`)
@@ -26,11 +26,11 @@ export const cardsAPI = {
 //TYPE
 export type CardsParamsType = {
   cardsPack_id: string
-  cardAnswer?: string
+  /*cardAnswer?: string
   cardQuestion?: string
   sortCards?: string
   page?: number
-  pageCount: number
+  pageCount: number*/
 }
 export type AddCardDataType = {
   cardsPack_id: string

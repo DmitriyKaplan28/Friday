@@ -4,8 +4,9 @@ import { Dispatch } from 'redux'
 
 import { ErrorDataResponseType } from '../../api/api'
 import { cardsAPI, CardsParamsType, CardsResponseType, CardsType } from '../../api/cardsApi'
+import { AppThunk } from '../store'
 
-import { AppReducerType, setAppErrorAC, setAppStatusAC } from './AppReducer'
+import { setAppErrorAC, setAppStatusAC } from './AppReducer'
 
 const initialState: CardsResponseType = {
   cards: [],
@@ -44,7 +45,7 @@ export const cardsReducer = (
   }
 }
 // Action
-export const setCardsParamsAC = (params: CardsResponseType) =>
+export const setCardsAC = (params: CardsResponseType) =>
   ({ type: 'SET-CARDS-PARAMS', params } as const)
 
 export const setPageCountCardsAC = (pageCount: number) =>
@@ -59,13 +60,13 @@ export const setNameCardsAC = (value: string) => ({ type: 'SET-NAME-CADS', value
 export const setPageCurrentCardsAC = (page: number) => ({ type: 'SET-CURRENT-PAGE', page } as const)
 
 //thunk
-export const getCardsTC = (data: CardsParamsType) => {
-  return (dispatch: Dispatch<CardsACType | AppReducerType>) => {
+export const getCardsTC = (data: CardsParamsType): AppThunk => {
+  return dispatch => {
     dispatch(setAppStatusAC('loading'))
     cardsAPI
       .getCard(data)
       .then(res => {
-        dispatch(setCardsParamsAC(res.data))
+        dispatch(setCardsAC(res.data))
       })
       .catch((error: AxiosError<ErrorDataResponseType>) => {
         dispatch(setAppErrorAC(error.response?.data.error))
@@ -76,38 +77,12 @@ export const getCardsTC = (data: CardsParamsType) => {
   }
 }
 
-export const deleteCardTC = (cardId: string, data: CardsParamsType) => {
-  return (dispatch: Dispatch<CardsACType | AppReducerType>) => {
+export const deleteCardTC = (cardId: string, params: CardsParamsType): AppThunk => {
+  return dispatch => {
     dispatch(setAppStatusAC('loading'))
     cardsAPI
       .deleteCard(cardId)
       .then(res => {
-        //Разобраться с типизацией
-        // @ts-ignore
-        dispatch(getCardsTC(data))
-      })
-      .catch((error: AxiosError<ErrorDataResponseType>) => {
-        dispatch(setAppErrorAC(error.response?.data.error))
-      })
-      .finally(() => {
-        dispatch(setAppStatusAC('succeeded'))
-      })
-  }
-}
-export const updateCardTC = (cardId: string, params: CardsParamsType) => {
-  return (dispatch: Dispatch<CardsACType | AppReducerType>) => {
-    const data = {
-      _id: cardId,
-      question: 'new question',
-      answer: 'new answer',
-    }
-
-    dispatch(setAppStatusAC('loading'))
-    cardsAPI
-      .updateCard(data)
-      .then(res => {
-        //Разобраться с типизацией
-        // @ts-ignore
         dispatch(getCardsTC(params))
       })
       .catch((error: AxiosError<ErrorDataResponseType>) => {
@@ -118,20 +93,40 @@ export const updateCardTC = (cardId: string, params: CardsParamsType) => {
       })
   }
 }
-export const addCardTC = (cardsPack_id: string, params: CardsParamsType) => {
-  return (dispatch: Dispatch<CardsACType | AppReducerType>) => {
-    const data = {
-      cardsPack_id: cardsPack_id,
-      question: 'New Question',
-      answer: 'New Answer',
-    }
+export const updateCardTC = (cardId: string, params: CardsParamsType): AppThunk => {
+  const data = {
+    _id: cardId,
+    question: 'new question',
+    answer: 'new answer',
+  }
 
+  return dispatch => {
+    dispatch(setAppStatusAC('loading'))
+    cardsAPI
+      .updateCard(data)
+      .then(res => {
+        dispatch(getCardsTC(params))
+      })
+      .catch((error: AxiosError<ErrorDataResponseType>) => {
+        dispatch(setAppErrorAC(error.response?.data.error))
+      })
+      .finally(() => {
+        dispatch(setAppStatusAC('succeeded'))
+      })
+  }
+}
+export const addCardTC = (cardsPack_id: string, params: CardsParamsType): AppThunk => {
+  const data = {
+    cardsPack_id: cardsPack_id,
+    question: 'New Question',
+    answer: 'New Answer',
+  }
+
+  return dispatch => {
     dispatch(setAppStatusAC('loading'))
     cardsAPI
       .addCard(data)
       .then(res => {
-        //Разобраться с типизацией
-        // @ts-ignore
         dispatch(getCardsTC(params))
       })
       .catch((error: AxiosError<ErrorDataResponseType>) => {
@@ -145,7 +140,7 @@ export const addCardTC = (cardsPack_id: string, params: CardsParamsType) => {
 
 // types
 export type CardsACType = ReturnType<
-  | typeof setCardsParamsAC
+  | typeof setCardsAC
   | typeof setPageCountCardsAC
   | typeof setPageCurrentCardsAC
   | typeof setNameCardsAC

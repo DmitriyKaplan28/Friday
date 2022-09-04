@@ -6,7 +6,7 @@ export const getCardsParams = (searchParams: URLSearchParams): CardsParamsType =
 
   return {
     cardsPack_id: String(searchParams.get('cardsPack_id')),
-    pageCount: Number(searchParams.get('pageCount')) || pageCount,
-    page: Number(searchParams.get('pageCount')) || page,
+    //pageCount: Number(searchParams.get('pageCount')) || pageCount,
+    //page: Number(searchParams.get('pageCount')) || page,
   }
 }
