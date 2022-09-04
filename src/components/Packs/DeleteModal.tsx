@@ -22,7 +22,6 @@ export const DeleteModal = (props: DeleteModalType) => {
   )
   const pack = useAppSelector(getFindCardPack)
 
-  console.log(pack)
   const handleEditClick = () => {
     props.handleDeleteClick()
     props.setOpen(!open)
