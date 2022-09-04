@@ -10,6 +10,7 @@ import { deletePackTC, updatePackTC } from '../../../../store/reducers/PacksRedu
 import { useAppDispatch, useAppSelector } from '../../../../store/store'
 
 import s from './Actions.module.css'
+
 type ActionsPropsType = {
   userId: string
   packId: string
@@ -30,29 +31,25 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
     dispatch(deletePackTC(packId))
   }
 
-  if (userId === user._id) {
-    return (
-      <div className={s.blockIcon}>
-        <button disabled={status === 'loading'} className={s.iconBtn} onClick={handleCardClick}>
-          <NavLink to={`${PATH.CARDS}?cardsPack_id=${packId}`}>
-            <FaChalkboardTeacher />
-          </NavLink>
-        </button>
-        <button disabled={status === 'loading'} onClick={handleEditClick} className={s.iconBtn}>
-          <AiFillEdit />
-        </button>
-        <button disabled={status === 'loading'} onClick={handleDeleteClick} className={s.iconBtn}>
-          <AiOutlineDelete />
-        </button>
-      </div>
-    )
-  } else {
-    return (
+  return (
+    <div className={s.blockIcon}>
       <button disabled={status === 'loading'} className={s.iconBtn}>
         <NavLink to={`${PATH.CARDS}?cardsPack_id=${packId}`}>
           <FaChalkboardTeacher />
         </NavLink>
       </button>
-    )
-  }
+      {userId === user._id ? (
+        <>
+          <button disabled={status === 'loading'} onClick={handleEditClick} className={s.iconBtn}>
+            <AiFillEdit />
+          </button>
+          <button disabled={status === 'loading'} onClick={handleDeleteClick} className={s.iconBtn}>
+            <AiOutlineDelete />
+          </button>
+        </>
+      ) : (
+        ''
+      )}
+    </div>
+  )
 }
