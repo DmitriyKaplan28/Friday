@@ -7,15 +7,17 @@ import { setMyPacksAC } from '../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 
 import s from './ToggleButton.module.css'
+
 type ColorToggleButtonType = {
   setAlignment: (value: string) => void
   alignment: string
+  on: boolean
+  setOn: (value: boolean) => void
 }
 
 export const ColorToggleButton = (props: ColorToggleButtonType) => {
   const dispatch = useAppDispatch()
   const user = useAppSelector(state => state.profile.user)
-  const status = useAppSelector(state => state.app.status)
   const handleChange = (event: React.MouseEvent<HTMLElement>, newAlignment: string) => {
     if (newAlignment === 'my') {
       dispatch(setMyPacksAC(user._id))
@@ -23,6 +25,8 @@ export const ColorToggleButton = (props: ColorToggleButtonType) => {
     if (newAlignment === 'all') {
       dispatch(setMyPacksAC(''))
     }
+
+    props.setOn(!props.on)
     props.setAlignment(newAlignment)
   }
 
@@ -34,13 +38,12 @@ export const ColorToggleButton = (props: ColorToggleButtonType) => {
         color="primary"
         value={props.alignment}
         exclusive
-        disabled={status === 'loading'}
         onChange={handleChange}
       >
-        <ToggleButton sx={{ width: 100 }} value="my">
+        <ToggleButton sx={{ width: 100 }} value="my" selected={props.on} disabled={props.on}>
           My
         </ToggleButton>
-        <ToggleButton sx={{ width: 100 }} value="all">
+        <ToggleButton sx={{ width: 100 }} value="all" selected={!props.on} disabled={!props.on}>
           All
         </ToggleButton>
       </ToggleButtonGroup>

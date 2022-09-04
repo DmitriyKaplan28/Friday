@@ -6,7 +6,7 @@ import { Navigate } from 'react-router-dom'
 
 import SuperSelect from '../../common/features/c5-SuperSelect/SuperSelect'
 import SuperDoubleRange from '../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
-import { PATH } from '../../routing/PageRouting/Pages/Pages'
+import { PATH } from '../../routing/Pages/Pages'
 import { setPacksParamsAC, setResetSettingsPacksAC } from '../../store/reducers/PacksParamsReducer'
 import { addPackTC, setCardPacksTC } from '../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
@@ -20,24 +20,31 @@ import { StickyHeadTable } from './Table/Table'
 export const initialOptions = [4, 8, 16, 32, 64]
 
 export const Packs = () => {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [alignment, setAlignment] = useState('all')
+  const [searchTerm, setSearchTerm] = useState<string>('')
+  const [alignment, setAlignment] = useState<string>('all')
+  let [on, setOn] = useState<boolean>(false)
   const dispatch = useAppDispatch()
-  const { page, pageCount, min, max, sortPacks, packName, user_id } = useAppSelector(
-    state => state.paramsPacks
-  )
+  // const { page, pageCount, min, max, sortPacks, packName, user_id } = useAppSelector(
+  //   state => state.paramsPacks
+  // )
+  const page = useAppSelector(state => state.paramsPacks.page)
+  const pageCount = useAppSelector(state => state.paramsPacks.pageCount)
+  const min = useAppSelector(state => state.paramsPacks.min)
+  const max = useAppSelector(state => state.paramsPacks.max)
+  const sortPacks = useAppSelector(state => state.paramsPacks.sortPacks)
+  const packName = useAppSelector(state => state.paramsPacks.packName)
+  const user_id = useAppSelector(state => state.paramsPacks.user_id)
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
-  const { cardPacksTotalCount } = useAppSelector(state => state.packs)
-  const pagesCount = Math.ceil(cardPacksTotalCount / pageCount)
 
   const onChangePageCount = (value: number) => {
     //dispatch(setPageCountAC(value))
-    dispatch(setPacksParamsAC({ pageCount: value }))
+    dispatch(setPacksParamsAC({ pageCount: value, page: 1 }))
   }
   const onClickReset = () => {
     dispatch(setResetSettingsPacksAC())
     setSearchTerm('')
     setAlignment('all')
+    setOn(false)
   }
 
   const handleAddPack = () => {
@@ -59,8 +66,13 @@ export const Packs = () => {
           Add Pack
         </Button>
         <div className={s.filter}>
-          <InputDebounce value={searchTerm} onChangeValue={setSearchTerm} />
-          <ColorToggleButton setAlignment={setAlignment} alignment={alignment} />
+          <InputDebounce width={350} value={searchTerm} onChangeValue={setSearchTerm} />
+          <ColorToggleButton
+            setAlignment={setAlignment}
+            alignment={alignment}
+            setOn={setOn}
+            on={on}
+          />
           <SuperDoubleRange />
           <div className={s.reset} onClick={onClickReset}>
             <button>
@@ -70,7 +82,7 @@ export const Packs = () => {
         </div>
         <StickyHeadTable />
         <div className={s.pagination}>
-          <PaginationControlled page={page} count={pagesCount} />
+          <PaginationControlled page={page} count={pageCount} />
           <span className={s.title}>Show</span>
           <SuperSelect
             value={pageCount}

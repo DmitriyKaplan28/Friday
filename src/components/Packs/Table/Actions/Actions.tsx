@@ -5,7 +5,7 @@ import { AiOutlineDelete } from '@react-icons/all-files/ai/AiOutlineDelete'
 import { FaChalkboardTeacher } from '@react-icons/all-files/fa/FaChalkboardTeacher'
 import { NavLink } from 'react-router-dom'
 
-import { PATH } from '../../../../routing/PageRouting/Pages/Pages'
+import { PATH } from '../../../../routing/Pages/Pages'
 import { deletePackTC, updatePackTC } from '../../../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../../../store/store'
 
@@ -17,6 +17,7 @@ type ActionsPropsType = {
 
 export const Actions = ({ userId, packId }: ActionsPropsType) => {
   const user = useAppSelector(state => state.profile.user)
+  const status = useAppSelector(state => state.app.status)
   const dispatch = useAppDispatch()
 
   const handleCardClick = () => {
@@ -32,26 +33,26 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
   if (userId === user._id) {
     return (
       <div className={s.blockIcon}>
-        <div className={s.icon} onClick={handleCardClick}>
+        <button disabled={status === 'loading'} className={s.iconBtn} onClick={handleCardClick}>
           <NavLink to={`${PATH.CARDS}?cardsPack_id=${packId}`}>
             <FaChalkboardTeacher />
           </NavLink>
-        </div>
-        <div className={s.icon}>
-          <AiFillEdit onClick={handleEditClick} />
-        </div>
-        <div className={s.icon}>
-          <AiOutlineDelete onClick={handleDeleteClick} />
-        </div>
+        </button>
+        <button disabled={status === 'loading'} onClick={handleEditClick} className={s.iconBtn}>
+          <AiFillEdit />
+        </button>
+        <button disabled={status === 'loading'} onClick={handleDeleteClick} className={s.iconBtn}>
+          <AiOutlineDelete />
+        </button>
       </div>
     )
   } else {
     return (
-      <div className={s.icon}>
+      <button disabled={status === 'loading'} className={s.iconBtn}>
         <NavLink to={`${PATH.CARDS}?cardsPack_id=${packId}`}>
           <FaChalkboardTeacher />
         </NavLink>
-      </div>
+      </button>
     )
   }
 }

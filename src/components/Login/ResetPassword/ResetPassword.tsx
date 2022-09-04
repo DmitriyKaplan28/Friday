@@ -5,7 +5,7 @@ import { useFormik } from 'formik'
 import { NavLink, useNavigate } from 'react-router-dom'
 
 import img from '../../../common/assets/forgot/Check.png'
-import { PATH } from '../../../routing/PageRouting/Pages/Pages'
+import { PATH } from '../../../routing/Pages/Pages'
 import { resetPasswordTC } from '../../../store/reducers/ResetPasswordReducer'
 import { AppRootStateType, useAppDispatch, useAppSelector } from '../../../store/store'
 import s from '../../ComonnStylePage.module.css'
@@ -75,7 +75,7 @@ export const ResetPassword = () => {
           <div className={s.formCheckEmail}>
             <h1>Check Email</h1>
             <div className={s.input}>
-              <img src={img} />
+              <img src={img} alt={'image'} />
             </div>
             <div className={s.text}>
               We’ve sent an Email with instructions to <span>{email}</span>

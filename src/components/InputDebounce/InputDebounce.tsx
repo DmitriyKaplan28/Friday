@@ -11,6 +11,7 @@ import s from './InputDebounce.module.css'
 type InputDebounceType = {
   value: string
   onChangeValue: (value: string) => void
+  width: number
 }
 
 export const InputDebounce = (props: InputDebounceType) => {
@@ -22,12 +23,13 @@ export const InputDebounce = (props: InputDebounceType) => {
   }, [debouncedSearchTerm])
 
   return (
-    <div className={s.wrapper}>
+    <div className={s.wrapper} style={{ maxWidth: props.width }}>
       <span className={s.about}>Search</span>
       <div className={s.icon}>
         <AiOutlineSearch />
       </div>
       <input
+        style={{ maxWidth: props.width }}
         value={props.value}
         className={s.inputDebounce}
         placeholder="Search packs"

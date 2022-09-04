@@ -1,7 +1,9 @@
-import { Navigate } from 'react-router-dom'
+import React from 'react'
 
+import { AiOutlineArrowLeft } from '@react-icons/all-files/ai/AiOutlineArrowLeft'
+import { Navigate, NavLink } from 'react-router-dom'
 import { BackPage } from '../../common/features/c11-BackPage/BackPage'
-import { PATH } from '../../routing/PageRouting/Pages/Pages'
+import { PATH } from '../../routing/Pages/Pages'
 import { changeNameTC } from '../../store/reducers/ProfileReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { Card } from '../Card/Card'

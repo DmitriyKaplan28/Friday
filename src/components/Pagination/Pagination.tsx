@@ -14,6 +14,8 @@ type PaginationControlledType = {
 export function PaginationControlled(props: PaginationControlledType) {
   const dispatch = useAppDispatch()
   const status = useAppSelector(state => state.app.status)
+  const cardPacksTotalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
+  let pagesCount = Math.ceil(cardPacksTotalCount / props.count)
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     dispatch(setPageCurrentCardsAC(value))
     //props.callback(value)
@@ -25,7 +27,7 @@ export function PaginationControlled(props: PaginationControlledType) {
       <Pagination
         disabled={status === 'loading'}
         page={props.page}
-        count={props.count}
+        count={pagesCount}
         onChange={handleChange}
       />
     </Stack>

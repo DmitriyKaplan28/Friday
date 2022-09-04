@@ -67,7 +67,7 @@ export const Cards = () => {
         Add Pack
       </Button>
       <div className={s.filter}>
-        <InputDebounce value={searchTerm} onChangeValue={setSearchTerm} />
+        <InputDebounce width={1200} value={searchTerm} onChangeValue={setSearchTerm} />
       </div>
       <TableContainer component={Paper}>
         <Table sx={{ maxWidth: 900, margin: '100px' }} aria-label="customized table">
