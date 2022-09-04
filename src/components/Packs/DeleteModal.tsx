@@ -1,8 +1,9 @@
 import React from 'react'
 
 import Button from '@mui/material/Button'
+import { createSelector } from 'reselect'
 
-import { useAppSelector } from '../../store/store'
+import { AppRootStateType, useAppSelector } from '../../store/store'
 import { CustomModal } from '../CustomModal/CustomModal'
 
 import s from './Packs.module.css'
@@ -15,8 +16,13 @@ export type DeleteModalType = {
 }
 
 export const DeleteModal = (props: DeleteModalType) => {
-  const pack = useAppSelector(state => state.packs.cardPacks.find(p => p._id === props.packId))
+  const getCardPack = (state: AppRootStateType) => state.packs.cardPacks
+  const getFindCardPack = createSelector(getCardPack, packs =>
+    packs.find(p => p._id === props.packId)
+  )
+  const pack = useAppSelector(getFindCardPack)
 
+  console.log(pack)
   const handleEditClick = () => {
     props.handleDeleteClick()
     props.setOpen(!open)
@@ -26,7 +32,11 @@ export const DeleteModal = (props: DeleteModalType) => {
     <CustomModal height={240} open={props.open} setOpen={props.setOpen} title={'Delete pack'}>
       <div style={{ marginBottom: 24 }}>
         <span>
-          Do you really want to remove <p>{pack && pack.name}</p>? All cards will be deleted.
+          Do you really want to remove{' '}
+          <span>
+            <strong>{pack && pack.name}</strong>
+          </span>
+          ? All cards will be deleted.
         </span>
       </div>
       <div className={s.btnGroup}>

@@ -172,7 +172,7 @@ export type PackType = {
 }
 
 export type GetResponseCardPacksType = {
-  cardPacks: Array<PackType>
+  cardPacks: PackType[]
   cardPacksTotalCount: number
   maxCardsCount: number
   minCardsCount: number
