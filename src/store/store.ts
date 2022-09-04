@@ -9,6 +9,7 @@ import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 
 import { appReducer } from './reducers/AppReducer'
 import { authReducer } from './reducers/AuthReducer'
+import { cardsParamsReducer } from './reducers/CardsParamsReducer'
 import { cardsReducer } from './reducers/CardsReducer'
 import { enterNewPasswordReducer } from './reducers/EnterNewPasswordReducer'
 import { packsParamsReducer } from './reducers/PacksParamsReducer'
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   packs: packsReducer,
   cards: cardsReducer,
   paramsPacks: packsParamsReducer,
+  paramsCard: cardsParamsReducer,
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))

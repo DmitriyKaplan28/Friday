@@ -26,11 +26,11 @@ export const cardsAPI = {
 //TYPE
 export type CardsParamsType = {
   cardsPack_id: string
-  /*cardAnswer?: string
-  cardQuestion?: string
-  sortCards?: string
-  page?: number
-  pageCount: number*/
+  cardAnswer: string
+  cardQuestion: string
+  sortCards: string
+  page: number
+  pageCount: number
 }
 export type AddCardDataType = {
   cardsPack_id: string

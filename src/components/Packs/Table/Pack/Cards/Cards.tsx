@@ -36,8 +36,10 @@ export const Cards = () => {
   const cards = useAppSelector(state => state.cards.cards)
   const [searchParams] = useSearchParams()
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
-  const page = useAppSelector(state => state.cards.page)
-  const pageCount = useAppSelector(state => state.cards.pageCount)
+  const page = useAppSelector(state => state.paramsCard.page)
+  const cardPackId = useAppSelector(state => state.paramsCard.cardsPack_id)
+  const packUserId = useAppSelector(state => state.cards.packUserId)
+  const pageCount = useAppSelector(state => state.paramsCard.pageCount)
   const packName = useAppSelector(state => state.cards.packName)
   const cardsTotalCount = useAppSelector(state => state.cards.cardsTotalCount)
   const params = getCardsParams(searchParams) //может обернуть в useMemo
@@ -50,14 +52,14 @@ export const Cards = () => {
   }
 
   useEffect(() => {
-    dispatch(getCardsTC(params))
+    dispatch(getCardsTC())
   }, [])
 
   if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN} />
   }
   const handleAddCard = () => {
-    dispatch(addCardTC(params.cardsPack_id, params))
+    dispatch(addCardTC(cardPackId))
   }
 
   return (

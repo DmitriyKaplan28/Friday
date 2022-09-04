@@ -1,11 +1,10 @@
 import React from 'react'
 
-import { AiFillEdit } from '@react-icons/all-files/ai/AiFillEdit'
-import { AiOutlineDelete } from '@react-icons/all-files/ai/AiOutlineDelete'
 import { FaChalkboardTeacher } from '@react-icons/all-files/fa/FaChalkboardTeacher'
-import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { PATH } from '../../../../routing/Pages/Pages'
+import { setCardsPackIdAC } from '../../../../store/reducers/CardsParamsReducer'
 import { deletePackTC, updatePackTC } from '../../../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../../../store/store'
 
@@ -21,9 +20,14 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
   const user = useAppSelector(state => state.profile.user)
   const status = useAppSelector(state => state.app.status)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const handleCardClick = () => {
     console.log('card')
+  }
+  const onClickHandler = () => {
+    dispatch(setCardsPackIdAC(packId))
+    navigate(PATH.CARDS)
   }
   const handleEditPackClick = () => {
     dispatch(updatePackTC(packId))
@@ -35,9 +39,9 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
   return (
     <div className={s.blockIcon}>
       <button disabled={status === 'loading'} className={s.iconBtn}>
-        <NavLink to={`${PATH.CARDS}?cardsPack_id=${packId}`}>
+        <div onClick={onClickHandler}>
           <FaChalkboardTeacher />
-        </NavLink>
+        </div>
       </button>
       {userId === user._id ? (
         <MyIdActions

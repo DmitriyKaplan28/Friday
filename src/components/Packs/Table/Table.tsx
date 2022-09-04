@@ -7,9 +7,10 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { PATH } from '../../../routing/Pages/Pages'
+import { setCardsPackIdAC } from '../../../store/reducers/CardsParamsReducer'
 import { setPacksParamsAC } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { SortArrow } from '../SortArrow/SortArrow'
@@ -52,8 +53,13 @@ const columns: Array<Column> = [
 export const StickyHeadTable = () => {
   const { cardPacks } = useAppSelector(state => state.packs)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const onClickSortHandler = (value: number) => {
     dispatch(setPacksParamsAC({ sortPacks: value + `updated` }))
+  }
+  const onClickHandler = (id: string) => {
+    dispatch(setCardsPackIdAC(id))
+    navigate(PATH.CARDS)
   }
 
   return (
@@ -85,9 +91,7 @@ export const StickyHeadTable = () => {
                 return (
                   <TableRow key={p._id}>
                     <TableCell align="center" style={{ maxWidth: 170, overflow: 'hidden' }}>
-                      <NavLink className={s.userName} to={`${PATH.CARDS}?cardsPack_id=${p._id}`}>
-                        {p.name}
-                      </NavLink>
+                      <div onClick={() => onClickHandler(p._id)}>{p.name}</div>
                     </TableCell>
                     <TableCell align="center">{p.cardsCount}</TableCell>
                     <TableCell align="center">{new Date(p.updated).toLocaleDateString()}</TableCell>
