@@ -26,6 +26,7 @@ import { useAppDispatch, useAppSelector } from '../../../../../store/store'
 import { InputDebounce } from '../../../../InputDebounce/InputDebounce'
 import { PaginationControlled } from '../../../../Pagination/Pagination'
 import { initialOptions } from '../../../Packs'
+import { MyIdActions } from '../../Actions/MyIdActions/MyIdActions'
 
 import s from './Cards.module.css'
 
@@ -93,20 +94,14 @@ export const Cards = () => {
                 <TableCell align="right">{c.rating}</TableCell>
                 {myCards && (
                   <TableCell align="right">
-                    <p
-                      onClick={() => {
+                    <MyIdActions
+                      handleDeleteClick={() => {
                         dispatch(deleteCardTC(c._id, params))
                       }}
-                    >
-                      delete
-                    </p>
-                    <p
-                      onClick={() => {
+                      handleEditClick={() => {
                         dispatch(updateCardTC(c._id, params))
                       }}
-                    >
-                      update
-                    </p>
+                    />
                   </TableCell>
                 )}
               </TableRow>
