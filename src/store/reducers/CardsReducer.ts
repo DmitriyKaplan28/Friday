@@ -1,6 +1,5 @@
 //state
 import { AxiosError } from 'axios'
-import { Dispatch } from 'redux'
 
 import { ErrorDataResponseType } from '../../api/api'
 import { cardsAPI, CardsParamsType, CardsResponseType, CardsType } from '../../api/cardsApi'

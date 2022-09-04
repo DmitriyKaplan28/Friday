@@ -40,7 +40,7 @@ export const Cards = () => {
   const packName = useAppSelector(state => state.cards.packName)
   const cardsTotalCount = useAppSelector(state => state.cards.cardsTotalCount)
   const params = getCardsParams(searchParams) //может обернуть в useMemo
-  const pagesCount = Math.ceil(cardsTotalCount / params.pageCount)
+  const pagesCount = Math.ceil(cardsTotalCount / pageCount)
   const myId = useAppSelector(state => state.profile.user._id)
   const packUserId = useAppSelector(state => state.cards.packUserId)
   const myCards = myId === packUserId
