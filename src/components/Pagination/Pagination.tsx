@@ -3,33 +3,42 @@ import * as React from 'react'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 
-import { setPageCurrentCardsAC } from '../../store/reducers/CardsReducer'
-import { setPacksParamsAC } from '../../store/reducers/PacksParamsReducer'
-import { useAppDispatch, useAppSelector } from '../../store/store'
+import SuperSelect from '../../common/features/c5-SuperSelect/SuperSelect'
+import { useAppSelector } from '../../store/store'
+import s from '../Packs/Table/Pack/Cards/Cards.module.css'
 
 type PaginationControlledType = {
   count: number
+  totalCount: number
   page?: number
+  changePageCount: (value: number) => void
+  setPage: (value: number) => void
 }
 export function PaginationControlled(props: PaginationControlledType) {
-  const dispatch = useAppDispatch()
+  const initialOptions = [4, 8, 16, 32, 64]
   const status = useAppSelector(state => state.app.status)
-  const cardPacksTotalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
-  let pagesCount = Math.ceil(cardPacksTotalCount / props.count)
+  let pagesCount = Math.ceil(props.totalCount / props.count)
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    dispatch(setPageCurrentCardsAC(value))
-    //props.callback(value)
-    dispatch(setPacksParamsAC({ page: value }))
+    props.setPage(value)
   }
 
   return (
-    <Stack spacing={2}>
-      <Pagination
-        disabled={status === 'loading'}
-        page={props.page}
-        count={pagesCount}
-        onChange={handleChange}
+    <>
+      <Stack spacing={2}>
+        <Pagination
+          disabled={status === 'loading'}
+          page={props.page}
+          count={pagesCount}
+          onChange={handleChange}
+        />
+      </Stack>
+      <span className={s.title}>Show</span>
+      <SuperSelect
+        value={props.count}
+        options={initialOptions}
+        onChangeOption={props.changePageCount}
       />
-    </Stack>
+      <span className={s.title}>Cards per Page</span>
+    </>
   )
 }

@@ -4,7 +4,6 @@ import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
 import { Button } from '@mui/material'
 import { Navigate } from 'react-router-dom'
 
-import SuperSelect from '../../common/features/c5-SuperSelect/SuperSelect'
 import SuperDoubleRange from '../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
 import { PATH } from '../../routing/Pages/Pages'
 import { setPacksParamsAC, setResetSettingsPacksAC } from '../../store/reducers/PacksParamsReducer'
@@ -17,8 +16,6 @@ import { ColorToggleButton } from '../ToggleButton/ColorToggleButton'
 import s from './Packs.module.css'
 import { StickyHeadTable } from './Table/Table'
 
-export const initialOptions = [4, 8, 16, 32, 64]
-
 export const Packs = () => {
   const [searchTerm, setSearchTerm] = useState<string>('')
   const [alignment, setAlignment] = useState<string>('all')
@@ -29,6 +26,7 @@ export const Packs = () => {
   // )
   const page = useAppSelector(state => state.paramsPacks.page)
   const pageCount = useAppSelector(state => state.paramsPacks.pageCount)
+  const cardPacksTotalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
   const min = useAppSelector(state => state.paramsPacks.min)
   const max = useAppSelector(state => state.paramsPacks.max)
   const sortPacks = useAppSelector(state => state.paramsPacks.sortPacks)
@@ -40,6 +38,11 @@ export const Packs = () => {
     //dispatch(setPageCountAC(value))
     dispatch(setPacksParamsAC({ pageCount: value, page: 1 }))
   }
+
+  const setPage = (value: number) => {
+    dispatch(setPacksParamsAC({ page: value }))
+  }
+
   const onClickReset = () => {
     dispatch(setResetSettingsPacksAC())
     setSearchTerm('')
@@ -82,14 +85,21 @@ export const Packs = () => {
         </div>
         <StickyHeadTable />
         <div className={s.pagination}>
-          <PaginationControlled page={page} count={pageCount} />
+          <PaginationControlled
+            page={page}
+            count={pageCount}
+            totalCount={cardPacksTotalCount}
+            changePageCount={onChangePageCount}
+            setPage={setPage}
+          />
+          {/* <PaginationControlled page={page} count={pageCount} />
           <span className={s.title}>Show</span>
           <SuperSelect
             value={pageCount}
             options={initialOptions}
             onChangeOption={onChangePageCount}
           />
-          <span className={s.title}>Cards per Page</span>
+          <span className={s.title}>Cards per Page</span>*/}
         </div>
       </div>
     </div>
