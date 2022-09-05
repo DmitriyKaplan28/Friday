@@ -36,7 +36,7 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
   const handleDeleteClick = () => {
     dispatch(deletePackTC(packId))
   }
-  const handleOpen = () => {
+  const handleOpenEditModal = () => {
     setOpen(!open)
   }
   const handleOpenDelModal = () => {
@@ -51,7 +51,11 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
             <SchoolIcon />
           </NavLink>
         </IconButton>
-        <IconButton disabled={status === 'loading'} className={s.iconBtn} onClick={handleOpen}>
+        <IconButton
+          disabled={status === 'loading'}
+          className={s.iconBtn}
+          onClick={handleOpenEditModal}
+        >
           <ModeEditOutlineIcon />
         </IconButton>
         <EditPackModal open={open} setOpen={setOpen} handleEditClick={handleEditClick} />
