@@ -14,6 +14,10 @@ import { Navigate } from 'react-router-dom'
 import { BackPage } from '../../../../../common/features/c11-BackPage/BackPage'
 import { PATH } from '../../../../../routing/Pages/Pages'
 import {
+  setPageCountCardsAC,
+  setPageCurrentCardsAC,
+} from '../../../../../store/reducers/CardsParamsReducer'
+import {
   addCardTC,
   deleteCardTC,
   getCardsTC,
@@ -41,15 +45,16 @@ export const Cards = () => {
   const myCards = myId === packUserId
 
   const onChangePageCount = (value: number) => {
-    //dispatch(setPageCountCardsAC(value))
+    dispatch(setPageCountCardsAC(value))
+    dispatch(setPageCurrentCardsAC(1))
   }
   const setPage = (value: number) => {
-    //dispatch(setPageCurrentCardsAC(value))
+    dispatch(setPageCurrentCardsAC(value))
   }
 
   useEffect(() => {
     dispatch(getCardsTC())
-  }, [])
+  }, [pageCount, page])
 
   if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN} />

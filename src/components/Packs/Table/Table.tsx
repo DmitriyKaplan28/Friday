@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow'
 import { useNavigate } from 'react-router-dom'
 
 import { PATH } from '../../../routing/Pages/Pages'
-import { setCardsPackIdAC } from '../../../store/reducers/CardsParamsReducer'
+import { setCardsPackIdAC, setPageCurrentCardsAC } from '../../../store/reducers/CardsParamsReducer'
 import { setPacksParamsAC } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { SortArrow } from '../SortArrow/SortArrow'
@@ -58,6 +58,7 @@ export const StickyHeadTable = () => {
     dispatch(setPacksParamsAC({ sortPacks: value + `updated` }))
   }
   const onClickHandler = (id: string) => {
+    dispatch(setPageCurrentCardsAC(1))
     dispatch(setCardsPackIdAC(id))
     navigate(PATH.CARDS)
   }
