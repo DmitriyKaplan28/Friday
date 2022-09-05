@@ -65,6 +65,11 @@
     justify-content: space-between;
 }
 
+.RequestBlock {
+    margin-top: -15px;
+    margin-bottom: 15px;
+}
+
 .successText {
     color: green;
 }

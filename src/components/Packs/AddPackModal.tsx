@@ -59,7 +59,7 @@ export const AddPackModal = (props: AddPackModalType) => {
         )}
       </div>
       <div className={s.btnGroup}>
-        <Button variant="outlined" size="large">
+        <Button variant="outlined" size="large" onClick={closeModal}>
           Cancel
         </Button>
         <LoadingButton

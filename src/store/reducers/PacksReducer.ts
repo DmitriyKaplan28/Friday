@@ -66,13 +66,14 @@ export const addPackTC =
       .addPack(name, deckCover, isPrivate)
       .then(() => {
         dispatch(setCardPacksTC())
+        dispatch(setModalStatusAC('succeeded'))
       })
       .catch(err => {
+        dispatch(setModalStatusAC('failed'))
         dispatch(setAppErrorAC(err.response.data.error))
       })
       .finally(() => {
         dispatch(setAppStatusAC('succeeded'))
-        dispatch(setModalStatusAC('succeeded'))
       })
   }
 export const deletePackTC = (id: string) => (dispatch: AppDispatch) => {
