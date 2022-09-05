@@ -52,6 +52,7 @@ const columns: Array<Column> = [
 
 export const StickyHeadTable = () => {
   const { cardPacks } = useAppSelector(state => state.packs)
+  const sortPacks = useAppSelector(state => state.paramsPacks.sortPacks)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const onClickSortHandler = (value: number) => {
@@ -78,7 +79,11 @@ export const StickyHeadTable = () => {
                   >
                     <div className={s.labelBlock}>
                       {column.isSort ? (
-                        <SortArrow label={column.label} onClickSortHandler={onClickSortHandler} />
+                        <SortArrow
+                          label={column.label}
+                          onClickSortHandler={onClickSortHandler}
+                          sort={sortPacks}
+                        />
                       ) : (
                         <div>{column.label}</div>
                       )}

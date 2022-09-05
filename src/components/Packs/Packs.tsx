@@ -69,7 +69,7 @@ export const Packs = () => {
           Add Pack
         </Button>
         <div className={s.filter}>
-          <InputDebounce width={350} value={searchTerm} onChangeValue={setSearchTerm} />
+          {/*<InputDebounce width={350} value={searchTerm} onChangeValue={setSearchTerm} />*/}
           <ColorToggleButton
             setAlignment={setAlignment}
             alignment={alignment}

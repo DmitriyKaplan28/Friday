@@ -1,25 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { AiOutlineSearch } from '@react-icons/all-files/ai/AiOutlineSearch'
 
 import { useDebounce } from '../../common/hooks/useDebounce'
-import { searchPackNameAC } from '../../store/reducers/PacksParamsReducer'
 import { useAppDispatch } from '../../store/store'
 
 import s from './InputDebounce.module.css'
 
 type InputDebounceType = {
-  value: string
-  onChangeValue: (value: string) => void
+  callback: (filter: string) => void
   width: number
 }
 
 export const InputDebounce = (props: InputDebounceType) => {
-  const dispatch = useAppDispatch()
-  const debouncedSearchTerm = useDebounce(props.value, 500)
+  const [searchTerm, setSearchTerm] = useState<string>('')
+  //const dispatch = useAppDispatch()
+  const debouncedSearchTerm = useDebounce(searchTerm, 500)
 
   useEffect(() => {
-    dispatch(searchPackNameAC(debouncedSearchTerm))
+    props.callback(debouncedSearchTerm)
   }, [debouncedSearchTerm])
 
   return (
@@ -30,10 +29,10 @@ export const InputDebounce = (props: InputDebounceType) => {
       </div>
       <input
         style={{ maxWidth: props.width }}
-        value={props.value}
+        value={searchTerm}
         className={s.inputDebounce}
         placeholder="Search packs"
-        onChange={e => props.onChangeValue(e.target.value)}
+        onChange={e => setSearchTerm(e.target.value)}
       />
     </div>
   )

@@ -3,9 +3,8 @@ import { CardsParamsType } from '../../api/cardsApi'
 
 const initialState: CardsParamsType = {
   cardsPack_id: '',
-  cardAnswer: '',
   cardQuestion: '',
-  sortCards: '',
+  sortCards: '0update',
   page: 1,
   pageCount: 4,
 }
@@ -21,6 +20,10 @@ export const cardsParamsReducer = (
       return { ...state, page: action.page }
     case 'SET-PAGE-COUNT':
       return { ...state, pageCount: action.pageCount }
+    case 'SET-FILTER-QUESTION':
+      return { ...state, cardQuestion: action.filter }
+    case 'SET-SORT-CARD':
+      return { ...state, sortCards: action.sort }
     default:
       return state
   }
@@ -34,9 +37,18 @@ export const setPageCurrentCardsAC = (page: number) => ({ type: 'SET-CURRENT-PAG
 export const setPageCountCardsAC = (pageCount: number) =>
   ({ type: 'SET-PAGE-COUNT', pageCount } as const)
 
+export const setFilterQuestionCardAC = (filter: string) =>
+  ({ type: 'SET-FILTER-QUESTION', filter } as const)
+
+export const setSortCardAC = (sort: string) => ({ type: 'SET-SORT-CARD', sort } as const)
+
 //thunk
 
 // types
 export type CardsParamsACType = ReturnType<
-  typeof setCardsPackIdAC | typeof setPageCurrentCardsAC | typeof setPageCountCardsAC
+  | typeof setCardsPackIdAC
+  | typeof setPageCurrentCardsAC
+  | typeof setPageCountCardsAC
+  | typeof setFilterQuestionCardAC
+  | typeof setSortCardAC
 >

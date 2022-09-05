@@ -51,6 +51,7 @@ export const setMyPacksAC = (id: string) =>
 
 export const setResetSettingsPacksAC = () =>
   ({ type: 'packsParamsReducer/RESET-SETTINGS-PACKS' } as const)
+
 //TYPE
 type InitialStateType = typeof initialState
 export type PacksParamsAT =

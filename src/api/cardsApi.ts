@@ -20,7 +20,7 @@ export const cardsAPI = {
 //TYPE
 export type CardsParamsType = {
   cardsPack_id: string
-  cardAnswer: string
+  cardAnswer?: string
   cardQuestion: string
   sortCards: string
   page: number
