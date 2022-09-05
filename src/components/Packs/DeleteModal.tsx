@@ -22,7 +22,7 @@ export const DeleteModal = (props: DeleteModalType) => {
   )
   const pack = useAppSelector(getFindCardPack)
 
-  const handleEditClick = () => {
+  const handleDelClick = () => {
     props.handleDeleteClick()
     props.setOpen(!open)
   }
@@ -42,7 +42,7 @@ export const DeleteModal = (props: DeleteModalType) => {
         <Button variant="outlined" size="large">
           Cancel
         </Button>
-        <Button color="error" variant="contained" size="large" onClick={handleEditClick}>
+        <Button color="error" variant="contained" size="large" onClick={handleDelClick}>
           Delete
         </Button>
       </div>
