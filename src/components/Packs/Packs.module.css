@@ -59,8 +59,17 @@
 }
 
 
-.btnGroup{
+.btnGroup {
     display: flex;
     align-items: center;
-    justify-content: space-between ;
+    justify-content: space-between;
 }
+
+.successText {
+    color: green;
+}
+
+.errorText {
+    color: red;
+}
+

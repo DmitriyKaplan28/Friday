@@ -15,7 +15,7 @@ const initialState = {
   initialized: false,
   isLoad: false,
   registerError: null,
-  modalStatus: 'idle' as RequestStatusType,
+  modalStatusRequest: 'idle' as RequestStatusType,
 }
 
 type InitialStateType = typeof initialState
@@ -44,7 +44,7 @@ export const appReducer = (
     case 'APP/SET-MODAL-STATUS':
       return {
         ...state,
-        modalStatus: action.value,
+        modalStatusRequest: action.value,
       }
     default:
       return state
