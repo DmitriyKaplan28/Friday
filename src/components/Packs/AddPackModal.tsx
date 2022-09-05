@@ -1,8 +1,11 @@
 import React, { ChangeEvent, useState } from 'react'
 
+import SaveIcon from '@mui/icons-material/Save'
+import LoadingButton from '@mui/lab/LoadingButton'
 import { Checkbox, FormControlLabel, TextField } from '@mui/material'
 import Button from '@mui/material/Button'
 
+import { useAppSelector } from '../../store/store'
 import { CustomModal } from '../CustomModal/CustomModal'
 
 import s from './Packs.module.css'
@@ -15,6 +18,7 @@ export type AddPackModalType = {
 export const AddPackModal = (props: AddPackModalType) => {
   const [checked, setChecked] = useState(false)
   const [value, setValue] = useState('')
+  const modalStatus = useAppSelector(state => state.app.modalStatus)
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked)
   }
@@ -23,7 +27,6 @@ export const AddPackModal = (props: AddPackModalType) => {
   }
   const handleAddPack = () => {
     props.handleAddPack(value, checked)
-    props.setOpen(!open)
     setValue('')
   }
 
@@ -41,14 +44,24 @@ export const AddPackModal = (props: AddPackModalType) => {
         label="Private pack"
         control={<Checkbox checked={checked} onChange={handleChange} />}
       />
-
+      {modalStatus === 'succeeded' && (
+        <div>
+          <span>Pack is added</span>
+        </div>
+      )}
       <div className={s.btnGroup}>
         <Button variant="outlined" size="large">
           Cancel
         </Button>
-        <Button variant="contained" size="large" onClick={handleAddPack}>
+        <LoadingButton
+          loading={modalStatus === 'loading'}
+          loadingPosition="start"
+          startIcon={<SaveIcon />}
+          variant="outlined"
+          onClick={handleAddPack}
+        >
           Save
-        </Button>
+        </LoadingButton>
       </div>
     </CustomModal>
   )

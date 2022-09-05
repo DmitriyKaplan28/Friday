@@ -15,6 +15,7 @@ const initialState = {
   initialized: false,
   isLoad: false,
   registerError: null,
+  modalStatus: 'idle' as RequestStatusType,
 }
 
 type InitialStateType = typeof initialState
@@ -40,6 +41,11 @@ export const appReducer = (
         ...state,
         isLoad: action.value,
       }
+    case 'APP/SET-MODAL-STATUS':
+      return {
+        ...state,
+        modalStatus: action.value,
+      }
     default:
       return state
   }
@@ -62,9 +68,17 @@ export const setAppErrorAC = (error: string | null | undefined) =>
   ({ type: 'APP/SET-ERROR', error } as const)
 export const setAppInitialAC = (value: boolean) => ({ type: 'APP/SET-APP-INITIAL', value } as const)
 export const setAppLoadAC = (value: boolean) => ({ type: 'APP/SET-APP-LOAD', value } as const)
+export const setModalStatusAC = (value: RequestStatusType) =>
+  ({ type: 'APP/SET-MODAL-STATUS', value } as const)
 //TYPES
 type SetAppStatusAT = ReturnType<typeof setAppStatusAC>
 type SetAppErrorAT = ReturnType<typeof setAppErrorAC>
 type SetAppInitialAT = ReturnType<typeof setAppInitialAC>
 type SetAppLoadAT = ReturnType<typeof setAppLoadAC>
-export type AppReducerType = SetAppStatusAT | SetAppErrorAT | SetAppInitialAT | SetAppLoadAT
+type SetModalStatusAT = ReturnType<typeof setModalStatusAC>
+export type AppReducerType =
+  | SetAppStatusAT
+  | SetAppErrorAT
+  | SetAppInitialAT
+  | SetAppLoadAT
+  | SetModalStatusAT

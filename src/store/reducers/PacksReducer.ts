@@ -3,7 +3,7 @@ import { Dispatch } from 'redux'
 import { packsAPI, PackType } from '../../api/api'
 import { AppDispatch, AppRootStateType, AppThunk } from '../store'
 
-import { setAppErrorAC, setAppStatusAC } from './AppReducer'
+import { setAppErrorAC, setAppStatusAC, setModalStatusAC } from './AppReducer'
 import { setIsLoggedInAC } from './AuthReducer'
 
 const initialState = {
@@ -61,6 +61,7 @@ export const setCardPacksTC =
 export const addPackTC =
   (name: string, isPrivate?: boolean, deckCover?: string) => (dispatch: AppDispatch) => {
     dispatch(setAppStatusAC('loading'))
+    dispatch(setModalStatusAC('loading'))
     packsAPI
       .addPack(name, deckCover, isPrivate)
       .then(() => {
@@ -69,7 +70,10 @@ export const addPackTC =
       .catch(err => {
         dispatch(setAppErrorAC(err.response.data.error))
       })
-      .finally(() => dispatch(setAppStatusAC('succeeded')))
+      .finally(() => {
+        dispatch(setAppStatusAC('succeeded'))
+        dispatch(setModalStatusAC('succeeded'))
+      })
   }
 export const deletePackTC = (id: string) => (dispatch: AppDispatch) => {
   dispatch(setAppStatusAC('loading'))

@@ -50,7 +50,6 @@ export const Packs = () => {
   const handleOpen = () => setOpen(!open)
   const handleAddPack = (value: string, checked: boolean) => {
     dispatch(addPackTC(value, checked))
-    setOpen(!open)
   }
 
   useEffect(() => {
