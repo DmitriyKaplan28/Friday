@@ -91,13 +91,16 @@ export const deletePackTC = (id: string) => (dispatch: AppDispatch) => {
 
 export const updatePackTC = (id: string, name: string) => (dispatch: AppDispatch) => {
   dispatch(setAppStatusAC('loading'))
+  dispatch(setModalStatusAC('loading'))
   packsAPI
     .updatePack(id, name)
     .then(() => {
+      dispatch(setModalStatusAC('succeeded'))
       dispatch(setCardPacksTC())
     })
     .catch(err => {
       dispatch(setAppErrorAC(err.response.data.error))
+      dispatch(setModalStatusAC('failed'))
     })
     .finally(() => dispatch(setAppStatusAC('succeeded')))
 }

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 
 import SaveIcon from '@mui/icons-material/Save'
 import LoadingButton from '@mui/lab/LoadingButton'
@@ -29,12 +29,15 @@ export const AddPackModal = (props: AddPackModalType) => {
   }
   const handleAddPack = () => {
     props.handleAddPack(value, checked)
-    setValue('')
   }
   const closeModal = () => {
     dispatch(setModalStatusAC('idle'))
     props.setOpen(!open)
   }
+
+  useEffect(() => {
+    setValue('')
+  }, [modalStatusRequest === 'succeeded'])
 
   return (
     <CustomModal title={'Add Pack'} setOpen={closeModal} open={props.open}>

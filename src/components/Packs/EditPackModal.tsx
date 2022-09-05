@@ -1,8 +1,12 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 
+import SaveIcon from '@mui/icons-material/Save'
+import LoadingButton from '@mui/lab/LoadingButton'
 import { Checkbox, FormControlLabel, TextField } from '@mui/material'
 import Button from '@mui/material/Button'
 
+import { setModalStatusAC } from '../../store/reducers/AppReducer'
+import { useAppDispatch, useAppSelector } from '../../store/store'
 import { CustomModal } from '../CustomModal/CustomModal'
 
 import s from './Packs.module.css'
@@ -15,6 +19,8 @@ export type EditPackModalType = {
 export const EditPackModal = (props: EditPackModalType) => {
   const [checked, setChecked] = useState(false)
   const [value, setValue] = useState('')
+  const modalStatusRequest = useAppSelector(state => state.app.modalStatusRequest)
+  const dispatch = useAppDispatch()
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked)
   }
@@ -23,11 +29,19 @@ export const EditPackModal = (props: EditPackModalType) => {
   }
   const handleEditClick = () => {
     props.handleEditClick(value)
+  }
+  const closeModal = () => {
+    dispatch(setModalStatusAC('idle'))
     props.setOpen(!open)
+    setValue('')
   }
 
+  useEffect(() => {
+    setValue('')
+  }, [modalStatusRequest === 'succeeded'])
+
   return (
-    <CustomModal open={props.open} setOpen={props.setOpen} title={'Edit pack'}>
+    <CustomModal open={props.open} setOpen={closeModal} title={'Edit pack'}>
       <TextField
         onChange={onChangeTitle}
         value={value}
@@ -40,14 +54,27 @@ export const EditPackModal = (props: EditPackModalType) => {
         label="Private pack"
         control={<Checkbox checked={checked} onChange={handleChange} />}
       />
-
+      <div className={s.RequestBlock}>
+        {modalStatusRequest === 'succeeded' && (
+          <span className={s.successText}>Pack edit is success </span>
+        )}
+        {modalStatusRequest === 'failed' && (
+          <span className={s.errorText}>Pack edit is failed</span>
+        )}
+      </div>
       <div className={s.btnGroup}>
-        <Button variant="outlined" size="large">
+        <Button variant="outlined" size="large" onClick={closeModal}>
           Cancel
         </Button>
-        <Button variant="contained" size="large" onClick={handleEditClick}>
+        <LoadingButton
+          loading={modalStatusRequest === 'loading'}
+          loadingPosition="start"
+          startIcon={<SaveIcon />}
+          variant="outlined"
+          onClick={handleEditClick}
+        >
           Save
-        </Button>
+        </LoadingButton>
       </div>
     </CustomModal>
   )
