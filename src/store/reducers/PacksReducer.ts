@@ -82,6 +82,7 @@ export const deletePackTC = (id: string) => (dispatch: AppDispatch) => {
     .deletePack(id)
     .then(() => {
       dispatch(setModalStatusAC('succeeded'))
+      dispatch(setAppErrorAC('pack elfkty'))
       dispatch(setCardPacksTC())
     })
     .catch(err => {

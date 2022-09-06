@@ -7,14 +7,13 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import { NavLink } from 'react-router-dom'
 
-import { PATH } from '../../../routing/Pages/Pages'
 import { setPacksParamsAC } from '../../../store/reducers/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { SortArrow } from '../SortArrow/SortArrow'
 
 import { Actions } from './Actions/Actions'
+import { CustomTableBody } from './CustomTableBody/CustomTableBody'
 import s from './Table.module.css'
 
 type Column = {
@@ -50,7 +49,6 @@ const columns: Array<Column> = [
 ]
 
 export const StickyHeadTable = () => {
-  const { cardPacks } = useAppSelector(state => state.packs)
   const dispatch = useAppDispatch()
   const onClickSortHandler = (value: number) => {
     dispatch(setPacksParamsAC({ sortPacks: value + `updated` }))
@@ -81,25 +79,7 @@ export const StickyHeadTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {cardPacks.map(p => {
-                return (
-                  <TableRow key={p._id}>
-                    <TableCell align="center" style={{ maxWidth: 170, overflow: 'hidden' }}>
-                      <NavLink className={s.userName} to={`${PATH.CARDS}?cardsPack_id=${p._id}`}>
-                        {p.name}
-                      </NavLink>
-                    </TableCell>
-                    <TableCell align="center">{p.cardsCount}</TableCell>
-                    <TableCell align="center">{new Date(p.updated).toLocaleDateString()}</TableCell>
-                    <TableCell align="center" style={{ maxWidth: 260, overflow: 'hidden' }}>
-                      {p.user_name}
-                    </TableCell>
-                    <TableCell align="center">
-                      <Actions userId={p.user_id} packId={p._id} />
-                    </TableCell>
-                  </TableRow>
-                )
-              })}
+              <CustomTableBody />
             </TableBody>
           </Table>
         </TableContainer>

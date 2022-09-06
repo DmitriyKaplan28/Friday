@@ -20,3 +20,13 @@
 .userName:hover {
     color: #808080;
 }
+
+
+.iconBtn svg:hover {
+    color: #000000;
+
+    opacity: 0.8;
+}
+.iconBtn a{
+    color: #505050;
+}

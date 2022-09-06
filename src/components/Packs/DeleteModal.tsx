@@ -46,14 +46,6 @@ export const DeleteModal = (props: DeleteModalType) => {
           ? All cards will be deleted.
         </span>
       </div>
-      <div className={s.RequestBlock}>
-        {modalStatusRequest === 'succeeded' && (
-          <span className={s.successText}>Pack delete is success </span>
-        )}
-        {modalStatusRequest === 'failed' && (
-          <span className={s.errorText}>Pack delete is failed</span>
-        )}
-      </div>
       <div className={s.btnGroup}>
         <Button variant="outlined" size="large" onClick={closeModal}>
           Cancel

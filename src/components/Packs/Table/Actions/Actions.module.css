@@ -8,18 +8,7 @@
     margin: 0 auto;
 }
 
-.iconBtn{
-    background: transparent;
-    border: none;
-    outline: none;
-}
-
-.iconBtn svg {
-    cursor: pointer;
-
-    width: 20px;
-    height: 20px;
-
+.iconBtn svg:hover {
     color: #000000;
 
     opacity: 0.8;

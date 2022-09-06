@@ -23,13 +23,9 @@ type ActionsPropsType = {
 export const Actions = ({ userId, packId }: ActionsPropsType) => {
   const [open, setOpen] = useState(false)
   const [openDelModal, setOpenDelModal] = useState(false)
-  const user = useAppSelector(state => state.profile.user)
   const status = useAppSelector(state => state.app.status)
   const dispatch = useAppDispatch()
 
-  const handleCardClick = () => {
-    console.log('card')
-  }
   const handleEditClick = (name: string) => {
     dispatch(updatePackTC(packId, name))
   }
@@ -43,44 +39,32 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
     setOpenDelModal(true)
   }
 
-  if (userId === user._id) {
-    return (
-      <div className={s.blockIcon}>
-        <IconButton disabled={status === 'loading'} className={s.iconBtn} onClick={handleCardClick}>
-          <NavLink to={`${PATH.CARDS}?cardsPack_id=${packId}`}>
-            <SchoolIcon />
-          </NavLink>
-        </IconButton>
-        <IconButton
-          disabled={status === 'loading'}
-          className={s.iconBtn}
-          onClick={handleOpenEditModal}
-        >
-          <ModeEditOutlineIcon />
-        </IconButton>
-        <EditPackModal open={open} setOpen={setOpen} handleEditClick={handleEditClick} />
-        <DeleteModal
-          packId={packId}
-          open={openDelModal}
-          setOpen={setOpenDelModal}
-          handleDeleteClick={handleDeleteClick}
-        />
-        <IconButton
-          disabled={status === 'loading'}
-          className={s.iconBtn}
-          onClick={handleOpenDelModal}
-        >
-          <DeleteIcon />
-        </IconButton>
-      </div>
-    )
-  } else {
-    return (
-      <button disabled={status === 'loading'} className={s.iconBtn}>
-        <NavLink to={`${PATH.CARDS}?cardsPack_id=${packId}`}>
-          <FaChalkboardTeacher />
-        </NavLink>
-      </button>
-    )
-  }
+  return (
+    <div className={s.blockIcon}>
+      <IconButton disabled className={s.iconBtn}>
+        <SchoolIcon />
+      </IconButton>
+      <IconButton
+        disabled={status === 'loading'}
+        className={s.iconBtn}
+        onClick={handleOpenEditModal}
+      >
+        <ModeEditOutlineIcon />
+      </IconButton>
+      <EditPackModal open={open} setOpen={setOpen} handleEditClick={handleEditClick} />
+      <DeleteModal
+        packId={packId}
+        open={openDelModal}
+        setOpen={setOpenDelModal}
+        handleDeleteClick={handleDeleteClick}
+      />
+      <IconButton
+        disabled={status === 'loading'}
+        className={s.iconBtn}
+        onClick={handleOpenDelModal}
+      >
+        <DeleteIcon />
+      </IconButton>
+    </div>
+  )
 }
