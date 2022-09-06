@@ -9,11 +9,11 @@ export type ModalType = {
   children: ReactNode
   title: string
   open: boolean
-  setOpen: (value: boolean) => void
+  setOpen: () => void
   height?: number
 }
 export const CustomModal: FC<ModalType> = ({ children, title, open, setOpen, height = 300 }) => {
-  const handleClose = () => setOpen(!open)
+  const handleClose = () => setOpen()
 
   return (
     <>

@@ -3,6 +3,7 @@ import {
   AnyAction,
   applyMiddleware,
   combineReducers,
+  compose,
   legacy_createStore as createStore,
 } from 'redux'
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
@@ -29,7 +30,10 @@ const rootReducer = combineReducers({
   paramsPacks: packsParamsReducer,
 })
 
-export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))
 
 export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
 export const useAppDispatch = () => useDispatch<AppDispatch>()

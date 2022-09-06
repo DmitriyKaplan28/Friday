@@ -43,7 +43,6 @@ export const setCardPacksTC =
   (): AppThunk => (dispatch: Dispatch, getState: () => AppRootStateType) => {
     const paramsPacks = getState().paramsPacks
 
-    // const { page, pageCount, min, max, sortPacks, packName, user_id } = paramsPacks
     dispatch(setAppStatusAC('loading'))
     packsAPI
       .getCardPacks(paramsPacks)
