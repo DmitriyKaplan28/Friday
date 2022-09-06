@@ -78,12 +78,15 @@ export const addPackTC =
   }
 export const deletePackTC = (id: string) => (dispatch: AppDispatch) => {
   dispatch(setAppStatusAC('loading'))
+  dispatch(setModalStatusAC('loading'))
   packsAPI
     .deletePack(id)
     .then(() => {
+      dispatch(setModalStatusAC('succeeded'))
       dispatch(setCardPacksTC())
     })
     .catch(err => {
+      dispatch(setModalStatusAC('failed'))
       dispatch(setAppErrorAC(err.response.data.error))
     })
     .finally(() => dispatch(setAppStatusAC('succeeded')))

@@ -27,6 +27,7 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
   const status = useAppSelector(state => state.app.status)
   const dispatch = useAppDispatch()
 
+  console.log(open)
   const handleCardClick = () => {
     console.log('card')
   }
@@ -40,7 +41,7 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
     setOpen(!open)
   }
   const handleOpenDelModal = () => {
-    setOpenDelModal(!openDelModal)
+    setOpenDelModal(true)
   }
 
   if (userId === user._id) {
@@ -72,17 +73,6 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
         >
           <DeleteIcon />
         </IconButton>
-        {/*<button disabled={status === 'loading'} className={s.iconBtn} onClick={handleCardClick}>*/}
-        {/*  <NavLink to={`${PATH.CARDS}?cardsPack_id=${packId}`}>*/}
-        {/*    <FaChalkboardTeacher />*/}
-        {/*  </NavLink>*/}
-        {/*</button>*/}
-        {/*<button disabled={status === 'loading'} onClick={handleEditClick} className={s.iconBtn}>*/}
-        {/*  <AiFillEdit />*/}
-        {/*</button>*/}
-        {/*<button disabled={status === 'loading'} onClick={handleDeleteClick} className={s.iconBtn}>*/}
-        {/*  <AiOutlineDelete />*/}
-        {/*</button>*/}
       </div>
     )
   } else {
