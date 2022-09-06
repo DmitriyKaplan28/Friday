@@ -27,7 +27,6 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
   const status = useAppSelector(state => state.app.status)
   const dispatch = useAppDispatch()
 
-  console.log(open)
   const handleCardClick = () => {
     console.log('card')
   }
