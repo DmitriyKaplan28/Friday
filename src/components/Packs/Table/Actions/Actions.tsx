@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { AiFillEdit } from '@react-icons/all-files/ai/AiFillEdit'
-import { AiOutlineDelete } from '@react-icons/all-files/ai/AiOutlineDelete'
 import { FaChalkboardTeacher } from '@react-icons/all-files/fa/FaChalkboardTeacher'
 import { NavLink } from 'react-router-dom'
 
@@ -22,9 +20,6 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
   const status = useAppSelector(state => state.app.status)
   const dispatch = useAppDispatch()
 
-  const handleCardClick = () => {
-    console.log('card')
-  }
   const handleEditPackClick = () => {
     dispatch(updatePackTC(packId))
   }
@@ -35,7 +30,7 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
   return (
     <div className={s.blockIcon}>
       <button disabled={status === 'loading'} className={s.iconBtn}>
-        <NavLink to={`${PATH.CARDS}?cardsPack_id=${packId}`}>
+        <NavLink to={PATH.LEARNING}>
           <FaChalkboardTeacher />
         </NavLink>
       </button>

@@ -4,6 +4,7 @@ import { LinearProgress } from '@mui/material'
 import { Route, Routes, Navigate } from 'react-router-dom'
 
 import Error404 from '../../components/Error404/Error404'
+import { Learning } from '../../components/Learning/Learning'
 import { Login } from '../../components/Login/Login'
 import { EnterNewPassword } from '../../components/Login/ResetPassword/EnterNewPassword/EnterNewPassword'
 import { ResetPassword } from '../../components/Login/ResetPassword/ResetPassword'
@@ -21,6 +22,7 @@ export const PATH = {
   SET_NEW_PASSWORD: '/set-new-password/:token',
   PACKS: '/packs',
   CARDS: '/cards',
+  LEARNING: '/learning',
 }
 
 export const Pages = () => {
@@ -41,6 +43,7 @@ export const Pages = () => {
         <Route path={PATH.PACKS} element={<Packs />} />
         <Route path={PATH.CARDS} element={<Cards />} />
         <Route path={'/*'} element={<Error404 />} />
+        <Route path={PATH.LEARNING} element={<Learning />} />
       </Routes>
     </>
   )
