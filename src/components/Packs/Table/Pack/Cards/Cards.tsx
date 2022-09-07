@@ -27,6 +27,8 @@ import {
 } from '../../../../../store/reducers/CardsReducer'
 import { useAppDispatch, useAppSelector } from '../../../../../store/store'
 import { InputDebounce } from '../../../../InputDebounce/InputDebounce'
+import { AddCardsModal } from '../../../../Modal/CardsModal/CardsModalForm/AddCardsModal'
+import { CustomCardsModal } from '../../../../Modal/CardsModal/CustomCardsModal'
 import { PaginationControlled } from '../../../../Pagination/Pagination'
 import { SortArrow } from '../../../SortArrow/SortArrow'
 import { MyIdActions } from '../../Actions/MyIdActions/MyIdActions'
@@ -40,6 +42,7 @@ type Column = {
   align?: 'center'
   isSort?: boolean
 }
+export type ModeModalType = 'close' | 'add' | 'edit' | 'delete'
 
 const columns: Array<Column> = [
   { id: 'question', label: 'Question', minWidth: 170, align: 'center' },
@@ -61,6 +64,9 @@ const columns: Array<Column> = [
 
 export const Cards = () => {
   const [searchTerm, setSearchTerm] = useState('')
+  const [on, setOn] = useState<boolean>(false)
+  const [modeModal, setModeModal] = useState<ModeModalType>('close')
+  const [open, setOpen] = useState(false)
   const dispatch = useAppDispatch()
   const cards = useAppSelector(state => state.cards.cards)
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
@@ -90,9 +96,6 @@ export const Cards = () => {
   if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN} />
   }
-  const handleAddCard = () => {
-    dispatch(addCardTC(cardPackId))
-  }
 
   const findQuestionHandler = (filter: string) => {
     dispatch(setFilterQuestionCardAC(filter))
@@ -102,15 +105,31 @@ export const Cards = () => {
     dispatch(setSortCardAC(value + `updated`))
   }
 
+  const handleOpen = () => {
+    setOpen(!open)
+    setModeModal('add')
+  }
+
+  const handleAddCard = (question: string, answer: string) => {
+    dispatch(addCardTC(cardPackId, question, answer))
+  }
+
   return (
     <div className={s.wrapper}>
       <BackPage title={'Packs List'} route={PATH.PACKS} />
       <h3 className={s.mainTitle}>{packName}</h3>
       {myCards && (
-        <Button variant="outlined" onClick={handleAddCard}>
-          Add Pack
+        <Button variant="outlined" onClick={handleOpen}>
+          Add Card
         </Button>
       )}
+      <AddCardsModal
+        open={open}
+        setOpen={setOpen}
+        handleAddPack={handleAddCard}
+        modeModal={modeModal}
+        setModeModal={setModeModal}
+      />
       <div className={s.filter}>
         <InputDebounce width={1200} callback={findQuestionHandler} />
       </div>

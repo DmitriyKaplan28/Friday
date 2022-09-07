@@ -107,11 +107,11 @@ export const updateCardTC = (cardId: string): AppThunk => {
       })
   }
 }
-export const addCardTC = (cardsPack_id: string): AppThunk => {
+export const addCardTC = (cardsPack_id: string, question: string, answer: string): AppThunk => {
   const data = {
     cardsPack_id: cardsPack_id,
-    question: 'New Question',
-    answer: 'New Answer',
+    question: question,
+    answer: answer,
   }
 
   return dispatch => {
