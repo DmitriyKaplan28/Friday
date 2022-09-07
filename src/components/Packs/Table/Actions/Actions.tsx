@@ -9,15 +9,18 @@ import { deletePackTC, updatePackTC } from '../../../../store/reducers/PacksRedu
 import { useAppDispatch, useAppSelector } from '../../../../store/store'
 import { DeletePackModal } from '../../DeletePackModal'
 import { EditPackModal } from '../../EditPackModal'
+import { ModeModalType } from '../../Packs'
 
 import s from './Actions.module.css'
 
 type ActionsPropsType = {
   userId: string
   packId: string
+  modeModal: ModeModalType
+  setModeModal: (value: ModeModalType) => void
 }
 
-export const Actions = ({ userId, packId }: ActionsPropsType) => {
+export const Actions = ({ userId, packId, modeModal, setModeModal }: ActionsPropsType) => {
   const [open, setOpen] = useState(false)
   const [openDelModal, setOpenDelModal] = useState(false)
   const status = useAppSelector(state => state.app.status)
@@ -27,13 +30,14 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
     dispatch(updatePackTC(packId, name))
   }
   const handleDeleteClick = () => {
-    // dispatch(setModalStatusAC('idle'))
     dispatch(deletePackTC(packId))
   }
   const handleOpenEditModal = () => {
+    setModeModal && setModeModal('add')
     setOpen(!open)
   }
   const handleOpenDelModal = () => {
+    setModeModal && setModeModal('delete')
     setOpenDelModal(true)
   }
 
@@ -49,8 +53,16 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
       >
         <ModeEditOutlineIcon />
       </IconButton>
-      <EditPackModal open={open} setOpen={setOpen} handleEditClick={handleEditClick} />
+      <EditPackModal
+        modeModal={modeModal}
+        setModeModal={setModeModal}
+        open={open}
+        setOpen={setOpen}
+        handleEditClick={handleEditClick}
+      />
       <DeletePackModal
+        modeModal={modeModal}
+        setModeModal={setModeModal}
         packId={packId}
         open={openDelModal}
         setOpen={setOpenDelModal}

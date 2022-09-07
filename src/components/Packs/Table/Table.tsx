@@ -9,7 +9,8 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
 import { setPacksParamsAC } from '../../../store/reducers/PacksParamsReducer'
-import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { useAppDispatch } from '../../../store/store'
+import { ModeModalType } from '../Packs'
 import { SortArrow } from '../SortArrow/SortArrow'
 
 import { Actions } from './Actions/Actions'
@@ -48,7 +49,11 @@ const columns: Array<Column> = [
   },
 ]
 
-export const StickyHeadTable = () => {
+export type StickyHeadTableType = {
+  modeModal: ModeModalType
+  setModeModal: (value: ModeModalType) => void
+}
+export const StickyHeadTable = (props: StickyHeadTableType) => {
   const dispatch = useAppDispatch()
   const onClickSortHandler = (value: number) => {
     dispatch(setPacksParamsAC({ sortPacks: value + `updated` }))
@@ -79,7 +84,7 @@ export const StickyHeadTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              <CustomTableBody />
+              <CustomTableBody modeModal={props.modeModal} setModeModal={props.setModeModal} />
             </TableBody>
           </Table>
         </TableContainer>

@@ -19,8 +19,10 @@ import s from './Packs.module.css'
 import { StickyHeadTable } from './Table/Table'
 
 export const initialOptions = [4, 8, 16, 32, 64]
+export type ModeModalType = 'close' | 'add' | 'edit' | 'delete'
 
 export const Packs = () => {
+  const [modeModal, setModeModal] = useState<ModeModalType>('close')
   const [searchTerm, setSearchTerm] = useState<string>('')
   const [alignment, setAlignment] = useState<string>('all')
   const [on, setOn] = useState<boolean>(false)
@@ -44,8 +46,11 @@ export const Packs = () => {
     setAlignment('all')
     setOn(false)
   }
-  const handleOpen = () => setOpen(!open)
-  const handleAddPack = (value: string, checked: boolean) => {
+  const handleOpen = () => {
+    setOpen(!open)
+    setModeModal('add')
+  }
+  const handleAddPack = (value: string, checked?: boolean | undefined) => {
     dispatch(addPackTC(value, checked))
   }
 
@@ -61,7 +66,13 @@ export const Packs = () => {
       <div className={s.wrapper}>
         <h3 className={s.mainTitle}>Packs list</h3>
         <Button onClick={handleOpen}>Add Pack</Button>
-        <AddPackModal open={open} setOpen={setOpen} handleAddPack={handleAddPack} />
+        <AddPackModal
+          open={open}
+          setOpen={setOpen}
+          handleAddPack={handleAddPack}
+          modeModal={modeModal}
+          setModeModal={setModeModal}
+        />
         <div className={s.filter}>
           <InputDebounce width={350} value={searchTerm} onChangeValue={setSearchTerm} />
           <ColorToggleButton
@@ -77,7 +88,7 @@ export const Packs = () => {
             </button>
           </div>
         </div>
-        <StickyHeadTable />
+        <StickyHeadTable modeModal={modeModal} setModeModal={setModeModal} />
         <div className={s.pagination}>
           <PaginationControlled page={page} count={pageCount} />
           <span className={s.title}>Show</span>

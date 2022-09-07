@@ -4,15 +4,19 @@ import SchoolIcon from '@mui/icons-material/School'
 import { IconButton } from '@mui/material'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
-import { FaChalkboardTeacher } from '@react-icons/all-files/fa/FaChalkboardTeacher'
 import { NavLink } from 'react-router-dom'
 
 import { PATH } from '../../../../routing/Pages/Pages'
 import { useAppSelector } from '../../../../store/store'
+import { ModeModalType } from '../../Packs'
 import { Actions } from '../Actions/Actions'
 import s from '../Table.module.css'
 
-export const CustomTableBody = () => {
+export type CustomTableBodyType = {
+  modeModal: ModeModalType
+  setModeModal: (value: ModeModalType) => void
+}
+export const CustomTableBody = (props: CustomTableBodyType) => {
   const cardPacks = useAppSelector(state => state.packs.cardPacks)
   const user = useAppSelector(state => state.profile.user)
   const status = useAppSelector(state => state.app.status)
@@ -37,7 +41,12 @@ export const CustomTableBody = () => {
             </TableCell>
             <TableCell align="center">
               {p.user_id === user._id ? (
-                <Actions userId={p.user_id} packId={p._id} />
+                <Actions
+                  userId={p.user_id}
+                  packId={p._id}
+                  modeModal={props.modeModal}
+                  setModeModal={props.setModeModal}
+                />
               ) : (
                 <IconButton
                   disabled={status === 'loading'}
