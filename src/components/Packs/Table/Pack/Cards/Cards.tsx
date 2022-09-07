@@ -33,6 +33,7 @@ import { PaginationControlled } from '../../../../Pagination/Pagination'
 import { SortArrow } from '../../../SortArrow/SortArrow'
 import { MyIdActions } from '../../Actions/MyIdActions/MyIdActions'
 
+import { ActionCards } from './ActionCard/ActionCard'
 import s from './Cards.module.css'
 
 type Column = {
@@ -62,8 +63,6 @@ const columns: Array<Column> = [
 ]
 
 export const Cards = () => {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [on, setOn] = useState<boolean>(false)
   const [modeModal, setModeModal] = useState<ModeModalType>('close')
   const [open, setOpen] = useState(false)
   const dispatch = useAppDispatch()
@@ -185,14 +184,7 @@ export const Cards = () => {
                         <TableCell align="center">{c.rating}</TableCell>
                         {myCards && (
                           <TableCell align="center">
-                            <MyIdActions
-                              handleDeleteClick={() => {
-                                dispatch(deleteCardTC(c._id))
-                              }}
-                              handleEditClick={() => {
-                                dispatch(updateCardTC(c._id))
-                              }}
-                            />
+                            <ActionCards id={c._id} />
                           </TableCell>
                         )}
                       </TableRow>

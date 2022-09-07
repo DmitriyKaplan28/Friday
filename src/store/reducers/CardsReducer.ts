@@ -85,11 +85,11 @@ export const deleteCardTC = (cardId: string): AppThunk => {
       })
   }
 }
-export const updateCardTC = (cardId: string): AppThunk => {
+export const updateCardTC = (cardId: string, question: string, answer: string): AppThunk => {
   const data = {
     _id: cardId,
-    question: 'new question',
-    answer: 'new answer',
+    question: question,
+    answer: answer,
   }
 
   return dispatch => {
