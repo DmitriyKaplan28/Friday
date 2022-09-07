@@ -1,9 +1,10 @@
 //state
 import { AxiosError } from 'axios'
+import { Dispatch } from 'redux'
 
 import { ErrorDataResponseType } from '../../api/api'
-import { cardsAPI, CardsParamsType, CardsResponseType, CardsType } from '../../api/cardsApi'
-import { AppThunk } from '../store'
+import { cardsAPI, CardsResponseType, CardsType } from '../../api/cardsApi'
+import { AppRootStateType, AppThunk } from '../store'
 
 import { setAppErrorAC, setAppStatusAC } from './AppReducer'
 
@@ -39,6 +40,13 @@ export const cardsReducer = (
       return { ...state, cards: [action.data, ...state.cards] }
     case 'DELETE-CARD':
       return { ...state, cards: state.cards.filter(c => c.cardsPack_id !== action.cardId) }
+    case 'SET-CARD-GRADE':
+      return {
+        ...state,
+        cards: state.cards.map(card =>
+          card._id === action.card_id ? { ...card, grade: action.grade } : card
+        ),
+      }
     default:
       return state
   }
@@ -58,12 +66,22 @@ export const setNameCardsAC = (value: string) => ({ type: 'SET-NAME-CADS', value
 
 export const setPageCurrentCardsAC = (page: number) => ({ type: 'SET-CURRENT-PAGE', page } as const)
 
+export const updateCardGradeAC = (card_id: string, grade: number) =>
+  ({
+    type: 'SET-CARD-GRADE',
+    card_id,
+    grade,
+  } as const)
+
 //thunk
-export const getCardsTC = (data: CardsParamsType): AppThunk => {
-  return dispatch => {
+export const getCardsTC =
+  (cardsPack_id: string): AppThunk =>
+  (dispatch: Dispatch, getState: () => AppRootStateType) => {
+    const { token } = getState().profile.user
+
     dispatch(setAppStatusAC('loading'))
     cardsAPI
-      .getCard(data)
+      .getCard(token, cardsPack_id)
       .then(res => {
         dispatch(setCardsAC(res.data))
       })
@@ -74,15 +92,14 @@ export const getCardsTC = (data: CardsParamsType): AppThunk => {
         dispatch(setAppStatusAC('succeeded'))
       })
   }
-}
 
-export const deleteCardTC = (cardId: string, params: CardsParamsType): AppThunk => {
+export const deleteCardTC = (cardId: string, cardsPack_id: string): AppThunk => {
   return dispatch => {
     dispatch(setAppStatusAC('loading'))
     cardsAPI
       .deleteCard(cardId)
-      .then(res => {
-        dispatch(getCardsTC(params))
+      .then(() => {
+        dispatch(getCardsTC(cardsPack_id))
       })
       .catch((error: AxiosError<ErrorDataResponseType>) => {
         dispatch(setAppErrorAC(error.response?.data.error))
@@ -92,7 +109,7 @@ export const deleteCardTC = (cardId: string, params: CardsParamsType): AppThunk 
       })
   }
 }
-export const updateCardTC = (cardId: string, params: CardsParamsType): AppThunk => {
+export const updateCardTC = (cardId: string, cardsPack_id: string): AppThunk => {
   const data = {
     _id: cardId,
     question: 'new question',
@@ -103,8 +120,8 @@ export const updateCardTC = (cardId: string, params: CardsParamsType): AppThunk 
     dispatch(setAppStatusAC('loading'))
     cardsAPI
       .updateCard(data)
-      .then(res => {
-        dispatch(getCardsTC(params))
+      .then(() => {
+        dispatch(getCardsTC(cardsPack_id))
       })
       .catch((error: AxiosError<ErrorDataResponseType>) => {
         dispatch(setAppErrorAC(error.response?.data.error))
@@ -114,7 +131,7 @@ export const updateCardTC = (cardId: string, params: CardsParamsType): AppThunk 
       })
   }
 }
-export const addCardTC = (cardsPack_id: string, params: CardsParamsType): AppThunk => {
+export const addCardTC = (cardsPack_id: string): AppThunk => {
   const data = {
     cardsPack_id: cardsPack_id,
     question: 'New Question',
@@ -125,8 +142,8 @@ export const addCardTC = (cardsPack_id: string, params: CardsParamsType): AppThu
     dispatch(setAppStatusAC('loading'))
     cardsAPI
       .addCard(data)
-      .then(res => {
-        dispatch(getCardsTC(params))
+      .then(() => {
+        dispatch(getCardsTC(cardsPack_id))
       })
       .catch((error: AxiosError<ErrorDataResponseType>) => {
         dispatch(setAppErrorAC(error.response?.data.error))
@@ -137,6 +154,23 @@ export const addCardTC = (cardsPack_id: string, params: CardsParamsType): AppThu
   }
 }
 
+export const updateCardGradeTC =
+  (card_id: string, grade: number): AppThunk =>
+  dispatch => {
+    dispatch(setAppStatusAC('loading'))
+    cardsAPI
+      .updateCardGrade(card_id, grade)
+      .then(res => {
+        dispatch(updateCardGradeAC(res.data._id, res.data.grade))
+      })
+      .catch((error: AxiosError<ErrorDataResponseType>) => {
+        dispatch(setAppErrorAC(error.response?.data.error))
+      })
+      .finally(() => {
+        dispatch(setAppStatusAC('idle'))
+      })
+  }
+
 // types
 export type CardsACType = ReturnType<
   | typeof setCardsAC
@@ -145,4 +179,5 @@ export type CardsACType = ReturnType<
   | typeof setNameCardsAC
   | typeof deleteCardAC
   | typeof addCardAC
+  | typeof updateCardGradeAC
 >

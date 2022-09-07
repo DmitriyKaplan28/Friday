@@ -1,9 +1,8 @@
 import React from 'react'
 
 import { FaChalkboardTeacher } from '@react-icons/all-files/fa/FaChalkboardTeacher'
-import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-import { PATH } from '../../../../routing/Pages/Pages'
 import { deletePackTC, updatePackTC } from '../../../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../../../store/store'
 
@@ -12,27 +11,33 @@ import { MyIdActions } from './MyIdActions/MyIdActions'
 
 type ActionsPropsType = {
   userId: string
-  packId: string
+  cards_packId: string
+  packName: string
 }
 
-export const Actions = ({ userId, packId }: ActionsPropsType) => {
+export const Actions = ({ userId, cards_packId, packName }: ActionsPropsType) => {
   const user = useAppSelector(state => state.profile.user)
   const status = useAppSelector(state => state.app.status)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+
+  const openLearnPage = (packId: string, packName: string) => {
+    navigate(`/learn/${packId}/${packName}`)
+  }
 
   const handleEditPackClick = () => {
-    dispatch(updatePackTC(packId))
+    dispatch(updatePackTC(cards_packId))
   }
   const handleDeletePackClick = () => {
-    dispatch(deletePackTC(packId))
+    dispatch(deletePackTC(cards_packId))
   }
 
   return (
     <div className={s.blockIcon}>
       <button disabled={status === 'loading'} className={s.iconBtn}>
-        <NavLink to={PATH.LEARNING}>
-          <FaChalkboardTeacher />
-        </NavLink>
+        {/*<NavLink to={PATH.LEARNING}>*/}
+        <FaChalkboardTeacher onClick={() => openLearnPage(cards_packId, packName)} />
+        {/*</NavLink>*/}
       </button>
       {userId === user._id ? (
         <MyIdActions

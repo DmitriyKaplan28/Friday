@@ -50,7 +50,7 @@ export const Cards = () => {
   }
 
   useEffect(() => {
-    dispatch(getCardsTC(params))
+    dispatch(getCardsTC(params.cardsPack_id))
   }, [])
 
   if (!isLoggedIn) {
@@ -91,15 +91,15 @@ export const Cards = () => {
                 </TableCell>
                 <TableCell align="right">{c.answer}</TableCell>
                 <TableCell align="right">{new Date(c.updated).toLocaleDateString()}</TableCell>
-                <TableCell align="right">{c.rating}</TableCell>
+                <TableCell align="right">{c.grade}</TableCell>
                 {myCards && (
                   <TableCell align="right">
                     <MyIdActions
                       handleDeleteClick={() => {
-                        dispatch(deleteCardTC(c._id, params))
+                        dispatch(deleteCardTC(c._id, params.cardsPack_id))
                       }}
                       handleEditClick={() => {
-                        dispatch(updateCardTC(c._id, params))
+                        dispatch(updateCardTC(c._id, params.cardsPack_id))
                       }}
                     />
                     {/*<p

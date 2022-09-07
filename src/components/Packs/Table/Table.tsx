@@ -95,7 +95,7 @@ export const StickyHeadTable = () => {
                       {p.user_name}
                     </TableCell>
                     <TableCell align="center">
-                      <Actions userId={p.user_id} packId={p._id} />
+                      <Actions userId={p.user_id} cards_packId={p._id} packName={p.name} />
                     </TableCell>
                   </TableRow>
                 )

@@ -7,10 +7,10 @@ const instance = axios.create({
 })
 
 export const cardsAPI = {
-  getCard(params: CardsParamsType) {
-    return instance.get<CardsResponseType>('/cards/card', {
-      params,
-    })
+  getCard(token: string, cardsPack_id: string) {
+    return instance.get<CardsResponseType>(
+      `/cards/card?token=${token}&cardsPack_id=${cardsPack_id}`
+    )
   },
   addCard(data: AddCardDataType) {
     return instance.post<CardsResponseType>(`cards/card`, { card: data })
@@ -20,6 +20,9 @@ export const cardsAPI = {
   },
   updateCard(data: UpdateCardDataType) {
     return instance.put<CardsResponseType>(`cards/card`, { card: data })
+  },
+  updateCardGrade(card_id: string, grade: number) {
+    return instance.put('/cards/grade', { card_id, grade })
   },
 }
 
