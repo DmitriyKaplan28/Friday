@@ -8,6 +8,7 @@ import {
 } from '../../../../../../store/reducers/CardsReducer'
 import { useAppDispatch } from '../../../../../../store/store'
 import { EditCardsModal } from '../../../../../Modal/CardsModal/CardsModalForm/EditCardsModal'
+import { RemoveCardsModal } from '../../../../../Modal/CardsModal/CardsModalForm/RemoveCardsModal'
 import { ModeModalType } from '../../../../../Modal/CardsModal/CustomCardsModal'
 import { MyIdActions } from '../../../Actions/MyIdActions/MyIdActions'
 
@@ -18,11 +19,17 @@ export const ActionCards = (props: ActionCardsType) => {
   const [modeModal, setModeModal] = useState<ModeModalType>('close')
   const [open, setOpen] = useState(false)
   const dispatch = useAppDispatch()
-  const handleDeleteClick = () => {}
+  const handleDeleteClick = () => {
+    dispatch(deleteCardTC(props.id))
+  }
 
-  const handleOpen = () => {
+  const handleOpenEdit = () => {
     setOpen(!open)
-    setModeModal('add')
+    setModeModal('edit')
+  }
+  const handleOpenDelete = () => {
+    setOpen(!open)
+    setModeModal('delete')
   }
   const handleEditClick = (question: string, answer: string) => {
     dispatch(updateCardTC(props.id, question, answer))
@@ -30,11 +37,18 @@ export const ActionCards = (props: ActionCardsType) => {
 
   return (
     <div>
-      <MyIdActions handleDeleteClick={handleOpen} handleEditClick={handleOpen} />
+      <MyIdActions handleDeleteClick={handleOpenDelete} handleEditClick={handleOpenEdit} />
       <EditCardsModal
         open={open}
         setOpen={setOpen}
         handleEditCard={handleEditClick}
+        modeModal={modeModal}
+        setModeModal={setModeModal}
+      />
+      <RemoveCardsModal
+        open={open}
+        setOpen={setOpen}
+        handleDeleteCard={handleDeleteClick}
         modeModal={modeModal}
         setModeModal={setModeModal}
       />

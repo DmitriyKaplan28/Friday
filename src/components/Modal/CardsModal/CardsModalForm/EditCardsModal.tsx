@@ -11,10 +11,9 @@ export type EditCardsModalType = {
   setModeModal: (value: ModeModalType) => void
 }
 export const EditCardsModal = (props: EditCardsModalType) => {
-  const modalStatusRequest = useAppSelector(state => state.app.modalStatusRequest)
   const handleCard = (question: string, answer: string) => {
     props.handleEditCard(question, answer)
-    props.setModeModal && props.setModeModal('add')
+    props.setModeModal && props.setModeModal('edit')
   }
 
   return (

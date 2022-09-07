@@ -1,18 +1,32 @@
 import * as React from 'react'
 
-import { CustomCardsModal } from '../CustomCardsModal'
+import { CustomCardsModal, ModeModalType } from '../CustomCardsModal'
 
 export type RemoveCardsModalType = {
   open: boolean
   setOpen: (value: boolean) => void
-  handleAddPack: (value: string, checked: boolean) => void
+  handleDeleteCard: () => void
+  modeModal: ModeModalType
+  setModeModal: (value: ModeModalType) => void
 }
 export const RemoveCardsModal = (props: RemoveCardsModalType) => {
+  const handleCard = (question: string, answer: string) => {
+    props.handleDeleteCard()
+    props.setModeModal && props.setModeModal('delete')
+  }
+
   return (
     <div>
-      {/* <CustomCardsModal title={'Add Pack'} setOpen={props.setOpen} open={props.open}>
+      <CustomCardsModal
+        callback={handleCard}
+        title={'Delete card'}
+        setOpen={props.setOpen}
+        open={props.open}
+        modeModal={props.modeModal}
+        setModeModal={props.setModeModal}
+      >
         <div>Do you really want to remove Card Name? All cards will be deleted.</div>
-      </CustomCardsModal>*/}
+      </CustomCardsModal>
     </div>
   )
 }

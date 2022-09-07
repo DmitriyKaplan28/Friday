@@ -80,7 +80,7 @@ export const CustomCardsModal: React.FC<ModalCardsType> = ({
                 <CloseIcon />
               </IconButton>
             </div>
-            {modeModal === 'add' && (
+            {modeModal !== 'delete' && (
               <>
                 <FormControl fullWidth>
                   <InputLabel>Choose a question format</InputLabel>
@@ -110,7 +110,7 @@ export const CustomCardsModal: React.FC<ModalCardsType> = ({
               <Button variant="outlined" size="large" onClick={closeModal}>
                 Cancel
               </Button>
-              {modeModal === 'add' ? (
+              {modeModal !== 'delete' ? (
                 <LoadingButton
                   size={'large'}
                   loading={modalStatusRequest === 'loading'}
