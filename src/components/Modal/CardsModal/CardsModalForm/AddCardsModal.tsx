@@ -1,8 +1,7 @@
 import * as React from 'react'
 
 import { useAppSelector } from '../../../../store/store'
-import { ModeModalType } from '../../../Packs/Table/Pack/Cards/Cards'
-import { CustomCardsModal } from '../CustomCardsModal'
+import { CustomCardsModal, ModeModalType } from '../CustomCardsModal'
 
 export type AddCardsModalType = {
   open: boolean

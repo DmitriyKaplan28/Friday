@@ -12,7 +12,6 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 
 import { setModalStatusAC } from '../../../store/reducers/AppReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
-import { ModeModalType } from '../../Packs/Table/Pack/Cards/Cards'
 
 import s from './CustomModal.module.css'
 
@@ -27,6 +26,7 @@ export type ModalCardsType = {
   setModeModal: (value: ModeModalType) => void
 }
 
+export type ModeModalType = 'close' | 'add' | 'edit' | 'delete'
 export const CustomCardsModal: React.FC<ModalCardsType> = ({
   children,
   callback,
