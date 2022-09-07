@@ -26,9 +26,6 @@ export const Packs = () => {
   const [on, setOn] = useState<boolean>(false)
   const [open, setOpen] = useState(false)
   const dispatch = useAppDispatch()
-  // const { page, pageCount, min, max, sortPacks, packName, user_id } = useAppSelector(
-  //   state => state.paramsPacks
-  // )
   const page = useAppSelector(state => state.paramsPacks.page)
   const pageCount = useAppSelector(state => state.paramsPacks.pageCount)
   const min = useAppSelector(state => state.paramsPacks.min)

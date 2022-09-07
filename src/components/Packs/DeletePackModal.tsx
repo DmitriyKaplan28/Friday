@@ -5,8 +5,7 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import Button from '@mui/material/Button'
 import { createSelector } from 'reselect'
 
-import { setModalStatusAC } from '../../store/reducers/AppReducer'
-import { AppRootStateType, useAppDispatch, useAppSelector } from '../../store/store'
+import { AppRootStateType, useAppSelector } from '../../store/store'
 import { CustomModal } from '../CustomModal/CustomModal'
 
 import s from './Packs.module.css'
@@ -18,20 +17,18 @@ export type DeleteModalType = {
   packId: string
 }
 
-export const DeleteModal = (props: DeleteModalType) => {
+export const DeletePackModal = (props: DeleteModalType) => {
   const getCardPack = (state: AppRootStateType) => state.packs.cardPacks
   const getFindCardPack = createSelector(getCardPack, packs =>
     packs.find(p => p._id === props.packId)
   )
   const modalStatusRequest = useAppSelector(state => state.app.modalStatusRequest)
-  const dispatch = useAppDispatch()
   const pack = useAppSelector(getFindCardPack)
 
   const handleDelClick = () => {
     props.handleDeleteClick()
   }
   const closeModal = () => {
-    dispatch(setModalStatusAC('idle'))
     props.setOpen(!open)
   }
 

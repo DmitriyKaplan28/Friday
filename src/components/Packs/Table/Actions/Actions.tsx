@@ -4,13 +4,10 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline'
 import SchoolIcon from '@mui/icons-material/School'
 import { IconButton } from '@mui/material'
-import { FaChalkboardTeacher } from '@react-icons/all-files/fa/FaChalkboardTeacher'
-import { NavLink } from 'react-router-dom'
 
-import { PATH } from '../../../../routing/Pages/Pages'
 import { deletePackTC, updatePackTC } from '../../../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../../../store/store'
-import { DeleteModal } from '../../DeleteModal'
+import { DeletePackModal } from '../../DeletePackModal'
 import { EditPackModal } from '../../EditPackModal'
 
 import s from './Actions.module.css'
@@ -30,6 +27,7 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
     dispatch(updatePackTC(packId, name))
   }
   const handleDeleteClick = () => {
+    // dispatch(setModalStatusAC('idle'))
     dispatch(deletePackTC(packId))
   }
   const handleOpenEditModal = () => {
@@ -52,7 +50,7 @@ export const Actions = ({ userId, packId }: ActionsPropsType) => {
         <ModeEditOutlineIcon />
       </IconButton>
       <EditPackModal open={open} setOpen={setOpen} handleEditClick={handleEditClick} />
-      <DeleteModal
+      <DeletePackModal
         packId={packId}
         open={openDelModal}
         setOpen={setOpenDelModal}

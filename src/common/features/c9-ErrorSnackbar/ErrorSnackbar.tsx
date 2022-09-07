@@ -3,7 +3,7 @@ import * as React from 'react'
 import MuiAlert, { AlertProps } from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
 
-import { setAppErrorAC } from '../../../store/reducers/AppReducer'
+import { setAppErrorAC, setModalStatusAC } from '../../../store/reducers/AppReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
@@ -12,6 +12,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props,
 
 export const ErrorSnackbar = () => {
   const error = useAppSelector(state => state.app.error)
+  const modalStatusRequest = useAppSelector(state => state.app.modalStatusRequest)
   const dispatch = useAppDispatch()
 
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
@@ -19,14 +20,25 @@ export const ErrorSnackbar = () => {
       return
     }
     dispatch(setAppErrorAC(null))
+    dispatch(setModalStatusAC('idle'))
   }
   const isOpen = error !== null
 
   return (
-    <Snackbar open={isOpen} autoHideDuration={6000} onClose={handleClose}>
-      <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-        {error}
-      </Alert>
+    <Snackbar
+      open={error !== null || modalStatusRequest === 'succeeded'}
+      autoHideDuration={6000}
+      onClose={handleClose}
+    >
+      {error !== null ? (
+        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          {error}
+        </Alert>
+      ) : (
+        <Alert onClose={handleClose} severity="success">
+          {modalStatusRequest}
+        </Alert>
+      )}
     </Snackbar>
   )
 }

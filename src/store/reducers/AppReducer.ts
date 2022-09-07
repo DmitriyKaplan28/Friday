@@ -7,6 +7,7 @@ import { setIsLoggedInAC } from './AuthReducer'
 import { setUserAC } from './ProfileReducer'
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
+export type RequestStatusModalType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export type errorType = string | null | undefined
 
 const initialState = {
@@ -15,7 +16,7 @@ const initialState = {
   initialized: false,
   isLoad: false,
   registerError: null,
-  modalStatusRequest: 'idle' as RequestStatusType,
+  modalStatusRequest: 'idle' as RequestStatusModalType,
 }
 
 type InitialStateType = typeof initialState
@@ -68,7 +69,7 @@ export const setAppErrorAC = (error: string | null | undefined) =>
   ({ type: 'APP/SET-ERROR', error } as const)
 export const setAppInitialAC = (value: boolean) => ({ type: 'APP/SET-APP-INITIAL', value } as const)
 export const setAppLoadAC = (value: boolean) => ({ type: 'APP/SET-APP-LOAD', value } as const)
-export const setModalStatusAC = (value: RequestStatusType) =>
+export const setModalStatusAC = (value: RequestStatusModalType) =>
   ({ type: 'APP/SET-MODAL-STATUS', value } as const)
 //TYPES
 type SetAppStatusAT = ReturnType<typeof setAppStatusAC>
