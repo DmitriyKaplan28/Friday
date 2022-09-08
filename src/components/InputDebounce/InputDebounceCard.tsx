@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { AiOutlineSearch } from '@react-icons/all-files/ai/AiOutlineSearch'
 
 import { useDebounce } from '../../common/hooks/useDebounce'
-import { useAppDispatch } from '../../store/store'
 
 import s from './InputDebounce.module.css'
 
@@ -19,7 +18,7 @@ export const InputDebounceCard = (props: InputDebounceType) => {
 
   useEffect(() => {
     props.callback(debouncedSearchTerm)
-    setSearchTerm('')
+    //setSearchTerm('')
   }, [debouncedSearchTerm])
 
   return (
