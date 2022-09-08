@@ -57,7 +57,7 @@ export const Cards = () => {
     return <Navigate to={PATH.LOGIN} />
   }
   const handleAddCard = () => {
-    dispatch(addCardTC(params.cardsPack_id, params))
+    dispatch(addCardTC(params.cardsPack_id))
   }
 
   return (
@@ -66,7 +66,7 @@ export const Cards = () => {
       <h3 className={s.mainTitle}>{packName}</h3>
       {myCards && (
         <Button variant="outlined" onClick={handleAddCard}>
-          Add Pack
+          Add Card
         </Button>
       )}
       <div className={s.filter}>

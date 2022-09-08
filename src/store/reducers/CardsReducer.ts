@@ -112,8 +112,8 @@ export const deleteCardTC = (cardId: string, cardsPack_id: string): AppThunk => 
 export const updateCardTC = (cardId: string, cardsPack_id: string): AppThunk => {
   const data = {
     _id: cardId,
-    question: 'new question',
-    answer: 'new answer',
+    question: 'updated question',
+    answer: 'updated answer',
   }
 
   return dispatch => {

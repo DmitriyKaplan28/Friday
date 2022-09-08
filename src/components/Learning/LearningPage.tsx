@@ -1,28 +1,21 @@
 import React, { useEffect, useState } from 'react'
 
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import {
-  Box,
-  Button,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-} from '@mui/material'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
+import { Navigate, useParams } from 'react-router-dom'
 
 import { CardsType } from '../../api/cardsApi'
+import { BackPage } from '../../common/features/c11-BackPage/BackPage'
+import { PATH } from '../../routing/Pages/Pages'
 import { getCardsTC, updateCardGradeTC } from '../../store/reducers/CardsReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import s from '../ComonnStylePage.module.css'
 
 const grades = [
-  { value: 1, label: 'Did not know' },
-  { value: 2, label: 'Forgot' },
-  { value: 3, label: 'A lot of thought' },
-  { value: 4, label: 'Confused' },
-  { value: 5, label: 'Knew the answer' },
+  { value: 1, label: 'Not a chance' },
+  { value: 2, label: 'Tough' },
+  { value: 3, label: 'So-so' },
+  { value: 4, label: 'Not that easy' },
+  { value: 5, label: 'Easy' },
 ]
 
 const getCard = (cards: CardsType[]) => {
@@ -49,7 +42,6 @@ export const Learn = () => {
 
   const { packId, packName } = useParams<'packId' | 'packName'>()
 
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
   const { cards } = useAppSelector(state => state.cards)
@@ -71,10 +63,6 @@ export const Learn = () => {
     __v: 0,
   })
 
-  const onClickBackHandler = () => {
-    navigate(-1)
-  }
-
   const onNext = () => {
     if (packId) {
       setIsChecked(false)
@@ -87,6 +75,8 @@ export const Learn = () => {
     setValue((event.target as HTMLInputElement).value)
   }
 
+  const onShowAnswer = () => setIsChecked(true)
+
   useEffect(() => {
     if (first) {
       packId && dispatch(getCardsTC(packId))
@@ -98,57 +88,56 @@ export const Learn = () => {
   }, [dispatch, packId, cards, first])
 
   if (!isLoggedIn) {
-    navigate('/login')
+    return <Navigate to={PATH.LOGIN} />
   }
 
   return (
-    <div className={s.card}>
-      <Box
-        sx={{
-          '& .MuiTextField-root': { m: 1, width: '347px' },
-        }}
-      >
-        <div onClick={onClickBackHandler}>
-          <ArrowBackIcon />
-          <div>Back to Packs List</div>
-        </div>
-        <p>Learn {packName}</p>
-        <div>
-          <div>Question: {card.question}</div>
-          <div>Number of attempts to answer the question: {card.shots}</div>
-          {isChecked ? (
-            <>
-              <div>Answer: {card.answer}</div>
+    <div>
+      <BackPage title={'Packs List'} route={PATH.PACKS} />
+      <div className={s.card}>
+        <Box
+          sx={{
+            '& .MuiTextField-root': { m: 1, width: '347px' },
+          }}
+        >
+          <p>Learn {packName}</p>
+          <div>
+            <div>Question: {card.question}</div>
+            <div>Number of attempts to answer the question: {card.shots}</div>
+            {isChecked ? (
+              <>
+                <div>Answer: {card.answer}</div>
+                <div>
+                  <FormControl>
+                    <FormLabel>Rate yourself:</FormLabel>
+                    <RadioGroup value={value} onChange={handleChange}>
+                      {grades.map((grade, i) => (
+                        <FormControlLabel
+                          key={'grade-' + i}
+                          value={grade.value}
+                          control={<Radio onChange={() => setGrade(grade.value)} />}
+                          label={grade.label}
+                        />
+                      ))}
+                    </RadioGroup>
+                  </FormControl>
+                </div>
+                <div>
+                  <button className={s.button} type={'submit'} onClick={onNext}>
+                    next
+                  </button>
+                </div>
+              </>
+            ) : (
               <div>
-                <FormControl>
-                  <FormLabel>Rate yourself:</FormLabel>
-                  <RadioGroup value={value} onChange={handleChange}>
-                    {grades.map((grade, i) => (
-                      <FormControlLabel
-                        key={'grade-' + i}
-                        value={grade.value}
-                        control={<Radio onChange={() => setGrade(grade.value)} />}
-                        label={grade.label}
-                      />
-                    ))}
-                  </RadioGroup>
-                </FormControl>
+                <button className={s.button} type={'submit'} onClick={onShowAnswer}>
+                  Show answer
+                </button>
               </div>
-              <div>
-                <Button disabled={!value} variant={'contained'} onClick={onNext}>
-                  next
-                </Button>
-              </div>
-            </>
-          ) : (
-            <div>
-              <Button variant={'contained'} onClick={() => setIsChecked(true)}>
-                Show answer
-              </Button>
-            </div>
-          )}
-        </div>
-      </Box>
+            )}
+          </div>
+        </Box>
+      </div>
     </div>
   )
 }
