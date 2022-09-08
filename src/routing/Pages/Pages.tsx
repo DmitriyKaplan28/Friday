@@ -44,7 +44,6 @@ export const Pages = () => {
         <Route path={PATH.CARDS} element={<Cards />} />
         <Route path={'/*'} element={<Error404 />} />
         <Route path={PATH.LEARN} element={<Learn />} />
-        {/*<Route path={'/learn/:packId/:packName'} element={<Learning />} />*/}
       </Routes>
     </>
   )

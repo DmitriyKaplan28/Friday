@@ -2,9 +2,11 @@ import React, { useEffect } from 'react'
 
 import './App.css'
 import { CircularProgress } from '@mui/material'
+import { HashRouter } from 'react-router-dom'
 
 import { ErrorSnackbar } from '../common/features/c9-ErrorSnackbar/ErrorSnackbar'
-import { PageRouting } from '../routing/PageRouting'
+import { Header } from '../components/Header/Header'
+import { Pages } from '../routing/Pages/Pages'
 import { appInitialTC } from '../store/reducers/AppReducer'
 import { useAppDispatch, useAppSelector } from '../store/store'
 
@@ -26,7 +28,11 @@ function App() {
   return (
     <>
       <ErrorSnackbar />
-      <PageRouting />
+      {/*<PageRouting />*/}
+      <HashRouter>
+        <Header />
+        <Pages />
+      </HashRouter>
     </>
   )
 }
