@@ -19,19 +19,13 @@ import {
   setPageCurrentCardsAC,
   setSortCardAC,
 } from '../../../../../store/reducers/CardsParamsReducer'
-import {
-  addCardTC,
-  deleteCardTC,
-  getCardsTC,
-  updateCardTC,
-} from '../../../../../store/reducers/CardsReducer'
+import { addCardTC, getCardsTC } from '../../../../../store/reducers/CardsReducer'
 import { useAppDispatch, useAppSelector } from '../../../../../store/store'
 import { InputDebounce } from '../../../../InputDebounce/InputDebounce'
 import { AddCardsModal } from '../../../../Modal/CardsModal/CardsModalForm/AddCardsModal'
 import { ModeModalType } from '../../../../Modal/CardsModal/CustomCardsModal'
 import { PaginationControlled } from '../../../../Pagination/Pagination'
 import { SortArrow } from '../../../SortArrow/SortArrow'
-import { MyIdActions } from '../../Actions/MyIdActions/MyIdActions'
 
 import { ActionCards } from './ActionCard/ActionCard'
 import s from './Cards.module.css'
@@ -116,20 +110,21 @@ export const Cards = () => {
     <div className={s.wrapper}>
       <BackPage title={'Packs List'} route={PATH.PACKS} />
       <h3 className={s.mainTitle}>{packName}</h3>
-      {myCards ? (
+      {(myCards && (
         <Button variant="outlined" onClick={handleOpen}>
           Add Card
         </Button>
-      ) : (
-        <Button
-          variant="outlined"
-          onClick={() => {
-            alert('Learn card')
-          }}
-        >
-          Learn Card
-        </Button>
-      )}
+      )) ||
+        (!packEmpty && !myCards && (
+          <Button
+            variant="outlined"
+            onClick={() => {
+              alert('Learn card')
+            }}
+          >
+            Learn Card
+          </Button>
+        ))}
 
       <AddCardsModal
         open={open}
@@ -138,73 +133,74 @@ export const Cards = () => {
         modeModal={modeModal}
         setModeModal={setModeModal}
       />
-      {packEmpty ? (
-        <div>This pack is empty. Click add new card to fill this pack</div>
-      ) : (
-        <>
-          <div className={s.filter}>
-            <InputDebounce width={1200} callback={findQuestionHandler} />
-          </div>
-          <div className={s.wrappers}>
-            <Paper sx={{ width: '100%' }}>
-              <TableContainer sx={{ maxHeight: 640 }}>
-                <Table aria-label="customized table">
-                  <TableHead sx={{ backgroundColor: '#EFEFEF' }}>
-                    <TableRow>
-                      {columns.map(column => (
-                        <TableCell
-                          key={column.id}
-                          align={column.align}
-                          style={{ minWidth: column.minWidth }}
-                        >
-                          <div className={s.labelBlock}>
-                            {column.isSort ? (
-                              <SortArrow
-                                label={column.label}
-                                sort={sortCard}
-                                onClickSortHandler={onClickSortHandler}
-                              />
-                            ) : (
-                              <div>{column.label}</div>
-                            )}
-                          </div>
-                        </TableCell>
-                      ))}
-                      {myCards && <TableCell align="center">Actions</TableCell>}
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {cards.map(c => (
-                      <TableRow key={c._id}>
-                        <TableCell align="center">{c.question}</TableCell>
-                        <TableCell align="center">{c.answer}</TableCell>
-                        <TableCell align="center">
-                          {new Date(c.updated).toLocaleDateString()}
-                        </TableCell>
-                        <TableCell align="center">{c.rating}</TableCell>
-                        {myCards && (
-                          <TableCell align="center">
-                            <ActionCards id={c._id} />
+      {(packEmpty && myCards && (
+        <div className={s.text}>This pack is empty. Click add new card to fill this pack</div>
+      )) ||
+        (packEmpty && !myCards && <div className={s.text}>This pack is empty.</div>) || (
+          <>
+            <div className={s.filter}>
+              <InputDebounce width={1200} callback={findQuestionHandler} />
+            </div>
+            <div className={s.wrappers}>
+              <Paper sx={{ width: '100%' }}>
+                <TableContainer sx={{ maxHeight: 640 }}>
+                  <Table aria-label="customized table">
+                    <TableHead sx={{ backgroundColor: '#EFEFEF' }}>
+                      <TableRow>
+                        {columns.map(column => (
+                          <TableCell
+                            key={column.id}
+                            align={column.align}
+                            style={{ minWidth: column.minWidth }}
+                          >
+                            <div className={s.labelBlock}>
+                              {column.isSort ? (
+                                <SortArrow
+                                  label={column.label}
+                                  sort={sortCard}
+                                  onClickSortHandler={onClickSortHandler}
+                                />
+                              ) : (
+                                <div>{column.label}</div>
+                              )}
+                            </div>
                           </TableCell>
-                        )}
+                        ))}
+                        {myCards && <TableCell align="center">Actions</TableCell>}
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Paper>
-          </div>
-          <div className={s.pagination}>
-            <PaginationControlled
-              page={page}
-              count={pageCount}
-              totalCount={cardsTotalCount}
-              changePageCount={onChangePageCount}
-              setPage={setPage}
-            />
-          </div>
-        </>
-      )}
+                    </TableHead>
+                    <TableBody>
+                      {cards.map(c => (
+                        <TableRow key={c._id}>
+                          <TableCell align="center">{c.question}</TableCell>
+                          <TableCell align="center">{c.answer}</TableCell>
+                          <TableCell align="center">
+                            {new Date(c.updated).toLocaleDateString()}
+                          </TableCell>
+                          <TableCell align="center">{c.rating}</TableCell>
+                          {myCards && (
+                            <TableCell align="center">
+                              <ActionCards id={c._id} />
+                            </TableCell>
+                          )}
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Paper>
+            </div>
+            <div className={s.pagination}>
+              <PaginationControlled
+                page={page}
+                count={pageCount}
+                totalCount={cardsTotalCount}
+                changePageCount={onChangePageCount}
+                setPage={setPage}
+              />
+            </div>
+          </>
+        )}
     </div>
   )
 }
