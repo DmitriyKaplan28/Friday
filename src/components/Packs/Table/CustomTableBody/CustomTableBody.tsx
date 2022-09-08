@@ -4,7 +4,7 @@ import SchoolIcon from '@mui/icons-material/School'
 import { IconButton } from '@mui/material'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { PATH } from '../../../../routing/Pages/Pages'
 import {
@@ -26,6 +26,7 @@ export const CustomTableBody = (props: CustomTableBodyType) => {
   const status = useAppSelector(state => state.app.status)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+
   const openLearnPage = (packId: string, packName: string) => {
     navigate(`/learn/${packId}/${packName}`)
   }
@@ -35,8 +36,6 @@ export const CustomTableBody = (props: CustomTableBodyType) => {
     dispatch(setCardsPackIdAC(id))
     navigate(PATH.CARDS)
   }
-
-  const onClickHandler = () => {}
 
   return (
     <>
@@ -68,7 +67,7 @@ export const CustomTableBody = (props: CustomTableBodyType) => {
                   className={s.iconBtn}
                   onClick={() => openLearnPage(p._id, p.name)}
                 >
-                  <div onClick={onClickHandler}>
+                  <div>
                     <SchoolIcon />
                   </div>
                 </IconButton>

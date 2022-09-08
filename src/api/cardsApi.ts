@@ -1,10 +1,8 @@
 import { instance } from './api'
 
 export const cardsAPI = {
-  getCard(token: string, cardsPack_id: string) {
-    return instance.get<CardsResponseType>(
-      `/cards/card?token=${token}&cardsPack_id=${cardsPack_id}`
-    )
+  getCard(cardsPack_id: string, params: CardsParamsType) {
+    return instance.get<CardsResponseType>(`/cards/card?cardsPack_id=${cardsPack_id}`, { params })
   },
   addCard(data: AddCardDataType) {
     return instance.post<CardsResponseType>(`cards/card`, { card: data })

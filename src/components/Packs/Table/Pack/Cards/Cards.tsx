@@ -76,11 +76,9 @@ export const Cards = () => {
   const onChangePageCount = (value: number) => {
     dispatch(setPageCountCardsAC(value))
     dispatch(setPageCurrentCardsAC(1))
-    console.log('onChangePageCount')
   }
   const setPage = (value: number) => {
     dispatch(setPageCurrentCardsAC(value))
-    console.log('setPage')
   }
 
   useEffect(() => {
@@ -178,7 +176,7 @@ export const Cards = () => {
                           <TableCell align="center">
                             {new Date(c.updated).toLocaleDateString()}
                           </TableCell>
-                          <TableCell align="center">{c.rating}</TableCell>
+                          <TableCell align="center">{c.grade}</TableCell>
                           {myCards && (
                             <TableCell align="center">
                               <ActionCards id={c._id} cardsPack_id={c.cardsPack_id} />

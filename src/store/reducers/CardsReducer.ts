@@ -67,11 +67,11 @@ export const updateCardGradeAC = (card_id: string, grade: number) =>
 export const getCardsTC =
   (cardsPack_id: string): AppThunk =>
   (dispatch: Dispatch, getState: () => AppRootStateType) => {
-    const { token } = getState().profile.user
+    const paramsCard = getState().paramsCard
 
     dispatch(setAppStatusAC('loading'))
     cardsAPI
-      .getCard(token, cardsPack_id)
+      .getCard(cardsPack_id, paramsCard)
       .then(res => {
         dispatch(setCardsAC(res.data))
       })
