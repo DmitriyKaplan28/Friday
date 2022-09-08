@@ -8,6 +8,7 @@ import { setUserAC } from './ProfileReducer'
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export type RequestStatusModalType = 'idle' | 'loading' | 'succeeded' | 'failed'
+
 export type errorType = string | null | undefined
 
 const initialState = {

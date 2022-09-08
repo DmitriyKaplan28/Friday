@@ -30,6 +30,7 @@ export const Packs = () => {
   const dispatch = useAppDispatch()
   const page = useAppSelector(state => state.paramsPacks.page)
   const pageCount = useAppSelector(state => state.paramsPacks.pageCount)
+  const cardPacksTotalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
   const min = useAppSelector(state => state.paramsPacks.min)
   const max = useAppSelector(state => state.paramsPacks.max)
   const sortPacks = useAppSelector(state => state.paramsPacks.sortPacks)
@@ -40,6 +41,11 @@ export const Packs = () => {
   const onChangePageCount = (value: number) => {
     dispatch(setPacksParamsAC({ pageCount: value, page: 1 }))
   }
+
+  const setPage = (value: number) => {
+    dispatch(setPacksParamsAC({ page: value }))
+  }
+
   const onClickReset = () => {
     dispatch(setResetSettingsPacksAC())
     setSearchTerm('')
@@ -90,14 +96,21 @@ export const Packs = () => {
         </div>
         <StickyHeadTable modeModal={modeModal} setModeModal={setModeModal} />
         <div className={s.pagination}>
-          <PaginationControlled page={page} count={pageCount} />
+          <PaginationControlled
+            page={page}
+            count={pageCount}
+            totalCount={cardPacksTotalCount}
+            changePageCount={onChangePageCount}
+            setPage={setPage}
+          />
+          {/* <PaginationControlled page={page} count={pageCount} />
           <span className={s.title}>Show</span>
           <SuperSelect
             value={pageCount}
             options={initialOptions}
             onChangeOption={onChangePageCount}
           />
-          <span className={s.title}>Cards per Page</span>
+          <span className={s.title}>Cards per Page</span>*/}
         </div>
       </div>
     </div>

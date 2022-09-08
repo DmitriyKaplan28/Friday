@@ -9,13 +9,14 @@ import s from './SortArrow.module.css'
 
 type SortArrowType = {
   label?: string
+  sort: string
   onClickSortHandler: (value: number) => void
 }
 
 export const SortArrow = (props: SortArrowType) => {
   const status = useAppSelector(state => state.app.status)
-  const sortPacks = useAppSelector(state => state.paramsPacks.sortPacks)
-  let sortPacksNumber = parseInt(sortPacks)
+  //const sortPacks = useAppSelector(state => state.paramsPacks.sortPacks)
+  let sortPacksNumber = parseInt(props.sort)
 
   const onClickHandler = () => {
     sortPacksNumber = sortPacksNumber + 1
