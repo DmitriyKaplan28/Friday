@@ -10,6 +10,7 @@ import { MyIdActions } from '../../../Actions/MyIdActions/MyIdActions'
 
 type ActionCardsType = {
   id: string
+  cardsPack_id: string
 }
 export const ActionCards = (props: ActionCardsType) => {
   const [modeModal, setModeModal] = useState<ModeModalType>('close')
@@ -17,7 +18,7 @@ export const ActionCards = (props: ActionCardsType) => {
   const [openRemove, setOpenRemove] = useState(false)
   const dispatch = useAppDispatch()
   const handleDeleteClick = () => {
-    dispatch(deleteCardTC(props.id))
+    dispatch(deleteCardTC(props.id, props.cardsPack_id))
   }
 
   const handleOpenEdit = () => {
@@ -29,7 +30,7 @@ export const ActionCards = (props: ActionCardsType) => {
     setModeModal('delete')
   }
   const handleEditClick = (question: string, answer: string) => {
-    dispatch(updateCardTC(props.id, question, answer))
+    dispatch(updateCardTC(props.id, props.cardsPack_id, question, answer))
   }
 
   return (

@@ -26,8 +26,6 @@ import { AddCardsModal } from '../../../../Modal/CardsModal/CardsModalForm/AddCa
 import { ModeModalType } from '../../../../Modal/CardsModal/CustomCardsModal'
 import { PaginationControlled } from '../../../../Pagination/Pagination'
 import { SortArrow } from '../../../SortArrow/SortArrow'
-import { initialOptions } from '../../../Packs'
-import { MyIdActions } from '../../Actions/MyIdActions/MyIdActions'
 
 import { ActionCards } from './ActionCard/ActionCard'
 import s from './Cards.module.css'
@@ -78,9 +76,11 @@ export const Cards = () => {
   const onChangePageCount = (value: number) => {
     dispatch(setPageCountCardsAC(value))
     dispatch(setPageCurrentCardsAC(1))
+    console.log('onChangePageCount')
   }
   const setPage = (value: number) => {
     dispatch(setPageCurrentCardsAC(value))
+    console.log('setPage')
   }
 
   useEffect(() => {
@@ -181,7 +181,7 @@ export const Cards = () => {
                           <TableCell align="center">{c.rating}</TableCell>
                           {myCards && (
                             <TableCell align="center">
-                              <ActionCards id={c._id} />
+                              <ActionCards id={c._id} cardsPack_id={c.cardsPack_id} />
                             </TableCell>
                           )}
                         </TableRow>

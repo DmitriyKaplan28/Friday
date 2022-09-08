@@ -26,8 +26,8 @@ export const CustomTableBody = (props: CustomTableBodyType) => {
   const status = useAppSelector(state => state.app.status)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const handleCardClick = () => {
-    console.log('card')
+  const openLearnPage = (packId: string, packName: string) => {
+    navigate(`/learn/${packId}/${packName}`)
   }
 
   const onClickHandlerName = (id: string) => {
@@ -57,7 +57,8 @@ export const CustomTableBody = (props: CustomTableBodyType) => {
               {p.user_id === user._id ? (
                 <Actions
                   userId={p.user_id}
-                  packId={p._id}
+                  cards_packId={p._id}
+                  packName={p.name}
                   modeModal={props.modeModal}
                   setModeModal={props.setModeModal}
                 />
@@ -65,7 +66,7 @@ export const CustomTableBody = (props: CustomTableBodyType) => {
                 <IconButton
                   disabled={status === 'loading'}
                   className={s.iconBtn}
-                  onClick={handleCardClick}
+                  onClick={() => openLearnPage(p._id, p.name)}
                 >
                   <div onClick={onClickHandler}>
                     <SchoolIcon />

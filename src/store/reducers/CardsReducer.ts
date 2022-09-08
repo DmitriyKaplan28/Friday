@@ -99,7 +99,12 @@ export const deleteCardTC = (cardId: string, cardsPack_id: string): AppThunk => 
       })
   }
 }
-export const updateCardTC = (cardId: string,cardsPack_id: string, question: string, answer: string): AppThunk => {
+export const updateCardTC = (
+  cardId: string,
+  cardsPack_id: string,
+  question: string,
+  answer: string
+): AppThunk => {
   const data = {
     _id: cardId,
     question: question,
