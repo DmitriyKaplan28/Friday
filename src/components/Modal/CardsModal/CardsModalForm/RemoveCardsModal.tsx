@@ -2,6 +2,8 @@ import * as React from 'react'
 
 import { CustomCardsModal, ModeModalType } from '../CustomCardsModal'
 
+import s from './../CustomModal.module.css'
+
 export type RemoveCardsModalType = {
   open: boolean
   setOpen: (value: boolean) => void
@@ -25,7 +27,9 @@ export const RemoveCardsModal = (props: RemoveCardsModalType) => {
         modeModal={props.modeModal}
         setModeModal={props.setModeModal}
       >
-        <div>Do you really want to remove Card Name? All cards will be deleted.</div>
+        <div className={s.text}>
+          Do you really want to remove Card Name? All cards will be deleted.
+        </div>
       </CustomCardsModal>
     </div>
   )
