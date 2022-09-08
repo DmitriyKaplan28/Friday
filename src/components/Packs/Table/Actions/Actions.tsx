@@ -4,6 +4,8 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline'
 import SchoolIcon from '@mui/icons-material/School'
 import { IconButton } from '@mui/material'
+import { FaChalkboardTeacher } from '@react-icons/all-files/fa/FaChalkboardTeacher'
+import { useNavigate } from 'react-router-dom'
 
 import { deletePackTC, updatePackTC } from '../../../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../../../store/store'
@@ -15,22 +17,29 @@ import s from './Actions.module.css'
 
 type ActionsPropsType = {
   userId: string
-  packId: string
+    cards_packId: string
+    packName: string
   modeModal: ModeModalType
   setModeModal: (value: ModeModalType) => void
 }
 
-export const Actions = ({ userId, packId, modeModal, setModeModal }: ActionsPropsType) => {
+export const Actions = ({ userId, cards_packId, packName , modeModal, setModeModal }: ActionsPropsType) => {
   const [open, setOpen] = useState(false)
   const [openDelModal, setOpenDelModal] = useState(false)
+    const user = useAppSelector(state => state.profile.user)
   const status = useAppSelector(state => state.app.status)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+
+    const openLearnPage = (packId: string, packName: string) => {
+        navigate(`/learn/${packId}/${packName}`)
+    }
 
   const handleEditClick = (name: string) => {
-    dispatch(updatePackTC(packId, name))
+    dispatch(updatePackTC(cards_packId, name))
   }
-  const handleDeleteClick = () => {
-    dispatch(deletePackTC(packId))
+  const handleDeletePackClick = () => {
+    dispatch(deletePackTC(cards_packId))
   }
   const handleOpenEditModal = () => {
     setModeModal && setModeModal('add')
@@ -43,7 +52,7 @@ export const Actions = ({ userId, packId, modeModal, setModeModal }: ActionsProp
 
   return (
     <div className={s.blockIcon}>
-      <IconButton disabled className={s.iconBtn}>
+      <IconButton disabled={status === 'loading'} className={s.iconBtn} onClick={() => openLearnPage(cards_packId, packName)}>
         <SchoolIcon />
       </IconButton>
       <IconButton
@@ -63,10 +72,10 @@ export const Actions = ({ userId, packId, modeModal, setModeModal }: ActionsProp
       <DeletePackModal
         modeModal={modeModal}
         setModeModal={setModeModal}
-        packId={packId}
+        packId={cards_packId}
         open={openDelModal}
         setOpen={setOpenDelModal}
-        handleDeleteClick={handleDeleteClick}
+        handleDeleteClick={handleDeletePackClick}
       />
       <IconButton
         disabled={status === 'loading'}

@@ -36,6 +36,13 @@ export const cardsReducer = (
       return { ...state, cards: [action.data, ...state.cards] }
     case 'DELETE-CARD':
       return { ...state, cards: state.cards.filter(c => c.cardsPack_id !== action.cardId) }
+    case 'SET-CARD-GRADE':
+      return {
+        ...state,
+        cards: state.cards.map(card =>
+          card._id === action.card_id ? { ...card, grade: action.grade } : card
+        ),
+      }
     default:
       return state
   }
@@ -49,14 +56,22 @@ export const addCardAC = (data: CardsType) => ({ type: 'ADD-CARD', data } as con
 
 export const setUpdateCardsAC = (value: string) => ({ type: 'UPDATE-CARD', value } as const)
 
+export const updateCardGradeAC = (card_id: string, grade: number) =>
+  ({
+    type: 'SET-CARD-GRADE',
+    card_id,
+    grade,
+  } as const)
+
 //thunk
-export const getCardsTC = (): AppThunk => {
-  return (dispatch: Dispatch, getState: () => AppRootStateType) => {
-    const paramsCard = getState().paramsCard
+export const getCardsTC =
+  (cardsPack_id: string): AppThunk =>
+  (dispatch: Dispatch, getState: () => AppRootStateType) => {
+    const { token } = getState().profile.user
 
     dispatch(setAppStatusAC('loading'))
     cardsAPI
-      .getCard(paramsCard)
+      .getCard(token, cardsPack_id)
       .then(res => {
         dispatch(setCardsAC(res.data))
       })
@@ -67,15 +82,14 @@ export const getCardsTC = (): AppThunk => {
         dispatch(setAppStatusAC('succeeded'))
       })
   }
-}
 
-export const deleteCardTC = (cardId: string): AppThunk => {
+export const deleteCardTC = (cardId: string, cardsPack_id: string): AppThunk => {
   return dispatch => {
     dispatch(setAppStatusAC('loading'))
     cardsAPI
       .deleteCard(cardId)
-      .then(res => {
-        dispatch(getCardsTC())
+      .then(() => {
+        dispatch(getCardsTC(cardsPack_id))
       })
       .catch((error: AxiosError<ErrorDataResponseType>) => {
         dispatch(setAppErrorAC(error.response?.data.error))
@@ -85,7 +99,7 @@ export const deleteCardTC = (cardId: string): AppThunk => {
       })
   }
 }
-export const updateCardTC = (cardId: string, question: string, answer: string): AppThunk => {
+export const updateCardTC = (cardId: string,cardsPack_id: string, question: string, answer: string): AppThunk => {
   const data = {
     _id: cardId,
     question: question,
@@ -96,8 +110,8 @@ export const updateCardTC = (cardId: string, question: string, answer: string): 
     dispatch(setAppStatusAC('loading'))
     cardsAPI
       .updateCard(data)
-      .then(res => {
-        dispatch(getCardsTC())
+      .then(() => {
+        dispatch(getCardsTC(cardsPack_id))
       })
       .catch((error: AxiosError<ErrorDataResponseType>) => {
         dispatch(setAppErrorAC(error.response?.data.error))
@@ -118,8 +132,8 @@ export const addCardTC = (cardsPack_id: string, question: string, answer: string
     dispatch(setAppStatusAC('loading'))
     cardsAPI
       .addCard(data)
-      .then(res => {
-        dispatch(getCardsTC())
+      .then(() => {
+        dispatch(getCardsTC(cardsPack_id))
       })
       .catch((error: AxiosError<ErrorDataResponseType>) => {
         dispatch(setAppErrorAC(error.response?.data.error))
@@ -130,7 +144,28 @@ export const addCardTC = (cardsPack_id: string, question: string, answer: string
   }
 }
 
+export const updateCardGradeTC =
+  (card_id: string, grade: number): AppThunk =>
+  dispatch => {
+    dispatch(setAppStatusAC('loading'))
+    cardsAPI
+      .updateCardGrade(card_id, grade)
+      .then(res => {
+        dispatch(updateCardGradeAC(res.data._id, res.data.grade))
+      })
+      .catch((error: AxiosError<ErrorDataResponseType>) => {
+        dispatch(setAppErrorAC(error.response?.data.error))
+      })
+      .finally(() => {
+        dispatch(setAppStatusAC('idle'))
+      })
+  }
+
 // types
 export type CardsACType = ReturnType<
-  typeof setCardsAC | typeof deleteCardAC | typeof addCardAC | typeof setUpdateCardsAC
+  | typeof setCardsAC
+  | typeof setUpdateCardsAC
+  | typeof deleteCardAC
+  | typeof addCardAC
+  | typeof updateCardGradeAC
 >

@@ -1,0 +1,117 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+    max-width: 413px;
+    min-height: 360px;
+    margin: 130px auto 0;
+
+    background: #ffffff;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+}
+
+p {
+    margin: 0;
+
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+
+    opacity: 0.7;
+}
+.formWrapper{
+    padding: 20px;
+}
+.button {
+    cursor: pointer;
+
+    display: inline-block;
+
+    width: 363px;
+    height: 36px;
+    margin-top: 20px;
+
+    font-size: 15px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+
+    background-color: #366EFF;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    box-shadow: 0 4px 18px rgba(54, 110, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+    transition: all 1s ease-out;
+}
+
+.button:hover {
+    background-color: #2e52e3
+}
+
+.button:active {
+    opacity: 0.6;
+    box-shadow: #2e52e3;
+}
+
+h5 {
+    margin: 10px 0;
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+
+    opacity: 0.5;
+}
+
+.link {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration-line: underline;
+}
+
+.link a {
+    color: #366EFF;
+
+}
+
+.input {
+    position: relative;
+}
+
+.forgot {
+    margin-top: 10px;
+
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 17px;
+    text-align: right;
+}
+
+.text {
+    font-size: 14px;
+    color: #000000;
+    text-align: left;
+
+    opacity: 0.5;
+}
+
+form {
+    width: 363px;
+}
+
+.formCheckEmail {
+    width: 363px;
+}
+
+
+.formCheckEmail span {
+    color: chocolate;
+}

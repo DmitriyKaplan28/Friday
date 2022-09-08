@@ -26,6 +26,8 @@ import { AddCardsModal } from '../../../../Modal/CardsModal/CardsModalForm/AddCa
 import { ModeModalType } from '../../../../Modal/CardsModal/CustomCardsModal'
 import { PaginationControlled } from '../../../../Pagination/Pagination'
 import { SortArrow } from '../../../SortArrow/SortArrow'
+import { initialOptions } from '../../../Packs'
+import { MyIdActions } from '../../Actions/MyIdActions/MyIdActions'
 
 import { ActionCards } from './ActionCard/ActionCard'
 import s from './Cards.module.css'
@@ -82,7 +84,7 @@ export const Cards = () => {
   }
 
   useEffect(() => {
-    dispatch(getCardsTC())
+    dispatch(getCardsTC(cardPackId))
   }, [pageCount, page, cardQuestion, sortCard])
 
   if (!isLoggedIn) {
