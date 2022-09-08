@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { CustomModal } from '../../components/CustomModal/CustomModal'
-import { useAppSelector } from '../../store/store'
+import { ModeModalType } from '../../../../features/Packs/Packs'
+import s from '../../../../features/Packs/Packs.module.css'
+import { useAppSelector } from '../../../../store/store'
 
-import { ModeModalType } from './Packs'
-import s from './Packs.module.css'
+import { CustomModal } from './CustomModal/CustomModal'
 
 export type EditPackModalType = {
   handleEditClick: (name: string) => void

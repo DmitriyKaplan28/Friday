@@ -6,11 +6,11 @@ import SchoolIcon from '@mui/icons-material/School'
 import { IconButton } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
-import { DeletePackModal } from '../../../../features/Packs/DeletePackModal'
-import { EditPackModal } from '../../../../features/Packs/EditPackModal'
 import { ModeModalType } from '../../../../features/Packs/Packs'
 import { deletePackTC, updatePackTC } from '../../../../features/Packs/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../../../store/store'
+import { DeletePackModal } from '../../Modal/PacksModal/DeletePackModal'
+import { EditPackModal } from '../../Modal/PacksModal/EditPackModal'
 
 import s from './Actions.module.css'
 
@@ -31,7 +31,6 @@ export const Actions = ({
 }: ActionsPropsType) => {
   const [open, setOpen] = useState(false)
   const [openDelModal, setOpenDelModal] = useState(false)
-  const user = useAppSelector(state => state.profile.user)
   const status = useAppSelector(state => state.app.status)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()

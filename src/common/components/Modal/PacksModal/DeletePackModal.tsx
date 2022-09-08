@@ -2,10 +2,10 @@ import React from 'react'
 
 import { createSelector } from 'reselect'
 
-import { CustomModal } from '../../components/CustomModal/CustomModal'
-import { AppRootStateType, useAppSelector } from '../../store/store'
+import { ModeModalType } from '../../../../features/Packs/Packs'
+import { AppRootStateType, useAppSelector } from '../../../../store/store'
 
-import { ModeModalType } from './Packs'
+import { CustomModal } from './CustomModal/CustomModal'
 
 export type DeleteModalType = {
   handleDeleteClick: () => void

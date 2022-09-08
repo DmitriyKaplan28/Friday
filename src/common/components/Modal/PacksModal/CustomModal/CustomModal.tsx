@@ -7,9 +7,9 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import { Checkbox, FormControlLabel, IconButton, Modal, TextField } from '@mui/material'
 import Button from '@mui/material/Button'
 
-import { setModalStatusAC } from '../../../../app/AppReducer'
-import { ModeModalType } from '../../../../features/Packs/Packs'
-import { useAppDispatch, useAppSelector } from '../../../../store/store'
+import { setModalStatusAC } from '../../../../../app/AppReducer'
+import { ModeModalType } from '../../../../../features/Packs/Packs'
+import { useAppDispatch, useAppSelector } from '../../../../../store/store'
 
 import s from './CustomModal.module.css'
 
