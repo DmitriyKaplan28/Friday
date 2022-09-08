@@ -21,7 +21,7 @@ import {
 } from '../../../../../store/reducers/CardsParamsReducer'
 import { addCardTC, getCardsTC } from '../../../../../store/reducers/CardsReducer'
 import { useAppDispatch, useAppSelector } from '../../../../../store/store'
-import { InputDebounce } from '../../../../InputDebounce/InputDebounce'
+import { InputDebounceCard } from '../../../../InputDebounce/InputDebounceCard'
 import { AddCardsModal } from '../../../../Modal/CardsModal/CardsModalForm/AddCardsModal'
 import { ModeModalType } from '../../../../Modal/CardsModal/CustomCardsModal'
 import { PaginationControlled } from '../../../../Pagination/Pagination'
@@ -139,7 +139,7 @@ export const Cards = () => {
         (packEmpty && !myCards && <div className={s.text}>This pack is empty.</div>) || (
           <>
             <div className={s.filter}>
-              <InputDebounce width={1200} callback={findQuestionHandler} />
+              <InputDebounceCard width={1200} callback={findQuestionHandler} />
             </div>
             <div className={s.wrappers}>
               <Paper sx={{ width: '100%' }}>
@@ -157,7 +157,6 @@ export const Cards = () => {
                               {column.isSort ? (
                                 <SortArrow
                                   label={column.label}
-                                  sort={sortCard}
                                   onClickSortHandler={onClickSortHandler}
                                 />
                               ) : (

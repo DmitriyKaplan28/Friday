@@ -4,13 +4,16 @@ import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
 import Button from '@mui/material/Button'
 import { Navigate } from 'react-router-dom'
 
-import SuperSelect from '../../common/features/c5-SuperSelect/SuperSelect'
 import SuperDoubleRange from '../../common/features/c8-SuperDoubleRange/SuperDoubleRange'
 import { PATH } from '../../routing/Pages/Pages'
-import { setPacksParamsAC, setResetSettingsPacksAC } from '../../store/reducers/PacksParamsReducer'
+import {
+  searchPackNameAC,
+  setPacksParamsAC,
+  setResetSettingsPacksAC,
+} from '../../store/reducers/PacksParamsReducer'
 import { addPackTC, setCardPacksTC } from '../../store/reducers/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
-import { InputDebounce } from '../InputDebounce/InputDebounce'
+import { InputDebouncePack } from '../InputDebounce/InputDebouncePack'
 import { PaginationControlled } from '../Pagination/Pagination'
 import { ColorToggleButton } from '../ToggleButton/ColorToggleButton'
 
@@ -44,6 +47,9 @@ export const Packs = () => {
 
   const setPage = (value: number) => {
     dispatch(setPacksParamsAC({ page: value }))
+  }
+  const changeFilterInput = (value: string) => {
+    dispatch(searchPackNameAC(value))
   }
 
   const onClickReset = () => {
@@ -80,7 +86,7 @@ export const Packs = () => {
           setModeModal={setModeModal}
         />
         <div className={s.filter}>
-          <InputDebounce width={350} value={searchTerm} onChangeValue={setSearchTerm} />
+          <InputDebouncePack width={350} callback={changeFilterInput} />
           <ColorToggleButton
             setAlignment={setAlignment}
             alignment={alignment}

@@ -8,17 +8,18 @@ import { useAppDispatch } from '../../store/store'
 import s from './InputDebounce.module.css'
 
 type InputDebounceType = {
-  callback: (filter: string) => void
+  callback: (value: string) => void
   width: number
 }
 
-export const InputDebounce = (props: InputDebounceType) => {
+export const InputDebouncePack = (props: InputDebounceType) => {
   const [searchTerm, setSearchTerm] = useState<string>('')
   //const dispatch = useAppDispatch()
   const debouncedSearchTerm = useDebounce(searchTerm, 500)
 
   useEffect(() => {
     props.callback(debouncedSearchTerm)
+    setSearchTerm('')
   }, [debouncedSearchTerm])
 
   return (
