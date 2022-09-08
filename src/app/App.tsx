@@ -4,11 +4,12 @@ import './App.css'
 import { CircularProgress } from '@mui/material'
 import { HashRouter } from 'react-router-dom'
 
-import { ErrorSnackbar } from '../common/features/c9-ErrorSnackbar/ErrorSnackbar'
-import { Header } from '../components/Header/Header'
+import { ErrorSnackbar } from '../common/components/c9-ErrorSnackbar/ErrorSnackbar'
+import { Header } from '../common/components/Header/Header'
 import { Pages } from '../routing/Pages/Pages'
-import { appInitialTC } from '../store/reducers/AppReducer'
 import { useAppDispatch, useAppSelector } from '../store/store'
+
+import { appInitialTC } from './AppReducer'
 
 function App() {
   const isInitialized = useAppSelector(state => state.app.initialized)

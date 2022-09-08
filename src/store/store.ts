@@ -8,16 +8,16 @@ import {
 } from 'redux'
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 
-import { appReducer } from './reducers/AppReducer'
-import { authReducer } from './reducers/AuthReducer'
-import { cardsParamsReducer } from './reducers/CardsParamsReducer'
-import { cardsReducer } from './reducers/CardsReducer'
-import { enterNewPasswordReducer } from './reducers/EnterNewPasswordReducer'
-import { packsParamsReducer } from './reducers/PacksParamsReducer'
-import { packsReducer } from './reducers/PacksReducer'
-import { profileReducer } from './reducers/ProfileReducer'
-import { resetPasswordReducer } from './reducers/ResetPasswordReducer'
-import { signUpReducer } from './reducers/SignUpReducer'
+import { appReducer } from '../app/AppReducer'
+import { cardsParamsReducer } from '../features/Cards/CardsParamsReducer'
+import { cardsReducer } from '../features/Cards/CardsReducer'
+import { authReducer } from '../features/Login/AuthReducer'
+import { packsParamsReducer } from '../features/Packs/PacksParamsReducer'
+import { packsReducer } from '../features/Packs/PacksReducer'
+import { profileReducer } from '../features/Profile/ProfileReducer'
+import { enterNewPasswordReducer } from '../features/ResetPassword/EnterNewPasswordReducer'
+import { resetPasswordReducer } from '../features/ResetPassword/ResetPasswordReducer'
+import { signUpReducer } from '../features/SingUp/SignUpReducer'
 
 const rootReducer = combineReducers({
   profile: profileReducer,
