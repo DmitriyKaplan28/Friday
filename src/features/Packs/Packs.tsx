@@ -82,7 +82,12 @@ export const Packs = () => {
           setModeModal={setModeModal}
         />
         <div className={s.filter}>
-          <InputDebouncePack width={350} callback={changeFilterInput} />
+          <InputDebouncePack
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            width={350}
+            callback={changeFilterInput}
+          />
           <ColorToggleButton
             setAlignment={setAlignment}
             alignment={alignment}
