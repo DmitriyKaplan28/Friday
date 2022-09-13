@@ -17,7 +17,7 @@ export const EnterNewPassword = () => {
   const isSentNewPassword = useAppSelector(state => state.newPassword.isSentNewPassword)
   const { token } = useParams()
 
-  console.log(typeInputPassword)
+  console.log(token)
   const formik = useFormik({
     initialValues: {
       newPassword: '',
@@ -31,8 +31,6 @@ export const EnterNewPassword = () => {
     },
 
     onSubmit: values => {
-      console.log(values.newPassword, token)
-
       if (token) {
         // @ts-ignore
         dispatch(setNewPasswordTC({ newPassword: values.newPassword, resetPasswordToken: token }))

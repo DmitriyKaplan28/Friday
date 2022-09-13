@@ -36,11 +36,12 @@ export const resetPasswordTC =
       from: 'test-front-admin <evgeniy.cvirko@gmail.com',
       message: `<div style="background-color: lime; padding: 15px">
 password recovery link: 
-<a href='http://localhost:3000/#/set-new-password/$token$'>
+<a href='http://dmitriykaplan28.github.io/Friday/#/set-new-password/$token$'>
 link</a>
 </div>`,
     }
 
+    //https://dmitriykaplan28.github.io/Friday/
     dispatch(setAppStatusAC('loading'))
     resetPasswordAPI
       .forgotPassword(data)
