@@ -41,6 +41,7 @@ link</a>
 </div>`,
     }
 
+    //https://dmitriykaplan28.github.io/Friday/
     dispatch(setAppStatusAC('loading'))
     resetPasswordAPI
       .forgotPassword(data)
