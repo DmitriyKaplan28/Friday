@@ -25,7 +25,7 @@ export const EnterNewPassword = () => {
     validate: values => {
       if (values.newPassword.length < 8) {
         return {
-          newPassword: 'Password must be more than 7 characters',
+          password: 'Password must be more than 7 characters',
         }
       }
     },
@@ -33,7 +33,7 @@ export const EnterNewPassword = () => {
     onSubmit: values => {
       if (token) {
         // @ts-ignore
-        dispatch(setNewPasswordTC({ newPassword: values.newPassword, resetPasswordToken: token }))
+        dispatch(setNewPasswordTC({ password: values.newPassword, resetPasswordToken: token }))
       }
     },
   })
