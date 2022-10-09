@@ -3,6 +3,7 @@ import { Dispatch } from 'redux'
 
 import { ErrorDataResponseType, resetPasswordAPI } from '../../api/api'
 import { AppReducerType, setAppErrorAC, setAppStatusAC } from '../../app/AppReducer'
+import { AppThunk } from '../../store/store'
 
 const initialState = {
   isSend: false,
@@ -28,10 +29,21 @@ const setEmailAC = (email: string) => ({ type: 'SET-EMAIL', email } as const)
 
 //Thunk
 export const resetPasswordTC =
-  (email: string) => (dispatch: Dispatch<AppReducerType | ResetPasswordAT>) => {
+  (email: string): AppThunk =>
+  dispatch => {
+    const data = {
+      email: email,
+      from: 'test-front-admin <evgeniy.cvirko@gmail.com',
+      message: `<div style="background-color: lime; padding: 15px">
+password recovery link: 
+<a href='http://dmitriykaplan28.github.io/Friday/#/set-new-password/$token$'>
+link</a>
+</div>`,
+    }
+
     dispatch(setAppStatusAC('loading'))
     resetPasswordAPI
-      .forgotPassword(email)
+      .forgotPassword(data)
       .then(res => {
         dispatch(setEmailAC(email))
         dispatch(sendEmailAC(true))

@@ -17,7 +17,7 @@ export const EnterNewPassword = () => {
   const isSentNewPassword = useAppSelector(state => state.newPassword.isSentNewPassword)
   const { token } = useParams()
 
-  console.log(typeInputPassword)
+  console.log(token)
   const formik = useFormik({
     initialValues: {
       newPassword: '',
@@ -25,17 +25,15 @@ export const EnterNewPassword = () => {
     validate: values => {
       if (values.newPassword.length < 8) {
         return {
-          newPassword: 'Password must be more than 7 characters',
+          password: 'Password must be more than 7 characters',
         }
       }
     },
 
     onSubmit: values => {
-      console.log(values.newPassword, token)
-
       if (token) {
         // @ts-ignore
-        dispatch(setNewPasswordTC({ newPassword: values.newPassword, resetPasswordToken: token }))
+        dispatch(setNewPasswordTC({ password: values.newPassword, resetPasswordToken: token }))
       }
     },
   })

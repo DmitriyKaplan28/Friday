@@ -31,8 +31,8 @@ export const authAPI = {
 }
 
 export const resetPasswordAPI = {
-  forgotPassword(email: string) {
-    return instance.post<ResetPasswordResponseType>('/auth/forgot', { email })
+  forgotPassword(data: ForgotPasswordParamsType) {
+    return instance.post<ResetPasswordResponseType>('/auth/forgot', data)
   },
   enterNewPassword(payload: NewPasswordParamsType) {
     return instance.post<ResetPasswordResponseType>('/auth/set-new-password', payload)
@@ -146,6 +146,11 @@ export type ErrorDataResponseType = {
   in: string
   isEmailValid: boolean
   isPassValid: boolean
+}
+export type ForgotPasswordParamsType = {
+  email: string
+  from: string
+  message: string
 }
 
 export type NewPasswordParamsType = {
