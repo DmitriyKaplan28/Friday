@@ -54,3 +54,5 @@ In order to gain access to educational resources, please follow this
 
 ## In Progress
 * Change avatar
+
+![](images/login.png)

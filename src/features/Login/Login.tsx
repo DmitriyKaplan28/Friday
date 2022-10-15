@@ -57,7 +57,7 @@ export const Login = () => {
         }}
       >
         <form className={s.formWrapper} onSubmit={formik.handleSubmit}>
-          <p>Sing In</p>
+          <p>Sign In</p>
           <div className={s.input}>
             <TextField
               error={formik.touched.email && Boolean(formik.errors.email)}
@@ -88,11 +88,11 @@ export const Login = () => {
             <NavLink to={PATH.RESET_PASSWORD}>Forgot Password?</NavLink>
           </div>
           <button className={s.button} type={'submit'}>
-            Sing In
+            Sign In
           </button>
           <h5> Already have an account?</h5>
           <div className={s.link}>
-            <NavLink to={PATH.SIGNUP}>Sing Up</NavLink>
+            <NavLink to={PATH.SIGNUP}>Sign Up</NavLink>
           </div>
         </form>
       </Box>
