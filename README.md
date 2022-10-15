@@ -53,6 +53,15 @@ In order to gain access to educational resources, please follow this
 * [Alexey Krop](https://github.com/AlexeyKrop)
 
 ## In Progress
-* Change avatar
+* Questions with pictures
 
-![](images/login.png)
+
+![](src/common/assets/images/login.png)
+![](src/common/assets/images/sign_up.png)
+![](src/common/assets/images/profile.png)
+![](src/common/assets/images/packs_list.png)
+![](src/common/assets/images/cards_list.png)
+![](src/common/assets/images/add_pack_modal.png)
+![](src/common/assets/images/add_card_modal.png)
+![](src/common/assets/images/learning_process_1.png)
+![](src/common/assets/images/learning_process_2.png)
