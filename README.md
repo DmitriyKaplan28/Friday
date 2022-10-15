@@ -45,7 +45,7 @@ educational cards, as well as two-level filtering.
 
 ## Distribute
 In order to gain access to educational resources, please follow this
-[link](https://zouker.github.io/learning-cards/#/login) and [register](https://zouker.github.io/learning-cards/#/register).
+[link](https://dmitriykaplan28.github.io/friday/#/login) and [register](https://dmitriykaplan28.github.io/friday/#/register).
 
 ## Developers
 * [Dmitriy Kaplan](https://github.com/DmitriyKaplan28)
