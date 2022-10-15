@@ -65,3 +65,4 @@ In order to gain access to educational resources, please follow this
 ![](src/common/assets/images/add_card_modal.png)
 ![](src/common/assets/images/learning_process_1.png)
 ![](src/common/assets/images/learning_process_2.png)
+![](src/common/assets/images/forgot_password.png)
