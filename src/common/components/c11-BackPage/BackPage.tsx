@@ -14,7 +14,7 @@ export const BackPage = memo((props: ShowPasswordType) => {
     <div className={s.blockTitle}>
       <AiOutlineArrowLeft />
       <span className={s.title}>
-        <NavLink to={props.route}>Back to {props.title}</NavLink>
+        <NavLink to={props.route}>To {props.title}</NavLink>
       </span>
     </div>
   )
