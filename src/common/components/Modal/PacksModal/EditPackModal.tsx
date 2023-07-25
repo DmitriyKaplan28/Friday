@@ -13,22 +13,28 @@ export type EditPackModalType = {
   modeModal: ModeModalType
   setModeModal: (value: ModeModalType) => void
 }
-export const EditPackModal = (props: EditPackModalType) => {
+export const EditPackModal = ({
+  open,
+  setOpen,
+  modeModal,
+  setModeModal,
+  ...props
+}: EditPackModalType) => {
   const modalStatusRequest = useAppSelector(state => state.app.modalStatusRequest)
 
   const handleEditClick = (value: string) => {
     props.handleEditClick(value)
-    props.setModeModal && props.setModeModal('add')
+    setModeModal && setModeModal('add')
   }
 
   return (
     <CustomModal
-      setModeModal={props.setModeModal}
+      setModeModal={setModeModal}
       callback={handleEditClick}
-      open={props.open}
-      setOpen={props.setOpen}
+      open={open}
+      setOpen={setOpen}
       title={'Edit pack'}
-      modeModal={props.modeModal}
+      modeModal={modeModal}
     >
       <div className={s.RequestBlock}>
         {modalStatusRequest === 'succeeded' && (
