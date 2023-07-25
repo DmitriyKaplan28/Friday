@@ -13,25 +13,30 @@ type InputDebounceType = {
   setSearchTerm: (value: string) => void
 }
 
-export const InputDebouncePack = (props: InputDebounceType) => {
-  const debouncedSearchTerm = useDebounce(props.searchTerm, 500)
+export const InputDebouncePack = ({
+  callback,
+  width,
+  setSearchTerm,
+  searchTerm,
+}: InputDebounceType) => {
+  const debouncedSearchTerm = useDebounce(searchTerm, 500)
 
   useEffect(() => {
-    props.callback(debouncedSearchTerm)
+    callback(debouncedSearchTerm)
   }, [debouncedSearchTerm])
 
   return (
-    <div className={s.wrapper} style={{ maxWidth: props.width }}>
+    <div className={s.wrapper} style={{ maxWidth: width }}>
       <span className={s.about}>Search</span>
       <div className={s.icon}>
         <AiOutlineSearch />
       </div>
       <input
-        style={{ maxWidth: props.width }}
-        value={props.searchTerm}
+        style={{ maxWidth: width }}
+        value={searchTerm}
         className={s.inputDebounce}
         placeholder="Search packs"
-        onChange={e => props.setSearchTerm(e.target.value)}
+        onChange={e => setSearchTerm(e.target.value)}
       />
     </div>
   )
