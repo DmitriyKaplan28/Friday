@@ -9,12 +9,12 @@ type ShowPasswordType = {
   title: string
   route: string
 }
-export const BackPage = memo((props: ShowPasswordType) => {
+export const BackPage = memo(({ title, route }: ShowPasswordType) => {
   return (
     <div className={s.blockTitle}>
       <AiOutlineArrowLeft />
       <span className={s.title}>
-        <NavLink to={props.route}>To {props.title}</NavLink>
+        <NavLink to={route}>To {title}</NavLink>
       </span>
     </div>
   )
