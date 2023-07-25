@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import { useAppSelector } from '../../../../../store/store'
 import { CustomCardsModal, ModeModalType } from '../CustomCardsModal'
 
 export type AddCardsModalType = {
@@ -10,11 +9,16 @@ export type AddCardsModalType = {
   modeModal: ModeModalType
   setModeModal: (value: ModeModalType) => void
 }
-export const AddCardsModal = (props: AddCardsModalType) => {
-  const modalStatusRequest = useAppSelector(state => state.app.modalStatusRequest)
+export const AddCardsModal = ({
+  open,
+  setOpen,
+  setModeModal,
+  modeModal,
+  ...props
+}: AddCardsModalType) => {
   const handleAddPack = (question: string, answer: string) => {
     props.handleAddPack(question, answer)
-    props.setModeModal && props.setModeModal('add')
+    setModeModal && setModeModal('add')
   }
 
   return (
@@ -22,10 +26,10 @@ export const AddCardsModal = (props: AddCardsModalType) => {
       <CustomCardsModal
         callback={handleAddPack}
         title={'Add new card'}
-        setOpen={props.setOpen}
-        open={props.open}
-        modeModal={props.modeModal}
-        setModeModal={props.setModeModal}
+        setOpen={setOpen}
+        open={open}
+        modeModal={modeModal}
+        setModeModal={setModeModal}
       >
         <div></div>
       </CustomCardsModal>
