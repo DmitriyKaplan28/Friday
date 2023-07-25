@@ -16,26 +16,31 @@ export type DeleteModalType = {
   setModeModal: (value: ModeModalType) => void
 }
 
-export const DeletePackModal = (props: DeleteModalType) => {
+export const DeletePackModal = ({
+  open,
+  setOpen,
+  packId,
+  modeModal,
+  setModeModal,
+  ...props
+}: DeleteModalType) => {
   const getCardPack = (state: AppRootStateType) => state.packs.cardPacks
-  const getFindCardPack = createSelector(getCardPack, packs =>
-    packs.find(p => p._id === props.packId)
-  )
+  const getFindCardPack = createSelector(getCardPack, packs => packs.find(p => p._id === packId))
 
   const pack = useAppSelector(getFindCardPack)
 
-  const handleDelClick = () => {
+  const handleDeleteClick = () => {
     props.handleDeleteClick()
   }
 
   return (
     <CustomModal
-      setModeModal={props.setModeModal}
-      modeModal={props.modeModal}
-      callback={handleDelClick}
+      setModeModal={setModeModal}
+      modeModal={modeModal}
+      callback={handleDeleteClick}
       height={240}
-      open={props.open}
-      setOpen={props.setOpen}
+      open={open}
+      setOpen={setOpen}
       title={'Delete pack'}
     >
       <div style={{ marginBottom: 24 }}>
