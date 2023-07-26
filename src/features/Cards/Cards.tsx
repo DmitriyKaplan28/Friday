@@ -11,7 +11,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import { Navigate } from 'react-router-dom'
 
-import { BackPage } from '../../common/components/c11-BackPage/BackPage'
+import { BackPage } from '../../common/components/BackPage/BackPage'
 import { InputDebounceCard } from '../../common/components/InputDebounce/InputDebounceCard'
 import { AddCardsModal } from '../../common/components/Modal/CardsModal/CardsModalForm/AddCardsModal'
 import { ModeModalType } from '../../common/components/Modal/CardsModal/CustomCardsModal'

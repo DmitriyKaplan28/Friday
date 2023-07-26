@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Navigate } from 'react-router-dom'
 
-import { BackPage } from '../../common/components/c11-BackPage/BackPage'
+import { BackPage } from '../../common/components/BackPage/BackPage'
 import { Card } from '../../common/components/Card/Card'
 import { PATH } from '../../routing/Pages/Pages'
 import { useAppDispatch, useAppSelector } from '../../store/store'

@@ -1,8 +1,7 @@
 import React from 'react'
 
-import { Navigate, NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
-import { PATH } from '../../../routing/Pages/Pages'
 import { useAppSelector } from '../../../store/store'
 import logo from '../../assets/logo.svg'
 import { Avatar } from '../Avatar/Avatar'

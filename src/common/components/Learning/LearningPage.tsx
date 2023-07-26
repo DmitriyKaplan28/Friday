@@ -8,7 +8,7 @@ import { getCardsTC, updateCardGradeTC } from '../../../features/Cards/CardsRedu
 import { PATH } from '../../../routing/Pages/Pages'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import s from '../../style/ComonnStylePage.module.css'
-import { BackPage } from '../c11-BackPage/BackPage'
+import { BackPage } from '../BackPage/BackPage'
 
 const grades = [
   { value: 1, label: 'Not a chance' },

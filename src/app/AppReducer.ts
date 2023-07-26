@@ -59,7 +59,6 @@ export const appInitialTC = () => (dispatch: Dispatch) => {
       dispatch(setUserAC(res.data))
       dispatch(setIsLoggedInAC(true))
     })
-    //.catch(err => dispatch(setAppErrorAC(err.response.data.error)))
     .finally(() => dispatch(setAppInitialAC(true)))
 }
 //ACTIONS CREATOR

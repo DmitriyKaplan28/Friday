@@ -4,7 +4,7 @@ import { Box, Checkbox, TextField } from '@mui/material'
 import { useFormik } from 'formik'
 import { Navigate, NavLink } from 'react-router-dom'
 
-import { ShowPassword } from '../../common/components/c10-ShowPassword/ShowPassword'
+import { ShowPassword } from '../../common/components/ShowPassword/ShowPassword'
 import s from '../../common/style/ComonnStylePage.module.css'
 import { PATH } from '../../routing/Pages/Pages'
 import { AppRootStateType, useAppDispatch, useAppSelector } from '../../store/store'

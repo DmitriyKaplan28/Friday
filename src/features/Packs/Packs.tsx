@@ -9,7 +9,7 @@ import { InputDebouncePack } from '../../common/components/InputDebounce/InputDe
 import { AddPackModal } from '../../common/components/Modal/PacksModal/AddPackModal'
 import { PaginationControlled } from '../../common/components/Pagination/Pagination'
 import { StickyHeadTable } from '../../common/components/Table/Table'
-import { ColorToggleButton } from '../../common/components/ToggleButton/ColorToggleButton'
+import { ToggleButtonElement } from '../../common/components/ToggleButton/ToggleButtonElement'
 import { PATH } from '../../routing/Pages/Pages'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 
@@ -88,7 +88,7 @@ export const Packs = () => {
             width={350}
             callback={changeFilterInput}
           />
-          <ColorToggleButton
+          <ToggleButtonElement
             setAlignment={setAlignment}
             alignment={alignment}
             setOn={setOn}

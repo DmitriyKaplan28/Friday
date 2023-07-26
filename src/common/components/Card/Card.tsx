@@ -8,7 +8,7 @@ import { logoutTC } from '../../../features/Login/AuthReducer'
 import { sendEmailAC } from '../../../features/ResetPassword/ResetPasswordReducer'
 import { useAppDispatch } from '../../../store/store'
 import { Avatar } from '../Avatar/Avatar'
-import { EditableSpan } from '../editableSpan/EditableSpan'
+import { EditableSpan } from '../EditableSpan/EditableSpan'
 
 import s from './Card.module.css'
 

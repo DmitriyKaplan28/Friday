@@ -4,7 +4,7 @@ import './App.css'
 import { CircularProgress } from '@mui/material'
 import { HashRouter } from 'react-router-dom'
 
-import { ErrorSnackbar } from '../common/components/c9-ErrorSnackbar/ErrorSnackbar'
+import { ErrorSnackbar } from '../common/components/ErrorSnackbar/ErrorSnackbar'
 import { Header } from '../common/components/Header/Header'
 import { Pages } from '../routing/Pages/Pages'
 import { useAppDispatch, useAppSelector } from '../store/store'
@@ -29,7 +29,6 @@ function App() {
   return (
     <>
       <ErrorSnackbar />
-      {/*<PageRouting />*/}
       <HashRouter>
         <Header />
         <Pages />
