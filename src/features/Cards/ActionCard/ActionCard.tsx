@@ -12,13 +12,13 @@ type ActionCardsType = {
   id: string
   cardsPack_id: string
 }
-export const ActionCards = (props: ActionCardsType) => {
+export const ActionCards = ({ id, cardsPack_id }: ActionCardsType) => {
   const [modeModal, setModeModal] = useState<ModeModalType>('close')
   const [openEdit, setOpenEdit] = useState(false)
   const [openRemove, setOpenRemove] = useState(false)
   const dispatch = useAppDispatch()
   const handleDeleteClick = () => {
-    dispatch(deleteCardTC(props.id, props.cardsPack_id))
+    dispatch(deleteCardTC(id, cardsPack_id))
   }
 
   const handleOpenEdit = () => {
@@ -30,7 +30,7 @@ export const ActionCards = (props: ActionCardsType) => {
     setModeModal('delete')
   }
   const handleEditClick = (question: string, answer: string) => {
-    dispatch(updateCardTC(props.id, props.cardsPack_id, question, answer))
+    dispatch(updateCardTC(id, cardsPack_id, question, answer))
   }
 
   return (

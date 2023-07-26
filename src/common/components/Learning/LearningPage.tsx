@@ -7,7 +7,7 @@ import { CardsType } from '../../../api/cardsApi'
 import { getCardsTC, updateCardGradeTC } from '../../../features/Cards/CardsReducer'
 import { PATH } from '../../../routing/Pages/Pages'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
-import s from '../../style/ComonnStylePage.module.css'
+import s from '../../style/CommonStylePage.module.css'
 import { BackPage } from '../BackPage/BackPage'
 
 const grades = [

@@ -5,7 +5,7 @@ import { useFormik } from 'formik'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
 import { ShowPassword } from '../../common/components/ShowPassword/ShowPassword'
-import s from '../../common/style/ComonnStylePage.module.css'
+import s from '../../common/style/CommonStylePage.module.css'
 import { PATH } from '../../routing/Pages/Pages'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { setNewPasswordTC } from '../ResetPassword/EnterNewPasswordReducer'

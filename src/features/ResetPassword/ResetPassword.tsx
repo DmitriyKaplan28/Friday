@@ -4,8 +4,8 @@ import { Box, TextField } from '@mui/material'
 import { useFormik } from 'formik'
 import { NavLink, useNavigate } from 'react-router-dom'
 
-import img from '../../common/assets/forgot/Check.png'
-import s from '../../common/style/ComonnStylePage.module.css'
+import img from '../../common/assets/forgot/check.png'
+import s from '../../common/style/CommonStylePage.module.css'
 import { PATH } from '../../routing/Pages/Pages'
 import { AppRootStateType, useAppDispatch, useAppSelector } from '../../store/store'
 
