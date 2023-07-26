@@ -5,7 +5,7 @@ import { Dispatch } from 'redux'
 import { ErrorDataResponseType } from '../../api/api'
 import { cardsAPI, CardsResponseType, CardsType } from '../../api/cardsApi'
 import { setAppErrorAC, setAppStatusAC } from '../../app/AppReducer'
-import { AppRootStateType, AppThunk } from '../../store/store'
+import { AppRootStateType, AppThunk } from '../store'
 
 const initialState: CardsResponseType = {
   cards: [],

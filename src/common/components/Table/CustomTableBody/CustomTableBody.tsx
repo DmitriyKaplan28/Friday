@@ -6,12 +6,9 @@ import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 import { useNavigate } from 'react-router-dom'
 
-import {
-  setCardsPackIdAC,
-  setPageCurrentCardsAC,
-} from '../../../../features/Cards/CardsParamsReducer'
 import { ModeModalType } from '../../../../features/Packs/Packs'
 import { PATH } from '../../../../routing/Pages/Pages'
+import { setCardsPackIdAC, setPageCurrentCardsAC } from '../../../../store/Cards/CardsParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../../store/store'
 import { Actions } from '../Actions/Actions'
 import s from '../Table.module.css'

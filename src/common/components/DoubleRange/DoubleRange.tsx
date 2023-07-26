@@ -3,7 +3,7 @@ import { ChangeEvent, useEffect, useState } from 'react'
 
 import Slider from '@mui/material/Slider'
 
-import { setPacksParamsAC } from '../../../features/Packs/PacksParamsReducer'
+import { setPacksParamsAC } from '../../../store/Packs/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 
 import s from './DoubleRange.module.css'

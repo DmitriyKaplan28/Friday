@@ -7,9 +7,8 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import img from '../../common/assets/forgot/check.png'
 import s from '../../common/style/CommonStylePage.module.css'
 import { PATH } from '../../routing/Pages/Pages'
+import { resetPasswordTC } from '../../store/ResetPassword/ResetPasswordReducer'
 import { AppRootStateType, useAppDispatch, useAppSelector } from '../../store/store'
-
-import { resetPasswordTC } from './ResetPasswordReducer'
 
 export const ResetPassword = () => {
   const sentEmail = useAppSelector((state: AppRootStateType) => state.resetPassword.isSend)

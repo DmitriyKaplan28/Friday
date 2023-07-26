@@ -1,9 +1,8 @@
 import { AxiosError } from 'axios'
-import { Dispatch } from 'redux'
 
 import { ErrorDataResponseType, resetPasswordAPI } from '../../api/api'
-import { AppReducerType, setAppErrorAC, setAppStatusAC } from '../../app/AppReducer'
-import { AppThunk } from '../../store/store'
+import { setAppErrorAC, setAppStatusAC } from '../../app/AppReducer'
+import { AppThunk } from '../store'
 
 const initialState = {
   isSend: false,

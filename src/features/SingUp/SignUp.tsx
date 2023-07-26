@@ -7,9 +7,8 @@ import { NavLink, Navigate } from 'react-router-dom'
 import { ShowPassword } from '../../common/components/ShowPassword/ShowPassword'
 import s from '../../common/style/CommonStylePage.module.css'
 import { PATH } from '../../routing/Pages/Pages'
+import { setRegistrationTC } from '../../store/SignUp/SignUpReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
-
-import { setRegistrationTC } from './SignUpReducer'
 
 export const SignUp = () => {
   const dispatch = useAppDispatch()

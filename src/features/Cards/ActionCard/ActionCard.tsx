@@ -5,8 +5,8 @@ import { EditCardsModal } from '../../../common/components/Modal/CardsModal/Card
 import { RemoveCardsModal } from '../../../common/components/Modal/CardsModal/CardsModalForm/RemoveCardsModal'
 import { ModeModalType } from '../../../common/components/Modal/CardsModal/CustomCardsModal'
 import { MyIdActions } from '../../../common/components/Table/Actions/MyIdActions/MyIdActions'
+import { deleteCardTC, updateCardTC } from '../../../store/Cards/CardsReducer'
 import { useAppDispatch } from '../../../store/store'
-import { deleteCardTC, updateCardTC } from '../CardsReducer'
 
 type ActionCardsType = {
   id: string

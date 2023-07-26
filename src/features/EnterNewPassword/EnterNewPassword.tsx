@@ -7,8 +7,8 @@ import { Navigate, useParams } from 'react-router-dom'
 import { ShowPassword } from '../../common/components/ShowPassword/ShowPassword'
 import s from '../../common/style/CommonStylePage.module.css'
 import { PATH } from '../../routing/Pages/Pages'
+import { setNewPasswordTC } from '../../store/EnterNewPassword/EnterNewPasswordReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
-import { setNewPasswordTC } from '../ResetPassword/EnterNewPasswordReducer'
 
 export const EnterNewPassword = () => {
   const [typeInputPassword, setType] = useState<string>('password')

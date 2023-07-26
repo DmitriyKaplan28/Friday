@@ -2,8 +2,8 @@ import { AxiosResponse } from 'axios'
 import { Dispatch } from 'redux'
 
 import { authAPI } from '../api/api'
-import { setIsLoggedInAC } from '../features/Login/AuthReducer'
-import { setUserAC } from '../features/Profile/ProfileReducer'
+import { setIsLoggedInAC } from '../store/Login/AuthReducer'
+import { setUserAC } from '../store/Profile/ProfileReducer'
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export type RequestStatusModalType = 'idle' | 'loading' | 'succeeded' | 'failed'

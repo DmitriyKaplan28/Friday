@@ -3,7 +3,7 @@ import * as React from 'react'
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 
-import { setMyPacksAC } from '../../../features/Packs/PacksParamsReducer'
+import { setMyPacksAC } from '../../../store/Packs/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 
 import s from './ToggleButton.module.css'

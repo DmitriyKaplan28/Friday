@@ -7,7 +7,7 @@ import { IconButton } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 import { ModeModalType } from '../../../../features/Packs/Packs'
-import { deletePackTC, updatePackTC } from '../../../../features/Packs/PacksReducer'
+import { deletePackTC, updatePackTC } from '../../../../store/Packs/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../../../store/store'
 import { DeletePackModal } from '../../Modal/PacksModal/DeletePackModal'
 import { EditPackModal } from '../../Modal/PacksModal/EditPackModal'

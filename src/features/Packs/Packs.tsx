@@ -11,11 +11,15 @@ import { PaginationControlled } from '../../common/components/Pagination/Paginat
 import { StickyHeadTable } from '../../common/components/Table/Table'
 import { ToggleButtonElement } from '../../common/components/ToggleButton/ToggleButtonElement'
 import { PATH } from '../../routing/Pages/Pages'
+import {
+  searchPackNameAC,
+  setPacksParamsAC,
+  setResetSettingsPacksAC,
+} from '../../store/Packs/PacksParamsReducer'
+import { addPackTC, setCardPacksTC } from '../../store/Packs/PacksReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 
 import s from './Packs.module.css'
-import { searchPackNameAC, setPacksParamsAC, setResetSettingsPacksAC } from './PacksParamsReducer'
-import { addPackTC, setCardPacksTC } from './PacksReducer'
 
 export const initialOptions = [4, 8, 16, 32, 64]
 export type ModeModalType = 'close' | 'add' | 'edit' | 'delete'

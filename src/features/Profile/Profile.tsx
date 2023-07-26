@@ -5,10 +5,10 @@ import { Navigate } from 'react-router-dom'
 import { BackPage } from '../../common/components/BackPage/BackPage'
 import { Card } from '../../common/components/Card/Card'
 import { PATH } from '../../routing/Pages/Pages'
+import { changeNameTC } from '../../store/Profile/ProfileReducer'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 
 import s from './Profile.module.css'
-import { changeNameTC } from './ProfileReducer'
 
 function Profile() {
   const user = useAppSelector(state => state.profile.user)

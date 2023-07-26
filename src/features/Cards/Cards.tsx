@@ -18,17 +18,17 @@ import { ModeModalType } from '../../common/components/Modal/CardsModal/CustomCa
 import { PaginationControlled } from '../../common/components/Pagination/Pagination'
 import { SortArrow } from '../../common/components/SortArrow/SortArrow'
 import { PATH } from '../../routing/Pages/Pages'
-import { useAppDispatch, useAppSelector } from '../../store/store'
-
-import { ActionCards } from './ActionCard/ActionCard'
-import s from './Cards.module.css'
 import {
   setFilterQuestionCardAC,
   setPageCountCardsAC,
   setPageCurrentCardsAC,
   setSortCardAC,
-} from './CardsParamsReducer'
-import { addCardTC, getCardsTC } from './CardsReducer'
+} from '../../store/Cards/CardsParamsReducer'
+import { addCardTC, getCardsTC } from '../../store/Cards/CardsReducer'
+import { useAppDispatch, useAppSelector } from '../../store/store'
+
+import { ActionCards } from './ActionCard/ActionCard'
+import s from './Cards.module.css'
 
 type Column = {
   id: 'question' | 'answer' | 'updated' | 'grade'

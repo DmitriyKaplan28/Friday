@@ -7,9 +7,8 @@ import { Navigate, NavLink } from 'react-router-dom'
 import { ShowPassword } from '../../common/components/ShowPassword/ShowPassword'
 import s from '../../common/style/CommonStylePage.module.css'
 import { PATH } from '../../routing/Pages/Pages'
+import { loginTC } from '../../store/Login/AuthReducer'
 import { AppRootStateType, useAppDispatch, useAppSelector } from '../../store/store'
-
-import { loginTC } from './AuthReducer'
 
 export const Login = () => {
   const isLoggedIn = useAppSelector((state: AppRootStateType) => state.auth.isLoggedIn)

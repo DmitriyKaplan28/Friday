@@ -4,8 +4,8 @@ import { Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from
 import { Navigate, useParams } from 'react-router-dom'
 
 import { CardsType } from '../../../api/cardsApi'
-import { getCardsTC, updateCardGradeTC } from '../../../features/Cards/CardsReducer'
 import { PATH } from '../../../routing/Pages/Pages'
+import { getCardsTC, updateCardGradeTC } from '../../../store/Cards/CardsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import s from '../../style/CommonStylePage.module.css'
 import { BackPage } from '../BackPage/BackPage'

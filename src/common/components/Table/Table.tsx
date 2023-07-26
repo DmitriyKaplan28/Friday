@@ -9,7 +9,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
 import { ModeModalType } from '../../../features/Packs/Packs'
-import { setPacksParamsAC } from '../../../features/Packs/PacksParamsReducer'
+import { setPacksParamsAC } from '../../../store/Packs/PacksParamsReducer'
 import { useAppDispatch } from '../../../store/store'
 import { SortArrow } from '../SortArrow/SortArrow'
 

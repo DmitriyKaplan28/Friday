@@ -2,8 +2,8 @@ import { Dispatch } from 'redux'
 
 import { packsAPI, PackType } from '../../api/api'
 import { setAppErrorAC, setAppStatusAC, setModalStatusAC } from '../../app/AppReducer'
-import { AppDispatch, AppRootStateType, AppThunk } from '../../store/store'
 import { setIsLoggedInAC } from '../Login/AuthReducer'
+import { AppDispatch, AppRootStateType, AppThunk } from '../store'
 
 const initialState = {
   cardPacks: [] as PackType[],
