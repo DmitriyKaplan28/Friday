@@ -4,7 +4,7 @@ import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import { Button, InputAdornment } from '@mui/material'
 import { BiEditAlt } from '@react-icons/all-files/bi/BiEditAlt'
 
-import { CssTextField } from './CssCustomField'
+import { CssTextField } from './CssCustomField/CssCustomField'
 import s from './EditableSpan.module.css'
 
 type EditableSpanType = {
