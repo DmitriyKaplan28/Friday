@@ -10,13 +10,13 @@ type AvatarPropsType = {
   mode?: string
   name?: string
 }
-export const Avatar = (props: AvatarPropsType) => {
+export const Avatar = ({ width, mode, name }: AvatarPropsType) => {
   return (
     <>
       <div className={s.block}>
-        <span>{props.name}</span>
-        <img style={{ width: props.width, marginLeft: 5 }} src={avatar} alt="avatar" />
-        {props.mode === 'profile' && (
+        <span>{name}</span>
+        <img style={{ width: width, marginLeft: 5 }} src={avatar} alt="avatar" />
+        {mode === 'profile' && (
           <div className={s.circle}>
             <button className={s.btn}>
               <img className={s.icon} src={icon} alt="photo-icon" />
