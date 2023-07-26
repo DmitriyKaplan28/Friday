@@ -11,12 +11,6 @@ import { useAppDispatch, useAppSelector } from '../../store/store'
 
 import { setRegistrationTC } from './SignUpReducer'
 
-export type initialValuesType = {
-  email: string
-  password: string
-  confirmPassword: string
-}
-
 export const SignUp = () => {
   const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
