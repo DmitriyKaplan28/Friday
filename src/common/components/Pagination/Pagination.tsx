@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack'
 
 import s from '../../../features/Cards/Cards.module.css'
 import { useAppSelector } from '../../../store/store'
-import SuperSelect from '../c5-SuperSelect/SuperSelect'
+import Select from '../Select/Select'
 
 type PaginationControlledType = {
   count: number
@@ -14,12 +14,18 @@ type PaginationControlledType = {
   changePageCount: (value: number) => void
   setPage: (value: number) => void
 }
-export function PaginationControlled(props: PaginationControlledType) {
+export function PaginationControlled({
+  count,
+  totalCount,
+  page,
+  changePageCount,
+  setPage,
+}: PaginationControlledType) {
   const initialOptions = [4, 8, 16, 32, 64]
   const status = useAppSelector(state => state.app.status)
-  let pagesCount = Math.ceil(props.totalCount / props.count)
+  let pagesCount = Math.ceil(totalCount / count)
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    props.setPage(value)
+    setPage(value)
   }
 
   return (
@@ -27,17 +33,13 @@ export function PaginationControlled(props: PaginationControlledType) {
       <Stack spacing={2}>
         <Pagination
           disabled={status === 'loading'}
-          page={props.page}
+          page={page}
           count={pagesCount}
           onChange={handleChange}
         />
       </Stack>
       <span className={s.title}>Show</span>
-      <SuperSelect
-        value={props.count}
-        options={initialOptions}
-        onChangeOption={props.changePageCount}
-      />
+      <Select value={count} options={initialOptions} onChangeOption={changePageCount} />
       <span className={s.title}>Cards per Page</span>
     </>
   )
