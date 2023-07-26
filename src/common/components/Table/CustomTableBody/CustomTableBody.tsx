@@ -20,7 +20,7 @@ export type CustomTableBodyType = {
   modeModal: ModeModalType
   setModeModal: (value: ModeModalType) => void
 }
-export const CustomTableBody = (props: CustomTableBodyType) => {
+export const CustomTableBody = ({ modeModal, setModeModal }: CustomTableBodyType) => {
   const cardPacks = useAppSelector(state => state.packs.cardPacks)
   const user = useAppSelector(state => state.profile.user)
   const status = useAppSelector(state => state.app.status)
@@ -58,8 +58,8 @@ export const CustomTableBody = (props: CustomTableBodyType) => {
                   userId={p.user_id}
                   cards_packId={p._id}
                   packName={p.name}
-                  modeModal={props.modeModal}
-                  setModeModal={props.setModeModal}
+                  modeModal={modeModal}
+                  setModeModal={setModeModal}
                 />
               ) : (
                 <IconButton
