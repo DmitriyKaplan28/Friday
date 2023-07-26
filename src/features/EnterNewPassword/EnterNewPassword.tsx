@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { Box, TextField } from '@mui/material'
 import { useFormik } from 'formik'
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 
 import { ShowPassword } from '../../common/components/ShowPassword/ShowPassword'
 import s from '../../common/style/CommonStylePage.module.css'
@@ -12,7 +12,6 @@ import { setNewPasswordTC } from '../ResetPassword/EnterNewPasswordReducer'
 
 export const EnterNewPassword = () => {
   const [typeInputPassword, setType] = useState<string>('password')
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const isSentNewPassword = useAppSelector(state => state.newPassword.isSentNewPassword)
   const { token } = useParams()
