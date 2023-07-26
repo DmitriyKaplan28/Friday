@@ -1,17 +1,17 @@
-import React, { SelectHTMLAttributes, DetailedHTMLProps, ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, DetailedHTMLProps, SelectHTMLAttributes } from 'react'
 
 type DefaultSelectPropsType = DetailedHTMLProps<
   SelectHTMLAttributes<HTMLSelectElement>,
   HTMLSelectElement
 >
 
-type SuperSelectPropsType = DefaultSelectPropsType & {
+type SelectPropsType = DefaultSelectPropsType & {
   options?: any[]
   onChangeOption?: (option: any) => void
   value?: number
 }
 
-const SuperSelect: React.FC<SuperSelectPropsType> = ({
+const Select: React.FC<SelectPropsType> = ({
   options,
   onChange,
   onChangeOption,
@@ -38,4 +38,4 @@ const SuperSelect: React.FC<SuperSelectPropsType> = ({
   )
 }
 
-export default SuperSelect
+export default Select
