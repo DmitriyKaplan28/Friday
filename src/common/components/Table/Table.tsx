@@ -53,7 +53,7 @@ export type StickyHeadTableType = {
   modeModal: ModeModalType
   setModeModal: (value: ModeModalType) => void
 }
-export const StickyHeadTable = (props: StickyHeadTableType) => {
+export const StickyHeadTable = ({ modeModal, setModeModal }: StickyHeadTableType) => {
   const dispatch = useAppDispatch()
   const onClickSortHandler = (value: number) => {
     dispatch(setPacksParamsAC({ sortPacks: value + `updated` }))
@@ -84,7 +84,7 @@ export const StickyHeadTable = (props: StickyHeadTableType) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              <CustomTableBody modeModal={props.modeModal} setModeModal={props.setModeModal} />
+              <CustomTableBody modeModal={modeModal} setModeModal={setModeModal} />
             </TableBody>
           </Table>
         </TableContainer>
