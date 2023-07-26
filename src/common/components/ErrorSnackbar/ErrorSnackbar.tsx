@@ -22,7 +22,6 @@ export const ErrorSnackbar = () => {
     dispatch(setAppErrorAC(null))
     dispatch(setModalStatusAC('idle'))
   }
-  const isOpen = error !== null
 
   return (
     <Snackbar
