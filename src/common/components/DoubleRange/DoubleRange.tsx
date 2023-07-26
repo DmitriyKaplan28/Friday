@@ -6,11 +6,11 @@ import Slider from '@mui/material/Slider'
 import { setPacksParamsAC } from '../../../features/Packs/PacksParamsReducer'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 
-import s from './SuperDoubleRange.module.css'
+import s from './DoubleRange.module.css'
 
 const minDistance = 1
 
-export default function SuperDoubleRange() {
+export const DoubleRange = () => {
   const dispatch = useAppDispatch()
   const { min, max } = useAppSelector(state => state.paramsPacks)
   const [value, setValue] = useState<number[]>([min, max])

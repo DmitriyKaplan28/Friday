@@ -4,7 +4,7 @@ import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
 import Button from '@mui/material/Button'
 import { Navigate } from 'react-router-dom'
 
-import SuperDoubleRange from '../../common/components/c8-SuperDoubleRange/SuperDoubleRange'
+import { DoubleRange } from '../../common/components/DoubleRange/DoubleRange'
 import { InputDebouncePack } from '../../common/components/InputDebounce/InputDebouncePack'
 import { AddPackModal } from '../../common/components/Modal/PacksModal/AddPackModal'
 import { PaginationControlled } from '../../common/components/Pagination/Pagination'
@@ -94,7 +94,7 @@ export const Packs = () => {
             setOn={setOn}
             on={on}
           />
-          <SuperDoubleRange />
+          <DoubleRange />
           <div className={s.reset} onClick={onClickReset}>
             <button>
               <FilterAltOffIcon />
