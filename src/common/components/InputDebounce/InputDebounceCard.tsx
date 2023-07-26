@@ -11,24 +11,23 @@ type InputDebounceType = {
   width: number
 }
 
-export const InputDebounceCard = (props: InputDebounceType) => {
+export const InputDebounceCard = ({ callback, width }: InputDebounceType) => {
   const [searchTerm, setSearchTerm] = useState<string>('')
-  //const dispatch = useAppDispatch()
+  //TODO убрать дублирование с InputDebouncePack
   const debouncedSearchTerm = useDebounce(searchTerm, 500)
 
   useEffect(() => {
-    props.callback(debouncedSearchTerm)
-    //setSearchTerm('')
+    callback(debouncedSearchTerm)
   }, [debouncedSearchTerm])
 
   return (
-    <div className={s.wrapper} style={{ maxWidth: props.width }}>
+    <div className={s.wrapper} style={{ maxWidth: width }}>
       <span className={s.about}>Search</span>
       <div className={s.icon}>
         <AiOutlineSearch />
       </div>
       <input
-        style={{ maxWidth: props.width }}
+        style={{ maxWidth: width }}
         value={searchTerm}
         className={s.inputDebounce}
         placeholder="Search packs"

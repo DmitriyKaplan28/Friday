@@ -19,6 +19,7 @@ export const InputDebouncePack = ({
   setSearchTerm,
   searchTerm,
 }: InputDebounceType) => {
+  //TODO убрать дублирование с InputDebounceCard
   const debouncedSearchTerm = useDebounce(searchTerm, 500)
 
   useEffect(() => {
