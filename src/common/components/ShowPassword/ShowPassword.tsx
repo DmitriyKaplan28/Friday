@@ -9,13 +9,13 @@ type ShowPasswordType = {
   value: string
   callback: (value: string) => void
 }
-export const ShowPassword = memo((props: ShowPasswordType) => {
+export const ShowPassword = memo(({ value, callback }: ShowPasswordType) => {
   const [link, setLink] = useState<boolean>(false)
 
   const onChangeHandler = useCallback(() => {
-    props.value === 'password' ? props.callback('text') : props.callback('password')
+    value === 'password' ? callback('text') : callback('password')
     setLink(!link)
-  }, [props.value])
+  }, [value])
 
   return (
     <div className={s.showPassword} onClick={onChangeHandler}>
