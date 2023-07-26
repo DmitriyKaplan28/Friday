@@ -17,7 +17,7 @@ type CardPropsTYpe = {
   user: UserType
   changeUserNameValue: (name: string, avatar?: string) => void
 }
-export const Card = (props: CardPropsTYpe) => {
+export const Card = ({ title, user, changeUserNameValue }: CardPropsTYpe) => {
   const dispatch = useAppDispatch()
 
   const onClickHandler = () => {
@@ -27,10 +27,10 @@ export const Card = (props: CardPropsTYpe) => {
 
   return (
     <div className={s.wrapper}>
-      <h2 className={s.title}>{props.title ? props.title : 'Personal Information'}</h2>
+      <h2 className={s.title}>{title ? title : 'Personal Information'}</h2>
       <Avatar mode={'profile'} width="96px" />
-      <EditableSpan callBack={props.changeUserNameValue} title={props.user.name} />
-      <span className={s.email}>{props.user.email}</span>
+      <EditableSpan callBack={changeUserNameValue} title={user.name} />
+      <span className={s.email}>{user.email}</span>
       <Button className={s.btn} onClick={onClickHandler}>
         <AiOutlineLogout />
         <span>Log out</span>
