@@ -5,7 +5,7 @@ import Button from '@mui/material/Button'
 import { Navigate } from 'react-router-dom'
 
 import { DoubleRange } from '../../common/components/DoubleRange/DoubleRange'
-import { InputDebouncePack } from '../../common/components/InputDebounce/InputDebouncePack'
+import { InputDebounce } from '../../common/components/InputDebounce/InputDebounce'
 import { AddPackModal } from '../../common/components/Modal/PacksModal/AddPackModal'
 import { PaginationControlled } from '../../common/components/Pagination/Pagination'
 import { StickyHeadTable } from '../../common/components/Table/Table'
@@ -86,11 +86,12 @@ export const Packs = () => {
           setModeModal={setModeModal}
         />
         <div className={s.filter}>
-          <InputDebouncePack
+          <InputDebounce
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
             width={350}
             callback={changeFilterInput}
+            placeholder="Search packs"
           />
           <ToggleButtonElement
             setAlignment={setAlignment}

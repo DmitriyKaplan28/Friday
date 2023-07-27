@@ -6,20 +6,21 @@ import { useDebounce } from '../../hooks/useDebounce'
 
 import s from './InputDebounce.module.css'
 
-type InputDebounceType = {
+type UniversalInputDebounceType = {
   callback: (value: string) => void
   width: number
   searchTerm: string
   setSearchTerm: (value: string) => void
+  placeholder: string
 }
 
-export const InputDebouncePack = ({
+export const InputDebounce = ({
   callback,
   width,
-  setSearchTerm,
   searchTerm,
-}: InputDebounceType) => {
-  //TODO убрать дублирование с InputDebounceCard
+  setSearchTerm,
+  placeholder,
+}: UniversalInputDebounceType) => {
   const debouncedSearchTerm = useDebounce(searchTerm, 500)
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export const InputDebouncePack = ({
         style={{ maxWidth: width }}
         value={searchTerm}
         className={s.inputDebounce}
-        placeholder="Search packs"
+        placeholder={placeholder}
         onChange={e => setSearchTerm(e.target.value)}
       />
     </div>
