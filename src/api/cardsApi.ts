@@ -18,7 +18,7 @@ export const cardsAPI = {
   },
 }
 
-//TYPE
+//TYPES
 export type CardsParamsType = {
   cardsPack_id: string
   cardAnswer?: string
@@ -27,6 +27,7 @@ export type CardsParamsType = {
   page: number
   pageCount: number
 }
+
 export type AddCardDataType = {
   cardsPack_id: string
   question: string
@@ -55,6 +56,7 @@ export type CardsType = {
   __v: 0
   _id: string
 }
+
 export type UpdateCardDataType = {
   _id: string
   question?: string

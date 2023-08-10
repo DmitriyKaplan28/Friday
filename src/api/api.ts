@@ -1,7 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 
 export const instance = axios.create({
-  //baseURL: 'http://localhost:7542/2.0/',
   baseURL: 'https://neko-back.herokuapp.com/2.0/',
   withCredentials: true,
 })
@@ -67,7 +66,7 @@ export const packsAPI = {
   },
 }
 
-//TYPE
+//TYPES
 
 type AddPackType = {
   name?: string
@@ -84,20 +83,24 @@ export type PacksParamsType = {
   sortPacks?: string
   user_id?: string
 }
+
 export type GetMeResponseType = UserType & { error: string }
 
 export type UpdateUserResponseType = {
   updatedUser: UserType
   error: string
 }
+
 export type ResponseRegisterType = {
   addedUser: {}
   error?: string
 }
+
 export type ResetPasswordResponseType = {
   info: string
   error: string
 }
+
 export type UserType = {
   avatar?: null
   created: string
@@ -119,22 +122,6 @@ export type LoginParamsType = {
   password: string
   rememberMe: boolean
 }
-type LoginResponseType = {
-  _id: string
-  email: string
-  name: string
-  avatar?: string
-  publicCardPacksCount: number
-  // количество колод
-
-  created: Date
-  updated: Date
-  isAdmin: boolean
-  verified: boolean
-  rememberMe: boolean
-
-  error?: string
-}
 
 export type RegisterParamsType = {
   email: string
@@ -147,6 +134,7 @@ export type ErrorDataResponseType = {
   isEmailValid: boolean
   isPassValid: boolean
 }
+
 export type ForgotPasswordParamsType = {
   email: string
   from: string
@@ -157,6 +145,7 @@ export type NewPasswordParamsType = {
   password: string
   resetPasswordToken: string
 }
+
 export type PackType = {
   _id: string
   user_id: string
